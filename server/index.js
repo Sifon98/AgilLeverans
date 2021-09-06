@@ -11,7 +11,7 @@ const MongoStore = require("connect-mongo");
 const dbUrl = "mongodb://localhost:27017/leverans-app";
 mongoose.connect(dbUrl);
 
-// Log db!!!!
+// Log db!!!
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.on("open", () => console.log("Database connected!"));

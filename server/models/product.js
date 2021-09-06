@@ -6,7 +6,11 @@ const ProductSchema = new Schema(
   {
     name: {type: String, required: true},
     price: {type: Number, required: true},
-    category: {type: String, required: true},
+    category: {type: Number, required: true},
+    image: {type: String, required: true},
+    // 0 = Tops
+    // 1 = Bottoms
+    // 2 = Shoes
     description: String,
     // tags: Array,
     // color: String,
@@ -16,4 +20,4 @@ const ProductSchema = new Schema(
   {timestamps: true},
 )
 
-module.exports = mongoose.model("User", ProductSchema);
+module.exports = mongoose.model("Product", ProductSchema);
