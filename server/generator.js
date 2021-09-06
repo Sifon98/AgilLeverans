@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Product = require("./models/product");
-const {products} = require("./products")
+const {products} = require("./routes/utils/products")
 
 // Connect to database
 const dbUrl = "mongodb://localhost:27017/leverans-app";
