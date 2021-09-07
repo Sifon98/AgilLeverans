@@ -5,7 +5,9 @@ const PORT = 4000 || process.env.PORT;
 const session = require("express-session")
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
+const cors = require("cors")
 
+app.use(cors());
 
 // Connect to database
 const dbUrl = "mongodb://localhost:27017/leverans-app";
@@ -16,6 +18,9 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.on("open", () => console.log("Database connected!"));
 
+// Post route
+const productRouter = require('./routes/routes')
+app.use('/', productRouter)
 
 // Sessions
 const store = MongoStore.create({
