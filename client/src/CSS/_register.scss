@@ -1,0 +1,80 @@
+.conteinerRegister{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .yellowSide{
+        width: 13px;
+        height: 812px;
+        background-color: #FFF06B;
+        position: fixed;
+        left: 0;
+    }
+    
+    .head{
+        background-color: #FFF06B;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 230px;
+        height: 60px;
+
+        .h1name{
+            font-family: 'Inter', sans-serif;
+            font-size: 230%;
+            font-weight: 900;
+            margin: 5px;
+        }
+    }
+
+    .form{
+        display: flex;
+        flex-direction: column;
+        margin-top: 63px;
+        width: 225px;
+
+        .input{
+            display: flex;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid lightgray;
+            background-color: #F4F4F4;  
+        }  
+
+        .input::placeholder{
+            color: black;
+            font-size: 120%;
+            font-weight: 700;
+        }
+
+        .registerButton{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            margin-top: 30px;
+            background-color: #FFF06B;
+            border: none;
+            border-radius: 100px;
+            height: 53px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            
+        }
+            
+        .loginLink {
+            font-family: 'Inter', sans-serif;
+            color: black;
+            opacity: 26%;
+            text-decoration: none;
+            font-size: 90%;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+       
+        
+    }
+}
