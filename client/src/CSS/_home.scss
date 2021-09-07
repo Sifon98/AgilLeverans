@@ -7,11 +7,23 @@
     justify-content: space-between;
 
     .product {
+        border-top: 4px solid #FFF06B;
+        margin-top: 10px;
+        margin-bottom: 10px;
         max-width: 48%;
 
         .image {
             width: 100%;
             height: auto;
+        }
+        
+        .info-box {
+            background-color: white;
+
+            p {
+                padding: 6px;
+                margin: -4px;
+            }
         }
     }
 }
