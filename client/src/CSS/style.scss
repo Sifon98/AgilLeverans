@@ -1,0 +1,39 @@
+@import "_config";
+@import "_utilities";
+
+@import "_home";
+@import "_product-page";
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,body {
+  width: 100vw;
+  height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+}
+.App {
+  min-width: 100%;
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: #F4F4F4;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+
+.page {
+  position: absolute !important;
+  inset: 0;
+}
