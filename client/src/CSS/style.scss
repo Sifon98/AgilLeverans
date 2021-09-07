@@ -27,7 +27,12 @@ body {
 ul {
   list-style-type: none;
 }
-
+.App {
+  min-width: 100%;
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: #F4F4F4;
+}
 
 button {
   outline: none;
