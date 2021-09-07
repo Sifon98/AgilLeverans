@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Product = require("./models/product");
+const User = require("./models/user");
 const {products} = require("./routes/utils/products")
+
 
 // Connect to database
 const dbUrl = "mongodb://localhost:27017/leverans-app";
@@ -32,3 +34,9 @@ const removeAllProducts = async () => {
 
 // Run this once to remove all products
 // removeAllProducts();
+
+
+
+// const createUser = async () => {
+//   const user = await new User({})
+// }
