@@ -7,6 +7,7 @@ import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
 import ProductPage from "./Pages/ProductPage"
 import './App.css'
+import './CSS/home.min.css'
 import {
   BrowserRouter as Router,
   Switch,

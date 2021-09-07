@@ -3,12 +3,14 @@ const express = require("express");
 const passport = require("passport");
 const User = require("../models/user");
 const router = express.Router();
+const Products = require('../models/product')
 
 
 // USER
 router.get("/user", (req, res) => {
   // Get user
 });
+
 router.post("/register", async (req, res) => {
   try {
     // User info
@@ -72,9 +74,16 @@ router.put("/cart", (req, res) => {
 
 
 // PRODUCTS
-router.get("/products", (req, res) => {
+router.get("/products", async (req, res) => {
   // Get All (or sorted) products logic
+  try {
+    const products = await Products.find()
+    res.send(products)
+  } catch (error) {
+    res.send({ message: error })
+  }
 });
+
 router.get("/products/:id", (req, res) => {
   // Get induvidual products
 });
