@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import logo from "../img/logo.png"
 
 function Home() {
   const [products, setProducts] = useState([]); 
@@ -14,6 +15,7 @@ function Home() {
     console.log(data);
     setProducts(data.products);
     setCategoryCheck(false)
+    setDropdown(false)
   }
 
   const toggleDropdown = () => {
@@ -23,17 +25,25 @@ function Home() {
   const chooseCategory = (e) => {
     const id = e.target.id
     id == 99 ? 
-    setCategoryCheck(false)
-    : 
-    setCategoryCheck(true)
-    setDropdown(false)
-    setCategory(id)
+      setCategoryCheck(false) 
+      : setCategoryCheck(true)
+      setDropdown(false)
+      setCategory(id)
   }
 
   useEffect(() => fetchProducts(), [])
 
   return (
     <div>
+      <div className="header">
+        <i className="fas fa-user-circle"></i>
+        <img src={logo} />
+        <div>
+          <i className="fas fa-sliders-h"></i>
+          <i className="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+
       <div className="dropdown-container">
         <button type="button" className="button" onClick={toggleDropdown}>KATEGORI</button>
           {dropdown && <div className="dropdown">
