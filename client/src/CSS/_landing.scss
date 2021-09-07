@@ -1,9 +1,11 @@
 .wrapper {
+    overflow-y: hidden;
+    overflow-x: hidden;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-    // background-color:#EDECEA;
     object-fit:cover;
+    margin:0px;
 
     a { 
         color: black; text-decoration: none 
@@ -45,6 +47,34 @@
             justify-content: start;
             background-size: cover;
             
+            .buttonContainer {
+                display: flex;
+                position: absolute; 
+                justify-content: space-around;
+                top: 70%;
+                margin-left: auto; 
+                margin-right: auto; 
+                margin-top: 20px;
+                height: 100px;
+                width:49.5%;
+                align-items: center;
+
+                .menButton {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // position: absolute;
+                    background-color:#FFF06B;
+                    width: 105px;
+                    height: 40px;
+                    text-decoration: black;
+                    border: none;
+                    font-size: 1.9em;
+                    font-weight: bold;
+                    // padding-top: 10px;
+                }
+            }
+
             .menImage {
                 margin-top: 100px;
                 width: 100%;

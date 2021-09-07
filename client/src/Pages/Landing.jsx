@@ -1,5 +1,4 @@
 import React from 'react'
-import Home from './Home'
 import { useHistory } from "react-router-dom";
 
 
@@ -13,6 +12,9 @@ function Landing() {
 
       <div className="imageContainer">
         <div className="leftSide">
+          <div className="buttonContainer">
+            <button className="menButton">men.</button>
+          </div>
           <img className="menImage" src="./src/Men.png" alt="Men" />
         </div>
 
