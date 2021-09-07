@@ -40,19 +40,19 @@
 
         }
         
-        // .rightSide {
-        //     // background-color:red;
-        //     display: flex;
-        //     height: 100%;
-        //     width:50%;
-        //     flex-direction: row;
-        //     justify-content: end;
+        .rightSide {
+            // background-color:red;
+            display: flex;
+            height: 100%;
+            width:50%;
+            flex-direction: row;
+            justify-content: end;
             
-        //     .womenImage {
-        //         width: 100%;
-        //         height:100%;
-        //         object-fit: cover;
-        //     }
-        // }
+            .womenImage {
+                width: 100%;
+                height:100%;
+                object-fit: cover;
+            }
+        }
     }
 }
