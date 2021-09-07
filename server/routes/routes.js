@@ -1,51 +1,87 @@
 
 const express = require("express");
+const passport = require("passport");
+const User = require("../models/user");
 const router = express.Router();
 
 
 // USER
-router.get("/api/user", (req, res) => {
+router.get("/user", (req, res) => {
   // Get user
 });
-router.post("/api/register", (req, res) => {
-  // Create user
+router.post("/register", async (req, res) => {
+  try {
+    // User info
+    const user = new User({email: "testuser@gmail.com", username: "testuser"});
+    const password = "password123"
+    // Register User
+    const registerUser = await User.register(user, password);
+    // Log in user
+    req.login(registerUser, (err) => {
+      if (err) return next(err);
+      // Give user a message that he is logged in
+      res.json({text: "Registered!"})
+    })
+  } catch(e) {
+    next(e);
+  }
+
 });
-router.post("/api/login", (req, res) => {
-  // Create user
-});
-router.post("/api/logout", (req, res) => {
-  // Create user
+router.post("/login", async (req, res) => {
+  // Tell passport that we will log in via "local" strategy
+  passport.authenticate("local", function(err,user,info) {
+    // Handle error
+    if(err) return next(err);
+    if(!user) return res.json({error: "Invalid username or password."})
+    // Log in user
+    req.login(user, function (err) {
+      // Handle error
+      if (err) return next(err);
+      // Give user a message that he is logged in
+      res.json({text: "logged in!"})
+    })
+  })(req,res,next)
 });
 
-router.get("/api/wishlist", (req, res) => {
+router.post("/logout", (req, res) => {
+  // Logout user
+  req.logout();
+  // Send message of OK
+  res.send(200)
+});
+
+router.get("/wishlist", (req, res) => {
   // Get wishlist items
 });
-router.post("/api/wishlist", (req, res) => {
+router.post("/wishlist", (req, res) => {
   // Add item to wishlist
 });
-router.put("/api/wishlist", (req, res) => {
+router.put("/wishlist", (req, res) => {
   // Edit wishlist
 });
 
-router.get("/api/cart", (req, res) => {
+router.get("/cart", (req, res) => {
   // Get shopping-cart items
 });
-router.post("/api/cart", (req, res) => {
+router.post("/cart", (req, res) => {
   // Add item to shopping-cart
 });
-router.put("/api/cart", (req, res) => {
+router.put("/cart", (req, res) => {
   /// Edit shopping-cart
 });
 
 
 // PRODUCTS
-router.get("/api/products", (req, res) => {
+router.get("/products", (req, res) => {
   // Get All (or sorted) products logic
 });
-router.get("/api/products/:id", (req, res) => {
+router.get("/products/:id", (req, res) => {
   // Get induvidual products
 });
 
-router.get("/", (req, res) => {
-  // Get build folder
-});
+// router.route("/").get((req, res) => {
+//   // Get build folder
+// });
+
+
+module.exports = router;

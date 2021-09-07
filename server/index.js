@@ -5,6 +5,12 @@ const PORT = 4000 || process.env.PORT;
 const session = require("express-session")
 const {sessionOptions} = require("./utils/session")
 const mongoose = require("mongoose");
+// Passport
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+
+const User = require("./models/user");
+const router = require("./routes/routes");
 
 
 // Connect to database
@@ -20,6 +26,21 @@ db.on("open", () => console.log("Database connected!"));
 // Middlewares
 const sessionMiddleware = session(sessionOptions);
 app.use(sessionMiddleware);
+
+// Passport (Middlewares)
+const passportInit = passport.initialize();
+const passportSession = passport.session();
+
+app.use(passportInit);
+app.use(passportSession);
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+// Routes
+app.use("/api", router)
 
 
 // app.get("*", (req,res) => {
