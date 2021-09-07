@@ -1,4 +1,11 @@
 import React, {useEffect, useState, useRef} from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+faHeart,
+} from "@fortawesome/free-regular-svg-icons";
+import {
+faCheck, faShoppingBag
+} from "@fortawesome/free-solid-svg-icons";
 
 
 function isEmpty(obj) {
@@ -12,6 +19,8 @@ function Product() {
   const [product, setProduct] = useState({});
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [descHeight, setDescHeight] = useState(1000);
+
+  // const [color, setColor] = useState();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -30,12 +39,15 @@ function Product() {
   }, [product])
 
 
-
   return (
     <div className="product-page">
         <div className="image-container">
           <img src={product.image} alt="product image" />
+          <button className="wishlist-btn">
+            <FontAwesomeIcon icon={faHeart} />
+          </button>
         </div>
+
         <div className="wrapper">
           <div className="info-container">
             <div className="container">
@@ -44,7 +56,7 @@ function Product() {
             </div>
             <p
             className="description" 
-            style={{maxHeight: `${descHeight}px`}} 
+            style={showFullDesc ? {maxHeight: "1000px"} : {maxHeight: `${descHeight}px`}} 
             ref={descriptionRef}>
             {!isEmpty(product) && (
             <>
@@ -58,23 +70,32 @@ function Product() {
           </div>
           <div className="options-container">
             <label>Color</label>
-            <ul>
-              <li style={{background: "#CDC0B7"}}></li>
-              <li style={{background: "#772828"}}></li>
-              <li style={{background: "#000000"}}></li>
+            <ul className="color-list">
+              <li style={{background: "#CDC0B7"}}>
+                <div className="selected">
+                  <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+                </div>
+              </li>
+              <li style={{background: "#772828"}}>
+              </li>
+              <li style={{background: "#000000"}}>
+              </li>
             </ul>
           </div>
           <div className="options-container">
             <label>Size</label>
-            <ul>
-              <li className="size-btn">S</li>
+            <ul className="size-list">
+              <li className="size-btn selected">S</li>
               <li className="size-btn">M</li>
               <li className="size-btn">L</li>
             </ul>
           </div>
         </div>
         <div className="bottom-whitespace"></div>
-        <button className="checkout-btn">Add to cart</button>
+        <button className="checkout-btn">
+          <FontAwesomeIcon icon={faShoppingBag}></FontAwesomeIcon>
+          <span>Add to cart</span> 
+        </button>
     </div>
   )
 }
