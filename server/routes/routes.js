@@ -2,6 +2,7 @@
 const express = require("express");
 const passport = require("passport");
 const User = require("../models/user");
+const Product = require("../models/product");
 const router = express.Router();
 const Products = require('../models/product')
 
@@ -24,10 +25,9 @@ router.post("/register", async (req, res) => {
       // Give user a message that he is logged in
       res.json({text: "Registered!"})
     })
-  } catch(e) {
-    next(e);
+  } catch(err) {
+    next(err);
   }
-
 });
 router.post("/login", async (req, res) => {
   // Tell passport that we will log in via "local" strategy
@@ -52,25 +52,70 @@ router.post("/logout", (req, res) => {
   res.send(200)
 });
 
-router.get("/wishlist", (req, res) => {
-  // Get wishlist items
+// Get wishlist || shopping-cart items
+router.get("/saved-products", async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const type = req.query; // type should be "wishlist" or "cart"
+  
+    const user = await findById(userId).populate(type);
+
+    res.json({
+      ...(type === "wishlist" && {wishlist: user.wishlist}),
+      ...(type === "cart" && {cart: user.cart})
+    });
+  } catch(err) {
+    return next(err);
+  }
 });
-router.post("/wishlist", (req, res) => {
-  // Add item to wishlist
+// Add item to wishlist || shopping-cart
+router.post("/saved-products/:id", async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const productId = req.params.id;
+    const type = req.query; // type should be "wishlist" or "cart"
+  
+    await findByIdAndUpdate(userId, {
+      $addToSet: {
+        ...(type === "wishlist" && {wishlist: productId}),
+        ...(type === "cart" && {cart: productId})
+      }
+    });
+  } catch (err) {
+    return next(err);
+  };
+
+  res.json("ok")
 });
-router.put("/wishlist", (req, res) => {
-  // Edit wishlist
+// Remove wishlist || shopping-cart
+router.delete("/saved-products/:id", (req, res) => {
+  try {
+    const userId = req.user._id;
+    const productId = req.params.id;
+    const type = req.query; // type should be "wishlist" or "cart"
+  
+    await findByIdAndUpdate(userId, {
+      $pull: {
+        ...(type === "wishlist" && {wishlist: productId}),
+        ...(type === "cart" && {cart: productId})
+      }
+    });
+  } catch(err) {
+    next(err);
+  }
+  res.send("ok");
 });
 
-router.get("/cart", (req, res) => {
-  // Get shopping-cart items
-});
-router.post("/cart", (req, res) => {
-  // Add item to shopping-cart
-});
-router.put("/cart", (req, res) => {
-  /// Edit shopping-cart
-});
+
+// router.get("/cart", (req, res) => {
+//   // Get shopping-cart items
+// });
+// router.post("/cart", (req, res) => {
+//   // Add item to shopping-cart
+// });
+// router.put("/cart", (req, res) => {
+//   /// Edit shopping-cart
+// });
 
 
 // PRODUCTS
