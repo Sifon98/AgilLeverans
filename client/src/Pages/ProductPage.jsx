@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 
 
 function isEmpty(obj) {
@@ -7,18 +7,28 @@ function isEmpty(obj) {
 
 
 function Product() {
+  const descriptionRef = useRef(null);
 
   const [product, setProduct] = useState({});
+  const [showFullDesc, setShowFullDesc] = useState(false);
+  const [descHeight, setDescHeight] = useState(1000);
 
   useEffect(() => {
     const getProduct = async () => {
       const productId = location.pathname.replace("/product/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
-      console.log(data)
       setProduct(data.product)
     }
     getProduct();
   }, [])
+
+
+  useEffect(() => {
+    if(descriptionRef.current) {
+      setDescHeight(descriptionRef.current.offsetHeight)
+    }
+  }, [product])
+
 
 
   return (
@@ -32,12 +42,15 @@ function Product() {
               <div className="name">{product.name}</div>
               <div className="price">${product.price}.00</div>
             </div>
-            <p className="description">
+            <p
+            className="description" 
+            style={{maxHeight: `${descHeight}px`}} 
+            ref={descriptionRef}>
             {!isEmpty(product) && (
             <>
-              {product.description.substring(0, 300)}
-              {product.description.length > 300 ? (
-                <span className="show-more"> Show more...</span>
+              {showFullDesc ? product.description : product.description.substring(0, 300)}
+              {!showFullDesc && product.description.length > 300 ? (
+                <span className="show-more" onClick={() => setShowFullDesc(true)}> Show more...</span>
               ):null}
             </>
             )}
@@ -61,7 +74,6 @@ function Product() {
           </div>
         </div>
         <div className="bottom-whitespace"></div>
-
         <button className="checkout-btn">Add to cart</button>
     </div>
   )
