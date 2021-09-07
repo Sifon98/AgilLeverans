@@ -4,14 +4,18 @@ const passport = require("passport");
 const User = require("../models/user");
 const Product = require("../models/product");
 const router = express.Router();
+
 const {validateQuery} = require("../utils/validation")
+
 
 
 // USER
 router.get("/user", (req, res) => {
   // Get user
 });
+
 router.post("/register", async (req, res, next) => {
+
   try {
     // User info
     const user = new User({email: "testuser@gmail.com", username: "testuser"});
@@ -111,6 +115,7 @@ router.delete("/saved-products/:id", async (req, res, next) => {
 
 
 // PRODUCTS
+
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
   
@@ -118,7 +123,8 @@ router.get("/products", async (req, res, next) => {
 
   res.json({products});
 });
-router.get("/products/:id", (req, res, next) => {
+
+router.get("/products/:id", (req, res) => {
   // Get induvidual products
   // res.json();
 });
