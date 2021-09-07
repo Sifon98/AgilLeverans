@@ -23,7 +23,7 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.on("open", () => console.log("Database connected!"));
 
 
-// Middlewares
+// ## Middlewares ##
 const sessionMiddleware = session(sessionOptions);
 app.use(sessionMiddleware);
 
@@ -43,9 +43,21 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/api", router)
 
 
+
+
+
 // app.get("*", (req,res) => {
 //   // Error page
 // })
+
+// Handle errors
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Oh No, Something Went Wrong!";
+  res.status(statusCode).send(err.message);
+});
+
+
 
 app.listen(4000, () => {
   console.log("Running on " + PORT);
