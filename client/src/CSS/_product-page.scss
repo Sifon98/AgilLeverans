@@ -14,7 +14,7 @@
     }
   }
   .wrapper {
-    padding: 20px 40px;
+    padding: 20px 40px 10px 40px;
     border-top: 3px solid var(--yellow);
     .info-container {
       width: 100%;
@@ -65,5 +65,20 @@
       }
     }
   }
-
+  .bottom-whitespace {
+    height: 85px;
+  }
+  .checkout-btn {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: calc(100% - 50px);
+    bottom: 25px;
+    border-radius: 100px;
+    height: 60px;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+  }
 }
