@@ -1,9 +1,12 @@
 import React from 'react'
 
+
 function Landing() {
   return (
-    <div>
-      <p>Hello Landing page</p>
+    <div className="container">
+      <div className="titleContainer">
+        <h1 className="title">bopshop.</h1>
+      </div>
     </div>
   )
 }

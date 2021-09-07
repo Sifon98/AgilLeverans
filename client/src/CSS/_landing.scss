@@ -1,0 +1,26 @@
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-image: url("/client/src/Men.png");
+    
+
+    .titleContainer{
+        display: flex;
+        width:150px;
+        height:150px;
+        // flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFF06B;
+    }
+
+    // .buttonsContainer {
+    //     width: 100%;
+    //     height:100%;
+    //     display:flex;
+    //     justify-content: center;
+        
+
+    // }
+}
