@@ -1,3 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px 30px 20px;
+    
+    i {
+        font-size: 24px;
+    }
+}
+
 .dropdown-container {
     position: relative;
     display: inline-block;
@@ -63,8 +74,8 @@
             background-color: white;
 
             p {
-                padding: 6px;
-                margin: -4px;
+                padding: 8px;
+                margin-top: -4px;
             }
         }
     }
