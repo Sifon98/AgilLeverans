@@ -12,15 +12,19 @@ function Landing() {
 
       <div className="imageContainer">
         <div className="leftSide">
-          <div className="buttonContainer">
+          <div className="buttonContainerMen">
             <button className="menButton">men.</button>
           </div>
-          <img className="menImage" src="./src/Men.png" alt="Men" />
+          <img className="menImage" src="./src/Men.png" alt="Man" />
         </div>
 
         <div className="rightSide">
-          <img className="womenImage" src="./src/Women.png" alt="Women" />
+          <div className="buttonContainerWomen">
+            <button className="womenButton">women.</button>
+          </div>
+          <img className="womenImage" src="./src/Women.png" alt="Woman" />
         </div>
+
       </div>
     </div>
   )
