@@ -4,7 +4,9 @@ const passport = require("passport");
 const User = require("../models/user");
 const Product = require("../models/product");
 const router = express.Router();
-const Products = require('../models/product')
+
+const {validateQuery} = require("../utils/validation")
+
 
 
 // USER
@@ -12,7 +14,8 @@ router.get("/user", (req, res) => {
   // Get user
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", async (req, res, next) => {
+
   try {
     // User info
     const user = new User({email: "testuser@gmail.com", username: "testuser"});
@@ -29,7 +32,7 @@ router.post("/register", async (req, res) => {
     next(err);
   }
 });
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
   // Tell passport that we will log in via "local" strategy
   passport.authenticate("local", function(err,user,info) {
     // Handle error
@@ -53,13 +56,13 @@ router.post("/logout", (req, res) => {
 });
 
 // Get wishlist || shopping-cart items
-router.get("/saved-products", async (req, res) => {
+router.get("/saved-products", async (req, res, next) => {
   try {
-    const userId = req.user._id;
-    const type = req.query; // type should be "wishlist" or "cart"
+    const userId = "61371decd184969720e706ee";
+    const { type } = req.query; // type should be "wishlist" or "cart"
+    validateQuery(type); // returns error if not valid
   
-    const user = await findById(userId).populate(type);
-
+    const user = await User.findById(userId).populate(type);
     res.json({
       ...(type === "wishlist" && {wishlist: user.wishlist}),
       ...(type === "cart" && {cart: user.cart})
@@ -68,14 +71,17 @@ router.get("/saved-products", async (req, res) => {
     return next(err);
   }
 });
+
+
 // Add item to wishlist || shopping-cart
-router.post("/saved-products/:id", async (req, res) => {
+router.post("/saved-products/:id", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = "61371decd184969720e706ee";
     const productId = req.params.id;
-    const type = req.query; // type should be "wishlist" or "cart"
-  
-    await findByIdAndUpdate(userId, {
+    const { type } = req.query; // type should be "wishlist" or "cart"
+    validateQuery(type); // returns error if not valid
+
+    await User.findByIdAndUpdate(userId, {
       $addToSet: {
         ...(type === "wishlist" && {wishlist: productId}),
         ...(type === "cart" && {cart: productId})
@@ -88,13 +94,14 @@ router.post("/saved-products/:id", async (req, res) => {
   res.json("ok")
 });
 // Remove wishlist || shopping-cart
-router.delete("/saved-products/:id", (req, res) => {
+router.delete("/saved-products/:id", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = "61371decd184969720e706ee";
     const productId = req.params.id;
-    const type = req.query; // type should be "wishlist" or "cart"
+    const { type } = req.query; // type should be "wishlist" or "cart"
+    validateQuery(type); // returns error if not valid
   
-    await findByIdAndUpdate(userId, {
+    await User.findByIdAndUpdate(userId, {
       $pull: {
         ...(type === "wishlist" && {wishlist: productId}),
         ...(type === "cart" && {cart: productId})
@@ -107,30 +114,19 @@ router.delete("/saved-products/:id", (req, res) => {
 });
 
 
-// router.get("/cart", (req, res) => {
-//   // Get shopping-cart items
-// });
-// router.post("/cart", (req, res) => {
-//   // Add item to shopping-cart
-// });
-// router.put("/cart", (req, res) => {
-//   /// Edit shopping-cart
-// });
-
-
 // PRODUCTS
-router.get("/products", async (req, res) => {
+
+router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
-  try {
-    const products = await Products.find()
-    res.send(products)
-  } catch (error) {
-    res.send({ message: error })
-  }
+  
+  const products = await Product.find();
+
+  res.json({products});
 });
 
 router.get("/products/:id", (req, res) => {
   // Get induvidual products
+  // res.json();
 });
 
 // router.route("/").get((req, res) => {
