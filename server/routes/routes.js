@@ -118,15 +118,26 @@ router.delete("/saved-products/:id", async (req, res, next) => {
 
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
-  
-  const products = await Product.find();
+  try {
+    const products = await Product.find();
 
-  res.json({products});
+    res.json({products});
+  } catch(err) {
+    return next(err);
+  }
+  
+
 });
 
 router.get("/products/:id", (req, res) => {
-  // Get induvidual products
-  // res.json();
+  try {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    res.json({product});
+  } catch(err) {
+    return next(err);
+  }
+
 });
 
 // router.route("/").get((req, res) => {
