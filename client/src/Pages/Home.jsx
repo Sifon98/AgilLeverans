@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 function Home() {
   const [products, setProducts] = useState([]); 
+  const [dropdown, setDropdown] = useState([]); 
+  const [categoryCheck, setCategoryCheck] = useState([]); 
+  const [category, setCategory] = useState([]); 
 
   const fetchProducts = async () => {
     // const res = await fetch('/api/products');
@@ -10,23 +13,62 @@ function Home() {
 
     console.log(data);
     setProducts(data.products);
+    setCategoryCheck(false)
+  }
+
+  const toggleDropdown = () => {
+    dropdown ? setDropdown(false) : setDropdown(true)
+  }
+
+  const chooseCategory = (e) => {
+    const id = e.target.id
+    id == 99 ? 
+    setCategoryCheck(false)
+    : 
+    setCategoryCheck(true)
+    setDropdown(false)
+    setCategory(id)
   }
 
   useEffect(() => fetchProducts(), [])
 
   return (
-    <div className="container">
-        {
-          products.map(Product => (
-            <div key={Product._id} className="product">
-              <img className="image" src={Product.image} />
-              <div className="info-box">
-                <p>{Product.name}</p>
-                <p>{Product.price} kr</p>
+    <div>
+      <div className="dropdown-container">
+        <button type="button" className="button" onClick={toggleDropdown}>KATEGORI</button>
+          {dropdown && <div className="dropdown">
+            <ul>
+              <li id={99} onClick={chooseCategory}>All items</li>
+              <li id={0} onClick={chooseCategory}>Shirts</li>
+              <li id={1} onClick={chooseCategory}>Pants</li>
+              <li id={2} onClick={chooseCategory}>Shoes</li>
+            </ul>
+          </div>}
+      </div>
+      
+      <div className="container">
+          {
+            categoryCheck ? products.map(Product => (
+              Product.category == category ?
+                <div key={Product._id} className="product">
+                <img className="image" src={Product.image} />
+                <div className="info-box">
+                  <p>{Product.name}</p>
+                  <p>{Product.price} kr</p>
+                </div>
+              </div> : null
+            ))
+            : products.map(Product => (
+              <div key={Product._id} className="product">
+                <img className="image" src={Product.image} />
+                <div className="info-box">
+                  <p>{Product.name}</p>
+                  <p>{Product.price} kr</p>
+                </div>
               </div>
-            </div>
-          ))
-        }
+            ))
+          }
+      </div>
     </div>
   )
 }
