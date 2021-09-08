@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import logo from "../img/logo.png"
+import { useHistory } from "react-router-dom";
+
 
 function Home() {
+  const history = useHistory();
   const [products, setProducts] = useState([]); 
   const [dropdown, setDropdown] = useState([]); 
   const [categoryCheck, setCategoryCheck] = useState([]); 
@@ -60,7 +63,7 @@ function Home() {
           {
             categoryCheck ? products.map(Product => (
               Product.category == category ?
-                <div key={Product._id} className="product">
+                <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
                 <img className="image" src={Product.image} />
                 <div className="info-box">
                   <p>{Product.name}</p>
@@ -69,7 +72,7 @@ function Home() {
               </div> : null
             ))
             : products.map(Product => (
-              <div key={Product._id} className="product">
+              <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
                 <img className="image" src={Product.image} />
                 <div className="info-box">
                   <p>{Product.name}</p>
