@@ -7,7 +7,7 @@ function Landing() {
   return (
     <div className="wrapper">
         <div className="titleContainer">
-          <h1 onClick={() => history.push("/Home")} className="title">bopshop.</h1>
+          <h1 onClick={() => history.push("/")} className="title">bopshop.</h1>
         </div>
 
       <div className="imageContainer">
