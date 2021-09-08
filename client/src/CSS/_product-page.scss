@@ -95,14 +95,21 @@
       font-size: 14px;
       ul {
         display: flex;
+        flex-wrap: wrap;
         margin: 8px 0;
         li {
           position: relative;
           width: 32px;
+          min-width: 32px;
           height: 32px;
           border-radius: 100%;
-          margin-right: 6px;
+          margin: 0 6px 6px 0;
           user-select: none;
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+          transition: 250ms;
+          &:active {
+            transform: scale3d(0.9, 0.9, 0.9);
+          }
         }
       }
       .color-list {

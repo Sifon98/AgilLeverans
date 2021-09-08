@@ -22,13 +22,17 @@ function Product() {
   const [descHeight, setDescHeight] = useState(1000);
 
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
     const getProduct = async () => {
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
-      console.log(data.product)
-      setProduct(data.product)
+
+      setSelectedColor(data.product.colors[0].name);
+      setSelectedSize(data.product.sizes[0]);
+      setProduct(data.product);
     }
     getProduct();
   }, [])
@@ -51,7 +55,6 @@ function Product() {
     setTimeout(() => focusRef.current.focus(), 250);
   }
 
-
   return (
     <div className="product-page">
         <ToastContainer 
@@ -63,7 +66,7 @@ function Product() {
            />
         <div className="image-container">
           <img src={product.image} alt="product image" /> 
-          <button className="go-back-btn" onClick={() => history.goBack()}>
+          <button className="go-back-btn" onClick={() => history.push("/")}>
             <i className="fas fa-chevron-left"></i>
           </button>
           <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
@@ -95,37 +98,31 @@ function Product() {
           <div className="options-container">
             <label>Color</label>
             <ul className="color-list">
-              {product.color && product.colors.map(color => {
+              {product.colors && product.colors.map(color => {
                 return (
-                  <li>
-                    <div className="selected">
+                  <li key={color.name} style={{background: color.hex}} onClick={() => setSelectedColor(color.name)}>
+                    <div className="selected" style={selectedColor === color.name ? null : {display: "none"}}>
                       <i className="fas fa-check"></i>
                     </div>
                   </li>
                 )
               })}
-              {/* <li style={{background: "#CDC0B7"}}>
-                <div className="selected">
-                  <i className="fas fa-check"></i>
-                </div>
-              </li>
-              <li style={{background: "#772828"}}>
-              </li>
-              <li style={{background: "#000000"}}>
-              </li> */}
             </ul>
           </div>
           <div className="options-container">
             <label>Size</label>
             <ul className="size-list">
-              <li className="size-btn selected">S</li>
-              <li className="size-btn">M</li>
-              <li className="size-btn">L</li>
+              {product.sizes && product.sizes.map(size => {
+                return (
+                  <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
+                ) 
+                })
+              }
             </ul>
           </div>
         </div>
         <div className="bottom-whitespace"></div>
-        <button className="checkout-btn">
+        <button className="checkout-btn" onClick={() => toast.success("Added item to cart")}>
           <i className="fas fa-shopping-bag"></i>
           <span>Add to cart</span> 
         </button>
