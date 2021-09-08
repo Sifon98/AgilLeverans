@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Product = require("./models/product");
 const User = require("./models/user");
-const {products} = require("./routes/utils/products")
+const {products} = require("./utils/products")
 
 
 // Connect to database
