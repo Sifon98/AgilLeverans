@@ -15,15 +15,9 @@
 html,body {
   width: 100vw;
   height: 100vh;
+  background-color: var(--background);
 }
 
-
-.App {
-  min-width: 100%;
-  min-height: 100%;
-  font-family: 'Inter', sans-serif;
-  background-color: #F4F4F4;
-}
 
 ul {
   list-style-type: none;

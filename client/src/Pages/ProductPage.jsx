@@ -1,4 +1,10 @@
 import React, {useEffect, useState, useRef} from 'react'
+import { useHistory } from "react-router-dom";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -6,13 +12,16 @@ function isEmpty(obj) {
 
 
 function Product() {
+  const history = useHistory();
+
   const descriptionRef = useRef(null);
+  const focusRef = useRef(null);
 
   const [product, setProduct] = useState({});
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [descHeight, setDescHeight] = useState(1000);
 
-  // const [color, setColor] = useState();
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -32,14 +41,35 @@ function Product() {
   }, [product])
 
 
+  const handleToggleWishlist = () => {
+    if(isWishlisted) {
+      toast("Removed item from wishlist");
+    } else {
+      toast.success("Added item to wishlist");
+    };
+    setIsWishlisted(bool => !bool);
+    setTimeout(() => focusRef.current.focus(), 250);
+  }
+
+
   return (
     <div className="product-page">
+        <ToastContainer 
+          position="top-center" 
+          autoClose={2500} 
+          hideProgressBar 
+          pauseOnHover={false}
+          pauseOnFocusLoss={false}
+           />
         <div className="image-container">
-          <img src={product.image} alt="product image" />
-          <button className="wishlist-btn">
-            {/* <i icon={faHeart} /><i/> */}
-            <i className="far fa-heart"></i>
+          <img src={product.image} alt="product image" /> 
+          <button className="go-back-btn" onClick={() => history.goBack()}>
+            <i className="fas fa-chevron-left"></i>
           </button>
+          <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
+            <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
+          </button>
+          <button style={{height: "0", width: "0", opacity: "0", position: "absolute"}} ref={focusRef}></button>
         </div>
 
         <div className="wrapper">
