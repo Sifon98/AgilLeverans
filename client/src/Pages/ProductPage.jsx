@@ -26,6 +26,7 @@ function Product() {
     const getProduct = async () => {
       const productId = location.pathname.replace("/product/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
+      console.log(data.product)
       setProduct(data.product)
     }
     getProduct();
@@ -44,7 +45,8 @@ function Product() {
         <div className="image-container">
           <img src={product.image} alt="product image" />
           <button className="wishlist-btn">
-            <FontAwesomeIcon icon={faHeart} />
+            {/* <i icon={faHeart} /><i/> */}
+            <i className="far fa-heart"></i>
           </button>
         </div>
 
