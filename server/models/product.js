@@ -13,8 +13,8 @@ const ProductSchema = new Schema(
     // 2 = Shoes
     description: String,
     // tags: Array,
-    // color: String,
-    // size: Number,
+    colors: Array,
+    sizes: Array,
 
   },
   {timestamps: true},

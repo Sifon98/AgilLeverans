@@ -95,7 +95,16 @@ function Product() {
           <div className="options-container">
             <label>Color</label>
             <ul className="color-list">
-              <li style={{background: "#CDC0B7"}}>
+              {product.color && product.colors.map(color => {
+                return (
+                  <li>
+                    <div className="selected">
+                      <i className="fas fa-check"></i>
+                    </div>
+                  </li>
+                )
+              })}
+              {/* <li style={{background: "#CDC0B7"}}>
                 <div className="selected">
                   <i className="fas fa-check"></i>
                 </div>
@@ -103,7 +112,7 @@ function Product() {
               <li style={{background: "#772828"}}>
               </li>
               <li style={{background: "#000000"}}>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="options-container">
