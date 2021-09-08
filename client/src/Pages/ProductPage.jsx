@@ -1,12 +1,4 @@
 import React, {useEffect, useState, useRef} from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-faHeart,
-} from "@fortawesome/free-regular-svg-icons";
-import {
-faCheck, faShoppingBag
-} from "@fortawesome/free-solid-svg-icons";
-
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -24,7 +16,7 @@ function Product() {
 
   useEffect(() => {
     const getProduct = async () => {
-      const productId = location.pathname.replace("/product/", "");
+      const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
       console.log(data.product)
       setProduct(data.product)
@@ -75,7 +67,7 @@ function Product() {
             <ul className="color-list">
               <li style={{background: "#CDC0B7"}}>
                 <div className="selected">
-                  <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+                  <i className="fas fa-check"></i>
                 </div>
               </li>
               <li style={{background: "#772828"}}>
@@ -95,7 +87,7 @@ function Product() {
         </div>
         <div className="bottom-whitespace"></div>
         <button className="checkout-btn">
-          <FontAwesomeIcon icon={faShoppingBag}></FontAwesomeIcon>
+          <i className="fas fa-shopping-bag"></i>
           <span>Add to cart</span> 
         </button>
     </div>
