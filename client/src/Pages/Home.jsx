@@ -41,10 +41,8 @@ function Home() {
       <div className="header">
         <i className="fas fa-user-circle"></i>
         <img src={logo} />
-        <div>
-          <i className="fas fa-sliders-h"></i>
-          <i className="fas fa-shopping-cart"></i>
-        </div>
+        {/* <i className="fas fa-shopping-cart"></i> */}
+        <i class="fas fa-shopping-bag"></i>
       </div>
 
       <div className="dropdown-container">
@@ -66,8 +64,13 @@ function Home() {
                 <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
                 <img className="image" src={Product.image} />
                 <div className="info-box">
-                  <p>{Product.name}</p>
-                  <p>{Product.price} kr</p>
+                  <button className="wishlist-btn">
+                    <i className="far fa-heart"></i>
+                  </button>
+                  <div className="text">
+                    <p>{Product.name}</p>
+                    <p>{Product.price} kr</p>
+                  </div>
                 </div>
               </div> : null
             ))
@@ -75,8 +78,13 @@ function Home() {
               <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
                 <img className="image" src={Product.image} />
                 <div className="info-box">
-                  <p>{Product.name}</p>
-                  <p>{Product.price} kr</p>
+                  <button className="wishlist-btn">
+                    <i className="far fa-heart"></i>
+                  </button>
+                  <div className="text">
+                    <p>{Product.name}</p>
+                    <p>{Product.price} kr</p>
+                  </div>
                 </div>
               </div>
             ))
