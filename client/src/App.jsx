@@ -24,7 +24,7 @@ function App() {
           <Route path="/landing" component={Landing} />
           <Route path="/profile" component={Profile} />
           <Route path="/wishlist" component={Wishlist} />
-          <Route path="/productPage" component={ProductPage} />
+          <Route path="/product/:id" component={ProductPage} />
         </Switch>
       </Router>
     </div>
