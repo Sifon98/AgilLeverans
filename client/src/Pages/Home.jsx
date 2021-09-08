@@ -38,7 +38,8 @@ function Home() {
       <div className="header">
         <i className="fas fa-user-circle"></i>
         <img src={logo} />
-        <i className="fas fa-shopping-cart"></i>
+        {/* <i className="fas fa-shopping-cart"></i> */}
+        <i class="fas fa-shopping-bag"></i>
       </div>
 
       <div className="dropdown-container">
