@@ -15,18 +15,19 @@ router.get("/user", (req, res) => {
 });
 
 router.post("/register", async (req, res, next) => {
-
   try {
     // User info
-    const user = new User({email: "testuser@gmail.com", username: "testuser"});
-    const password = "password123"
+    const { email, username, password } = req.body;
+    const user = new User({email, username});
     // Register User
     const registerUser = await User.register(user, password);
     // Log in user
     req.login(registerUser, (err) => {
       if (err) return next(err);
+      // Extract necessary data from user
+      const { _id, email, username} = registerUser;
       // Give user a message that he is logged in
-      res.json({text: "Registered!"})
+      res.json({ _id, email, username })
     })
   } catch(err) {
     next(err);
@@ -35,15 +36,15 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   // Tell passport that we will log in via "local" strategy
   passport.authenticate("local", function(err,user,info) {
-    // Handle error
     if(err) return next(err);
     if(!user) return res.json({error: "Invalid username or password."})
     // Log in user
     req.login(user, function (err) {
-      // Handle error
       if (err) return next(err);
+      // Extract necessary data from user
+      const { _id, email, username } = user;
       // Give user a message that he is logged in
-      res.json({text: "logged in!"})
+      res.json({ _id, email, username});
     })
   })(req,res,next)
 });
@@ -75,6 +76,7 @@ router.get("/saved-products", async (req, res, next) => {
 
 // Add item to wishlist || shopping-cart
 router.post("/saved-products/:id", async (req, res, next) => {
+  console.log("SAVE ITEM")
   try {
     const userId = "61371decd184969720e706ee";
     const productId = req.params.id;
@@ -95,6 +97,7 @@ router.post("/saved-products/:id", async (req, res, next) => {
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
+  console.log("REMOVE ITEM")
   try {
     const userId = "61371decd184969720e706ee";
     const productId = req.params.id;
