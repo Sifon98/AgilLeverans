@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from "./Pages/Home"
+import FirstLoad from "./Pages/FirstLoad"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import Landing from "./Pages/Landing"
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/firstload" component={FirstLoad} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/landing" component={Landing} />
