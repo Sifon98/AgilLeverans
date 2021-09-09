@@ -17,7 +17,10 @@ function Home() {
     setDropdown(false)
     setDropdownFilter(false)
     
-    const initialGender = history.location.state
+    let initialGender = history.location.state
+    if (initialGender == null) {
+      initialGender = 0;
+    }
     setGender(initialGender)
     // const res = await fetch('/api/products');
     const res = await fetch('http://localhost:4000/products');
