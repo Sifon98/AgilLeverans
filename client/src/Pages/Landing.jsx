@@ -7,20 +7,20 @@ function Landing() {
   return (
     <div className="wrapper">
         <div className="titleContainer">
-          <h1 onClick={() => history.push("/")} className="title">bopshop.</h1>
+          <h1 onClick={ () => history.push("/") } className="title">bopshop.</h1>
         </div>
 
       <div className="imageContainer">
         <div className="leftSide">
           <div className="buttonContainerMen">
-            <button className="menButton">men.</button>
+            <button onClick ={ () => history.push("/") } className="menButton">men.</button>
           </div>
           <img className="menImage" src="./src/Men.png" alt="Man" />
         </div>
 
         <div className="rightSide">
           <div className="buttonContainerWomen">
-            <button className="womenButton">women.</button>
+            <button onClick={ () => history.push("/") }  className="womenButton">women.</button>
           </div>
           <img className="womenImage" src="./src/Women.png" alt="Woman" />
         </div>
