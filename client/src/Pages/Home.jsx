@@ -13,15 +13,17 @@ function Home() {
   const [gender, setGender] = useState([]); 
 
   const fetchProducts = async () => {
+    setCategoryCheck(false)
+    setDropdown(false)
+    setDropdownFilter(false)
+    
+    const initialGender = history.location.state
+    setGender(initialGender)
     // const res = await fetch('/api/products');
     const res = await fetch('http://localhost:4000/products');
     const data = await res.json();
 
-    console.log(data);
     setProducts(data.products);
-    setCategoryCheck(false)
-    setDropdown(false)
-    setDropdownFilter(false)
   }
 
   const toggleDropdown = () => {
@@ -44,6 +46,7 @@ function Home() {
   const chooseFilter = (e) => {
     const id = e.target.id
 
+    history.push({ state: id })
     setDropdownFilter(false)
     setGender(id)
   }

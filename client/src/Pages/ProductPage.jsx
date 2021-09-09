@@ -66,7 +66,10 @@ function Product() {
            />
         <div className="image-container">
           <img src={product.image} alt="product image" /> 
-          <button className="go-back-btn" onClick={() => history.push("/")}>
+          <button className="go-back-btn" onClick={() => history.push({
+                pathname: '/',
+                state: product.gender
+            }) }>
             <i className="fas fa-chevron-left"></i>
           </button>
           <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
