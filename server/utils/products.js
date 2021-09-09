@@ -8,6 +8,19 @@ const tops = [
     price: 199,
     image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
     description,
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "White", hex: "#ffffff"},
+      {name: "Gray", hex: "#958a7f"},
+      {name: "Royal Blue", hex: "#20419a"}, 
+      {name: "Navy", hex: "#171c32"},
+      {name: "Beige", hex: "#f5f5dc"},
+      {name: "Yellow", hex: "#fdeb71"},
+      {name: "Green", hex: "#02642e"},
+      {name: "Red", hex: "#821d2b"},
+      {name: "Purple", hex: "#5e3a8c"},
+    ]
     },
     {
     name: "slim fit polo shirt",
@@ -15,6 +28,14 @@ const tops = [
     price: 2000,
     image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
     description,
+    sizes: ["S", "M", "L"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "White", hex: "#ffffff"},
+      {name: "Royal Blue", hex: "#20419a"}, 
+      {name: "Navy", hex: "#171c32"},
+      {name: "Green", hex: "#02642e"},
+    ]
     },
     {
     name: "big jacket",
@@ -22,6 +43,10 @@ const tops = [
     price: 1000,
     image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
     description,
+    sizes: ["M", "L", "XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+    ]
     },
     {
     name: "oversized sweatshirt",
@@ -29,6 +54,16 @@ const tops = [
     price: 100,
     image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
     description,
+    sizes: ["M", "L", "XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "White", hex: "#ffffff"},
+      {name: "Gray", hex: "#958a7f"},
+      {name: "Royal Blue", hex: "#20419a"}, 
+      {name: "Navy", hex: "#171c32"},
+      {name: "Green", hex: "#02642e"},
+      {name: "Red", hex: "#821d2b"},
+    ]
     },
     {
     name: "regular white t-shirt",
@@ -36,6 +71,10 @@ const tops = [
     price: 50,
     image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
     description,
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      {name: "White", hex: "#ffffff"},
+    ]
     },
 ]
 
@@ -46,6 +85,13 @@ const bottoms = [
     price: 249,
     image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
     description,
+    sizes: ["S", "M", "L"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "Gray", hex: "#958a7f"},
+      {name: "Navy", hex: "#171c32"},
+      {name: "Beige", hex: "#f5f5dc"},
+    ]
     },
     {
     name: "regular fit jeans",
@@ -53,6 +99,12 @@ const bottoms = [
     price: 999,
     image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
     description,
+    sizes: ["M", "L"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "Gray", hex: "#958a7f"},
+      {name: "Royal Blue", hex: "#20419a"}, 
+    ]
     },
     {
     name: "skinny fit chinos",
@@ -60,6 +112,12 @@ const bottoms = [
     price: 599,
     image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
     description,
+    sizes: ["S", "M", "L"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "Navy", hex: "#171c32"},
+      {name: "Beige", hex: "#f5f5dc"},
+    ]
     },
     {
     name: "long shorts",
@@ -67,6 +125,11 @@ const bottoms = [
     price: 299,
     image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
     description,
+    sizes: ["XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "Green", hex: "#02642e"},
+    ]
     },
     {
     name: "slim fit shorts",
@@ -74,6 +137,16 @@ const bottoms = [
     price: 10,
     image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
     description,
+    sizes: ["M", "L"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "White", hex: "#ffffff"},
+      {name: "Gray", hex: "#958a7f"},
+      {name: "Royal Blue", hex: "#20419a"}, 
+      {name: "Navy", hex: "#171c32"},
+      {name: "Green", hex: "#02642e"},
+      {name: "Red", hex: "#821d2b"},
+    ]
     },
 ]
 
@@ -86,6 +159,10 @@ const shoes = [
     price: 199,
     image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
     description,
+    sizes: ["S", "M"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+    ]
     },
     {
     name: "soft slippers",
@@ -93,6 +170,12 @@ const shoes = [
     price: 2000,
     image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
     description,
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "Green", hex: "#02642e"},
+      {name: "Red", hex: "#821d2b"},
+    ]
     },
     {
     name: "regular shoes",
@@ -100,6 +183,10 @@ const shoes = [
     price: 1000,
     image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
     description,
+    sizes: ["M", "L", "XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+    ]
     },
     {
     name: "big boots",
@@ -107,6 +194,10 @@ const shoes = [
     price: 100,
     image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
     description,
+    sizes: ["S", "M", "L"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+    ]
     },
     {
     name: "super premium crocs",
@@ -114,6 +205,16 @@ const shoes = [
     price: 50,
     image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
     description,
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [
+      {name: "Black", hex: "#000000"},
+      {name: "White", hex: "#ffffff"},
+      {name: "Royal Blue", hex: "#20419a"}, 
+      {name: "Yellow", hex: "#fdeb71"},
+      {name: "Green", hex: "#02642e"},
+      {name: "Red", hex: "#821d2b"},
+      {name: "Purple", hex: "#5e3a8c"},
+    ]
     },
 ]
 

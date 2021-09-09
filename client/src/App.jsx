@@ -15,7 +15,6 @@ import {
 
 function App() {
   return (
-    <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -24,10 +23,9 @@ function App() {
           <Route path="/landing" component={Landing} />
           <Route path="/profile" component={Profile} />
           <Route path="/wishlist" component={Wishlist} />
-          <Route path="/product/:id" component={ProductPage} />
+          <Route path="/products/:id" component={ProductPage} />
         </Switch>
       </Router>
-    </div>
   )
 }
 

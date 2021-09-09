@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 40px 20px 30px 20px;
-    
+
     i {
         font-size: 24px;
     }
@@ -69,13 +69,39 @@
             width: 100%;
             height: auto;
         }
-        
-        .info-box {
-            background-color: white;
 
-            p {
-                padding: 8px;
-                margin-top: -4px;
+        .info-box {
+            margin-top: -4px;
+            background-color: white;
+            height: 65px;
+
+            .wishlist-btn {
+                position: relative;
+                display: grid;
+                place-items: center;
+                outline: none;
+                border: none;
+                border-radius: 100%;
+                width: 32px;
+                height: 32px;
+                background-color: white;
+                bottom: 41px;
+                left: 140px;
+                font-size: 17px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+                i {
+                margin-top: 2px;
+                }
+            }
+            
+            .text {
+                margin-top: -27px;
+               
+                p {
+                    padding: 4px;
+                    margin: 0px;
+                }
             }
         }
     }
