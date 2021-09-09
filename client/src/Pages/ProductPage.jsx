@@ -4,12 +4,9 @@ import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
-
 
 function Product() {
   const history = useHistory();
@@ -46,6 +43,7 @@ function Product() {
 
 
   const handleToggleWishlist = () => {
+    handleSubmitSavedItem("wishlist");
     if(isWishlisted) {
       toast("Removed item from wishlist");
     } else {
@@ -54,6 +52,21 @@ function Product() {
     setIsWishlisted(bool => !bool);
     setTimeout(() => focusRef.current.focus(), 250);
   }
+
+  const handleSubmitSavedItem = async (type) => {
+    const res = await fetch(`/api/saved-products/${product._id}?type=${type}`, {
+      ...(type === "wishlist" && {method: isWishlisted ? "DELETE" : "POST"}),
+      ...(type === "cart" && {method: isCarted ? "DELETE": "POST"}),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    })
+    const data = await res.json();
+    console.log(data)
+  }
+
+
 
   return (
     <div className="product-page">

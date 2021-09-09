@@ -11,7 +11,9 @@ const {validateQuery} = require("../utils/validation")
 
 // USER
 router.get("/user", (req, res) => {
-  // Get user
+  if (!req.isAuthenticated()) return res.json(null);
+  const { _id, email, username } = req.user;
+  res.json({ _id, email, username });
 });
 
 router.post("/register", async (req, res, next) => {
