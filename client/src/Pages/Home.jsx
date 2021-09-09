@@ -5,10 +5,12 @@ import { useHistory } from "react-router-dom";
 
 function Home() {
   const history = useHistory();
-  const [products, setProducts] = useState([]); 
-  const [dropdown, setDropdown] = useState([]); 
+  const [products, setProducts] = useState([]);
+  const [dropdown, setDropdown] = useState([]);
+  const [dropdownFilter, setDropdownFilter] = useState([]);
   const [categoryCheck, setCategoryCheck] = useState([]); 
   const [category, setCategory] = useState([]); 
+  const [gender, setGender] = useState([]); 
 
   const fetchProducts = async () => {
     // const res = await fetch('/api/products');
@@ -19,6 +21,7 @@ function Home() {
     setProducts(data.products);
     setCategoryCheck(false)
     setDropdown(false)
+    setDropdownFilter(false)
   }
 
   const toggleDropdown = () => {
@@ -34,6 +37,17 @@ function Home() {
       setCategory(id)
   }
 
+  const toggleDropdownFilter = () => {
+    dropdownFilter ? setDropdownFilter(false) : setDropdownFilter(true)
+  }
+
+  const chooseFilter = (e) => {
+    const id = e.target.id
+
+    setDropdownFilter(false)
+    setGender(id)
+  }
+
   useEffect(() => fetchProducts(), [])
 
   return (
@@ -42,24 +56,36 @@ function Home() {
         <i className="fas fa-user-circle"></i>
         <img src={logo} />
         {/* <i className="fas fa-shopping-cart"></i> */}
-        <i class="fas fa-shopping-bag"></i>
+        <i className="fas fa-shopping-bag"></i>
       </div>
 
-      <div className="dropdown-container">
-        <button type="button" className="button" onClick={toggleDropdown}>KATEGORI</button>
-          {dropdown && <div className="dropdown">
-            <ul>
-              <li id={99} onClick={chooseCategory}>All items</li>
-              <li id={0} onClick={chooseCategory}>Shirts</li>
-              <li id={1} onClick={chooseCategory}>Pants</li>
-              <li id={2} onClick={chooseCategory}>Shoes</li>
-            </ul>
-          </div>}
+      <div className="sorting-buttons">
+        <div className="dropdown-container">
+          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI</button>
+            {dropdown && <div className="dropdown">
+              <ul>
+                <li id={99} onClick={chooseCategory}>All items</li>
+                <li id={0} onClick={chooseCategory}>Shirts</li>
+                <li id={1} onClick={chooseCategory}>Pants</li>
+                <li id={2} onClick={chooseCategory}>Shoes</li>
+              </ul>
+            </div>}
+        </div>
+        <div className="dropdown-container-filter">
+          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER</button>
+            {dropdownFilter && <div className="dropdown-filter">
+              <ul>
+                <li id={0} onClick={chooseFilter}>men.</li>
+                <li id={1} onClick={chooseFilter}>women.</li>
+              </ul>
+            </div>}
+        </div>
       </div>
       
       <div className="container">
           {
             categoryCheck ? products.map(Product => (
+              Product.gender == gender ?
               Product.category == category ?
                 <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
                 <img className="image" src={Product.image} />
@@ -72,9 +98,10 @@ function Home() {
                     <p>{Product.price} kr</p>
                   </div>
                 </div>
-              </div> : null
+              </div> : null : null
             ))
             : products.map(Product => (
+              Product.gender == gender ?
               <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
                 <img className="image" src={Product.image} />
                 <div className="info-box">
@@ -86,7 +113,7 @@ function Home() {
                     <p>{Product.price} kr</p>
                   </div>
                 </div>
-              </div>
+              </div> : null
             ))
           }
       </div>
