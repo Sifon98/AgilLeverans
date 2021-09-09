@@ -9,3 +9,26 @@
         font-size: 24px;
     }
 }
+
+
+.wishAlbum{
+    margin-top: 50px;
+    display: block;
+    justify-content: space-around;
+    align-items: start;
+    height: 600px;
+    border: 1px black solid;
+
+    .albumText{
+        font-size: 40px;
+        margin-left: 50px;
+    }
+
+    .wishItem{
+        border: 1px solid black;
+        height: 400px;
+        width: 250px;
+        margin: 80px 80px 80px 80px;
+        
+    }
+}
