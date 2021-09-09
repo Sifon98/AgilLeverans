@@ -30,21 +30,22 @@
         }
     }
 
-    .form{
+    .formRegister{
         display: flex;
         flex-direction: column;
         margin-top: 63px;
         width: 225px;
 
-        .input{
+        .inputRegister{
             display: flex;
             margin-bottom: 30px;
             border: none;
             border-bottom: 1px solid lightgray;
-            background-color: #F4F4F4;  
+            background-color: #F4F4F4;
+            height: 20px;
         }  
 
-        .input::placeholder{
+        .inputRegister::placeholder{
             color: black;
             font-size: 120%;
             font-weight: 700;
@@ -62,7 +63,7 @@
             height: 53px;
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            
+            font-size: 100%;
         }
             
         .loginLink {
