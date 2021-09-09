@@ -1,0 +1,85 @@
+.conteinerLogin{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .yellowSide{
+        width: 13px;
+        height: 812px;
+        background-color: #FFF06B;
+        position: fixed;
+        left: 0;
+    }
+    
+    .head{
+        background-color: #FFF06B;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 230px;
+        height: 60px;
+
+        .h1name{
+            font-family: 'Inter', sans-serif;
+            font-size: 230%;
+            font-weight: 900;
+            margin: 5px;
+        }
+    }
+
+    .formLogin{
+        display: flex;
+        flex-direction: column;
+        margin-top: 63px;
+        width: 225px;
+
+        .inputLogin{
+            display: flex;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid lightgray;
+            background-color: #F4F4F4;
+            height: 20px;
+        }  
+
+        .inputLogin::placeholder{
+            color: black;
+            font-size: 120%;
+            font-weight: 700;
+        }
+        .loginButton{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            margin-top: 30px;
+            background-color: #FFF06B;
+            border: none;
+            border-radius: 100px;
+            height: 53px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 100%;
+        }
+        
+        .registerButton-loginPage{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            margin-top: 30px;
+            background-color: #E4E4E4;
+            border: none;
+            border-radius: 100px;
+            height: 53px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 100%;
+        }
+       
+        
+    }
+}
