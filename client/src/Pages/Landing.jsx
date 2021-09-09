@@ -13,14 +13,20 @@ function Landing() {
       <div className="imageContainer">
         <div className="leftSide">
           <div className="buttonContainerMen">
-            <button onClick ={ () => history.push("/") } className="menButton">men.</button>
+            <button onClick ={ () => history.push({
+                pathname: '/',
+                state: 0
+            }) } className="menButton">men.</button>
           </div>
           <img className="menImage" src="./src/Men.png" alt="Man" />
         </div>
 
         <div className="rightSide">
           <div className="buttonContainerWomen">
-            <button onClick={ () => history.push("/") }  className="womenButton">women.</button>
+            <button onClick={ () => history.push({
+                pathname: '/',
+                state: 1
+            }) }  className="womenButton">women.</button>
           </div>
           <img className="womenImage" src="./src/Women.png" alt="Woman" />
         </div>
