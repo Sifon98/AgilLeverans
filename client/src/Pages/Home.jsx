@@ -94,6 +94,8 @@ function Home() {
             </div>}
         </div>
       </div>
+      {/* Change titel depending on the categorie and gender */}
+      <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
       <div className="container">
           {
