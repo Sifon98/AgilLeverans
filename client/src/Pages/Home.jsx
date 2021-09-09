@@ -59,7 +59,7 @@ function Home() {
   return (
     <div>
       <div className="header">
-        <i className="fas fa-user-circle"></i>
+        <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
         <img src={logo} />
         {/* <i className="fas fa-shopping-cart"></i> */}
         <i className="fas fa-shopping-bag"></i>

@@ -7,6 +7,7 @@ const {sessionOptions} = require("./utils/session")
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const cors = require("cors")
+const bodyParser = require("body-parser");
 
 // Passport
 const passport = require("passport");
@@ -14,6 +15,14 @@ const LocalStrategy = require("passport-local");
 
 const User = require("./models/user");
 const router = require("./routes/routes");
+
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(cors());
 
