@@ -27,6 +27,7 @@ function Home() {
     const data = await res.json();
 
     setProducts(data.products);
+    console.log(data.products)
   }
 
   const toggleDropdown = () => {

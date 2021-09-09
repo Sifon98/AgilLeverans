@@ -36,7 +36,7 @@ function Register() {
 
     const getUser = await res.json();
     setUser(getUser);
-    history.push("/");
+    history.push("/landing");
   }
 
 
