@@ -39,9 +39,6 @@ function Register() {
     history.push("/landing");
   }
 
-
-
-
   
   return (
     <div className="conteinerRegister">

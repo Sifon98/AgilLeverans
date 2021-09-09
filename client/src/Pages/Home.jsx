@@ -23,11 +23,10 @@ function Home() {
     }
     setGender(initialGender)
     // const res = await fetch('/api/products');
-    const res = await fetch('http://localhost:4000/products');
+    const res = await fetch('/api/products');
     const data = await res.json();
 
     setProducts(data.products);
-    console.log(data.products)
   }
 
   const toggleDropdown = () => {
@@ -98,7 +97,7 @@ function Home() {
                 <img className="image" src={Product.image} />
                 <div className="info-box">
                   <button className="wishlist-btn">
-                    <i className="far fa-heart"></i>
+                    <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
                   </button>
                   <div className="text">
                     <p>{Product.name}</p>
@@ -113,7 +112,7 @@ function Home() {
                 <img className="image" src={Product.image} />
                 <div className="info-box">
                   <button className="wishlist-btn">
-                    <i className="far fa-heart"></i>
+                    <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
                   </button>
                   <div className="text">
                     <p>{Product.name}</p>

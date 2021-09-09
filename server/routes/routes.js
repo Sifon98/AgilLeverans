@@ -12,8 +12,8 @@ const {validateQuery} = require("../utils/validation")
 // USER
 router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
-  const { _id, email, username } = req.user;
-  res.json({ _id, email, username });
+  const { _id, email, username, wishlist, cart } = req.user;
+  res.json({ _id, email, username, wishlist, cart });
 });
 
 router.post("/register", async (req, res, next) => {
@@ -78,9 +78,8 @@ router.get("/saved-products", async (req, res, next) => {
 
 // Add item to wishlist || shopping-cart
 router.post("/saved-products/:id", async (req, res, next) => {
-  console.log("SAVE ITEM")
   try {
-    const userId = "61371decd184969720e706ee";
+    const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
@@ -95,13 +94,12 @@ router.post("/saved-products/:id", async (req, res, next) => {
     return next(err);
   };
 
-  res.json("ok")
+  res.sendStatus(200);
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
-  console.log("REMOVE ITEM")
   try {
-    const userId = "61371decd184969720e706ee";
+    const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
@@ -115,23 +113,28 @@ router.delete("/saved-products/:id", async (req, res, next) => {
   } catch(err) {
     next(err);
   }
-  res.send("ok");
+  res.sendStatus(200);
 });
 
 
 // PRODUCTS
-
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
   try {
-    const products = await Product.find();
+    const {wishlist} = req.user;
+    
+    let products = await Product.find();
+    products = JSON.parse(JSON.stringify(products));
 
-    res.json({products});
+    const updateProducts = products.map(prod => {
+      if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
+      return {...prod, isWishlisted: false}
+    })
+
+    res.json({products: updateProducts});
   } catch(err) {
     return next(err);
   }
-  
-
 });
 
 router.get("/products/:id", async (req, res, next) => {

@@ -1,8 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState, useRef, useContext} from 'react'
 import { useHistory } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "../context/UserContext";
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -10,6 +11,7 @@ function isEmpty(obj) {
 
 function Product() {
   const history = useHistory();
+  const { user, setUser } = useContext(UserContext);
 
   const descriptionRef = useRef(null);
   const focusRef = useRef(null);
@@ -41,6 +43,10 @@ function Product() {
     }
   }, [product])
 
+  useEffect(() => {
+    if(user.wishlist.includes(product._id)) setIsWishlisted(true);
+  }, [product, user])
+
 
   const handleToggleWishlist = () => {
     handleSubmitSavedItem("wishlist");
@@ -62,7 +68,7 @@ function Product() {
         Accept: "application/json",
       }
     })
-    const data = await res.json();
+    const data = await res;
     console.log(data)
   }
 
