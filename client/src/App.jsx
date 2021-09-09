@@ -6,7 +6,6 @@ import Landing from "./Pages/Landing"
 import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
 import ProductPage from "./Pages/ProductPage"
-import './App.css'
 import './CSS/style.min.css'
 import {
   BrowserRouter as Router,
@@ -16,7 +15,6 @@ import {
 
 function App() {
   return (
-    <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -25,10 +23,9 @@ function App() {
           <Route path="/landing" component={Landing} />
           <Route path="/profile" component={Profile} />
           <Route path="/wishlist" component={Wishlist} />
-          <Route path="/productPage" component={ProductPage} />
+          <Route path="/products/:id" component={ProductPage} />
         </Switch>
       </Router>
-    </div>
   )
 }
 
