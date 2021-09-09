@@ -4,9 +4,9 @@ import React from 'react'
 
 function Register() {
   return (
-    <dev className="conteinerRegister">
-      <dev className="yellowSide"></dev>
-      <dev className="head"><h1 className="h1name">bopshop.</h1></dev>
+    <div className="conteinerRegister">
+      <div className="yellowSide"></div>
+      <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formRegister">
         <input
           className="inputRegister"
@@ -39,7 +39,7 @@ function Register() {
         <button className="registerButton">register.</button>
         <a className="loginLink" href="./Login">alredy have an account?<br></br>login here</a>
         </form>
-    </dev>
+    </div>
   )
 }
 

@@ -2,9 +2,9 @@ import React from 'react'
 
 function Login() {
   return (
-    <dev className="conteinerLogin">
-      <dev className="yellowSide"></dev>
-      <dev className="head"><h1 className="h1name">bopshop.</h1></dev>
+    <div className="conteinerLogin">
+      <div className="yellowSide"></div>
+      <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formLogin">
         <input
           className="inputLogin"
@@ -21,9 +21,9 @@ function Login() {
           required
         />
         <button className="loginButton">login.</button>
-        <button className="registerButton-loginPage">register.</button>
+        <button className="registerButton-loginPage"><a href="/Register" className="link" >register.</a></button>
       </form>
-    </dev>
+    </div>
   )
 }
 
