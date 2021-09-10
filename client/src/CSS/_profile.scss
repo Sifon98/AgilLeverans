@@ -1,0 +1,30 @@
+.profilePageWrapper {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    margin: 0px;
+
+    .profileTitleContainer {
+        display: flex;
+        position: absolute; 
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+        justify-content: center;
+        margin-top: 20px;
+        
+        .profileTitle {
+            display: flex;
+            justify-content: center;
+            background-color:#FFF06B;
+            width: 150px;
+            height: 42px;
+            padding: 2px;
+            font-size: 1.6rem;
+        }
+    }    
+}

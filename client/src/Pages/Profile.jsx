@@ -28,8 +28,13 @@ function Profile() {
 
 
   return (
-    <div>
-        <button onClick={handleLogout}>LOG OUT</button>
+    <div className= "profilePageWrapper">
+      <div>
+        <button className="logoutButton" onClick={handleLogout}>LOG OUT</button>
+      </div>
+        <div className="profileTitleContainer">
+          <h1 onClick={ () => history.push("/") } className="profileTitle">bopshop.</h1>
+        </div>
     </div>
   )
 }
