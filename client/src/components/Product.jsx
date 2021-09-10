@@ -5,7 +5,7 @@ function Products({Product}) {
   const history = useHistory();
 
   return (
-    <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
+    <div className="product" onClick={() => history.push(`/products/${Product._id}`)}>
         <img className="image" src={Product.image} />
         <div className="info-box">
         <button className="wishlist-btn">

@@ -34,7 +34,6 @@ function Home() {
     const res = await fetch('/api/products');
     const data = await res.json();
     console.log(data.products);
-    console.log(data.products[0].colors[0].name);
 
     setProducts(data.products);
   }
@@ -68,8 +67,8 @@ function Home() {
 
   const chooseColor = (e) => {
     const id = e.target.id;
-    setColor(id);
 
+    setColor(id);
     setDropdownFilter(false);
   }
 
