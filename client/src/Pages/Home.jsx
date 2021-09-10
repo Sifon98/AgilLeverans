@@ -6,22 +6,27 @@ import { useHistory } from "react-router-dom";
 function Home() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
+  // Dropdown for categories
   const [dropdown, setDropdown] = useState([]);
-  const [dropdownFilter, setDropdownFilter] = useState([]);
   const [categoryCheck, setCategoryCheck] = useState([]); 
   const [category, setCategory] = useState([]); 
+  // Dropdown for gender
+  const [dropdownFilter, setDropdownFilter] = useState([]);
   const [gender, setGender] = useState([]); 
 
+  // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
     setCategoryCheck(false)
     setDropdown(false)
     setDropdownFilter(false)
     
+    // Check gender and apply male (0) if for some reason gender is empty
     let initialGender = history.location.state
     if (initialGender == null) {
       initialGender = 0;
     }
     setGender(initialGender)
+
     // const res = await fetch('/api/products');
     const res = await fetch('/api/products');
     const data = await res.json();
@@ -29,6 +34,7 @@ function Home() {
     setProducts(data.products);
   }
 
+  // Toggle category dropdown and then choose the category
   const toggleDropdown = () => {
     dropdown ? setDropdown(false) : setDropdown(true)
   }
@@ -42,6 +48,7 @@ function Home() {
       setCategory(id)
   }
 
+  // Toggle gender dropdown and then choose the gender
   const toggleDropdownFilter = () => {
     dropdownFilter ? setDropdownFilter(false) : setDropdownFilter(true)
   }
@@ -61,13 +68,12 @@ function Home() {
       <div className="header">
         <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
         <img src={logo} />
-        {/* <i className="fas fa-shopping-cart"></i> */}
         <i className="fas fa-shopping-bag"></i>
       </div>
-
+      {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
         <div className="dropdown-container">
-          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI</button>
+          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i class="fas fa-chevron-down"></i></button>
             {dropdown && <div className="dropdown">
               <ul>
                 <li id={99} onClick={chooseCategory}>All items</li>
@@ -77,8 +83,9 @@ function Home() {
               </ul>
             </div>}
         </div>
+        <div className="line" />
         <div className="dropdown-container-filter">
-          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER</button>
+          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i class="fas fa-sliders-h"></i></button>
             {dropdownFilter && <div className="dropdown-filter">
               <ul>
                 <li id={0} onClick={chooseFilter}>men.</li>
@@ -87,7 +94,9 @@ function Home() {
             </div>}
         </div>
       </div>
-      
+      {/* Change titel depending on the categorie and gender */}
+      <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
+      {/* The list of all the products matching the given parameters */}
       <div className="container">
           {
             categoryCheck ? products.map(Product => (
