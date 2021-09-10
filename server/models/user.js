@@ -10,7 +10,7 @@ const UserSchema = new Schema(
     wishlist: [
       {
         _id: false,
-        item: [{type: Schema.Types.ObjectId, ref: "Product"}],
+        item: {type: Schema.Types.ObjectId, ref: "Product"},
         color: {name: String, hex: String},
         size: String,
       }

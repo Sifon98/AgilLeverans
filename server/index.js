@@ -19,16 +19,21 @@ const router = require("./routes/routes");
 
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.use(cors());
 
+// useCreateIndex: true,
+// useFindAndModify: false,
 // Connect to database
 const dbUrl = "mongodb://localhost:27017/leverans-app";
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // Log db!!!
 const db = mongoose.connection;

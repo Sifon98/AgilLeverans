@@ -12,6 +12,7 @@ const {validateQuery} = require("../utils/validation")
 // USER
 router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
+  console.log(req.user)
   const { _id, email, username, wishlist, cart } = req.user;
   res.json({ _id, email, username, wishlist, cart });
 });
@@ -82,26 +83,44 @@ router.post("/saved-products/:id", async (req, res, next) => {
     const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
+    const { size, color } = req.body;
     validateQuery(type); // returns error if not valid
 
-    await User.findByIdAndUpdate(userId, {
-      $set: {
-        ...(type === "wishlist" && {
-          "wishlist.$[elem].color": { name: "BLUE", hex: "#HEX_CODE" },
-          "wishlist.$[elem].size": "XL",
-        }),
-        ...(type === "cart" && {
-          "cart.$[elem].color": { name: "BLUE", hex: "#HEX_CODE" },
-          "cart.$[elem].size": "XL",
-        }),
+    const productInfo = {
+      item: productId,
+      color: { name: color.name, hex: color.hex },
+      size,
+    }
+
+    await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        $addToSet: {
+          ...(type === "wishlist" && {wishlist: productInfo}),
+          ...(type === "cart" && {cart: productInfo})
+        },
       },
-     arrayFilters: [{ "elem.item": productId }] ,
-    });
+    );
+
+    let wishlist = null;
+    let cart = null;
+    if(type === "wishlist") {
+      wishlist = [...req.user.wishlist];
+      wishlist.push(productInfo);
+    }
+    if(type === "cart") {
+      cart = [...req.user.cart];
+      cart.push(productInfo);
+    }
+
+    res.send({wishlist, cart});
+
   } catch (err) {
+    console.log(err)
     return next(err);
   };
 
-  res.sendStatus(200);
+  
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
@@ -113,14 +132,33 @@ router.delete("/saved-products/:id", async (req, res, next) => {
   
     await User.findByIdAndUpdate(userId, {
       $pull: {
-        ...(type === "wishlist" && {wishlist: productId}),
-        ...(type === "cart" && {cart: productId})
+        wishlist: {
+          item: productId
+        }
+        // ...(type === "wishlist" && {wishlist: productId}),
+        // ...(type === "cart" && {cart: productId})
       }
     });
+
+    let wishlist = null;
+    let cart = null;
+    if(type === "wishlist") {
+      console.log(req.user.wishlist)
+      wishlist = req.user.wishlist.filter(item => item.item.toString() !== productId);
+      console.log("Huh")
+      console.log(wishlist)
+      console.log("Huh")
+      
+    }
+    if(type === "cart") {
+      cart = req.user.cart.filter(item => item.item.toString() !== productId);
+    }
+
+    res.send({wishlist, cart});
   } catch(err) {
+    console.log(err)
     next(err);
   }
-  res.sendStatus(200);
 });
 
 

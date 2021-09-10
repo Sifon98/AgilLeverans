@@ -25,17 +25,29 @@ function Product() {
   const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
+
+    const params = new URLSearchParams(location.search);
+    const color = params.get("color");
+    const size = params.get("size");
+
     const getProduct = async () => {
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
 
-      setSelectedColor(data.product.colors[0].name);
-      setSelectedSize(data.product.sizes[0]);
       setProduct(data.product);
+
+      const isColorValid = data.product.colors.some(col => col.name === color);
+      const hex = isColorValid ? data.product.colors.find(col => col.name === color).hex : null;
+      const isSizeValid = data.product.sizes.includes(size);
+      
+      setSelectedColor({
+        ...(isColorValid && {name: color, hex}),
+        ...(!isColorValid && {name: data.product.colors[0].name, hex: data.product.colors[0].hex}),
+      });
+      setSelectedSize(isSizeValid ? size : data.product.sizes[0]);
     }
     getProduct();
   }, [])
-
 
   useEffect(() => {
     if(descriptionRef.current) {
@@ -45,8 +57,27 @@ function Product() {
 
   useEffect(() => {
     if(!user.wishlist) return;
-    if(user.wishlist.includes(product._id)) setIsWishlisted(true);
-  }, [product, user])
+
+    const params = new URLSearchParams(location.search);
+    const color = params.get("color");
+    const size = params.get("size");
+
+    const isInWishlist = user.wishlist.some(e => e.item === product._id && e.color.name === color && e.size === size);
+
+    if(isInWishlist) {
+      setIsWishlisted(true);
+    } else {
+      setIsWishlisted(false);
+    }
+
+  }, [product, user, location.search])
+
+
+  useEffect(() => {
+    history.push({
+      search: `?color=${selectedColor.name}&size=${selectedSize}`
+    })
+  }, [selectedColor, selectedSize])
 
 
   const handleToggleWishlist = () => {
@@ -61,21 +92,29 @@ function Product() {
   }
 
   const handleSubmitSavedItem = async (type) => {
+
     const res = await fetch(`/api/saved-products/${product._id}?type=${type}`, {
       ...(type === "wishlist" && {method: isWishlisted ? "DELETE" : "POST"}),
       ...(type === "cart" && {method: isCarted ? "DELETE": "POST"}),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-      }
+      },
+      body: JSON.stringify({color: selectedColor, size: selectedSize})
     })
     const data = await res.json();
 
+    console.log(data.wishlist)
     setUser({
       ...user,
-      wishlist: data.wishlist
+      ...(data.cart && {card: data.cart}),
+      ...(data.wishlist && {wishlist: data.wishlist}),
     });
   }
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   return (
     <div className="product-page">
@@ -125,8 +164,8 @@ function Product() {
             <ul className="color-list">
               {product.colors && product.colors.map(color => {
                 return (
-                  <li key={color.name} style={{background: color.hex}} onClick={() => setSelectedColor(color.name)}>
-                    <div className="selected" style={selectedColor === color.name ? null : {display: "none"}}>
+                  <li key={color.name} style={{background: color.hex}} onClick={() => setSelectedColor({name: color.name, hex: color.hex})}>
+                    <div className="selected" style={selectedColor.name === color.name ? null : {display: "none"}}>
                       <i className="fas fa-check"></i>
                     </div>
                   </li>
