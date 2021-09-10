@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import logo from "../img/logo.png"
 import { useHistory } from "react-router-dom";
+import ListProducts from '../components/ListProducts'
 
 
 function Home() {
@@ -13,55 +14,66 @@ function Home() {
   // Dropdown for gender
   const [dropdownFilter, setDropdownFilter] = useState([]);
   const [gender, setGender] = useState([]); 
+  const [color, setColor] = useState([]); 
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
-    setCategoryCheck(false)
-    setDropdown(false)
-    setDropdownFilter(false)
+    setCategoryCheck(false);
+    setDropdown(false);
+    setDropdownFilter(false);
+    setColor("");
     
     // Check gender and apply male (0) if for some reason gender is empty
-    let initialGender = history.location.state
+    let initialGender = history.location.state;
     if (initialGender == null) {
       initialGender = 0;
     }
-    setGender(initialGender)
+    setGender(initialGender);
 
     // const res = await fetch('/api/products');
     const res = await fetch('/api/products');
     const data = await res.json();
+    console.log(data.products);
+    console.log(data.products[0].colors[0].name);
 
     setProducts(data.products);
   }
 
   // Toggle category dropdown and then choose the category
   const toggleDropdown = () => {
-    dropdown ? setDropdown(false) : setDropdown(true)
+    dropdown ? setDropdown(false) : setDropdown(true);
   }
 
   const chooseCategory = (e) => {
-    const id = e.target.id
+    const id = e.target.id;
     id == 99 ? 
       setCategoryCheck(false) 
-      : setCategoryCheck(true)
-      setDropdown(false)
-      setCategory(id)
+      : setCategoryCheck(true);
+      setDropdown(false);
+      setCategory(id);
   }
 
-  // Toggle gender dropdown and then choose the gender
+  // Toggle filter dropdown and then choose the gender, color or size
   const toggleDropdownFilter = () => {
     dropdownFilter ? setDropdownFilter(false) : setDropdownFilter(true)
   }
 
   const chooseFilter = (e) => {
-    const id = e.target.id
+    const id = e.target.id;
 
-    history.push({ state: id })
-    setDropdownFilter(false)
-    setGender(id)
+    history.push({ state: id });
+    setDropdownFilter(false);
+    setGender(id);
   }
 
-  useEffect(() => fetchProducts(), [])
+  const chooseColor = (e) => {
+    const id = e.target.id;
+    setColor(id);
+
+    setDropdownFilter(false);
+  }
+
+  useEffect(() => fetchProducts(), []);
 
   return (
     <div>
@@ -73,7 +85,7 @@ function Home() {
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
         <div className="dropdown-container">
-          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i class="fas fa-chevron-down"></i></button>
+          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i className="fas fa-chevron-down"></i></button>
             {dropdown && <div className="dropdown">
               <ul>
                 <li id={99} onClick={chooseCategory}>All items</li>
@@ -85,11 +97,15 @@ function Home() {
         </div>
         <div className="line" />
         <div className="dropdown-container-filter">
-          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i class="fas fa-sliders-h"></i></button>
+          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i className="fas fa-sliders-h"></i></button>
             {dropdownFilter && <div className="dropdown-filter">
               <ul>
                 <li id={0} onClick={chooseFilter}>men.</li>
                 <li id={1} onClick={chooseFilter}>women.</li>
+              </ul>
+              <ul>
+                <li id={"Navy"} onClick={chooseColor}>Navy</li>
+                <li id={"Red"} onClick={chooseColor}>Red</li>
               </ul>
             </div>}
         </div>
@@ -98,39 +114,7 @@ function Home() {
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
       <div className="container">
-          {
-            categoryCheck ? products.map(Product => (
-              Product.gender == gender ?
-              Product.category == category ?
-                <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
-                <img className="image" src={Product.image} />
-                <div className="info-box">
-                  <button className="wishlist-btn">
-                    <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
-                  </button>
-                  <div className="text">
-                    <p>{Product.name}</p>
-                    <p>{Product.price} kr</p>
-                  </div>
-                </div>
-              </div> : null : null
-            ))
-            : products.map(Product => (
-              Product.gender == gender ?
-              <div key={Product._id} className="product" onClick={() => history.push(`/products/${Product._id}`)}>
-                <img className="image" src={Product.image} />
-                <div className="info-box">
-                  <button className="wishlist-btn">
-                    <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
-                  </button>
-                  <div className="text">
-                    <p>{Product.name}</p>
-                    <p>{Product.price} kr</p>
-                  </div>
-                </div>
-              </div> : null
-            ))
-          }
+          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} />
       </div>
     </div>
   )
