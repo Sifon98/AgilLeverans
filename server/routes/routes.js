@@ -90,13 +90,11 @@ router.post("/saved-products/:id", async (req, res, next) => {
         ...(type === "cart" && {cart: productId})
       }
     });
-
-    const wishlist = req.user.wishlist;
-    wishlist.push(productId);
-    res.json({wishlist});
   } catch (err) {
     return next(err);
   };
+
+  res.sendStatus(200);
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
@@ -112,12 +110,10 @@ router.delete("/saved-products/:id", async (req, res, next) => {
         ...(type === "cart" && {cart: productId})
       }
     });
-
-    const wishlist = req.user.wishlist.filter(item => item.toString() !== productId);
-    res.json({wishlist});
   } catch(err) {
     next(err);
   }
+  res.sendStatus(200);
 });
 
 
