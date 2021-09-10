@@ -44,6 +44,7 @@ function Product() {
   }, [product])
 
   useEffect(() => {
+    if(!user.wishlist) return;
     if(user.wishlist.includes(product._id)) setIsWishlisted(true);
   }, [product, user])
 
@@ -68,11 +69,13 @@ function Product() {
         Accept: "application/json",
       }
     })
-    const data = await res;
-    console.log(data)
+    const data = await res.json();
+
+    setUser({
+      ...user,
+      wishlist: data.wishlist
+    });
   }
-
-
 
   return (
     <div className="product-page">
