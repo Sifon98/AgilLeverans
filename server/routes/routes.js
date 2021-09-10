@@ -85,10 +85,17 @@ router.post("/saved-products/:id", async (req, res, next) => {
     validateQuery(type); // returns error if not valid
 
     await User.findByIdAndUpdate(userId, {
-      $addToSet: {
-        ...(type === "wishlist" && {wishlist: productId}),
-        ...(type === "cart" && {cart: productId})
-      }
+      $set: {
+        ...(type === "wishlist" && {
+          "wishlist.$[elem].color": { name: "BLUE", hex: "#HEX_CODE" },
+          "wishlist.$[elem].size": "XL",
+        }),
+        ...(type === "cart" && {
+          "cart.$[elem].color": { name: "BLUE", hex: "#HEX_CODE" },
+          "cart.$[elem].size": "XL",
+        }),
+      },
+     arrayFilters: [{ "elem.item": productId }] ,
     });
   } catch (err) {
     return next(err);

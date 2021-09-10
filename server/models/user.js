@@ -7,8 +7,22 @@ const UserSchema = new Schema(
   {
     username: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    wishlist: [{type: Schema.Types.ObjectId, ref: "Product"}],
-    cart: [{type: Schema.Types.ObjectId, ref: "Product"}],
+    wishlist: [
+      {
+        _id: false,
+        item: [{type: Schema.Types.ObjectId, ref: "Product"}],
+        color: {name: String, hex: String},
+        size: String,
+      }
+   ],
+    cart: [
+      {
+        _id: false,
+        item: {type: Schema.Types.ObjectId, ref: "Product"},
+        color: {name: String, hex: String},
+        size: String,
+      }
+    ]
   },
   {timestamps: true},
 )
