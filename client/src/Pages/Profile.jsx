@@ -37,15 +37,32 @@ function Profile() {
         <div className="accountContainer">
           <h1 className="accountTitle">your account.</h1>
         </div>
+
         <div className="profilePicContainer">
-          <i id="profilePic" class="far fa-user-circle"></i>
+            <i id="profilePic" class="far fa-user-circle"></i>
           <div className="profileCameraBackground">
             <i id="profileCameraIcon" class="fas fa-camera"></i>
           </div>
         </div>
-        <div>
 
+        <div className="accountInfoContainer">
+          <form className="accountForm" action="">
+            <label class="username" htmlFor="username">username</label>
+            <input type="text"/>
+            <button>edit</button>
+            <br />
+
+            <label class="emailadress" htmlFor="emailadress">email adress</label>
+            <input type="text"/>
+            <button>edit</button>
+            <br />
+
+            <label class="password" htmlFor="password">password</label>
+            <input type="text"/>
+            <button>change</button>
+          </form>
         </div>
+
         <footer className="signoutContainer">
           <button className="signoutButton" onClick={handleLogout}>sign out.</button>
         </footer>
