@@ -29,12 +29,15 @@ function Profile() {
 
   return (
     <div className= "profilePageWrapper">
-        <div className="profileTitleContainer">
+        <header className="profileTitleContainer">
           <h1 onClick={ () => history.push("/") } className="profileTitle">bopshop.</h1>
+        </header>
+        <div className="accountContainer">
+          <h1 className="accountTitle">your account.</h1>
         </div>
-      <footer className="signoutContainer">
-        <button className="signoutButton" onClick={handleLogout}>sign out.</button>
-      </footer>
+        <footer className="signoutContainer">
+          <button className="signoutButton" onClick={handleLogout}>sign out.</button>
+        </footer>
     </div>
   )
 }

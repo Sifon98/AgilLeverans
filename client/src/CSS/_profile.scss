@@ -1,53 +1,77 @@
 .profilePageWrapper {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
     overflow-y: hidden;
     overflow-x: hidden;
     box-sizing: border-box;
-    height: 100%;
-    width: 100%;
     object-fit: cover;
     margin: 0px;
+    background-color:#F4F4F4;
 
     .profileTitleContainer {
-        display: flex;
         position: absolute; 
+        display: flex;
+        justify-content: center;
         left: 0; 
         right: 0; 
         margin-left: auto; 
         margin-right: auto; 
-        justify-content: center;
         margin-top: 20px;
         
         .profileTitle {
             display: flex;
             justify-content: center;
+            align-items: center;
             background-color:#FFF06B;
             width: 150px;
             height: 42px;
             padding: 2px;
+            margin-top: 10%;
             font-size: 1.6rem;
+            font-family: 'Inter', sans-serif;
+        }
+    }
+    
+    .accountContainer {
+        width:100%;
+        height:200px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-left:5%;
+        
+        .accountTitle {
+            display: flex;
+            font-size: 2.7rem;
+            font-weight: bold;
+            font-family: 'Inter', sans-serif;
         }
     }
     
     .signoutContainer {
-        position: static;
-        height:200px;
         width:100%;
         display: flex;
-        align-content: flex-end;
-        align-items: flex-end;
+        align-items: flex-start;
         justify-content: space-around;
-
+        height:100px;
+        position:absolute;
+        bottom:0;
+        width:100%;
+        
+        
         .signoutButton {
             display: flex;
             align-items: center;
             justify-content: center;
             color:#000000;
             background-color:#FFF06B;
-            width:200px;
+            width:55%;
             height:50px;
             border-radius: 25px;
             font-size: 1rem;
             font-weight: bold;
+            font-family: 'Inter', sans-serif;
         }
     }
 }
