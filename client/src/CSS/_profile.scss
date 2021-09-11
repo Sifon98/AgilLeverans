@@ -57,6 +57,40 @@
             font-family: 'Inter', sans-serif;
         }
     }
+
+    .profilePicContainer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20%;
+        position: relative;
+
+        #profilePic {
+            font-size: 9rem;
+            color:#9B9B9B;
+            font-weight: bold;
+        }
+
+        #profileCameraIcon {
+            position: absolute;
+            // top: -5%;
+            font-size: 1.3rem;
+        }
+        .profileCameraBackground {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -5%;
+            right: 130px;
+            background: white;  
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+        }
+    }
     
     .signoutContainer {
         width:100%;

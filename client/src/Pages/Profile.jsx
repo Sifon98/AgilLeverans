@@ -30,12 +30,21 @@ function Profile() {
   return (
     <div className= "profilePageWrapper">
         <header className="profileTitleContainer">
-          <i id="backArrow" className="fas fa-arrow-left"></i>
+          <i  onClick={ () => history.push("/") } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 onClick={ () => history.push("/") } className="profileTitle">bopshop.</h1>
           <i id="shoppingCart" className="fas fa-shopping-bag"></i>
         </header>
         <div className="accountContainer">
           <h1 className="accountTitle">your account.</h1>
+        </div>
+        <div className="profilePicContainer">
+          <i id="profilePic" class="far fa-user-circle"></i>
+          <div className="profileCameraBackground">
+            <i id="profileCameraIcon" class="fas fa-camera"></i>
+          </div>
+        </div>
+        <div>
+
         </div>
         <footer className="signoutContainer">
           <button className="signoutButton" onClick={handleLogout}>sign out.</button>
