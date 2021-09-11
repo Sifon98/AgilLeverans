@@ -30,7 +30,9 @@ function Profile() {
   return (
     <div className= "profilePageWrapper">
         <header className="profileTitleContainer">
+          <i id="backArrow" className="fas fa-arrow-left"></i>
           <h1 onClick={ () => history.push("/") } className="profileTitle">bopshop.</h1>
+          <i id="shoppingCart" className="fas fa-shopping-bag"></i>
         </header>
         <div className="accountContainer">
           <h1 className="accountTitle">your account.</h1>

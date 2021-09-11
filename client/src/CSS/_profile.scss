@@ -12,27 +12,36 @@
     .profileTitleContainer {
         position: absolute; 
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
         left: 0; 
         right: 0; 
         margin-left: auto; 
-        margin-right: auto; 
-        margin-top: 20px;
+        margin-right: auto;
+        padding: 40px 20px 15px 20px;
         
+        #backArrow {
+            display: flex;
+            font-size: 1.5rem;
+        }
+
         .profileTitle {
             display: flex;
             justify-content: center;
             align-items: center;
             background-color:#FFF06B;
-            width: 150px;
+            width: 155px;
             height: 42px;
             padding: 2px;
-            margin-top: 10%;
+            // margin-top: 10%;
             font-size: 1.6rem;
             font-family: 'Inter', sans-serif;
         }
+
+       #shoppingCart {
+        font-size: 1.6rem;
+        }
     }
-    
     .accountContainer {
         width:100%;
         height:200px;
