@@ -103,21 +103,29 @@
         justify-content: center;
         background-color: white;
         border-top: 3px solid #FFF06B;
-        font-weight: bold;
         font-family: 'Inter', sans-serif;
+        font-weight: bold;
         padding:10px 5px 10px 5px;
         
         
         .accountForm {
             width: auto;
             
-            input[type=text] {
+            .inputText[type=text],[type=password] {
                 margin: 10px 5px 0 0;
                 padding: 10px;
                 border: none;
                 border-bottom: 1px solid grey;
+                color:black;
+                font-size: 1rem;
+                font-weight:bolder;
+
             }
             
+            textarea:focus, input:focus{
+                outline: none;
+            }
+
             button {
                 font-weight: bold;
                 font-family: 'Inter', sans-serif;
