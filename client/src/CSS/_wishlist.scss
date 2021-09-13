@@ -1,0 +1,39 @@
+.wishHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px 30px 20px;
+    
+    
+    i {
+        font-size: 24px;
+    }
+}
+
+
+.wishAlbum{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    height: 900px;
+    // border: 1px black solid;
+
+    .albumText{
+        font-size: 40px;
+        margin-left: 50px;
+    }
+
+    .wishItem{
+        border: 1px solid black;
+        height: 400px;
+        width: 250px;
+        margin: 80px 40px 40px 40px;
+        
+    }
+    
+    .articleText {
+        margin-left: 50px;
+        font-size: 25px;
+    }
+}
