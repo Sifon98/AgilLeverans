@@ -28,19 +28,25 @@
       width: 100%;
       border-top: 4px solid var(--yellow);
       background-color: white;
-      padding: 16px;
       margin-top: 10px;
       text-align: center;
+      transition: 250ms;
+      overflow: hidden;
       .hidden-overlay {
         position: absolute;
         inset: 0;
-        background-color: black;
-
+        background: linear-gradient(0deg, var(--background) 30%, rgba(223,223,223,0) 100%);
+        z-index: 10;
+        opacity: 1;
+        transition: 200ms;
       }
       .label-container {
         display: flex;
         align-items: center;
-        margin-bottom: 12px;
+        padding: 16px;
+        .fa-check {
+          font-size: 12px;
+        }
         .number {
           width: 26px;
           height: 26px;
@@ -52,7 +58,7 @@
         label {
           position: relative;
           margin-left: 40px;
-          &::before {
+          &::after {
             position: absolute;
             content: "";
             width: 16px;
@@ -72,6 +78,7 @@
       }
       .input-container {
         width: 100%;
+        padding: 0 16px;
         .section {
           width: 100%;
           display: flex;
@@ -117,7 +124,18 @@
         background-color: #86D989;
         color: white;
         margin-top: 20px;
+        margin-bottom: 16px;
+        transition: 200ms;
+        &:active{
+          background-color: #86D989 !important;
+        }
       }
+    }
+    .box-1 {
+      max-height: 335px;
+    }
+    .box-2 {
+      max-height: 335px;
     }
   }
 }
