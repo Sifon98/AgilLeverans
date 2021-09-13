@@ -47,21 +47,22 @@ function Profile() {
 
         <div className="accountInfoContainer">
           <form className="accountForm" action="">
-            <label class="username" htmlFor="username">username</label>
-            <input type="text"/>
-            <button>edit</button>
+            <label class="username" htmlFor="username" ></label>
+            <input className="inputText" type="text" placeholder="username"/>
+            <button>edit.</button>
             <br />
 
-            <label class="emailadress" htmlFor="emailadress">email adress</label>
-            <input type="text"/>
-            <button>edit</button>
+            <label class="emailadress" htmlFor="emailadress" ></label>
+            <input type="text" placeholder="email adress"/>
+            <button>edit.</button>
             <br />
-
-            <label class="password" htmlFor="password">password</label>
-            <input type="text"/>
-            <button>change</button>
+            
+            <label class="password" htmlFor="password"></label>
+            <input type="text" placeholder="password" />
+            <button>change.</button>
           </form>
         </div>
+
 
         <footer className="signoutContainer">
           <button className="signoutButton" onClick={handleLogout}>sign out.</button>
