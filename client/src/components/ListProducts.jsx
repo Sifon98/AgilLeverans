@@ -1,37 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProductHTML from './Product'
 
-function ListProducts({categoryCheck, products, gender, category, color}) {
-    // const [matchColor, setMatchColor] = useState([]);
-    
-    // const test = (Products) => {
-    //     console.log(Products.colors)
-
-    //     var test = Products.colors
-
-    //     for (var i = 0; i < 11; i++) {
-    //         if (test = color) {
-    //             setMatchColor(true)
-    //         } else {
-    //             setMatchColor(false)
-    //         }
-    //     }
-    // }
-
+function ListProducts({categoryCheck, products, gender, category, color, colorCheck}) {
     return (
     <>
         {
             categoryCheck ? products.map(Product => (
-                Product.gender == gender ?
+                Product.gender == gender ? 
                 Product.category == category ?
-                color == "" ? 
-                    <ProductHTML key={Product._id} Product={Product}/>
-                : <ProductHTML key={Product._id} Product={Product}/> && console.log("Gotta fix this") : null : null
+                colorCheck ?
+                    Product.colors.some(Color => Color.name == color) ? <ProductHTML key={Product._id} Product={Product}/>
+                : null : <ProductHTML key={Product._id} Product={Product}/> : null : null
             ))
             : products.map(Product => (
-                Product.gender == gender ?
-                    <ProductHTML key={Product._id} Product={Product}/> 
-                : null
+                Product.gender == gender ? 
+                colorCheck ?
+                    Product.colors.some(Color => Color.name == color) ? <ProductHTML key={Product._id} Product={Product}/>
+                : null :  <ProductHTML key={Product._id} Product={Product}/> : null
             ))
         }
     </>

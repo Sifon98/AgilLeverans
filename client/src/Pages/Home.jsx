@@ -11,17 +11,18 @@ function Home() {
   const [dropdown, setDropdown] = useState([]);
   const [categoryCheck, setCategoryCheck] = useState([]); 
   const [category, setCategory] = useState([]); 
-  // Dropdown for gender
+  // Dropdown for filter
   const [dropdownFilter, setDropdownFilter] = useState([]);
   const [gender, setGender] = useState([]); 
-  const [color, setColor] = useState([]); 
+  const [color, setColor] = useState([]);
+  const [colorCheck, setColorCheck] = useState([]);
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
+    setColorCheck(false);
     setCategoryCheck(false);
     setDropdown(false);
     setDropdownFilter(false);
-    setColor("");
     
     // Check gender and apply male (0) if for some reason gender is empty
     let initialGender = history.location.state;
@@ -36,6 +37,14 @@ function Home() {
     console.log(data.products);
 
     setProducts(data.products);
+  }
+
+  const chooseColor = (e) => {
+    const id = e.target.id;
+
+    setColor(id)
+    setColorCheck(true);
+    setDropdown(false);
   }
 
   // Toggle category dropdown and then choose the category
@@ -63,13 +72,6 @@ function Home() {
     history.push({ state: id });
     setDropdownFilter(false);
     setGender(id);
-  }
-
-  const chooseColor = (e) => {
-    const id = e.target.id;
-
-    setColor(id);
-    setDropdownFilter(false);
   }
 
   useEffect(() => fetchProducts(), []);
@@ -113,7 +115,7 @@ function Home() {
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
       <div className="container">
-          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} />
+          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} colorCheck={colorCheck} />
       </div>
     </div>
   )
