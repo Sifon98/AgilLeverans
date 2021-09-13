@@ -14,9 +14,13 @@ function Wishlist() {
       </div>
       <div className="wishAlbum">
         <p className="albumText">Gillade Artiklar</p>
-        <img className="wishItem"></img>
-        <img className="wishItem"></img>
-        <img className="wishItem"></img>
+        <img className="wishItem" src="./src/Women.png" alt="Woman" ></img>
+
+        <img className="wishItem" src="./src/Men.png" alt="Man"></img>
+      
+        <img className="wishItem" src="./src/Men.png" alt="Man"></img>
+    
+        <img className="wishItem" src="./src/Men.png" alt="Man"></img>
       </div>
     </div>
   )
