@@ -160,6 +160,9 @@
     font-weight: 700;
     font-family: 'Inter', sans-serif;
     transition: 100ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     span {
       margin: 0 8px;
     }

@@ -1,13 +1,13 @@
 import React, {useEffect, useState, useRef, useContext} from 'react'
 import { useHistory } from "react-router-dom";
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from "../context/UserContext";
-
-function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
-}
+import { getParams, getIsParamsValid } from "../utils/product-page";
+import ImageContainer from '../components/ProductPage/ImageContainer';
+import InfoContainer from '../components/ProductPage/InfoContainer';
+import OptionsContainer from '../components/ProductPage/OptionsContainer/OptionsContainer';
+import CheckoutButton from '../components/ProductPage/CheckoutButton';
 
 function Product() {
   const history = useHistory();
@@ -21,78 +21,75 @@ function Product() {
   const [descHeight, setDescHeight] = useState(1000);
 
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isCarted, setIsCarted] = useState(false);
+
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
+    // Get params from url
+    const { color, size } = getParams(location);
 
-    const params = new URLSearchParams(location.search);
-    const color = params.get("color");
-    const size = params.get("size");
-
+    // Fetch product
     const getProduct = async () => {
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
-
       setProduct(data.product);
-
-      const isColorValid = data.product.colors.some(col => col.name === color);
-      const hex = isColorValid ? data.product.colors.find(col => col.name === color).hex : null;
-      const isSizeValid = data.product.sizes.includes(size);
-      
-      setSelectedColor({
-        ...(isColorValid && {name: color, hex}),
-        ...(!isColorValid && {name: data.product.colors[0].name, hex: data.product.colors[0].hex}),
-      });
-      setSelectedSize(isSizeValid ? size : data.product.sizes[0]);
+      setCurrentProductOptions(color, size, data.product);
     }
     getProduct();
   }, [])
 
+  // Set Description's max-height
   useEffect(() => {
     if(descriptionRef.current) {
       setDescHeight(descriptionRef.current.offsetHeight)
     }
-  }, [product])
+  }, [product]);
 
-  useEffect(() => {
-    if(!user.wishlist) return;
-
-    const params = new URLSearchParams(location.search);
-    const color = params.get("color");
-    const size = params.get("size");
-
-    const isInWishlist = user.wishlist.some(e => e.item === product._id && e.color.name === color && e.size === size);
-
-    if(isInWishlist) {
-      setIsWishlisted(true);
-    } else {
-      setIsWishlisted(false);
-    }
-
-  }, [product, user, location.search])
-
-
+  // Set search params in url when product options changes
   useEffect(() => {
     history.push({
       search: `?color=${selectedColor.name}&size=${selectedSize}`
     })
   }, [selectedColor, selectedSize])
 
+  // Set is wishlisted and carted
+  useEffect(() => {
+    if(!user.wishlist) return;
+    if(!user.cart) return;
+
+    console.log(user.wishlist)
+
+    // Get params from url
+    const { color, size } = getParams(location);
+    const isInWishlist = user.wishlist.some(e => e.item === product._id && e.color.name === color && e.size === size);
+    const isInCart = user.cart.some(e => e.item === product._id && e.color.name === color && e.size === size);
+
+    isInWishlist ? setIsWishlisted(true) : setIsWishlisted(false);
+    isInCart ? setIsCarted(true) : setIsCarted(false);
+
+  }, [product, user, location.search]);
 
   const handleToggleWishlist = () => {
+    // Submit to server
     handleSubmitSavedItem("wishlist");
-    if(isWishlisted) {
-      toast("Removed item from wishlist");
-    } else {
-      toast.success("Added item to wishlist");
-    };
-    setIsWishlisted(bool => !bool);
-    setTimeout(() => focusRef.current.focus(), 250);
+    // Change client's state
+    handleSubmitWishlistUI();
   }
 
+  const handleToggleCart = () => {
+    // Submit to server
+    handleSubmitSavedItem("cart");
+    // Change client's state
+    handleSubmitCartUI();
+  }
+
+  // Handle submit Wishlist OR Cart
   const handleSubmitSavedItem = async (type) => {
 
+    // Inline && and Ternary operator to see what we should send to server,
+    // We have 4 Possibilities: POST - Wishlist | DELETE - Wishlist | POST - Cart | DELETE - Cart
     const res = await fetch(`/api/saved-products/${product._id}?type=${type}`, {
       ...(type === "wishlist" && {method: isWishlisted ? "DELETE" : "POST"}),
       ...(type === "cart" && {method: isCarted ? "DELETE": "POST"}),
@@ -104,17 +101,47 @@ function Product() {
     })
     const data = await res.json();
 
-    console.log(data.wishlist)
     setUser({
       ...user,
-      ...(data.cart && {card: data.cart}),
+      ...(data.cart && {cart: data.cart}),
       ...(data.wishlist && {wishlist: data.wishlist}),
     });
   }
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
+  // UTILITIES
+
+  // Set product's current Color & Size
+  const setCurrentProductOptions = (color, size, product) => {
+    // Check if search params is valid
+    const { isColorValid, hex, isSizeValid } = getIsParamsValid(color, size, product);
+    // If search params is valid, set product to those options, else set product to its first options
+    setSelectedColor({
+      ...(isColorValid && {name: color, hex}),
+      ...(!isColorValid && {name: product.colors[0].name, hex: product.colors[0].hex}),
+    });
+    setSelectedSize(isSizeValid ? size : product.sizes[0]);
+  };
+
+  // Show toast and change heart icon state.
+  const handleSubmitWishlistUI = () => {
+    if(isWishlisted) {
+      toast("Removed item from wishlist");
+    } else {
+      toast.success("Added item to wishlist");
+    };
+    setIsWishlisted(bool => !bool);
+    // Unfocuses heart to remove the "clicked down" animation
+    setTimeout(() => focusRef.current.focus(), 250);
+  }
+
+  const handleSubmitCartUI = () => {
+    if(isCarted) {
+      toast("Removed item from cart");
+    } else {
+      toast.success("Added item to cart");
+    }
+    setIsCarted(bool => !bool);
+  }
 
   return (
     <div className="product-page">
@@ -125,71 +152,21 @@ function Product() {
           pauseOnHover={false}
           pauseOnFocusLoss={false}
            />
-        <div className="image-container">
-          <img src={product.image} alt="product image" /> 
-          <button className="go-back-btn" onClick={() => history.push({
-                pathname: '/',
-                state: product.gender
-            }) }>
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
-            <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
-          </button>
-          <button style={{height: "0", width: "0", opacity: "0", position: "absolute"}} ref={focusRef}></button>
-        </div>
-
+        <ImageContainer 
+          product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} 
+          />
         <div className="wrapper">
-          <div className="info-container">
-            <div className="container">
-              <div className="name">{product.name}</div>
-              <div className="price">${product.price}.00</div>
-            </div>
-            <p
-            className="description" 
-            style={showFullDesc ? {maxHeight: "1000px"} : {maxHeight: `${descHeight}px`}} 
-            ref={descriptionRef}>
-            {!isEmpty(product) && (
-            <>
-              {showFullDesc ? product.description : product.description.substring(0, 300)}
-              {!showFullDesc && product.description.length > 300 ? (
-                <span className="show-more" onClick={() => setShowFullDesc(true)}> Show more...</span>
-              ):null}
-            </>
-            )}
-            </p>
-          </div>
-          <div className="options-container">
-            <label>Color</label>
-            <ul className="color-list">
-              {product.colors && product.colors.map(color => {
-                return (
-                  <li key={color.name} style={{background: color.hex}} onClick={() => setSelectedColor({name: color.name, hex: color.hex})}>
-                    <div className="selected" style={selectedColor.name === color.name ? null : {display: "none"}}>
-                      <i className="fas fa-check"></i>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-          <div className="options-container">
-            <label>Size</label>
-            <ul className="size-list">
-              {product.sizes && product.sizes.map(size => {
-                return (
-                  <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
-                ) 
-                })
-              }
-            </ul>
-          </div>
+          <InfoContainer 
+            product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 
+            descriptionRef={descriptionRef}
+            />
+          <OptionsContainer 
+            product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
+            setSelectedSize={setSelectedSize} 
+            />
         </div>
         <div className="bottom-whitespace"></div>
-        <button className="checkout-btn" onClick={() => toast.success("Added item to cart")}>
-          <i className="fas fa-shopping-bag"></i>
-          <span>Add to cart</span> 
-        </button>
+        <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
     </div>
   )
 }
