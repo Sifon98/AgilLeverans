@@ -1,0 +1,81 @@
+.conteinerFirstLoad{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .yellowSide{
+        width: 13px;
+        height: 812px;
+        background-color: #FFF06B;
+        position: fixed;
+        left: 0;
+    }
+    
+    .head{
+        background-color: #FFF06B;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 230px;
+        height: 60px;
+
+        .h1name{
+            font-family: 'Inter', sans-serif;
+            font-size: 230%;
+            font-weight: 900;
+            margin: 5px;
+        }
+    }
+
+    .welcomeText{
+        font-family: 'Inter', sans-serif;
+        font-size: 170%;
+        font-weight: 900;
+        margin-top: 88px;
+    }
+
+    .randomLine{
+        border: 1px solid black;
+        width: 64px;
+        opacity: 5%;
+        margin-top: 5px;
+    }
+
+    .loginButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        margin-top: 38px;
+        background-color: #FFF06B;
+        border: none;
+        border-radius: 100px;
+        height: 53px;
+        width: 225px;
+    }
+
+    .registerButton-loginPage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        margin-top: 30px;
+        background-color: #E4E4E4;
+        border: none;
+        border-radius: 100px;
+        height: 53px;
+        width: 225px;
+    }
+
+    .link{
+        text-decoration: none;
+        color: black;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 100%;
+    }
+
+}

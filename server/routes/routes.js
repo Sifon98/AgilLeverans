@@ -11,22 +11,26 @@ const {validateQuery} = require("../utils/validation")
 
 // USER
 router.get("/user", (req, res) => {
-  // Get user
+  if (!req.isAuthenticated()) return res.json(null);
+  console.log(req.user)
+  const { _id, email, username, wishlist, cart } = req.user;
+  res.json({ _id, email, username, wishlist, cart });
 });
 
 router.post("/register", async (req, res, next) => {
-
   try {
     // User info
-    const user = new User({email: "testuser@gmail.com", username: "testuser"});
-    const password = "password123"
+    const { email, username, password } = req.body;
+    const user = new User({email, username});
     // Register User
     const registerUser = await User.register(user, password);
     // Log in user
     req.login(registerUser, (err) => {
       if (err) return next(err);
+      // Extract necessary data from user
+      const { _id, email, username} = registerUser;
       // Give user a message that he is logged in
-      res.json({text: "Registered!"})
+      res.json({ _id, email, username })
     })
   } catch(err) {
     next(err);
@@ -35,15 +39,15 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   // Tell passport that we will log in via "local" strategy
   passport.authenticate("local", function(err,user,info) {
-    // Handle error
     if(err) return next(err);
     if(!user) return res.json({error: "Invalid username or password."})
     // Log in user
     req.login(user, function (err) {
-      // Handle error
       if (err) return next(err);
+      // Extract necessary data from user
+      const { _id, email, username } = user;
       // Give user a message that he is logged in
-      res.json({text: "logged in!"})
+      res.json({ _id, email, username});
     })
   })(req,res,next)
 });
@@ -76,57 +80,106 @@ router.get("/saved-products", async (req, res, next) => {
 // Add item to wishlist || shopping-cart
 router.post("/saved-products/:id", async (req, res, next) => {
   try {
-    const userId = "61371decd184969720e706ee";
+    const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
+    const { size, color } = req.body;
     validateQuery(type); // returns error if not valid
 
-    await User.findByIdAndUpdate(userId, {
-      $addToSet: {
-        ...(type === "wishlist" && {wishlist: productId}),
-        ...(type === "cart" && {cart: productId})
-      }
-    });
+    const productInfo = {
+      item: productId,
+      color: { name: color.name, hex: color.hex },
+      size,
+    }
+
+    await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        $addToSet: {
+          ...(type === "wishlist" && {wishlist: productInfo}),
+          ...(type === "cart" && {cart: productInfo})
+        },
+      },
+    );
+
+    let wishlist = null;
+    let cart = null;
+    if(type === "wishlist") {
+      wishlist = [...req.user.wishlist];
+      wishlist.push(productInfo);
+    }
+    if(type === "cart") {
+      cart = [...req.user.cart];
+      cart.push(productInfo);
+    }
+
+    res.send({wishlist, cart});
+
   } catch (err) {
+    console.log(err)
     return next(err);
   };
 
-  res.json("ok")
+  
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
   try {
-    const userId = "61371decd184969720e706ee";
+    const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
     await User.findByIdAndUpdate(userId, {
       $pull: {
-        ...(type === "wishlist" && {wishlist: productId}),
-        ...(type === "cart" && {cart: productId})
+        wishlist: {
+          item: productId
+        }
+        // ...(type === "wishlist" && {wishlist: productId}),
+        // ...(type === "cart" && {cart: productId})
       }
     });
+
+    let wishlist = null;
+    let cart = null;
+    if(type === "wishlist") {
+      console.log(req.user.wishlist)
+      wishlist = req.user.wishlist.filter(item => item.item.toString() !== productId);
+      console.log("Huh")
+      console.log(wishlist)
+      console.log("Huh")
+      
+    }
+    if(type === "cart") {
+      cart = req.user.cart.filter(item => item.item.toString() !== productId);
+    }
+
+    res.send({wishlist, cart});
   } catch(err) {
+    console.log(err)
     next(err);
   }
-  res.send("ok");
 });
 
 
 // PRODUCTS
-
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
   try {
-    const products = await Product.find();
+    const {wishlist} = req.user;
+    
+    let products = await Product.find();
+    products = JSON.parse(JSON.stringify(products));
 
-    res.json({products});
+    const updateProducts = products.map(prod => {
+      if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
+      return {...prod, isWishlisted: false}
+    })
+
+    res.json({products: updateProducts});
   } catch(err) {
     return next(err);
   }
-  
-
 });
 
 router.get("/products/:id", async (req, res, next) => {
