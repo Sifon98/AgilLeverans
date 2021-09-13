@@ -59,7 +59,7 @@ function Product() {
     if(!user.wishlist) return;
     if(!user.cart) return;
 
-    console.log(user.wishlist)
+    console.log(user.cart)
 
     // Get params from url
     const { color, size } = getParams(location);
@@ -100,6 +100,8 @@ function Product() {
       body: JSON.stringify({color: selectedColor, size: selectedSize})
     })
     const data = await res.json();
+
+    console.log(data.cart)
 
     setUser({
       ...user,

@@ -4,7 +4,7 @@ function CheckoutButton({ handleToggleCart, isCarted }) {
   return (
     <button className="checkout-btn" onClick={() => handleToggleCart()}>
       {isCarted ? (
-        <i class="fas fa-check"></i>
+        <i className="fas fa-check"></i>
       ): (
         <i className="fas fa-shopping-bag"></i>
       )}

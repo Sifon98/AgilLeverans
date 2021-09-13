@@ -116,7 +116,6 @@ router.post("/saved-products/:id", async (req, res, next) => {
     res.send({wishlist, cart});
 
   } catch (err) {
-    console.log(err)
     return next(err);
   };
 
@@ -132,23 +131,15 @@ router.delete("/saved-products/:id", async (req, res, next) => {
   
     await User.findByIdAndUpdate(userId, {
       $pull: {
-        wishlist: {
-          item: productId
-        }
-        // ...(type === "wishlist" && {wishlist: productId}),
-        // ...(type === "cart" && {cart: productId})
+        ...(type === "wishlist" && {wishlist: {item: productId}}),
+        ...(type === "cart" && {cart: {item: productId}})
       }
     });
 
     let wishlist = null;
     let cart = null;
     if(type === "wishlist") {
-      console.log(req.user.wishlist)
       wishlist = req.user.wishlist.filter(item => item.item.toString() !== productId);
-      console.log("Huh")
-      console.log(wishlist)
-      console.log("Huh")
-      
     }
     if(type === "cart") {
       cart = req.user.cart.filter(item => item.item.toString() !== productId);
@@ -156,7 +147,6 @@ router.delete("/saved-products/:id", async (req, res, next) => {
 
     res.send({wishlist, cart});
   } catch(err) {
-    console.log(err)
     next(err);
   }
 });
