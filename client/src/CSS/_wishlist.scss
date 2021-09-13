@@ -13,11 +13,11 @@
 
 .wishAlbum{
     margin-top: 50px;
-    display: block;
-    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
     align-items: start;
     height: 900px;
-    border: 1px black solid;
+    // border: 1px black solid;
 
     .albumText{
         font-size: 40px;
@@ -28,7 +28,12 @@
         border: 1px solid black;
         height: 400px;
         width: 250px;
-        margin: 80px 80px 80px 80px;
+        margin: 80px 40px 40px 40px;
         
+    }
+    
+    .articleText {
+        margin-left: 50px;
+        font-size: 25px;
     }
 }
