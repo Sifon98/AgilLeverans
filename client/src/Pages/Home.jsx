@@ -73,7 +73,7 @@ function Home() {
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
         <div className="dropdown-container">
-          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i class="fas fa-chevron-down"></i></button>
+          <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i className="fas fa-chevron-down"></i></button>
             {dropdown && <div className="dropdown">
               <ul>
                 <li id={99} onClick={chooseCategory}>All items</li>
@@ -85,7 +85,7 @@ function Home() {
         </div>
         <div className="line" />
         <div className="dropdown-container-filter">
-          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i class="fas fa-sliders-h"></i></button>
+          <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i className="fas fa-sliders-h"></i></button>
             {dropdownFilter && <div className="dropdown-filter">
               <ul>
                 <li id={0} onClick={chooseFilter}>men.</li>
