@@ -7,6 +7,8 @@
 @import "_firstLoad";
 @import "_product-page";
 @import "_profile";
+@import "_wishlist";
+@import "_checkout";
 
 * {
   box-sizing: border-box;
@@ -15,8 +17,8 @@
 }
 
 html,body {
-  width: 100vw;
-  height: 100vh;
+  max-width: 100vw;
+  height: 100%;
   background-color: var(--background);
 }
 

@@ -6,7 +6,6 @@ import Register from "./Pages/Register"
 import Landing from "./Pages/Landing"
 import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
-import ProductPage from "./Pages/ProductPage"
 import PrivateRoute from "./components/PrivateRoute";
 import './CSS/style.min.css'
 import {
@@ -17,6 +16,8 @@ import {
 import { UserContext } from "./context/UserContext";
 import { useHistory } from "react-router-dom";
 import Loading from './components/Loading'
+import Product from './Pages/Product'
+import Checkout from './Pages/Checkout'
 
 function App() {
 
@@ -49,7 +50,8 @@ function App() {
             <PrivateRoute path="/landing" component={Landing} user={user} />
             <PrivateRoute path="/profile" component={Profile} user={user} />
             <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
-            <PrivateRoute path="/products/:id" component={ProductPage} user={user} />
+            <PrivateRoute path="/products/:id" component={Product} user={user} />
+            <PrivateRoute path="/checkout" component={Checkout} user={user} />
           </Switch>
         </Router>
       ) : (
