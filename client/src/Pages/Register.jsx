@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
-import { validateEmail } from "../utils/register";
+import { validateEmail, validateUsername, validatePassword } from "../utils/register";
 
 
 
@@ -25,19 +25,38 @@ function Register() {
     if(user) history.push("/");
   }, [user])
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let usernameGood = false;
     let emailGood = false;
     let passwordGood = false;
-    
-    if(validateEmail(email)) {
-      console.log("GOOD")
+
+    if(validateUsername(username)) {
+      console.log("USERNAME GOOD")
     } else {
-      console.log("BAD")
+      console.log("Username is not valid!")
     }
     
+    if(validateEmail(email)) {
+      console.log("EMAIL GOOD")
+    } else {
+      console.log("Email is not valid!")
+    }
+
+    if(validatePassword(password)) {
+      console.log("PASSWORD GOOD")
+    } else {
+      console.log("Password must have minimum six characters, at least one letter and one numbe")
+    }
+
+    if(password !== repeatPassword) {
+      console.log("Password didnt match")
+    } else {
+      console.log("PASSWORD MATCH")
+    }
+
 
     const res = await fetch("/api/register", {
       method: "POST",
