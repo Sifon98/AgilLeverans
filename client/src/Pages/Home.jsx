@@ -10,24 +10,18 @@ function Home() {
   const [loading, setLoading] = useState(true);
   // Dropdown for categories
   const [dropdown, setDropdown] = useState([]);
-  const [categoryCheck, setCategoryCheck] = useState([]); 
-  const [category, setCategory] = useState([]); 
+  const [categoryCheck, setCategoryCheck] = useState(false); 
+  const [category, setCategory] = useState(5); 
   // Dropdown for filter
   const [dropdownFilter, setDropdownFilter] = useState([]);
   const [gender, setGender] = useState([]); 
   const [color, setColor] = useState([]);
-  const [colorCheck, setColorCheck] = useState([]);
+  const [colorCheck, setColorCheck] = useState(false);
   const [size, setSize] = useState([]);
-  const [sizeCheck, setSizeCheck] = useState([]);
-  // Check for CSS purposes
-  const [selectedColor, setSelectedColor] = useState([]);
-  const [selectedSize, setSelectedSize] = useState([]);
+  const [sizeCheck, setSizeCheck] = useState(false);
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
-    setColorCheck(false);
-    setSizeCheck(false);
-    setCategoryCheck(false);
     setDropdown(false);
     setDropdownFilter(false);
     
@@ -53,7 +47,7 @@ function Home() {
     setColor(id)
     setColorCheck(true);
     setSizeCheck(false);
-    setDropdownFilter(false);
+    setSize("");
   }
 
   const chooseSize = (e) => {
@@ -62,38 +56,45 @@ function Home() {
     setSize(id)
     setSizeCheck(true);
     setColorCheck(false);
-    setDropdownFilter(false);
-  }
-
-  // Toggle category dropdown and then choose the category
-  const toggleDropdown = () => {
-    dropdown ? setDropdown(false) : setDropdown(true);
+    setColor("");
   }
 
   const chooseCategory = (e) => {
     const id = e.target.id;
     id == 99 ? 
-      setCategoryCheck(false) 
+      setCategoryCheck(false)
       : setCategoryCheck(true);
-      setDropdown(false);
       setCategory(id);
+  }
+
+  // Toggle category dropdown and then choose the category
+  const toggleDropdown = () => {
+    dropdown ? setDropdown(false) : setDropdown(true);
+    dropdownFilter && setDropdownFilter(false);
   }
 
   // Toggle filter dropdown and then choose the gender, color or size
   const toggleDropdownFilter = () => {
     dropdownFilter ? setDropdownFilter(false) : setDropdownFilter(true)
+    dropdown && setDropdown(false);
   }
 
   const chooseFilter = (e) => {
     const id = e.target.id;
 
     history.push({ state: id });
-    setDropdownFilter(false);
     setGender(id);
   }
 
-  useEffect(() => fetchProducts(), []);
+  const removeFilter = () => {
+    setColorCheck(false);
+    setSizeCheck(false);
+    setColor("");
+    setSize("");
+  }
 
+  useEffect(() => fetchProducts(), []);
+  
   return (
     loading ? <div>Loading...</div> :
     <div>
@@ -106,39 +107,42 @@ function Home() {
       <div className="sorting-buttons">
         <div className="dropdown-container">
           <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i className="fas fa-chevron-down"></i></button>
-            {dropdown && <div className="dropdown">
-              <ul>
-                <li id={99} onClick={chooseCategory} className="bold-underline">all items.</li>
-                <li id={0} onClick={chooseCategory}>Shirts</li>
-                <li id={1} onClick={chooseCategory}>Pants</li>
-                <li id={2} onClick={chooseCategory}>Shoes</li>
-              </ul>
-            </div>}
         </div>
         <div className="line" />
         <div className="dropdown-container-filter">
           <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i className="fas fa-sliders-h"></i></button>
-            {dropdownFilter && <div className="dropdown-filter">
-              <ul>
-                <li id={0} onClick={chooseFilter} className="bold">men.</li>
-                <li id={1} onClick={chooseFilter} className="bold-underline">women.</li>
-              </ul>
-              <ul className="filter-ul">
-                {products[0].colors.map(Color => (
-                  <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
-                    <div className="selected-color" style={color === Color.name ? null : {display: "none"}}>
-                      <i className="fas fa-check"></i>
-                    </div>
-                  </li>
-                ))}
-                {products[0].sizes.map(Sizes => (
-                  <li id={Sizes} key={Sizes} onClick={chooseSize} className={`choose-size ${Sizes === size ? "selected-size" : ""}`}>{Sizes}</li>
-                  // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
-                ))}
-              </ul>
-            </div>}
         </div>
       </div>
+        {dropdown && <div className="dropdown">
+          <ul>
+            <li id={99} onClick={chooseCategory} className="bold">all items.</li>
+            <li id={0} onClick={chooseCategory}>Shirts</li>
+            <li id={1} onClick={chooseCategory}>Pants</li>
+            <li id={2} onClick={chooseCategory}>Shoes</li>
+          </ul>
+        </div>}
+        {dropdownFilter && <div className="dropdown-filter">
+          <ul>
+            <li id={0} onClick={chooseFilter} className="bold">men.</li>
+            <li id={1} onClick={chooseFilter} className="bold-underline">women.</li>
+          </ul>
+          <ul className="filter-ul">
+            {products[0].colors.map(Color => (
+              <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
+                <div className="selected-color" style={color === Color.name ? null : {display: "none"}}>
+                  <i className="fas fa-check"></i>
+                </div>
+              </li>
+            ))}
+            {products[0].sizes.map(Sizes => (
+              <li id={Sizes} key={Sizes} onClick={chooseSize} className={`choose-size ${Sizes === size ? "selected-size" : ""}`}>{Sizes}</li>
+              // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
+            ))}
+          </ul>
+          <ul className="remove-ul">
+            <li onClick={removeFilter} className="bold">clear selected.</li>
+          </ul>
+        </div>}
       {/* Change titel depending on the categorie and gender */}
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
