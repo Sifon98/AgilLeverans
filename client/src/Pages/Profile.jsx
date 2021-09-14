@@ -28,8 +28,44 @@ function Profile() {
 
 
   return (
-    <div>
-        <button onClick={handleLogout}>LOG OUT</button>
+    <div className= "profilePageWrapper">
+        <header className="profileTitleContainer">
+          <i  onClick={ () => history.push("/") } id="backArrow" className="fas fa-arrow-left"></i>
+          <h1 onClick={ () => history.push("/") } className="profileTitle">bopshop.</h1>
+          <i id="shoppingCart" className="fas fa-shopping-bag"></i>
+        </header>
+        <div className="accountContainer">
+          <h1 className="accountTitle">your account.</h1>
+        </div>
+
+        <div className="profilePicContainer">
+            <i id="profilePic" class="far fa-user-circle"></i>
+          <div className="profileCameraBackground">
+            <i id="profileCameraIcon" class="fas fa-camera"></i>
+          </div>
+        </div>
+
+        <div className="accountInfoContainer">
+          <form className="accountForm" action="" method="post">
+            <label class="username" htmlFor="username" ></label>
+            <input className="inputText" type="text" placeholder="username"/>
+            <button>edit.</button>
+            <br />
+
+            <label class="emailadress" htmlFor="emailadress" ></label>
+            <input className="inputText" type="text" placeholder="email adress"/>
+            <button>edit.</button>
+            <br />
+            
+            <label class="password" htmlFor="password"></label>
+            <input className="inputText" type="password" placeholder="password" />
+            <button>change.</button>
+          </form>
+        </div>
+
+        <footer className="signoutContainer">
+          <button className="signoutButton" onClick={handleLogout}>sign out.</button>
+        </footer>
     </div>
   )
 }
