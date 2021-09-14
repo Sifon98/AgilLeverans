@@ -25,7 +25,9 @@ function Profile() {
       history.push("/login");
     }
     
-  const [ isDisabled, setIsDisabled ] = useState( false );
+  const [ isDisabledName, setIsDisabledName ] = useState( false );
+  const [ isDisabledEmail, setIsDisabledEmail ] = useState( false );
+  const [ isDisabledPassword, setIsDisabledPassword ] = useState( false );
   const [ userName, setUserName ] = useState( "" );
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
@@ -53,19 +55,18 @@ function Profile() {
         <div className="accountForm" action="" method="post" >
           
             <label class="username" id="label" htmlFor="username" >username</label>
-            <input onChange={(e) => setUserName(e.target.value)} defaultValue={user.username} className="inputText" id="input" type="text" placeholder="" disabled={!isDisabled} />
-            {/* <span id="span"></span> */}
-            <button onClick={()=> setIsDisabled(bool => !bool)}>edit.</button>
+            <input onChange={(e) => setUserName(e.target.value)} defaultValue={user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
+            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
-            <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user.email} className="inputText" type="text" placeholder="" disabled={!isDisabled}/>
-            <button onClick={()=> setIsDisabled(bool => !bool)}>edit.</button>
+            <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
+            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
             <br />
             
             <label  className="password" htmlFor="password">enter new password</label>
-            <input  defaultValue="" className="inputText" type="password" placeholder="" disabled={!isDisabled} />
-            <button>change.</button>
+            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} />
+            <button onClick={()=> setIsDisabledPassword(boolean => !boolean)} >change.</button>
           </div>
         </div>
 

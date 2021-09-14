@@ -116,6 +116,7 @@
             
             #label {
                 position: absolute;
+                margin-bottom: 10px;
             }
 
             .inputText[type=text],[type=password] {
@@ -126,8 +127,16 @@
                 color:black;
                 font-size: 1rem;
                 font-weight:bolder;
-
+                margin-top:15px;
             }
+
+            .inputText:disabled {
+                background-color: white;
+                // border-radius: 5px;
+                color:rgb(139, 137, 137);
+                margin-top:15px;
+            }
+
             
             textarea:focus, input:focus{
                 outline: none;
@@ -142,7 +151,6 @@
                 border-radius: 5px;
                 margin-left: 10px;
                 padding: 5px;
-                
             }
             .username,
             .emailadress,
@@ -164,8 +172,9 @@
                 // right:1rem;
                 
             }
+
         }
-    
+        
     }
     
     .signoutContainer {
