@@ -7,6 +7,7 @@ import ListProducts from '../components/ListProducts'
 function Home() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   // Dropdown for categories
   const [dropdown, setDropdown] = useState([]);
   const [categoryCheck, setCategoryCheck] = useState([]); 
@@ -16,10 +17,13 @@ function Home() {
   const [gender, setGender] = useState([]); 
   const [color, setColor] = useState([]);
   const [colorCheck, setColorCheck] = useState([]);
+  const [size, setSize] = useState([]);
+  const [sizeCheck, setSizeCheck] = useState([]);
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
     setColorCheck(false);
+    setSizeCheck(false);
     setCategoryCheck(false);
     setDropdown(false);
     setDropdownFilter(false);
@@ -37,6 +41,7 @@ function Home() {
     console.log(data.products);
 
     setProducts(data.products);
+    setLoading(false)
   }
 
   const chooseColor = (e) => {
@@ -44,7 +49,15 @@ function Home() {
 
     setColor(id)
     setColorCheck(true);
-    setDropdown(false);
+    setDropdownFilter(false);
+  }
+
+  const chooseSize = (e) => {
+    const id = e.target.id;
+
+    setSize(id)
+    setSizeCheck(true);
+    setDropdownFilter(false);
   }
 
   // Toggle category dropdown and then choose the category
@@ -77,6 +90,7 @@ function Home() {
   useEffect(() => fetchProducts(), []);
 
   return (
+    loading ? <div>Loading...</div> :
     <div>
       <div className="header">
         <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
@@ -89,7 +103,7 @@ function Home() {
           <button type="button" className="button" onClick={toggleDropdown}>KATEGORI <i className="fas fa-chevron-down"></i></button>
             {dropdown && <div className="dropdown">
               <ul>
-                <li id={99} onClick={chooseCategory}>All items</li>
+                <li id={99} onClick={chooseCategory} className="bold-underline">all items.</li>
                 <li id={0} onClick={chooseCategory}>Shirts</li>
                 <li id={1} onClick={chooseCategory}>Pants</li>
                 <li id={2} onClick={chooseCategory}>Shoes</li>
@@ -101,12 +115,17 @@ function Home() {
           <button type="button" className="button-filter" onClick={toggleDropdownFilter}>FILTER <i className="fas fa-sliders-h"></i></button>
             {dropdownFilter && <div className="dropdown-filter">
               <ul>
-                <li id={0} onClick={chooseFilter}>men.</li>
-                <li id={1} onClick={chooseFilter}>women.</li>
+                <li id={0} onClick={chooseFilter} className="bold">men.</li>
+                <li id={1} onClick={chooseFilter} className="bold-underline">women.</li>
               </ul>
-              <ul>
-                <li id={"Navy"} onClick={chooseColor}>Navy</li>
-                <li id={"Red"} onClick={chooseColor}>Red</li>
+              <ul className="color-ul">
+                {products[0].colors.map(Color => (
+                  <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color"></li>
+                ))}
+              </ul>
+              <ul className="size-ul">
+                <li id="XS" onClick={chooseSize}>XS</li>
+                <li id="L" onClick={chooseSize}>L</li>
               </ul>
             </div>}
         </div>
@@ -115,7 +134,7 @@ function Home() {
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
       <div className="container">
-          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} colorCheck={colorCheck} />
+          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} />
       </div>
     </div>
   )
