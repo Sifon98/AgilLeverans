@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import BanksContainer from '../components/Checkout/BanksContainer';
+
+import Form0 from '../components/Checkout/Form0';
+import Form1 from '../components/Checkout/Form1';
+import Form2 from '../components/Checkout/Form2';
 import logo from "../img/logo.png"
 import { handleStringModify } from "../utils/checkout"
 
@@ -47,8 +50,6 @@ function Checkout() {
     }
   }, [cardNumber, cvc, cardName, expDate])
 
-
-
   // Utilities
   const handleSetZip = (e) => {
     const ZIP = handleStringModify(e.target.value, zip, 3, null, 5, " ");
@@ -77,78 +78,32 @@ function Checkout() {
       </div>
       <h1>checkout.</h1>
       <div className="wrapper">
-  
-        <div className="form-box box-1" style={currentForm === 0 ? null: {maxHeight: "60px"}}>
-          <div className="label-container" onClick={() => setCurrentForm(0)}>
-            <div className="number">{currentForm === 0 ? "1" : <i className="fas fa-check"></i>}</div>
-            <label>shipping.</label>
-          </div>
-          <div className="input-container">
-            <div className="section">
-              <input onChange={(e) => setAddress(e.target.value)} className="address" type="text" placeholder="address." />
-              <input value={zip} onChange={handleSetZip} className="zip" type="text" placeholder="zip code." maxLength="6" />
-            </div>
-            <div className="section">
-              <input onChange={(e) => setCity(e.target.value)} className="city" type="text" placeholder="city." />
-              <input onChange={(e) => setCountry(e.target.value)} className="country" type="text" placeholder="country." />
-            </div>
-          </div>
-          <button 
-            className="continue-btn"
-            onClick={() => setCurrentForm(1)} 
-            disabled={!formCheck0}
-            style={formCheck0 ? {backgroundColor: "#57c95b"} : null}
-            >
-            <span>Continue</span>
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
-
-        <div className="form-box box-2" style={currentForm > 1 ? {maxHeight: "60px"} : null}>
-          <div className="hidden-overlay" style={currentForm >= 1 ? {opacity: "0", pointerEvents: "none"} : null}></div>
-          <div className="label-container" onClick={() => setCurrentForm(1)}>
-            <div className="number">{currentForm <= 1 ? "2" : <i className="fas fa-check"></i>}</div>
-            <label>payment method.</label>
-          </div>
-          <BanksContainer />
-          <div className="input-container">
-            <div className="section">
-              <input value={cardNumber} onChange={handleSetCardNumber} className="card-number" type="text" placeholder="card number." />
-              <input onChange={(e) => setCvc(e.target.value)} className="cvc" type="text" placeholder="cvc." maxLength="3" />
-            </div>
-            <div className="section">
-              <input onChange={(e) => setCardName(e.target.value)} className="name-on-card" type="text" placeholder="name on card." />
-              <input value={expDate} onChange={handleSetExpDate} className="valid-through" type="text" placeholder="valid through." />
-            </div>
-          </div>
-          <button 
-            className="continue-btn" 
-            onClick={() => setCurrentForm(2)}
-            disabled={!formCheck1}
-            style={formCheck1 ? {backgroundColor: "#57c95b"} : null}
-            >
-            <span>Continue</span>
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
-
-        <div className="form-box box-3" style={currentForm > 2 ? {maxHeight: "60px"} : null}>
-          <div className="hidden-overlay" style={currentForm >= 2 ? {opacity: "0", pointerEvents: "none"} : null}></div>
-          <div className="label-container" onClick={() => setCurrentForm(2)}>
-            <div className="number">{currentForm <= 2 ? "3" : <i className="fas fa-check"></i>}</div>
-            <label>confirmation.</label>
-          </div>
-          <button 
-            className="continue-btn" 
-            onClick={() => setCurrentForm(3)}
-            >
-            <span>Continue</span>
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
-
+        <Form0 
+          currentForm={currentForm} 
+          setCurrentForm={setCurrentForm} 
+          formCheck0={formCheck0} 
+          setAddress={setAddress}
+          zip={zip}
+          handleSetZip={handleSetZip} 
+          setCity={setCity} 
+          setCountry={setCountry} 
+        />
+        <Form1 
+          currentForm={currentForm} 
+          setCurrentForm={setCurrentForm} 
+          formCheck1={formCheck1}
+          cardNumber={cardNumber}
+          handleSetCardNumber={handleSetCardNumber}
+          setCvc={setCvc}
+          setCardName={setCardName}
+          expDate={expDate}
+          handleSetExpDate={handleSetExpDate}
+        />
+        <Form2
+          currentForm={currentForm} 
+          setCurrentForm={setCurrentForm} 
+        />
       </div>
-      
     </div>
   )
 }
