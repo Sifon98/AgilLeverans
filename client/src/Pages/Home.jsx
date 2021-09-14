@@ -19,6 +19,9 @@ function Home() {
   const [colorCheck, setColorCheck] = useState([]);
   const [size, setSize] = useState([]);
   const [sizeCheck, setSizeCheck] = useState([]);
+  // Check for CSS purposes
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [selectedSize, setSelectedSize] = useState([]);
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
@@ -49,6 +52,7 @@ function Home() {
 
     setColor(id)
     setColorCheck(true);
+    setSizeCheck(false);
     setDropdownFilter(false);
   }
 
@@ -57,6 +61,7 @@ function Home() {
 
     setSize(id)
     setSizeCheck(true);
+    setColorCheck(false);
     setDropdownFilter(false);
   }
 
@@ -118,14 +123,18 @@ function Home() {
                 <li id={0} onClick={chooseFilter} className="bold">men.</li>
                 <li id={1} onClick={chooseFilter} className="bold-underline">women.</li>
               </ul>
-              <ul className="color-ul">
+              <ul className="filter-ul">
                 {products[0].colors.map(Color => (
-                  <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color"></li>
+                  <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
+                    <div className="selected-color" style={color === Color.name ? null : {display: "none"}}>
+                      <i className="fas fa-check"></i>
+                    </div>
+                  </li>
                 ))}
-              </ul>
-              <ul className="size-ul">
-                <li id="XS" onClick={chooseSize}>XS</li>
-                <li id="L" onClick={chooseSize}>L</li>
+                {products[0].sizes.map(Sizes => (
+                  <li id={Sizes} key={Sizes} onClick={chooseSize} className={`choose-size ${Sizes === size ? "selected-size" : ""}`}>{Sizes}</li>
+                  // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
+                ))}
               </ul>
             </div>}
         </div>

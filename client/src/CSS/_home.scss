@@ -122,7 +122,7 @@
                 }
             }
 
-            .color-ul {
+            .filter-ul {
                 margin: 3px;
                 display: flex;
                 flex-wrap: wrap;
@@ -132,6 +132,44 @@
                     width: 32px;
                     height: 32px;
                     border-radius: 100%;
+
+                    .selected-color {
+                        pointer-events: none;
+                        position: relative;
+                        margin: -10px 0px 0px 10px;
+                        display: grid;
+                        place-items: center;
+                        width: 13px;
+                        height: 13px;
+                        border-radius: 100%;
+                        background-color: black;
+                        box-shadow: 0px 0px 0px 3px var(--background);
+                        color: white;
+                        font-size: 7px;
+                    }
+                }
+
+                .choose-size {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-size: 14px;
+                    margin: 3px;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 100%;
+                    background-color: #DEDEDE;
+                }
+
+                .selected-size {
+                    margin: 3px;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 100%;
+                    background-color: black;
+                    color: #DEDEDE;
                 }
             }
         }
