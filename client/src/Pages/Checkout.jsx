@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import BanksContainer from '../components/Checkout/BanksContainer';
 import logo from "../img/logo.png"
-import { handleChangeZip } from "../utils/checkout"
+import { handleStringModify } from "../utils/checkout"
 
 
 function Checkout() {
@@ -18,16 +18,14 @@ function Checkout() {
   const [cvc, setCvc] = useState("");
   const [cardName, setCardName] = useState("");
   const [expDate, setExpDate] = useState("");
-
-
+  const [formCheck1, setFormCheck1] = useState(false);
 
   const [currentForm, setCurrentForm] = useState(0);
 
 
-
   useEffect(() => {
     const validAddress = address.length > 0;
-    const validZip = zip.length === 6;
+    const validZip = zip.replaceAll(" ", "").length === 5;
     const validCity = city.length > 0;
     const validCountry = country.length > 0;
     if(validAddress && validZip && validCity && validCountry) {
@@ -37,18 +35,37 @@ function Checkout() {
     }
   }, [address, zip, city, country])
 
-
-
-
-
+  useEffect(() => {
+    const validCardNumber = cardNumber.replaceAll(" ", "").length === 16;
+    const validCvc = cvc.length === 3;
+    const validCardName = cardName.length > 0;
+    const validExpDate = expDate.replaceAll("-", "").length === 4;
+    if(validCardNumber && validCvc && validCardName && validExpDate) {
+      setFormCheck1(true);
+    } else {
+      setFormCheck1(false);
+    }
+  }, [cardNumber, cvc, cardName, expDate])
 
 
 
   // Utilities
   const handleSetZip = (e) => {
-    const ZIP = handleChangeZip(e.target.value, zip);
+    const ZIP = handleStringModify(e.target.value, zip, 3, null, 5, " ");
     if(ZIP === 1) return;
     setZip(ZIP);
+  }
+
+  const handleSetCardNumber = (e) => {
+    const VISA = handleStringModify(e.target.value, cardNumber, null, 4, 16, " ");
+    if (VISA === 1) return;
+    setCardNumber(VISA);
+  }
+
+  const handleSetExpDate = (e) => {
+    const EXP = handleStringModify(e.target.value, expDate, 2, null, 4, "-");
+    if (EXP === 1) return;
+    setExpDate(EXP);
   }
 
   return (
@@ -96,15 +113,35 @@ function Checkout() {
           <BanksContainer />
           <div className="input-container">
             <div className="section">
-              <input className="card-number" type="text" placeholder="card number." />
-              <input className="cvc" type="text" placeholder="cvc." maxLength="3" />
+              <input value={cardNumber} onChange={handleSetCardNumber} className="card-number" type="text" placeholder="card number." />
+              <input onChange={(e) => setCvc(e.target.value)} className="cvc" type="text" placeholder="cvc." maxLength="3" />
             </div>
             <div className="section">
-              <input className="name-on-card" type="text" placeholder="name on card." />
-              <input className="valid-through" type="text" placeholder="valid through." />
+              <input onChange={(e) => setCardName(e.target.value)} className="name-on-card" type="text" placeholder="name on card." />
+              <input value={expDate} onChange={handleSetExpDate} className="valid-through" type="text" placeholder="valid through." />
             </div>
           </div>
-          <button className="continue-btn" onClick={() => setCurrentForm(2)}>
+          <button 
+            className="continue-btn" 
+            onClick={() => setCurrentForm(2)}
+            disabled={!formCheck1}
+            style={formCheck1 ? {backgroundColor: "#57c95b"} : null}
+            >
+            <span>Continue</span>
+            <i className="fas fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <div className="form-box box-3" style={currentForm > 2 ? {maxHeight: "60px"} : null}>
+          <div className="hidden-overlay" style={currentForm >= 2 ? {opacity: "0", pointerEvents: "none"} : null}></div>
+          <div className="label-container" onClick={() => setCurrentForm(2)}>
+            <div className="number">{currentForm <= 2 ? "3" : <i className="fas fa-check"></i>}</div>
+            <label>confirmation.</label>
+          </div>
+          <button 
+            className="continue-btn" 
+            onClick={() => setCurrentForm(3)}
+            >
             <span>Continue</span>
             <i className="fas fa-arrow-right"></i>
           </button>
