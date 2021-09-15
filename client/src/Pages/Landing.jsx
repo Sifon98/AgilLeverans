@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 function Landing() {
   const history = useHistory()
   return (
-    <div className="wrapper">
+    <div className="landingWrapper">
         <div className="titleContainer">
           <h1 onClick={ () => history.push("/") } className="title">bopshop.</h1>
         </div>

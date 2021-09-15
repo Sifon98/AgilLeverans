@@ -205,16 +205,21 @@
         margin-top: 0px;
         margin-bottom: 20px;
         max-width: 48%;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         .image {
-            width: 100%;
-            height: auto;
+            width: auto;
+            height: 270px;
         }
 
         .info-box {
             margin-top: -4px;
             background-color: white;
             height: 65px;
+            width: 100%;
 
             .wishlist-btn {
                 position: relative;
