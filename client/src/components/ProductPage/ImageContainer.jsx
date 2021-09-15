@@ -9,13 +9,14 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef 
   const { user } = useContext(UserContext);
 
 
-  useEffect(() => {
-    console.log(product)
-  }, [])
+  // useEffect(() => {
+  //   console.log("------------------")
+  //   console.log(product.images)
+  // }, [product])
 
   return (
     <div className="image-container">
-    <img src={product && product.images[0]} alt="product image" /> 
+    <img src={product.images && product.images[0]} alt="product image" /> 
     <button className="go-back-btn" onClick={() => history.push({
           pathname: '/',
           state: product.gender
