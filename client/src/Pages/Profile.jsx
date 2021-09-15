@@ -31,7 +31,6 @@ function Profile() {
   const [ userName, setUserName ] = useState( "" );
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
-  
   const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
   
   return (
@@ -66,9 +65,11 @@ function Profile() {
             <br />
           
             <label  className="password" htmlFor="password">enter new password</label>
-            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} />
+            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
             <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button>
-          </div>
+            <button className="saveButton">Save changes.</button>
+          
+        </div>
         </div>
 
         <footer className="signoutContainer">

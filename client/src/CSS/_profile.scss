@@ -109,10 +109,12 @@
         font-family: 'Inter', sans-serif;
         font-weight: bold;
         padding:10px 5px 10px 5px;
+        position: relative;
         
         
         .accountForm {
             width: auto;
+            height: auto;
             
             #label {
                 position: absolute;
@@ -172,9 +174,16 @@
                 // right:1rem;
                 
             }
+            .saveButton {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              height:50px;
+              width: 100px;
+              margin: 10px auto 0 auto;
+            }  
 
         }
-        
     }
     
     .signoutContainer {
