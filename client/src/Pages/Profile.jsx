@@ -31,8 +31,9 @@ function Profile() {
   const [ userName, setUserName ] = useState( "" );
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
-
-
+  
+  const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
+  
   return (
     <div className= "profilePageWrapper">
         <header className="profileTitleContainer">
@@ -56,17 +57,17 @@ function Profile() {
           
             <label class="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
-            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
+            <button onClick={()=> setIsDisabledName(boolean => !boolean)}>{buttonText(isDisabledName)}</button>
             <br />
 
-            <label  className="emailadress" htmlFor="emailadress" >email</label>
+            <label className="emailadress" htmlFor="emailadress" >emailadress.</label>
             <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
-            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
+            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)}>{buttonText(isDisabledEmail)}</button>
             <br />
-            
+          
             <label  className="password" htmlFor="password">enter new password</label>
             <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} />
-            <button onClick={()=> setIsDisabledPassword(boolean => !boolean)} >change.</button>
+            <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button>
           </div>
         </div>
 
