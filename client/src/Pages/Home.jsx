@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import logo from "../img/logo.png"
 import { useHistory } from "react-router-dom";
-import ListProducts from '../components/ListProducts'
+import ListProducts from '../components/HomePage/ListProducts'
 
 
 function Home() {

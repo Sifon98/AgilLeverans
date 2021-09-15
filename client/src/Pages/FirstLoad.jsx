@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
+import { UserContext } from "../context/UserContext";
+import { useHistory } from "react-router-dom";
 
 function FirstLoad() {
+  const history = useHistory();
+  
+  const { user, setUser } = useContext(UserContext);
 
+  useEffect(() => {
+    if(user) history.push("/landing");
+  }, [user])
 
   return (
 
