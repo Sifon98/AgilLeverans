@@ -3,20 +3,22 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 
-function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef }) {
+function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef, selectedColor }) {
 
   const history = useHistory();
   const { user } = useContext(UserContext);
 
 
-  // useEffect(() => {
-  //   console.log("------------------")
-  //   console.log(product.images)
-  // }, [product])
+  useEffect(() => {
+    console.log("------------------")
+    // console.log(product.images)
+    console.log(selectedColor)
+    // console.log(product)
+  }, [product, selectedColor])
 
   return (
     <div className="image-container">
-    <img src={product.images && product.images[0]} alt="product image" /> 
+    <img src={product.images && product.images[selectedColor.index]} alt="product image" /> 
     <button className="go-back-btn" onClick={() => history.push({
           pathname: '/',
           state: product.gender
