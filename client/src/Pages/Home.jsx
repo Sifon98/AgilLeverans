@@ -15,7 +15,7 @@ function Home() {
   // Dropdown for categories
   const [dropdown, setDropdown] = useState([]);
   const [categoryCheck, setCategoryCheck] = useState(false); 
-  const [category, setCategory] = useState(5); 
+  const [category, setCategory] = useState(99); 
   // Dropdown for filter
   const [dropdownFilter, setDropdownFilter] = useState([]);
   const [gender, setGender] = useState([]); 
@@ -124,10 +124,11 @@ function Home() {
             <li id={2} onClick={chooseCategory}>Shoes</li>
           </ul>
         </div>}
+        {dropdown && <div className={`${category == 99 ? "selected-allitems" : category == 0 ? "selected-shirts" : category == 1 ? "selected-pants" : category == 2 ? "selected-shoes" : "unselected"}`}></div>}
         {dropdownFilter && <div className="dropdown-filter">
           <ul>
             <li id={0} onClick={chooseFilter} className="bold">men.</li>
-            <li id={1} onClick={chooseFilter} className="bold-underline">women.</li>
+            <li id={1} onClick={chooseFilter} className="bold">women.</li>
           </ul>
           <ul className="filter-ul">
             {products[0] && products[0].colors.map(Color => (
@@ -143,7 +144,7 @@ function Home() {
             ))}
           </ul>
           <ul className="remove-ul">
-            <li onClick={removeFilter} className="bold">clear selected.</li>
+            <li onClick={removeFilter} className="bold">clear filters.</li>
           </ul>
         </div>}
       {/* Change titel depending on the categorie and gender */}
