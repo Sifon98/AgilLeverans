@@ -22,21 +22,21 @@
         height: auto;
     
         .button {
-            padding: 15px;
+            padding: 10px;
             width: 90%;
             border: 0;
             background-color: rgba(255, 255, 255, 0);
             border-bottom: 1px solid grey;
             cursor: pointer;
             outline: 0;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
         }
     }
 
     .line {
         border-right: 1px solid grey;
-        height: 40px;
+        height: 30px;
     }
     
     .dropdown-container-filter {
@@ -46,14 +46,14 @@
         width: 48%;
     
         .button-filter {
-            padding: 15px;
+            padding: 10px;
             width: 90%;
             border: 0;
             background-color: rgba(255, 255, 255, 0);
             border-bottom: 1px solid grey;
             cursor: pointer;
             outline: 0;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
         }
     }
@@ -168,7 +168,7 @@
     justify-content: space-around;
     padding: 10px;
     animation-name: filter-anim;
-    animation-duration: 0.8s;
+    animation-duration: 0.6s;
 
     ul {
         list-style: none;
@@ -209,7 +209,7 @@
             .selected-color {
                 pointer-events: none;
                 position: relative;
-                margin: -5px 0px 0px 20px;
+                margin: -2px 0px 0px 20px;
                 display: grid;
                 place-items: center;
                 width: 13px;
@@ -300,8 +300,7 @@
 
         .info-box {
             margin-top: -4px;
-            background-color: white;
-            height: 65px;
+            height: 100px;
             width: 100%;
 
             .wishlist-btn {
@@ -325,11 +324,27 @@
             }
             
             .text {
-                margin-top: -27px;
+                margin: 5px;
+                margin-top: -25px;
                
                 p {
-                    padding: 4px;
+                    font-size: 13px;
+                    padding: 2px;
                     margin: 0px;
+                }
+
+                .all-colors {
+                    display: flex;
+                    align-items: center;
+
+                    .show-color-small {
+                        display: inline-block;
+                        padding: 0px;
+                        margin: 2px;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 100%;
+                    }
                 }
             }
         }
