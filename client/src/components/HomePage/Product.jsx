@@ -18,7 +18,14 @@ function Products({Product}) {
         </button>
         <div className="text">
             <p>{Product.name}</p>
-            <p>{Product.price} kr</p>
+            <p>${Product.price}</p>
+            <div className="all-colors">
+              {Product.colors.map((Color, idx) => (
+                idx < 3 && <div key={Color.name} style={{background: Color.hex}} className="show-color-small" />
+              ))}
+              {Product.colors.length > 3 && <p>+{Product.colors.length - 3}</p>}
+            </div>
+            
         </div>
         </div>
     </div> 
