@@ -59,13 +59,14 @@
     }
 
     .profilePicContainer {
-        width: 100%;
+        width: 140px;
         height: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 20%;
+        // margin-top: 20%;
         position: relative;
+        margin: 25px auto 0 auto;
 
         #profilePic {
             font-size: 9rem;
@@ -84,6 +85,8 @@
             border-radius: 50%;
             width: 35px;
             height: 35px;
+            right: 0;
+            top:0;
 
             #profileCameraIcon {
                 position: absolute;
@@ -98,7 +101,7 @@
         height: auto;
         position: absolute;
         margin-top: 10%;
-        left:5%;
+        left:2.5%;
         display: flex;
         justify-content: center;
         background-color: white;
@@ -111,21 +114,34 @@
         .accountForm {
             width: auto;
             
+            #label {
+                position: absolute;
+                margin-bottom: 10px;
+            }
+
             .inputText[type=text],[type=password] {
-                margin: 10px 5px 0 0;
+                margin: 10px 5px 5px 0;
                 padding: 10px;
                 border: none;
                 border-bottom: 1px solid grey;
                 color:black;
                 font-size: 1rem;
                 font-weight:bolder;
-
+                margin-top:15px;
             }
+
+            .inputText:disabled {
+                background-color: white;
+                // border-radius: 5px;
+                color:rgb(139, 137, 137);
+                margin-top:15px;
+            }
+
             
             textarea:focus, input:focus{
                 outline: none;
             }
-
+            
             button {
                 font-weight: bold;
                 font-family: 'Inter', sans-serif;
@@ -135,13 +151,14 @@
                 border-radius: 5px;
                 margin-left: 10px;
                 padding: 5px;
-                
             }
             .username,
             .emailadress,
             .password {
                 color:#8F8F8F;
                 font-size: 0.8rem;
+                position: absolute;
+                padding-left: 10px;
                 
             }
             
@@ -155,8 +172,9 @@
                 // right:1rem;
                 
             }
+
         }
-    
+        
     }
     
     .signoutContainer {
@@ -185,4 +203,3 @@
         }
     }
 }
-

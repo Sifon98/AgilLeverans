@@ -1,30 +1,36 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 
 function Profile() {
   const history = useHistory();
-
+  
   const { user, setUser } = useContext(UserContext);
-
+  
   // useEffect(() => {
-  //   if(user) history.push("/");
-  // }, [user])
-
-
-  const handleLogout = async () => {
-    const res = await fetch("/api/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    })
-    await res;
-    setUser(null);
-    history.push("/login");
-  }
-
+    //   if(user) history.push("/");
+    // }, [user])
+    
+    
+    const handleLogout = async () => {
+      const res = await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      })
+      await res;
+      setUser(null);
+      history.push("/login");
+    }
+    
+  const [ isDisabledName, setIsDisabledName ] = useState( false );
+  const [ isDisabledEmail, setIsDisabledEmail ] = useState( false );
+  const [ isDisabledPassword, setIsDisabledPassword ] = useState( false );
+  const [ userName, setUserName ] = useState( "" );
+  const [ email, setEmail ] = useState( "" );
+  const [ password, setPassword ] = useState( "" );
 
 
   return (
@@ -46,21 +52,22 @@ function Profile() {
         </div>
 
         <div className="accountInfoContainer">
-          <form className="accountForm" action="" method="post">
-            <label class="username" htmlFor="username" ></label>
-            <input className="inputText" type="text" placeholder="username"/>
-            <button>edit.</button>
+        <div className="accountForm" action="" method="post" >
+          
+            <label class="username" id="label" htmlFor="username" >username</label>
+            <input onChange={(e) => setUserName(e.target.value)} defaultValue={user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
+            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
             <br />
 
-            <label class="emailadress" htmlFor="emailadress" ></label>
-            <input className="inputText" type="text" placeholder="email adress"/>
-            <button>edit.</button>
+            <label  className="emailadress" htmlFor="emailadress" >email</label>
+            <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
+            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
             <br />
             
-            <label class="password" htmlFor="password"></label>
-            <input className="inputText" type="password" placeholder="password" />
-            <button>change.</button>
-          </form>
+            <label  className="password" htmlFor="password">enter new password</label>
+            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} />
+            <button onClick={()=> setIsDisabledPassword(boolean => !boolean)} >change.</button>
+          </div>
         </div>
 
         <footer className="signoutContainer">
