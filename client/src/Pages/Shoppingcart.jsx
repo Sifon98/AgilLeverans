@@ -20,7 +20,7 @@ function Shoppingcart() {
             <div className="itemContainer">
 
                 <div className="item">
-                    <img className="itemPic"></img>
+                    <img className="itemPic" src="./src/Rectangle.png"></img>
                     <p className="cartText">manchester jacket.</p>
                     <p className="cartRef">ref:a31241243</p>
                     <p className="priceTag">$29.00</p>
@@ -41,7 +41,7 @@ function Shoppingcart() {
                 <div className="item">
                     <img className="itemPic" src="./src/Rectangle.png"></img>
                     <p className="cartText">manchester jacket.</p>
-                    <p className="cartRefTwo">ref:a31241243</p>
+                    <p className="cartRef">ref:a31241243</p>
                     <p className="priceTag">$29.00</p>
                     <svg id ="removeIcon" width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
@@ -56,11 +56,10 @@ function Shoppingcart() {
                     </svg>
                 </div>           
                 <div className="item">
-                    <img className="itemPic"></img>
+                    <img className="itemPic" src="./src/Rectangle.png"></img>
                     <p className="cartText">manchester jacket.</p>
                     <p className="cartRef">ref:a31241243</p>
                     <p className="priceTag">$29.00</p>
-                    {/* <i class="fas fa-times" id="removeIcon"></i> */}
                     <svg id ="removeIcon" width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
                     </svg>

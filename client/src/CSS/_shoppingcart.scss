@@ -84,11 +84,8 @@
         margin: 10px 5px 10px 10px;
         display: flex;
         flex-wrap: wrap;
+        position:relative;
 
-        // align-items: center;
-        
-        
-        
         .itemPic {
             height: 80px;
             width: 80px;
@@ -109,11 +106,11 @@
         }
 
         .cartRef {
-            // width: auto;
+           
             font-size: 0.7rem;
             position: absolute;
-            left: 110px;
-            top: 50px;
+            left: 105px;
+            top: 27px;
             color: #797979;
         }
         
@@ -135,47 +132,34 @@
         }
         
         #colorIcon  {
-            margin-top: 40px;
-            height: 10px;
-            width: auto;
+            margin-top: 65px;
+        
             position: absolute;
             left: 110px;
-            top: 30px;
-        }
+            bottom: 40px;
+         }
         
         #sizeIcon {
-            margin-top: 40px;
+           
+            bottom: 100px;
+            margin-top: 17px;
             height: 10px;
             width: auto;
             background-color: black;
             position: absolute;
             left: 125px;
             top: 30px;
-            color: #FFFFFF;
             border-radius: 50%;
             font-family: Inter;
             font-style: normal;
-            font-weight: 600;
-            font-size: 7.25366px;
-            line-height: 9px;
+            margin-left: 2px;
+            
             
             
           
             
         }
     }
-    
-    
-    .cartRefTwo {
-        font-size: 0.7rem;
-        position: absolute;
-        left: 110px;
-        top: 170px;
-        color: #797979;
-    }
-
-    
-
     
 }
 #greyBar {
