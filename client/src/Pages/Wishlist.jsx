@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 function Wishlist() {
   return (
-    <div>
+    <div className="page">
       <div className="wishHeader">
         <i className="fas fa-user-circle"></i>
          <img src={logo} />

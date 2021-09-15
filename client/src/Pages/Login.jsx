@@ -36,7 +36,7 @@ function Login() {
   }
 
   return (
-    <div className="conteinerLogin">
+    <div className="conteinerLogin page">
       <div className="yellowSide"></div>
       <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formLogin">

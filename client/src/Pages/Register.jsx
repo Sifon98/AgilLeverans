@@ -74,7 +74,7 @@ function Register() {
 
   
   return (
-    <div className="conteinerRegister">
+    <div className="conteinerRegister page">
       <div className="yellowSide"></div>
       <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formRegister">

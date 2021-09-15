@@ -8,10 +8,12 @@ import ImageContainer from '../components/ProductPage/ImageContainer';
 import InfoContainer from '../components/ProductPage/InfoContainer';
 import OptionsContainer from '../components/ProductPage/OptionsContainer/OptionsContainer';
 import CheckoutButton from '../components/ProductPage/CheckoutButton';
+import { NavContext } from "../context/NavContext";
 
 function Product() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
+  const { setNav } = useContext(NavContext);
 
   const descriptionRef = useRef(null);
   const focusRef = useRef(null);
@@ -34,6 +36,7 @@ function Product() {
     const getProduct = async () => {
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
+      console.log(data.product)
       setProduct(data.product);
       setCurrentProductOptions(color, size, data.product);
     }
@@ -146,7 +149,7 @@ function Product() {
   }
 
   return (
-    <div className="product-page">
+    <div className="product-page page">
         <ToastContainer 
           position="top-center" 
           autoClose={2500} 
