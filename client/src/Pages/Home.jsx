@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import logo from "../img/logo.png"
 import { useHistory } from "react-router-dom";
+import Header from "../components/Header";
 
 
 function Home() {
@@ -65,11 +66,7 @@ function Home() {
 
   return (
     <div>
-      <div className="header">
-        <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
-        <img src={logo} />
-        <i className="fas fa-shopping-bag"></i>
-      </div>
+      <Header />
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
         <div className="dropdown-container">

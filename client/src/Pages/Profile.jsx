@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
+import Header from "../components/Header"
 
 function Profile() {
   const history = useHistory();
@@ -31,15 +32,17 @@ function Profile() {
   const [ userName, setUserName ] = useState( "" );
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
+  const [ disableSaveButton, setdisableSaveButton ] = useState( true );
   const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
   
   return (
     <div className= "profilePageWrapper">
-        <header className="profileTitleContainer">
+      <Header />
+        {/* <header className="profileTitleContainer">
           <i  onClick={ () => history.push("/") } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 onClick={ () => history.push("/") } className="profileTitle">bopshop.</h1>
           <i id="shoppingCart" className="fas fa-shopping-bag"></i>
-        </header>
+        </header> */}
         <div className="accountContainer">
           <h1 className="accountTitle">your account.</h1>
         </div>
@@ -67,7 +70,7 @@ function Profile() {
             <label  className="password" htmlFor="password">enter new password</label>
             <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
             <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button>
-            <button className="saveButton">Save changes.</button>
+            <button className="saveButton" disabled={disableSaveButton}>Save changes</button>
           
         </div>
         </div>
