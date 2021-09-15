@@ -66,7 +66,11 @@ function Home() {
 
   return (
     <div>
-      <Header />
+      <div className="header">
+        <i className="fas fa-user-circle" onClick={ () => history.push("/profile") }></i>
+        <img src={logo} />
+        <i className="fas fa-shopping-bag" onClick={ () => history.push("/wishlist") }></i>
+      </div>
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
         <div className="dropdown-container">
