@@ -10,7 +10,7 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef 
 
 
   useEffect(() => {
-    console.log(product.images[0])
+    console.log(product)
   }, [])
 
   return (
