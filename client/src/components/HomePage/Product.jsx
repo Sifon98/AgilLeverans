@@ -6,7 +6,7 @@ function Products({Product}) {
 
   return (
     <div className="product" onClick={() => history.push(`/products/${Product._id}`)}>
-        <img className="image" src={Product.image} />
+        <img className="image" src={Product.images[0]} />
         <div className="info-box">
         <button className="wishlist-btn">
             <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
