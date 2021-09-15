@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
+import { NavContext } from "../context/NavContext";
 
 function Profile() {
   const history = useHistory();
   
   const { user, setUser } = useContext(UserContext);
+  const { setNav } = useContext(NavContext);
   
   // useEffect(() => {
     //   if(user) history.push("/");
@@ -34,7 +36,7 @@ function Profile() {
 
 
   return (
-    <div className= "profilePageWrapper">
+    <div className= "profilePageWrapper page">
         <header className="profileTitleContainer">
           <i  onClick={ () => history.push("/home") } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 className="profileTitle">bopshop.</h1>
@@ -45,16 +47,16 @@ function Profile() {
         </div>
 
         <div className="profilePicContainer">
-            <i id="profilePic" class="far fa-user-circle"></i>
+            <i id="profilePic" className="far fa-user-circle"></i>
           <div className="profileCameraBackground">
-            <i id="profileCameraIcon" class="fas fa-camera"></i>
+            <i id="profileCameraIcon" className="fas fa-camera"></i>
           </div>
         </div>
 
         <div className="accountInfoContainer">
         <div className="accountForm" action="" method="post" >
           
-            <label class="username" id="label" htmlFor="username" >username</label>
+            <label className="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
             <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
             <br />

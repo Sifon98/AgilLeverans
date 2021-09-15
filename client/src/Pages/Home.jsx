@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import logo from "../img/logo.png"
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
+import { NavContext } from "../context/NavContext";
 
 
 function Home() {
   const history = useHistory();
+
+  const { setNav } = useContext(NavContext);
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   // Dropdown for categories
@@ -96,12 +100,11 @@ function Home() {
   useEffect(() => fetchProducts(), []);
   
   return (
-    loading ? <div>Loading...</div> :
-    <div>
+    <div className="page">
       <div className="header">
-        <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
+        <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
         <img src={logo} />
-        <i className="fas fa-shopping-bag"></i>
+        <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/checkout", direction: 1})}></i>
       </div>
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
@@ -128,14 +131,14 @@ function Home() {
             <li id={1} onClick={chooseFilter} className="bold">women.</li>
           </ul>
           <ul className="filter-ul">
-            {products[0].colors.map(Color => (
+            {products[0] && products[0].colors.map(Color => (
               <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
                 <div className="selected-color" style={color === Color.name ? null : {display: "none"}}>
                   <i className="fas fa-check"></i>
                 </div>
               </li>
             ))}
-            {products[0].sizes.map(Sizes => (
+            {products[0] && products[0].sizes.map(Sizes => (
               <li id={Sizes} key={Sizes} onClick={chooseSize} className={`choose-size ${Sizes === size ? "selected-size" : ""}`}>{Sizes}</li>
               // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
             ))}

@@ -30,7 +30,7 @@ const removeAllProducts = async () => {
 
 
 // Run this once to generate products
-// addProductsToDB();
+addProductsToDB();
 
 // Run this once to remove all products
 // removeAllProducts();

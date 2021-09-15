@@ -13,7 +13,7 @@ function FirstLoad() {
 
   return (
 
-    <div className="conteinerFirstLoad">
+    <div className="conteinerFirstLoad page">
         <div className="yellowSide"></div>
         <div className="head"><h1 className="h1name">bopshop.</h1></div>
         <div className="welcomeText">welcome to bopshop.</div>

@@ -70,7 +70,7 @@ function Checkout() {
   }
 
   return (
-    <div className="checkout-page">
+    <div className="checkout-page page">
       <div className="header">
         <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
         <img src={logo} />

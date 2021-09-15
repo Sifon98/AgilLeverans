@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
+import { NavContext } from "../../context/NavContext";
 
 function Products({Product}) {
   const history = useHistory();
+  const { setNav } = useContext(NavContext);
 
   return (
-    <div className="product" onClick={() => history.push(`/products/${Product._id}`)}>
+    <div className="product" onClick={() => setNav({path: `/products/${Product._id}`, direction: 1})}>
         <img className="image" src={Product.images[0]} />
         <div className="info-box">
         <button className="wishlist-btn">
