@@ -7,7 +7,18 @@ const tops = [
     category: 0,
     gender: 0,
     price: 199,
-    image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
+    images: [
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/19648_zoom_1490232486.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17423_zoom_1490231902.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17381_zoom_1490215112.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17416_zoom_1490231660.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17405_zoom_1490231390.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17404_zoom_1490231368.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17424_zoom_1490231923.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17411_zoom_1490231542.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17415_zoom_1490231637.jpg",
+      "https://cdn2.bigcommerce.com/n-biq04i/lk0gwzb/product_images/attribute_rule_images/17414_zoom_1490231609.jpg",
+    ],
     description,
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
@@ -28,7 +39,7 @@ const tops = [
     category: 0,
     gender: 0,
     price: 2000,
-    image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
+    images: ["https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg"],
     description,
     sizes: ["S", "M", "L"],
     colors: [
@@ -44,7 +55,7 @@ const tops = [
     category: 0,
     gender: 0,
     price: 1000,
-    image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
+    images: ["https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg"],
     description,
     sizes: ["M", "L", "XL"],
     colors: [
@@ -56,7 +67,7 @@ const tops = [
     category: 0,
     gender: 0,
     price: 100,
-    image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
+    images: ["https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg"],
     description,
     sizes: ["M", "L", "XL"],
     colors: [
@@ -74,7 +85,7 @@ const tops = [
     category: 0,
     gender: 0,
     price: 50,
-    image: "https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg",
+    images: ["https://ean-images.booztcdn.com/wood-wood/232x303/g/wwd121353115232_cnavy.jpg"],
     description,
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
@@ -87,7 +98,7 @@ const tops = [
       category: 0,
       gender: 1,
       price: 199,
-      image: "https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp",
+      images: ["https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp"],
       description,
       sizes: ["XS", "S", "M", "L", "XL"],
       colors: [
@@ -108,7 +119,7 @@ const tops = [
       category: 0,
       gender: 1,
       price: 2000,
-      image: "https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp",
+      images: ["https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp"],
       description,
       sizes: ["S", "M", "L"],
       colors: [
@@ -124,7 +135,7 @@ const tops = [
       category: 0,
       gender: 1,
       price: 1000,
-      image: "https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp",
+      images: ["https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp"],
       description,
       sizes: ["M", "L", "XL"],
       colors: [
@@ -136,7 +147,7 @@ const tops = [
       category: 0,
       gender: 1,
       price: 100,
-      image: "https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp",
+      images: ["https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp"],
       description,
       sizes: ["M", "L", "XL"],
       colors: [
@@ -154,7 +165,7 @@ const tops = [
       category: 0,
       gender: 1,
       price: 50,
-      image: "https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp",
+      images: ["https://breadandboxers.se/pub_images/original/634-01_T-shirt_classic_white_3.jpg?extend=copy&width=2368&method=fit&height=2368&type=webp"],
       description,
       sizes: ["XS", "S", "M", "L", "XL"],
       colors: [
@@ -169,7 +180,7 @@ const bottoms = [
     category: 1,
     gender: 0,
     price: 249,
-    image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
+    images: ["https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112"],
     description,
     sizes: ["S", "M", "L"],
     colors: [
@@ -184,7 +195,7 @@ const bottoms = [
     category: 1,
     gender: 0,
     price: 999,
-    image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
+    images: ["https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112"],
     description,
     sizes: ["M", "L"],
     colors: [
@@ -198,7 +209,7 @@ const bottoms = [
     category: 1,
     gender: 0,
     price: 599,
-    image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
+    images: ["https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112"],
     description,
     sizes: ["S", "M", "L"],
     colors: [
@@ -212,7 +223,7 @@ const bottoms = [
     category: 1,
     gender: 0,
     price: 299,
-    image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
+    images: ["https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112"],
     description,
     sizes: ["XL"],
     colors: [
@@ -225,7 +236,7 @@ const bottoms = [
     category: 1,
     gender: 0,
     price: 10,
-    image: "https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112",
+    images: ["https://cdn.shopify.com/s/files/1/2530/3930/products/Relaxed_ChinosNavy_original_3.jpg?v=1560787112"],
     description,
     sizes: ["M", "L"],
     colors: [
@@ -244,7 +255,7 @@ const bottoms = [
       category: 1,
       gender: 1,
       price: 249,
-      image: "https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg",
+      images: ["https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg"],
       description,
       sizes: ["S", "M", "L"],
       colors: [
@@ -259,7 +270,7 @@ const bottoms = [
       category: 1,
       gender: 1,
       price: 999,
-      image: "https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg",
+      images: ["https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg"],
       description,
       sizes: ["M", "L"],
       colors: [
@@ -273,7 +284,7 @@ const bottoms = [
       category: 1,
       gender: 1,
       price: 599,
-      image: "https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg",
+      images: ["https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg"],
       description,
       sizes: ["S", "M", "L"],
       colors: [
@@ -287,7 +298,7 @@ const bottoms = [
       category: 1,
       gender: 1,
       price: 299,
-      image: "https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg",
+      images: ["https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg"],
       description,
       sizes: ["XL"],
       colors: [
@@ -300,7 +311,7 @@ const bottoms = [
       category: 1,
       gender: 1,
       price: 10,
-      image: "https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg",
+      images: ["https://images.beautifulhalo.com/images/392x588/201905/L/womens-new-trendy-solid-color-tied-waist-wide-leg-suit-pants-trousers_1557599599510.jpg"],
       description,
       sizes: ["M", "L"],
       colors: [
@@ -323,7 +334,7 @@ const shoes = [
     category: 2,
     gender: 0,
     price: 199,
-    image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
+    images: ["https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg"],
     description,
     sizes: ["S", "M"],
     colors: [
@@ -335,7 +346,7 @@ const shoes = [
     category: 2,
     gender: 0,
     price: 2000,
-    image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
+    images: ["https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg"],
     description,
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
@@ -349,7 +360,7 @@ const shoes = [
     category: 2,
     gender: 0,
     price: 1000,
-    image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
+    images: ["https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg"],
     description,
     sizes: ["M", "L", "XL"],
     colors: [
@@ -361,7 +372,7 @@ const shoes = [
     category: 2,
     gender: 0,
     price: 100,
-    image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
+    images: ["https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg"],
     description,
     sizes: ["S", "M", "L"],
     colors: [
@@ -373,7 +384,7 @@ const shoes = [
     category: 2,
     gender: 0,
     price: 50,
-    image: "https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg",
+    images: ["https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg"],
     description,
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [
@@ -392,7 +403,7 @@ const shoes = [
       category: 2,
       gender: 1,
       price: 199,
-      image: "https://media.alissa.se/2020/12/420248-0004_01.jpeg",
+      images: ["https://media.alissa.se/2020/12/420248-0004_01.jpeg"],
       description,
       sizes: ["S", "M"],
       colors: [
@@ -404,7 +415,7 @@ const shoes = [
       category: 2,
       gender: 1,
       price: 2000,
-      image: "https://media.alissa.se/2020/12/420248-0004_01.jpeg",
+      images: ["https://media.alissa.se/2020/12/420248-0004_01.jpeg"],
       description,
       sizes: ["XS", "S", "M", "L", "XL"],
       colors: [
@@ -418,7 +429,7 @@ const shoes = [
       category: 2,
       gender: 1,
       price: 1000,
-      image: "https://media.alissa.se/2020/12/420248-0004_01.jpeg",
+      images: ["https://media.alissa.se/2020/12/420248-0004_01.jpeg"],
       description,
       sizes: ["M", "L", "XL"],
       colors: [
@@ -430,7 +441,7 @@ const shoes = [
       category: 2,
       gender: 1,
       price: 100,
-      image: "https://media.alissa.se/2020/12/420248-0004_01.jpeg",
+      images: ["https://media.alissa.se/2020/12/420248-0004_01.jpeg"],
       description,
       sizes: ["S", "M", "L"],
       colors: [
@@ -442,7 +453,7 @@ const shoes = [
       category: 2,
       gender: 1,
       price: 50,
-      image: "https://media.alissa.se/2020/12/420248-0004_01.jpeg",
+      images: ["https://media.alissa.se/2020/12/420248-0004_01.jpeg"],
       description,
       sizes: ["XS", "S", "M", "L", "XL"],
       colors: [
