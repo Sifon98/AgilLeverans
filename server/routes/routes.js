@@ -12,6 +12,7 @@ const {validateQuery} = require("../utils/validation")
 // USER
 router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
+  console.log(req.user)
   const { _id, email, username, wishlist, cart } = req.user;
   res.json({ _id, email, username, wishlist, cart });
 });

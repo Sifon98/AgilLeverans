@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
-import { validateEmail, validateUsername, validatePassword } from "../utils/register";
+import { validateEmail } from "../utils/register";
 
 
 
@@ -22,9 +22,8 @@ function Register() {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if(user) history.push("/landing");
+    if(user) history.push("/");
   }, [user])
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,31 +31,13 @@ function Register() {
     let usernameGood = false;
     let emailGood = false;
     let passwordGood = false;
-
-    if(validateUsername(username)) {
-      console.log("USERNAME GOOD")
-    } else {
-      console.log("Username is not valid!")
-    }
     
     if(validateEmail(email)) {
-      console.log("EMAIL GOOD")
+      console.log("GOOD")
     } else {
-      console.log("Email is not valid!")
+      console.log("BAD")
     }
-
-    if(validatePassword(password)) {
-      console.log("PASSWORD GOOD")
-    } else {
-      console.log("Password must have minimum six characters, at least one letter and one numbe")
-    }
-
-    if(password !== repeatPassword) {
-      console.log("Password didnt match")
-    } else {
-      console.log("PASSWORD MATCH")
-    }
-
+    
 
     const res = await fetch("/api/register", {
       method: "POST",
@@ -74,7 +55,7 @@ function Register() {
 
   
   return (
-    <div className="conteinerRegister page">
+    <div className="conteinerRegister">
       <div className="yellowSide"></div>
       <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formRegister">

@@ -1,28 +1,23 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { NavContext } from "../../context/NavContext";
 
 
-
-function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef, selectedColor }) {
+function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef }) {
 
   const history = useHistory();
   const { user } = useContext(UserContext);
-  const { setNav } = useContext(NavContext);
-
 
   return (
     <div className="image-container">
-    <img src={product.images && product.images[selectedColor.index]} alt="product image" /> 
-    <button className="go-back-btn" onClick={() => setNav({
-          path: '/home',
-          direction: 0,
+    <img src={product.image} alt="product image" /> 
+    <button className="go-back-btn" onClick={() => history.push({
+          pathname: '/',
           state: product.gender
       })}>
       <i className="fas fa-chevron-left"></i>
     </button>
-    <button className="shopping-cart-btn" onClick={() => setNav({path: "/checkout", direction: 1})}>
+    <button className="shopping-cart-btn" onClick={() => history.push("/cart")}>
       {user.cart && user.cart.length > 0 ? (
         <div className="cart-count">{user.cart.length}</div>
       ):null}

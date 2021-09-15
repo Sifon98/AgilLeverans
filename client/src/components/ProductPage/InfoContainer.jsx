@@ -6,7 +6,7 @@ function InfoContainer({ product, showFullDesc, setShowFullDesc, descHeight, des
     <div className="info-container">
     <div className="container">
       <div className="name">{product.name}</div>
-      <div className="price">${product.price}</div>
+      <div className="price">${product.price}.00</div>
     </div>
     <p
     className="description" 

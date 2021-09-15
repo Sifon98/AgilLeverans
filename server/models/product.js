@@ -10,7 +10,7 @@ const ProductSchema = new Schema(
     gender: {type: Number, required: true},
     // 0 = Male
     // 1 = Female
-    images: {type: Array, required: true},
+    image: {type: String, required: true},
     // 0 = Tops
     // 1 = Bottoms
     // 2 = Shoes

@@ -12,7 +12,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if(user) history.push("/landing");
+    if(user) history.push("/");
   }, [user])
 
 
@@ -36,7 +36,7 @@ function Login() {
   }
 
   return (
-    <div className="conteinerLogin page">
+    <div className="conteinerLogin">
       <div className="yellowSide"></div>
       <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formLogin">

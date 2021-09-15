@@ -1,19 +1,11 @@
-import React, { useEffect, useContext } from 'react'
-import { UserContext } from "../context/UserContext";
-import { useHistory } from "react-router-dom";
+import React from 'react'
 
 function FirstLoad() {
-  const history = useHistory();
-  
-  const { user, setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    if(user) history.push("/landing");
-  }, [user])
 
   return (
 
-    <div className="conteinerFirstLoad page">
+    <div className="conteinerFirstLoad">
         <div className="yellowSide"></div>
         <div className="head"><h1 className="h1name">bopshop.</h1></div>
         <div className="welcomeText">welcome to bopshop.</div>
