@@ -192,6 +192,7 @@
 }
 
 .container {
+    padding: 0 12px;
     padding-bottom: 40px;
     width: 100%;
     height: auto;
@@ -201,6 +202,8 @@
     justify-content: space-between;
 
     .product {
+        
+        position: relative;
         border-top: 4px solid #FFF06B;
         margin-top: 0px;
         margin-bottom: 20px;
@@ -209,6 +212,15 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        min-width: 168px;
+        align-items: flex-end;
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: white;
+            transition: 500ms;
+        }
 
         .image {
             width: auto;
