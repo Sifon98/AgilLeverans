@@ -20,7 +20,7 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef,
     <div className="image-container">
     <img src={product.images && product.images[selectedColor.index]} alt="product image" /> 
     <button className="go-back-btn" onClick={() => history.push({
-          pathname: '/',
+          pathname: '/home',
           state: product.gender
       })}>
       <i className="fas fa-chevron-left"></i>
