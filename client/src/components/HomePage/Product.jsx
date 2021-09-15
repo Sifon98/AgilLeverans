@@ -13,7 +13,7 @@ function Products({Product}) {
         </button>
         <div className="text">
             <p>{Product.name}</p>
-            <p>{Product.price} kr</p>
+            <p>${Product.price}</p>
         </div>
         </div>
     </div> 

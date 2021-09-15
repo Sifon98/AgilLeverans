@@ -63,8 +63,8 @@
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
-    animation-name: example;
-    animation-duration: 0.3s;
+    animation-name: category-anim;
+    animation-duration: 0.4s;
 
     ul {
         list-style: none;
@@ -78,16 +78,68 @@
         li {
             padding: 8px 12px;
             display: inline;
-        }
-            
-        li:hover {
-            background-color: rgba(0, 0, 0, 0.14);
-            cursor: pointer;
+            &:active {
+                transform: scale(0.9);
+            }
         }
     }
 }
 
-@keyframes example {
+.unselected {
+    background-color: grey;
+    width: 0px;
+    height: 0px;
+}
+
+.selected-allitems {
+    margin-top: 4px;
+    background-color: black;
+    width: 35px;
+    height: 4px;
+    position: relative;
+    left: 17.5%;
+    transition: 0.3s;
+    animation-name: selected-anim;
+    animation-duration: 0.4s;
+}
+
+.selected-shirts {
+    margin-top: 4px;
+    background-color: rgb(182, 182, 182);
+    width: 40px;
+    height: 4px;
+    position: relative;
+    left: 39%;
+    transition: 0.3s;
+    animation-name: selected-anim;
+    animation-duration: 0.4s;
+}
+
+.selected-pants {
+    margin-top: 4px;
+    background-color: rgb(182, 182, 182);
+    width: 35px;
+    height: 4px;
+    position: relative;
+    left: 57.2%;
+    transition: 0.3s;
+    animation-name: selected-anim;
+    animation-duration: 0.4s;
+}
+
+.selected-shoes {
+    margin-top: 4px;
+    background-color: rgb(182, 182, 182);
+    width: 35px;
+    height: 4px;
+    position: relative;
+    left: 75.8%;
+    transition: 0.3s;
+    animation-name: selected-anim;
+    animation-duration: 0.4s;
+}
+
+@keyframes category-anim {
     0% {
         opacity: 0;
         height: 0px;
@@ -98,11 +150,25 @@
     }
 }
 
+@keyframes selected-anim {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .dropdown-filter {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 10px;
+    padding: 10px;
+    animation-name: filter-anim;
+    animation-duration: 0.8s;
 
     ul {
         list-style: none;
@@ -112,26 +178,22 @@
         .bold {
             font-weight: bold;
         }
-
-        .bold-underline {
-            font-weight: bold;
-            border-bottom: 1px solid grey;
-        }
         
         li {
             padding: 0px 12px 10px 12px;
-        }
-          
-        li:hover {
-            background-color: rgba(0, 0, 0, 0.14);
-            cursor: pointer;
+            transition: 200ms;
+            &:active {
+                transform: scale(0.95);
+            }
         }
     }
 
     .filter-ul {
-        margin: 14px 10px;
+        padding: 12px 10px;
         display: flex;
         flex-wrap: wrap;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
         
         .choose-color {
             padding: 0px;
@@ -139,11 +201,15 @@
             width: 32px;
             height: 32px;
             border-radius: 100%;
+            transition: 250ms;
+            &:active {
+                transform: scale3d(0.9, 0.9, 0.9);
+            }
 
             .selected-color {
                 pointer-events: none;
                 position: relative;
-                margin: -10px 0px 0px 10px;
+                margin: -5px 0px 0px 20px;
                 display: grid;
                 place-items: center;
                 width: 13px;
@@ -169,6 +235,10 @@
             height: 32px;
             border-radius: 100%;
             background-color: #DEDEDE;
+            transition: 250ms;
+            &:active {
+                transform: scale3d(0.9, 0.9, 0.9);
+            }
         }
 
         .selected-size {
@@ -183,7 +253,20 @@
 
     .remove-ul {
         padding-top: 10px;
-        border-top: 1px solid grey;
+    }
+}
+
+@keyframes filter-anim {
+    0% {
+        opacity: 0;
+        height: 0px;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 224px;
     }
 }
 

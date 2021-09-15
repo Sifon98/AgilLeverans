@@ -25,7 +25,7 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
                 colorCheck ?
                     Product.colors.some(Color => Color.name == color) ? <ProductHTML key={Product._id} Product={Product}/> : null :
                 sizeCheck ? 
-                    Product.sizes.includes(size) ? <ProductHTML key={Product._id} Product={Product}/> : null :
+                    Product.sizes.some(Size => Size === size) ? <ProductHTML key={Product._id} Product={Product}/> : null :
                 <ProductHTML key={Product._id} Product={Product}/> : null : null
             ))
             : products.map(Product => (
