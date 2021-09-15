@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import {NavContext} from '../context/'
 
 function Header() {
     const location = useLocation();

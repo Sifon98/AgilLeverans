@@ -8,10 +8,12 @@ import ImageContainer from '../components/ProductPage/ImageContainer';
 import InfoContainer from '../components/ProductPage/InfoContainer';
 import OptionsContainer from '../components/ProductPage/OptionsContainer/OptionsContainer';
 import CheckoutButton from '../components/ProductPage/CheckoutButton';
+import { NavContext } from "../context/NavContext";
 
 function Product() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
+  const { setNav } = useContext(NavContext);
 
   const descriptionRef = useRef(null);
   const focusRef = useRef(null);
@@ -34,6 +36,7 @@ function Product() {
     const getProduct = async () => {
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
+      console.log(data.product)
       setProduct(data.product);
       setCurrentProductOptions(color, size, data.product);
     }
@@ -59,7 +62,7 @@ function Product() {
     if(!user.wishlist) return;
     if(!user.cart) return;
 
-    console.log(user.cart)
+    // console.log(user.cart)
 
     // Get params from url
     const { color, size } = getParams(location);
@@ -118,8 +121,8 @@ function Product() {
     const { isColorValid, hex, isSizeValid } = getIsParamsValid(color, size, product);
     // If search params is valid, set product to those options, else set product to its first options
     setSelectedColor({
-      ...(isColorValid && {name: color, hex}),
-      ...(!isColorValid && {name: product.colors[0].name, hex: product.colors[0].hex}),
+      ...(isColorValid && {name: color, hex, index: product.colors.findIndex(c => c.name === color)}),
+      ...(!isColorValid && {name: product.colors[0].name, hex: product.colors[0].hex, index: 0}),
     });
     setSelectedSize(isSizeValid ? size : product.sizes[0]);
   };
@@ -146,7 +149,7 @@ function Product() {
   }
 
   return (
-    <div className="product-page">
+    <div className="product-page page">
         <ToastContainer 
           position="top-center" 
           autoClose={2500} 
@@ -155,7 +158,7 @@ function Product() {
           pauseOnFocusLoss={false}
            />
         <ImageContainer 
-          product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} 
+          product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} selectedColor={selectedColor}
           />
         <div className="wrapper">
           <InfoContainer 

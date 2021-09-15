@@ -16,8 +16,8 @@ db.once("open", () => {
 
 
 const addProductsToDB = async () => {
-  for(let {name, price, category, gender, image, description, colors, sizes} of products) {
-    const product = await new Product({name, price, category, gender, image, description, colors, sizes});
+  for(let {name, price, category, gender, images, description, colors, sizes} of products) {
+    const product = await new Product({name, price, category, gender, images, description, colors, sizes});
     product.save();
   }
   console.log(`Created ${products.length} products`)
@@ -30,7 +30,7 @@ const removeAllProducts = async () => {
 
 
 // Run this once to generate products
-// addProductsToDB();
+addProductsToDB();
 
 // Run this once to remove all products
 // removeAllProducts();
