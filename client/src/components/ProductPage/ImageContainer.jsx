@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
@@ -8,9 +8,14 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef 
   const history = useHistory();
   const { user } = useContext(UserContext);
 
+
+  useEffect(() => {
+    console.log(product.images[0])
+  }, [])
+
   return (
     <div className="image-container">
-    <img src={product.image} alt="product image" /> 
+    <img src={product && product.images[0]} alt="product image" /> 
     <button className="go-back-btn" onClick={() => history.push({
           pathname: '/',
           state: product.gender
