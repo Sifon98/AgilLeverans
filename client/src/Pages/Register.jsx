@@ -22,7 +22,7 @@ function Register() {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if(user) history.push("/");
+    if(user) history.push("/landing");
   }, [user])
 
 

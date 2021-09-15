@@ -12,7 +12,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if(user) history.push("/");
+    if(user) history.push("/landing");
   }, [user])
 
 
