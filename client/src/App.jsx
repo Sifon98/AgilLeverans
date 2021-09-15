@@ -6,6 +6,7 @@ import Register from "./Pages/Register"
 import Landing from "./Pages/Landing"
 import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
+import Cart from './Pages/Cart'
 import PrivateRoute from "./components/PrivateRoute";
 import './CSS/style.min.css'
 import {
@@ -44,14 +45,16 @@ function App() {
       {!isLoading ? (
         <Router>
           <Switch>
+            <Route exact path="/" component={FirstLoad} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <PrivateRoute exact path="/" component={Home} user={user} />
+            <PrivateRoute path="/home" component={Home} user={user} />
             <PrivateRoute path="/landing" component={Landing} user={user} />
             <PrivateRoute path="/profile" component={Profile} user={user} />
             <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
             <PrivateRoute path="/products/:id" component={Product} user={user} />
             <PrivateRoute path="/checkout" component={Checkout} user={user} />
+            <PrivateRoute path="/cart" component={Cart} user={user} />
           </Switch>
         </Router>
       ) : (
