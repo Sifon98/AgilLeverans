@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import Form0 from '../components/Checkout/Form0';
 import Form1 from '../components/Checkout/Form1';
 import Form2 from '../components/Checkout/Form2';
 import logo from "../img/logo.png"
 import { handleStringModify } from "../utils/checkout"
+import { NavContext } from "../context/NavContext"
 
 
 function Checkout() {
+
+  const { setNav } = useContext(NavContext);
 
   // Form 0 (shipping)
   const [address, setAddress] = useState("");
@@ -72,7 +75,7 @@ function Checkout() {
   return (
     <div className="checkout-page page">
       <div className="header">
-        <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
+        <i className="fas fa-arrow-left" onClick={() => setNav({path: "/cart", direction: 0})}></i>
         <img src={logo} />
         <i className="fas fa-shopping-bag"></i>
       </div>
