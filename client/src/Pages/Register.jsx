@@ -23,55 +23,49 @@ function Register() {
   const { user, setUser } = useContext(UserContext);
 
 
+  // useEffect(() => {
+
+  // }, [])
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let isUsernameGood = false;
+    let isEmailGood = false;
+    let isPasswordGood = false;
+    let isRepPasswordGood = false;
+
      if(validateUsername(username)) {
-      await setUsernameError(false)
-      console.log("USERNAME GOOD")
+      setUsernameError(false)
+      isUsernameGood = true;
     } else {
-      await setUsernameError(true)
-      console.log("Username is not valid!")
+      setUsernameError(true)
     }
     
     if(validateEmail(email)) {
-      await setEmailError(false)
-      console.log("EMAIL GOOD")
+      setEmailError(false)
+      isEmailGood = true;
     } else {
-      await setEmailError(true)
-      console.log("Email is not valid!")
+      setEmailError(true)
     }
 
     if(validatePassword(password)) {
-      await setPasswordError(false)
-      console.log("PASSWORD GOOD")
+      setPasswordError(false)
+      isPasswordGood = true
     } else {
-      await setPasswordError(true)
-      console.log("Password must have minimum six characters, at least one letter and one number")
+      setPasswordError(true)
     }
 
-    if(password !== repeatPassword) {
-      await setRepPasswordError(true)
-      console.log("Password didnt match")
+    if(password === repeatPassword) {
+      setRepPasswordError(false)
+      isRepPasswordGood = true;
     } else {
-      await setRepPasswordError(false)
-      console.log("PASSWORD MATCH")
+      setRepPasswordError(true)
     }
 
-    if(usernameError == true) {
-      return
-    }
-
-    if(emailError == true) {
-      return
-    }
-
-    if(passwordError == true) {
-      return
-    }
-
-    if(repeatPassword == true){
-      return
+    if(!isUsernameGood || !isEmailGood || !isPasswordGood || !isRepPasswordGood) {
+      return;
     }
 
     const res = await fetch("/api/register", {

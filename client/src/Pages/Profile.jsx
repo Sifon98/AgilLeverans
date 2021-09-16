@@ -40,7 +40,7 @@ function Profile() {
         <header className="profileTitleContainer">
           <i  onClick={ () => setNav({path: "/home", direction: 0}) } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 className="profileTitle">bopshop.</h1>
-          <i id="shoppingCart" className="fas fa-shopping-bag"></i>
+          <i id="shoppingCart" style={{visibility: "hidden"}} className="fas fa-shopping-bag"></i>
         </header>
         <div className="accountContainer">
           <h1 className="accountTitle">your account.</h1>
