@@ -65,26 +65,32 @@ const tops = [
     ]
     },
     {
-    name: "Bigdude Rain Jacket",
+    name: "Long Sleeve Full Zip",
     category: 0,
     gender: 0,
-    price: 32.99,
-    images: ["https://bdci.imgix.net/i/i/m/img_1939_clipped_rev_1.jpeg?fit=fill&w=1000&h=1000&bg=fff&q=90&nrs=80"],
-    description: `- Waterproof packaway rain jacket by Bigdude
-    - Must have all year round item
-    - Taped seams make this jacket waterproof
-    - Breathable
-    - Windproof
-    - Build in hood that can be folded away
-    - Full length zip with additional touch fastening
-    - Adjustable, elasticated cuffs
-    - Two hand pockets
-    - Adjustable draw cord hem
-    - Includes pack away bag
-    - Made from 100% polyester`,
-    sizes: ["L", "XL"],
+    price: 189.50,
+    images: 
+    [
+      "https://img01.ztat.net/article/spp-media-p1/12da219723f24bc2a446d3d4ccad0517/12e41587ef6e44e787e82e7d93bb8fbb.jpg?imwidth=1800",
+      "https://img01.ztat.net/article/spp-media-p1/9400f173466b4a778e10f5bcaee05edf/7439753a522d4c1990d58f08fef1727b.jpg?imwidth=1800",
+      "https://img01.ztat.net/article/spp-media-p1/e94b880743214b9895fe5889867c24f4/e5b397f48dc54d6486fb937cbc43615b.jpg?imwidth=1800",
+    ],
+    description: `Material: 100% polyester
+    Feed thickness: Unlined
+    Fabric: Faux fur
+    Care instructions: 30 ° C machine wash, gentle wash
+    
+    Collar: Hood with drawstring
+    Closure: Zipper
+    Pockets: Sleeve pocket, zippered pockets
+    Details: Ice cream pockets, waist elastic
+    Article number: PO222T05B-A11
+    `,
+    sizes: ["S", "M", "L"],
     colors: [
+      {name: "Navy", hex: "#171c32"},
       {name: "Black", hex: "#000000"},
+      {name: "White", hex: "#ffffff"},
     ]
     },
     {
@@ -422,8 +428,8 @@ const bottoms = [
       price: 24.99,
       images: ["https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fba%2F26%2Fba2661ecfda3a1e89863f497ce249f2c08eb335c.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
               "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F85%2F31%2F8531b16964fc6b73e6131b642cd035bb8a1f2dee.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
-              "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F93%2F0c%2F930c788e09e598541b7c6c8217dc49356a846bd3.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
-              "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fd8%2Fba%2Fd8ba340172215666ccf215f1ccf47b1834bcbacd.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]"],
+              "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fd8%2Fba%2Fd8ba340172215666ccf215f1ccf47b1834bcbacd.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+              "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F93%2F0c%2F930c788e09e598541b7c6c8217dc49356a846bd3.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]"], 
       description: "A pair of trousers in a stretchy, woven viscose blend. The trousers have a high waist with narrow, dressed elastic and narrow legs with press creases. Side pockets and cheat pockets at the back. Fly with zipper and hook and hook.",
       sizes: ["XL"],
       colors: [
@@ -509,7 +515,7 @@ const shoes = [
     colors: [
       {name: "Black", hex: "#000000"},
       {name: "Yellow", hex: "#fdeb71"},
-      {name: "Green", hex: "#02642e"},
+      {name: "Royal Blue", hex: "#20419a"},
       {name: "Red", hex: "#821d2b"},
       {name: "Purple", hex: "#5e3a8c"},
     ]
