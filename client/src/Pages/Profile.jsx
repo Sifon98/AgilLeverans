@@ -7,10 +7,10 @@ function Profile() {
   const history = useHistory();
   
   const { user, setUser } = useContext(UserContext);
-  const { setNav } = useContext(NavContext);
-
-    
-    
+  const { setNav } = useContext( NavContext );
+  
+  
+  
     const handleLogout = async () => {
       const res = await fetch("/api/logout", {
         method: "POST",
@@ -66,9 +66,9 @@ function Profile() {
             <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >{buttonText(isDisabledEmail)}</button>
             <br />
           
-            <label  className="password" htmlFor="password">enter new password</label>
+            {/* <label  className="password" htmlFor="password">enter new password</label>
             <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
-            <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button>
+            <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button> */}
             <button id="saveBtn" className="saveButton">Save changes</button>
           
         </div>
