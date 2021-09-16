@@ -31,10 +31,11 @@ function Profile() {
   const [ userName, setUserName ] = useState( "" );
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
-
-
+  const [ disableSaveButton, setdisableSaveButton ] = useState( true );
+  const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
+  
   return (
-    <div className= "profilePageWrapper page">
+    <div className= "profilePageWrapper">
         <header className="profileTitleContainer">
           <i  onClick={ () => setNav({path: "/home", direction: 0}) } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 className="profileTitle">bopshop.</h1>
@@ -45,9 +46,9 @@ function Profile() {
         </div>
 
         <div className="profilePicContainer">
-            <i id="profilePic" className="far fa-user-circle"></i>
+            <i id="profilePic" class="far fa-user-circle"></i>
           <div className="profileCameraBackground">
-            <i id="profileCameraIcon" className="fas fa-camera"></i>
+            <i id="profileCameraIcon" class="fas fa-camera"></i>
           </div>
         </div>
 
@@ -63,11 +64,13 @@ function Profile() {
             <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
             <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
             <br />
-            
+          
             <label  className="password" htmlFor="password">enter new password</label>
-            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} />
-            <button onClick={()=> setIsDisabledPassword(boolean => !boolean)} >change.</button>
-          </div>
+            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
+            <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button>
+            <button id="saveBtn" className="saveButton">Save changes</button>
+          
+        </div>
         </div>
 
         <footer className="signoutContainer">
