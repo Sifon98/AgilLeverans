@@ -285,12 +285,11 @@
     justify-content: space-between;
 
     .product {
-        
         position: relative;
         border-top: 4px solid #FFF06B;
         margin-top: 0px;
         margin-bottom: 20px;
-        max-width: 48%;
+        max-width: 170.39px;
         overflow: hidden;
         display: flex;
         flex-wrap: wrap;
@@ -332,6 +331,29 @@
 
                 i {
                 margin-top: 2px;
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                .wishlist-btn {
+                    visibility: hidden;
+                    position: relative;
+                    display: grid;
+                    place-items: center;
+                    outline: none;
+                    border: none;
+                    border-radius: 100%;
+                    width: 32px;
+                    height: 32px;
+                    background-color: white;
+                    bottom: 41px;
+                    left: 130px;
+                    font-size: 17px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+                    i {
+                    margin-top: 2px;
+                    }
                 }
             }
             
