@@ -8,8 +8,7 @@ function Shoppingcart() {
 
 
     return (
-        <div class="cart-page page">
-            <div className="wrapper">
+            <div className="shoppingWrapper page">
                 <header className ="navContainer">
                 <i id="backArrow" class="fas fa-arrow-left" aria-hidden="true"></i>
                 <h1 onClick={ () => history.push("/") } className ="profileTitle">bopshop.</h1>
@@ -105,11 +104,7 @@ function Shoppingcart() {
                     <rect width="134" height="5" rx="2.5" fill="black"/>
                     </svg>
 
-            
         </div>
-    </div>
-
-
         
     )
 }

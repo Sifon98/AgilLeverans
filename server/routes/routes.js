@@ -61,7 +61,7 @@ router.post("/logout", (req, res) => {
 // Get wishlist || shopping-cart items
 router.get("/saved-products", async (req, res, next) => {
   try {
-    const userId = "61371decd184969720e706ee";
+    const userId = req.user._id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
