@@ -10,9 +10,9 @@ function Shoppingcart() {
     return (
             <div className="shoppingWrapper page">
                 <header className ="navContainer">
-                <i id="backArrow" class="fas fa-arrow-left" aria-hidden="true"></i>
-                <h1 onClick={ () => history.push("/") } className ="profileTitle">bopshop.</h1>
-                <i className="fas fa-user-circle" id ="userCircle" onClick={() => history.push("/profile")}></i>
+                <i id="backArrow" class="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
+                <h1 className ="profileTitle">bopshop.</h1>
+                <i className="fas fa-user-circle" id ="userCircle" onClick={ () => setNav({path: "/profile", direction: 0}) }></i>
                 </header>
 
                 <div className="cartContainer">
