@@ -71,12 +71,7 @@
     border-radius: 10px;
     padding-top: 10px;
     
-    #profilePic {
-        font-size: 9rem;
-        color:#9B9B9B;
-        font-weight: bold;
-        border: 1px solid black;
-    }
+   
 
     .item{
         width: 95%;
@@ -141,8 +136,6 @@
          }
         
         #sizeIcon {
-           
-            // bottom: 101px;
             margin-top: 16px;
             height: 12px;
             width: auto;
@@ -156,36 +149,41 @@
             margin-left: 2px;
         }
     }
+
+    #itemDivider{
+        margin-left: 160px;
+    }
     
 }
 
 #greyBar {
-    margin-left: 120px;
+    margin-left: 135px;
     height: 20px;
     width: 100px;
 }
 
 
 #totalText {
-margin-left: 120px;
+margin-left: 136px;
 font-family: Inter;
-font-style: bold;
 color: #818181;
 }
 
 #totalSum{
-    margin-left: 120px;
+    margin-left: 125px;
 }
 
 #blackBar {
-    margin-left: 3px;
+    margin-left: 22px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 #thinBar {
-    margin-left: 105px;
+    margin-left: 120px;
 }
+
+
 
 
 

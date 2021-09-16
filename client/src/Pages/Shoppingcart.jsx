@@ -36,7 +36,11 @@ function Shoppingcart() {
                     <svg id="sizeIcon"width="7" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.208754 0.718626V5.99402H1.12577V2.36203H1.17471L2.63265 5.97856H3.31784L4.77578 2.36976H4.82472V5.99402H5.74173V0.718626H4.57229L3.00616 4.54122H2.94433L1.3782 0.718626H0.208754Z" fill="white"/>
                     </svg>
-                </div>   
+                </div>
+
+                <svg id="itemDivider" width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.653687" y="1.76785" width="1.05174" height="13.6726" transform="rotate(-90 0.653687 1.76785)" fill="#C4C4C4" fill-opacity="0.59"/>
+                </svg>
 
                 <div className="item">
                     <img className="itemPic" src="./src/Rectangle.png"></img>
@@ -54,7 +58,12 @@ function Shoppingcart() {
                     <svg id="sizeIcon"width="7" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.208754 0.718626V5.99402H1.12577V2.36203H1.17471L2.63265 5.97856H3.31784L4.77578 2.36976H4.82472V5.99402H5.74173V0.718626H4.57229L3.00616 4.54122H2.94433L1.3782 0.718626H0.208754Z" fill="white"/>
                     </svg>
-                </div>           
+                </div>  
+
+                <svg id="itemDivider" width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.653687" y="1.76785" width="1.05174" height="13.6726" transform="rotate(-90 0.653687 1.76785)" fill="#C4C4C4" fill-opacity="0.59"/>
+                </svg>
+         
                 <div className="item">
                     <img className="itemPic" src="./src/Rectangle.png"></img>
                     <p className="cartText">manchester jacket.</p>
@@ -72,6 +81,8 @@ function Shoppingcart() {
                     <path d="M0.208754 0.718626V5.99402H1.12577V2.36203H1.17471L2.63265 5.97856H3.31784L4.77578 2.36976H4.82472V5.99402H5.74173V0.718626H4.57229L3.00616 4.54122H2.94433L1.3782 0.718626H0.208754Z" fill="white"/>
                     </svg>
                 </div> 
+
+            </div>
 
                 <svg id="greyBar" width="47" height="1" viewBox="0 0 47 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="47" height="1" transform="matrix(1 0 0 -1 0 1)" fill="black" fill-opacity="0.16"/>
@@ -91,8 +102,6 @@ function Shoppingcart() {
                 <rect width="134" height="5" rx="2.5" fill="black"/>
                 </svg>
 
-  
-            </div>
         
     </div>
 
