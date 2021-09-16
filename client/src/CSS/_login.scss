@@ -43,13 +43,24 @@
             border-bottom: 1px solid lightgray;
             background-color: #F4F4F4;
             height: 20px;
-        }  
+        }
+
+        .inputLoginError {
+            border-bottom: 1px solid red;
+        }
 
         .inputLogin::placeholder{
             color: black;
             font-size: 120%;
             font-weight: 700;
         }
+
+        .errorText {
+            color: red;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
         .loginButton{
             display: flex;
             justify-content: center;

@@ -101,7 +101,7 @@
         height: auto;
         position: absolute;
         margin-top: 10%;
-        left:2.5%;
+        left:5%;
         display: flex;
         justify-content: center;
         background-color: white;
@@ -109,10 +109,12 @@
         font-family: 'Inter', sans-serif;
         font-weight: bold;
         padding:10px 5px 10px 5px;
+        position: relative;
         
         
         .accountForm {
             width: auto;
+            height: auto;
             
             #label {
                 position: absolute;
@@ -136,7 +138,7 @@
                 color:rgb(139, 137, 137);
                 margin-top:15px;
             }
-
+            
             
             textarea:focus, input:focus{
                 outline: none;
@@ -149,9 +151,10 @@
                 width: 60px;
                 height: 25px;
                 border-radius: 5px;
-                margin-left: 10px;
+                margin-left: 5px;
                 padding: 5px;
             }
+
             .username,
             .emailadress,
             .password {
@@ -173,8 +176,16 @@
                 
             }
 
+            .saveButton {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              height: 50px;
+              width: 100px;
+              margin: 10px auto 0 auto;
+            }
+
         }
-        
     }
     
     .signoutContainer {
@@ -203,3 +214,4 @@
         }
     }
 }
+
