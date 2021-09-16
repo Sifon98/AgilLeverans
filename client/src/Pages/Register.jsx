@@ -19,7 +19,7 @@ function Register() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-
+ 
   const history = useHistory();
 
   const { user, setUser } = useContext(UserContext);

@@ -17,3 +17,4 @@ function PrivateRoute({ component: Component, user, ...rest }) {
 }
 
 export default PrivateRoute;
+ 

@@ -94,7 +94,7 @@ function Home() {
     setColorCheck(false);
     setSizeCheck(false);
     setColor("");
-    setSize("");
+    setSize(""); 
   }
 
   useEffect(() => fetchProducts(), []);

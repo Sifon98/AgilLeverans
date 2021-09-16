@@ -18,7 +18,7 @@ function Form2({currentForm, setCurrentForm}) {
         <i className="fas fa-arrow-right"></i>
       </button>
     </div>
-  )
+  ) 
 }
 
 export default Form2

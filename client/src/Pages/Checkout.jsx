@@ -11,7 +11,7 @@ function Checkout() {
 
   // Form 0 (shipping)
   const [address, setAddress] = useState("");
-  const [zip, setZip] = useState("");
+  const [zip, setZip] = useState(""); 
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [formCheck0, setFormCheck0] = useState(false);

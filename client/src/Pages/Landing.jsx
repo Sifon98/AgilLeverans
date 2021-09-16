@@ -37,7 +37,7 @@ function Landing() {
         </div>
 
       </div>
-    </div>
+    </div> 
   )
 }
 

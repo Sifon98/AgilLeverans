@@ -55,7 +55,7 @@ function App() {
   useEffect(() => {
     if(!initialLoad) return;
     history.push({
-      pathname: nav.path,
+      pathname: nav.path, 
       ...(nav.state && {state: nav.state})
     });
   }, [nav])

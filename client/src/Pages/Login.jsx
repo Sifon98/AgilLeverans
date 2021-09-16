@@ -22,7 +22,7 @@ function Login() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         username,
         password,
       }),

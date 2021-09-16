@@ -14,3 +14,4 @@ function CheckoutButton({ handleToggleCart, isCarted }) {
 }
 
 export default CheckoutButton
+ 

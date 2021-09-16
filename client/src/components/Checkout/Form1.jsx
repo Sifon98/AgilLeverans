@@ -21,7 +21,7 @@ function Form1({currentForm, setCurrentForm, formCheck1, cardNumber, handleSetCa
           <input onChange={(e) => setCardName(e.target.value)} className="name-on-card" type="text" placeholder="name on card." />
           <input value={expDate} onChange={handleSetExpDate} className="valid-through" type="text" placeholder="valid through." />
         </div>
-      </div>
+      </div> 
       <button 
         className="continue-btn" 
         onClick={() => setCurrentForm(formNum + 1)}

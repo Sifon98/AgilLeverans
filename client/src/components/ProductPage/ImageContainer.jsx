@@ -34,6 +34,6 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef,
     <button style={{height: "0", width: "0", opacity: "0", position: "absolute"}} ref={focusRef}></button>
   </div>
   )
-}
+} 
 
 export default ImageContainer

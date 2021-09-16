@@ -158,8 +158,8 @@ function Product() {
           pauseOnFocusLoss={false}
            />
         <ImageContainer 
-          product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} selectedColor={selectedColor}
-          />
+          product={product} isWishlist ed={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} selectedColor={selectedColor}
+          /> 
         <div className="wrapper">
           <InfoContainer 
             product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 

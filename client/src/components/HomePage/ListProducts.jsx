@@ -30,7 +30,7 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
             ))
             : products.map(Product => (
                 Product.gender == gender ? 
-                colorCheck ? 
+                colorCheck ?  
                     Product.colors.some(Color => Color.name == color) ? <ProductHTML key={Product._id} Product={Product}/> : null :
                 sizeCheck ? 
                     Product.sizes.includes(size) ? <ProductHTML key={Product._id} Product={Product}/> : null : 

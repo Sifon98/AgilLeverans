@@ -14,4 +14,4 @@ export const validatePassword = (password) => {
   // Minimum six characters, at least one letter and one number
   const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
   return re.test(password);
-}
+} 

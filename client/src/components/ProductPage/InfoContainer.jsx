@@ -23,6 +23,6 @@ function InfoContainer({ product, showFullDesc, setShowFullDesc, descHeight, des
     </p>
   </div>
   )
-}
+} 
 
 export default InfoContainer

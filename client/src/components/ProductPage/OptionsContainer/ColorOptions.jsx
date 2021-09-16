@@ -21,7 +21,7 @@ function ColorOptions({ product, selectedColor, setSelectedColor }) {
               </div>
             </li>
           )
-        })}
+        })} 
       </ul>
     </div>
   )

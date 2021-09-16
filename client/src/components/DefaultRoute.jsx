@@ -16,4 +16,4 @@ function DefaultRoute({ component: Component, user, ...rest }) {
   );
 }
 
-export default DefaultRoute;
+export default DefaultRoute; 

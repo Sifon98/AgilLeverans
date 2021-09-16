@@ -19,7 +19,7 @@ const getCharCount = (s, char) => {
   let str = "";
   for(let i = 0; i < s.length; i++) {
     if(s[i] === char) str += s[i]
-  }
+  } 
   return str.length;
 
 }

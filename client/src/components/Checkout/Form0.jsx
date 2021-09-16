@@ -19,7 +19,7 @@ function Form0({currentForm, setCurrentForm, formCheck0, setAddress, zip, handle
           <input onChange={(e) => setCountry(e.target.value)} className="country" type="text" placeholder="country." />
         </div>
       </div>
-      <button 
+      <button  
         className="continue-btn"
         onClick={() => setCurrentForm(formNum + 1)} 
         disabled={!formCheck0}

@@ -14,7 +14,7 @@ function FirstLoad() {
   }, [user])
 
   useEffect(() => {
-    console.log(history.location)
+    console.log(history.location) 
   }, [])
 
   return (

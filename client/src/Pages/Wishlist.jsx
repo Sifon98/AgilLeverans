@@ -21,7 +21,7 @@ function Wishlist() {
         </div>
         <div>
          <img className="wishItem" src="./src/Men.png" alt="Man"></img>
-         <p className="articleText">Artikel 2</p>
+         <p className="articleText">Artikel 2</p> 
 
         </div>
         <div>
