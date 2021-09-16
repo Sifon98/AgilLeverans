@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { validateEmail, validateUsername, validatePassword } from "../utils/register";
+import { NavContext } from "../context/NavContext";
 
 
 
 function Register() {
+
+  const { setNav } = useContext(NavContext);
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -20,10 +23,6 @@ function Register() {
   const history = useHistory();
 
   const { user, setUser } = useContext(UserContext);
-
-  useEffect(() => {
-    if(user) history.push("/landing");
-  }, [user])
 
 
   const handleSubmit = async (e) => {
@@ -68,8 +67,8 @@ function Register() {
     })
 
     const getUser = await res.json();
+    setNav({path: "/landing", direction: 1});
     setUser(getUser);
-    history.push("/landing");
   }
 
   
@@ -114,7 +113,7 @@ function Register() {
         <button className="loginLink" 
           onClick={(e) => {
             e.preventDefault();
-            history.push("/login")
+            setNav({path: "/login", direction: 0});
           }}>
           alredy have an account?<br></br>login here
           </button>

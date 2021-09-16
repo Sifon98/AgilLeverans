@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
+import { NavContext } from "../context/NavContext";
 import { useHistory } from "react-router-dom";
 
 
@@ -7,14 +8,10 @@ function Login() {
   const history = useHistory();
 
   const { user, setUser } = useContext(UserContext);
+  const { setNav } = useContext(NavContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    if(user) history.push("/landing");
-  }, [user])
-
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -31,8 +28,8 @@ function Login() {
       }),
     });
     const getUser = await res.json();
+    setNav({path: "/landing", direction: 1});
     setUser(getUser);
-    history.push("/landing");
   }
 
   return (
@@ -60,7 +57,7 @@ function Login() {
         <button className="registerButton-loginPage" 
           onClick={(e) => {
             e.preventDefault();
-            history.push("/register")
+            setNav({path: "/register", direction: 1});
           }}>
           register.
         </button>

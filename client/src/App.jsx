@@ -8,6 +8,7 @@ import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
 import Cart from './Pages/Cart'
 import PrivateRoute from "./components/PrivateRoute";
+import DefaultRoute from "./components/DefaultRoute";
 import './CSS/style.min.css'
 import {
   Switch,
@@ -15,7 +16,7 @@ import {
 } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { NavContext } from "./context/NavContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Loading from './components/Loading'
 import Product from './Pages/Product'
 import Checkout from './Pages/Checkout'
@@ -23,15 +24,18 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function App() {
 
-  const [nav, setNav] = useState({path: "/", direction: 1, state: null});
+  const [nav, setNav] = useState({path: "/", direction: 0, state: null});
   const history = useHistory();
+  const location = useLocation();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [initialLoad, setInitialLoad] = useState(false);
 
   const navValue = useMemo(() => ({ nav, setNav }), [nav, setNav]);
   const useValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   useEffect(() => {
+    setInitialLoad(true);
     getUser();
   }, [])
 
@@ -40,12 +44,16 @@ function App() {
     const getUser = await res.json();
     setUser(getUser);
     setIsLoading(false);
-    if(!getUser) history.push("/login");
   }
 
+  // useEffect(() => {
+  //   if(user) {
+  //     history.location.key = "LOL" // Change key to invoke animation
+  //   } 
+  // },[user])
 
   useEffect(() => {
-    console.log(nav.direction)
+    if(!initialLoad) return;
     history.push({
       pathname: nav.path,
       ...(nav.state && {state: nav.state})
@@ -78,9 +86,9 @@ function App() {
                   }}
                 >
                   <Switch location={location} key={location.pathname}>
-                    <Route exact path="/" component={FirstLoad} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
+                    <DefaultRoute exact path="/" component={FirstLoad} user={user} />
+                    <DefaultRoute path="/login" component={Login} user={user} />
+                    <DefaultRoute path="/register" component={Register} user={user} />
                     <PrivateRoute path="/home" component={Home} user={user} />
                     <PrivateRoute path="/landing" component={Landing} user={user} />
                     <PrivateRoute path="/profile" component={Profile} user={user} />

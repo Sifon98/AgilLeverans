@@ -8,10 +8,7 @@ function Profile() {
   
   const { user, setUser } = useContext(UserContext);
   const { setNav } = useContext(NavContext);
-  
-  // useEffect(() => {
-    //   if(user) history.push("/");
-    // }, [user])
+
     
     
     const handleLogout = async () => {
@@ -23,9 +20,10 @@ function Profile() {
         }
       })
       await res;
+      setNav({path: "/login", direction: 0})
       setUser(null);
-      history.push("/login");
     }
+    
     
   const [ isDisabledName, setIsDisabledName ] = useState( false );
   const [ isDisabledEmail, setIsDisabledEmail ] = useState( false );
@@ -38,7 +36,7 @@ function Profile() {
   return (
     <div className= "profilePageWrapper page">
         <header className="profileTitleContainer">
-          <i  onClick={ () => history.push("/home") } id="backArrow" className="fas fa-arrow-left"></i>
+          <i  onClick={ () => setNav({path: "/home", direction: 0}) } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 className="profileTitle">bopshop.</h1>
           <i id="shoppingCart" className="fas fa-shopping-bag"></i>
         </header>
@@ -57,12 +55,12 @@ function Profile() {
         <div className="accountForm" action="" method="post" >
           
             <label className="username" id="label" htmlFor="username" >username</label>
-            <input onChange={(e) => setUserName(e.target.value)} defaultValue={user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
+            <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
             <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
-            <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
+            <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
             <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
             <br />
             
