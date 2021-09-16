@@ -32,6 +32,7 @@ function Profile() {
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
   const [ disableSaveButton, setdisableSaveButton ] = useState( true );
+
   const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
   
   return (
@@ -57,12 +58,12 @@ function Profile() {
           
             <label className="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
-            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
+            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >{buttonText(isDisabledName)}</button>
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
             <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
-            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
+            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >{buttonText(isDisabledEmail)}</button>
             <br />
           
             <label  className="password" htmlFor="password">enter new password</label>
