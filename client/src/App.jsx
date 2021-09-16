@@ -96,7 +96,7 @@ function App() {
                     <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
                     <PrivateRoute path="/products/:id" component={Product} user={user} />
                     <PrivateRoute path="/checkout" component={Checkout} user={user} />
-                    <PrivateRoute path="/cart" component={Cart} user={user} />
+                    <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
                   </Switch>
                  </CSSTransition>
                </TransitionGroup>
