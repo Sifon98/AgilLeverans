@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { NavContext } from "../context/NavContext";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
 function Shoppingcart() {
     const { setNav } = useContext(NavContext);
 
-    const [products, setProucts] = useState(null);
+    const [products, setProducts] = useState(null);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
         fetchShoppingCart();
@@ -15,16 +17,26 @@ function Shoppingcart() {
     const fetchShoppingCart = async () => {
         const res = await fetch("/api/saved-products?type=cart");
         const data = await res.json();
-        const products = data.products.filter(x => x.item !== null);
-        setProucts(products);
-        console.log(products);
+        let products = data.products.filter(x => x.item !== null);
+
+        // Set total price & find imageIndex for each product 
+        // (each product has an unique color, and an image corresponding to each color)
+        let total = 0;
+        products = products.map(x => {
+            total += x.item.price;
+            return {...x, imageIndex: x.item.colors.findIndex(c => c.name === x.color.name)}
+        })
+
+        setProducts(products);
+        setTotalPrice(total);
+        console.log(products)
     }
 
 
     return (
             <div className="shoppingWrapper page">
                 <header className ="navContainer">
-                <i id="backArrow" class="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
+                <i id="backArrow" className="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
                 <h1 className ="profileTitle">bopshop.</h1>
                 <i className="fas fa-user-circle" id ="userCircle" onClick={ () => setNav({path: "/profile", direction: 0}) }></i>
                 </header>
@@ -36,81 +48,33 @@ function Shoppingcart() {
                 <div className="itemContainer">
                     {
                         products && products.map(x => (
-                        <div className="item" key={x.item._id}>
-                            <img className="itemPic" src="./src/Rectangle.png"></img>
-                            <p className="cartText">manchester jacket.</p>
-                            <p className="cartRef">ref:a31241243</p>
-                            <p className="priceTag">$29.00</p>
-                            
-                            <svg id ="removeIcon" width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
-                            </svg>
+                        <div className="item" key={uuidv4()}>
+                            <img className="itemPic" src={x.item.images[x.imageIndex]}></img>
+                            <div className="product-info-wrapper">
+                                <p className="cartText">{x.item.name}</p>
+                                <p className="cartRef">ref: {uuidv4().substring(0, 8)}</p>
+                                <div className="circle-box-wrapper">
+                                    <div className="color-box" style={{background: x.color.hex}}></div>
+                                    <div className="size-box">{x.size}</div>
+                                </div>
+                            </div>
+                            <p className="priceTag">${x.item.price}</p>
+                            <div className="remove-item-btn">
+                                <svg width="12" height="12" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
+                                </svg>
+                            </div>
 
-                            <svg id ="colorIcon" width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7.43122" cy="6.50869" r="6.43379" fill="#C5B7AE"/>
-                            </svg>
-
-                            <svg id="sizeIcon"width="7" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.208754 0.718626V5.99402H1.12577V2.36203H1.17471L2.63265 5.97856H3.31784L4.77578 2.36976H4.82472V5.99402H5.74173V0.718626H4.57229L3.00616 4.54122H2.94433L1.3782 0.718626H0.208754Z" fill="white"/>
-                            </svg>
                         </div>
                         ))
                     }
-
-                    
-
-
-{/* 
-                    <div className="item">
-                        <img className="itemPic" src="./src/Rectangle.png"></img>
-                        <p className="cartText">manchester jacket.</p>
-                        <p className="cartRef">ref:a31241243</p>
-                        <p className="priceTag">$29.00</p>
-                        <svg id ="removeIcon" width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
-                        </svg>
-
-                        <svg id ="colorIcon" width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="7.43122" cy="6.50869" r="6.43379" fill="#C5B7AE"/>
-                        </svg>
-
-                        <svg id="sizeIcon"width="7" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.208754 0.718626V5.99402H1.12577V2.36203H1.17471L2.63265 5.97856H3.31784L4.77578 2.36976H4.82472V5.99402H5.74173V0.718626H4.57229L3.00616 4.54122H2.94433L1.3782 0.718626H0.208754Z" fill="white"/>
-                        </svg>
-                    </div>  
-
-                    <svg id="itemDivider" width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.653687" y="1.76785" width="1.05174" height="13.6726" transform="rotate(-90 0.653687 1.76785)" fill="#C4C4C4" fillOpacity="0.59"/>
-                    </svg>
-            
-                    <div className="item">
-                        <img className="itemPic" src="./src/Rectangle.png"></img>
-                        <p className="cartText">manchester jacket.</p>
-                        <p className="cartRef">ref:a31241243</p>
-                        <p className="priceTag">$29.00</p>
-                        <svg id ="removeIcon" width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
-                        </svg>
-
-                        <svg id ="colorIcon" width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="7.43122" cy="6.50869" r="6.43379" fill="#C5B7AE"/>
-                        </svg>
-
-                        <svg id="sizeIcon"width="7" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.208754 0.718626V5.99402H1.12577V2.36203H1.17471L2.63265 5.97856H3.31784L4.77578 2.36976H4.82472V5.99402H5.74173V0.718626H4.57229L3.00616 4.54122H2.94433L1.3782 0.718626H0.208754Z" fill="white"/>
-                        </svg>
-                    </div>  */}
-
                 </div>
-
                     <svg id="greyBar" width="47" height="1" viewBox="0 0 47 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="47" height="1" transform="matrix(1 0 0 -1 0 1)" fill="black" fillOpacity="0.16"/>
                     </svg>
 
                     <p id="totalText">cart subtotal.</p>
-                    <svg id="totalSum"width="116" height="28" viewBox="0 0 116 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.96045 27.7742H10.5179L10.5396 25.2709C15.2319 24.9133 17.9519 22.4209 17.9627 18.6605C17.9519 14.9652 15.1669 13.0038 11.309 12.1368L10.6696 11.9851L10.713 6.56678C12.1543 6.90272 13.032 7.82384 13.1621 9.18926H17.6593C17.6051 5.60232 14.9284 3.03402 10.7563 2.57888L10.778 0.0322568H8.22053L8.19886 2.55721C3.96171 2.969 0.970787 5.52646 0.99246 9.22177C0.981624 12.4945 3.28984 14.3692 7.03934 15.2686L8.07966 15.5287L8.02547 21.2613C6.25909 20.9254 5.06706 19.8417 4.94785 18.032H0.407279C0.515646 22.41 3.38737 24.8591 7.98213 25.2601L7.96045 27.7742ZM10.5829 21.2613L10.6263 16.2006C12.306 16.7316 13.2163 17.4143 13.2271 18.6497C13.2163 19.9609 12.2193 20.9362 10.5829 21.2613ZM8.11217 11.3241C6.75758 10.8581 5.78228 10.1537 5.80395 8.90751C5.80395 7.74798 6.62754 6.84854 8.15552 6.53427L8.11217 11.3241ZM35.2659 2.80645H30.8554L25.3611 6.28503V10.4463L30.4436 7.26033H30.5736V25H35.2659V2.80645ZM48.9755 2.80645H44.565L39.0708 6.28503V10.4463L44.1532 7.26033H44.2832V25H48.9755V2.80645ZM61.3088 25.3034C66.3154 25.3034 69.9132 22.6268 69.924 19.029C69.9132 16.2548 67.7784 13.9899 65.1125 13.5456V13.3939C67.4316 12.9171 69.0896 10.9123 69.1004 8.47404C69.0896 5.03881 65.7952 2.50302 61.3088 2.50302C56.8116 2.50302 53.5173 5.03881 53.5281 8.47404C53.5173 10.9015 55.1536 12.9171 57.516 13.3939V13.5456C54.8068 13.9899 52.6937 16.2548 52.7045 19.029C52.6937 22.6268 56.3023 25.3034 61.3088 25.3034ZM61.3088 21.8574C59.0765 21.8574 57.581 20.5353 57.581 18.6605C57.581 16.7424 59.1523 15.3553 61.3088 15.3553C63.4545 15.3553 65.0367 16.7424 65.0367 18.6605C65.0367 20.5461 63.5304 21.8574 61.3088 21.8574ZM61.3088 11.9418C59.4341 11.9418 58.1012 10.7172 58.1012 8.96169C58.1012 7.22782 59.4124 6.03579 61.3088 6.03579C63.1944 6.03579 64.5165 7.23866 64.5165 8.96169C64.5165 10.7172 63.1728 11.9418 61.3088 11.9418ZM74.1 25.2818C75.4871 25.2818 76.69 24.1222 76.7008 22.6809C76.69 21.2613 75.4871 20.1018 74.1 20.1018C72.6696 20.1018 71.4884 21.2613 71.4992 22.6809C71.4884 24.1222 72.6696 25.2818 74.1 25.2818ZM78.8911 21.0988H89.5435V25H94.0299V21.0988H96.7824V17.3385H94.0299V2.80645H88.1564L78.8911 17.4035V21.0988ZM89.6302 17.3385H83.6159V17.1651L89.4568 7.92137H89.6302V17.3385ZM106.967 25.3034C111.974 25.3034 115.572 22.6268 115.583 19.029C115.572 16.2548 113.437 13.9899 110.771 13.5456V13.3939C113.09 12.9171 114.748 10.9123 114.759 8.47404C114.748 5.03881 111.454 2.50302 106.967 2.50302C102.47 2.50302 99.1758 5.03881 99.1867 8.47404C99.1758 10.9015 100.812 12.9171 103.175 13.3939V13.5456C100.465 13.9899 98.3522 16.2548 98.3631 19.029C98.3522 22.6268 101.961 25.3034 106.967 25.3034ZM106.967 21.8574C104.735 21.8574 103.24 20.5353 103.24 18.6605C103.24 16.7424 104.811 15.3553 106.967 15.3553C109.113 15.3553 110.695 16.7424 110.695 18.6605C110.695 20.5461 109.189 21.8574 106.967 21.8574ZM106.967 11.9418C105.093 11.9418 103.76 10.7172 103.76 8.96169C103.76 7.22782 105.071 6.03579 106.967 6.03579C108.853 6.03579 110.175 7.23866 110.175 8.96169C110.175 10.7172 108.831 11.9418 106.967 11.9418Z" fill="black"/>
-                    </svg>
+                    <div id="totalSum">{totalPrice}</div>
 
                     <svg id ="blackBar" width="329" height="59" viewBox="0 0 329 59" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="329" height="59" rx="29.5" fill="black"/>
@@ -120,8 +84,7 @@ function Shoppingcart() {
                     <svg id="thinBar" width="134" height="5" viewBox="0 0 134 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="134" height="5" rx="2.5" fill="black"/>
                     </svg>
-
-        </div>
+                </div>
         
     )
 }
