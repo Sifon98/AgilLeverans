@@ -21,6 +21,7 @@ import Loading from './components/Loading'
 import Product from './Pages/Product'
 import Checkout from './Pages/Checkout'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Shoppingcart from './Pages/Shoppingcart';
 
 function App() {
 
