@@ -64,12 +64,13 @@ function Login() {
         />
         {loginError && <p className="errorText">{errorMessage}</p>}
         <button className="loginButton" onClick={handleLogin}>login.</button>
-        <button className="registerButton-loginPage" 
+        <p className="registerText">Don't have an account?</p>
+        <button className="registerLink" 
           onClick={(e) => {
             e.preventDefault();
-            setNav({path: "/register", direction: 1});
+            setNav({path: "/register", direction: 0});
           }}>
-          register.
+          Register here
         </button>
       </form>
     </div>
