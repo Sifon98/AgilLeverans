@@ -77,7 +77,7 @@ function Checkout() {
       <div className="header">
         <i className="fas fa-arrow-left" onClick={() => setNav({path: "/cart", direction: 0})}></i>
         <img src={logo} />
-        <i className="fas fa-shopping-bag"></i>
+        <i className="fas fa-shopping-bag" style={{visibility: "hidden"}}></i>
       </div>
       <h1>checkout.</h1>
       <div className="wrapper">

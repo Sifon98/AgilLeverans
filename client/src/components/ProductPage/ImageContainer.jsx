@@ -25,7 +25,7 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef,
         })}>
         <i className="fas fa-chevron-left"></i>
       </button>
-      <button className="shopping-cart-btn" onClick={() => setNav({path: "/checkout", direction: 1})}>
+      <button className="shopping-cart-btn" onClick={() => setNav({path: "/cart", direction: 1})}>
         {user.cart && user.cart.length > 0 ? (
           <div className="cart-count">{user.cart.length}</div>
         ):null}
