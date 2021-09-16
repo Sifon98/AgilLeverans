@@ -65,12 +65,13 @@ router.get("/saved-products", async (req, res, next) => {
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
-    const user = await User.findById(userId).populate(type);
+    const user = await User.findById(userId, "-_id -username -email").populate("cart.item");
     res.json({
-      ...(type === "wishlist" && {wishlist: user.wishlist}),
-      ...(type === "cart" && {cart: user.cart})
+      ...(type === "wishlist" && {products: user.wishlist}),
+      ...(type === "cart" && {products: user.cart})
     });
   } catch(err) {
+    console.log(err)
     return next(err);
   }
 });
