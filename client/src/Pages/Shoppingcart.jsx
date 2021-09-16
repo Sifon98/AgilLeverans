@@ -1,16 +1,18 @@
-import React from 'react'
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext } from 'react'
+import { NavContext } from "../context/NavContext";
+
 
 
 function Shoppingcart() {
-    const history = useHistory();
+    const { setNav } = useContext(NavContext);
+
 
     return (
         <div className="wrapper">
             <header className ="navContainer">
             <i id="backArrow" class="fas fa-arrow-left" aria-hidden="true"></i>
             <h1 onClick={ () => history.push("/") } className ="profileTitle">bopshop.</h1>
-            <i className="fas fa-user-circle" id ="userCircle" onClick={() => history.push("/profile")}></i>
+            <i className="fas fa-user-circle" id ="userCircle"  onClick={() => setNav({path: "/profile", direction: 1})}></i>
             </header>
 
             <div className="cartContainer">
