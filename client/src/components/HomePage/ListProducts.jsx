@@ -16,6 +16,12 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
 
     useEffect(() => checkDouble(), [sizeCheck, colorCheck]);
 
+    var i = 0
+
+    const plus = () => {
+        i++
+    } 
+
     return (
     <>
         {
@@ -23,20 +29,21 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
                 Product.gender == gender ? 
                 Product.category == category ?
                 colorCheck ?
-                    Product.colors.some(Color => Color.name == color) ? <ProductHTML key={Product._id} Product={Product}/> : null :
+                    Product.colors.some(Color => Color.name == color) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null :
                 sizeCheck ? 
-                    Product.sizes.some(Size => Size === size) ? <ProductHTML key={Product._id} Product={Product}/> : null :
-                <ProductHTML key={Product._id} Product={Product}/> : null : null
+                    Product.sizes.some(Size => Size === size) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null :
+                [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null : null
             ))
             : products.map(Product => (
                 Product.gender == gender ? 
                 colorCheck ? 
-                    Product.colors.some(Color => Color.name == color) ? <ProductHTML key={Product._id} Product={Product}/> : null :
+                    Product.colors.some(Color => Color.name == color) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null :
                 sizeCheck ? 
-                    Product.sizes.includes(size) ? <ProductHTML key={Product._id} Product={Product}/> : null : 
-                <ProductHTML key={Product._id} Product={Product}/> : null
+                    Product.sizes.includes(size) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null : 
+                    [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null
             ))
         }
+        {i == 0 && <p className="no-results">No results matching your search</p>}
     </>
     )
 }
