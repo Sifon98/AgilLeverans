@@ -78,7 +78,9 @@
             font-size: 100%;
         }
             
-        .loginLink {
+        .loginText {
+            margin-top: 10px;
+            text-align: center;
             font-family: 'Inter', sans-serif;
             color: black;
             opacity: 26%;
@@ -87,7 +89,15 @@
             margin-top: 10px;
             font-weight: 700;
         }
-       
-        
+
+        .loginLink {
+            text-decoration: underline 2px;
+            margin-top: 2px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            color: black;
+            font-size: 90%;
+            font-weight: 700;
+        }
     }
 }

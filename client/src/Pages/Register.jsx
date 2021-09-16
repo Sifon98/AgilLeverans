@@ -126,13 +126,14 @@ function Register() {
         />
         {repPasswordError && <p className="errorText">Password didn't match!</p>}
         <button className="registerButton" onClick={handleSubmit}>register.</button>
+        <p className="loginText">Already have an account?</p>
         <button className="loginLink" 
           onClick={(e) => {
             e.preventDefault();
             setNav({path: "/login", direction: 0});
           }}>
-          alredy have an account?<br></br>login here
-          </button>
+          Login here
+        </button>
         </form>
     </div>
   )
