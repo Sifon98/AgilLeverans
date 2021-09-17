@@ -47,9 +47,9 @@ function Profile() {
         </div>
 
         <div className="profilePicContainer" style={{display: "none"}}>
-            <i id="profilePic" class="far fa-user-circle"></i>
+            <i id="profilePic" className="far fa-user-circle"></i>
           <div className="profileCameraBackground">
-            <i id="profileCameraIcon" class="fas fa-camera"></i>
+            <i id="profileCameraIcon" className="fas fa-camera"></i>
           </div>
         </div>
 

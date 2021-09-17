@@ -6,10 +6,8 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
 
     const checkDouble = () => {
         if (colorCheck == true && sizeCheck == true) {
-            console.log("double")
             setDouble(true)
         } else {
-            console.log("wth")
             setDouble(false)
         }
     }
