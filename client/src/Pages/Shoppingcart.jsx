@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { NavContext } from "../context/NavContext";
+import { UserContext } from "../context/UserContext";
 import { v4 as uuidv4 } from 'uuid';
 
 
 
 function Shoppingcart() {
     const { setNav } = useContext(NavContext);
+    const { user, setUser } = useContext(UserContext);
 
     const [products, setProducts] = useState(null);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -53,6 +55,10 @@ function Shoppingcart() {
         // Set State
         setProducts(UpdateProducts);
         setTotalPrice(total.toFixed(2));
+        setUser({
+            ...user,
+            cart: UpdateProducts
+        })
     }
 
     return (
