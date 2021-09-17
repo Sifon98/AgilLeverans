@@ -68,7 +68,7 @@ function Login() {
         <button className="registerLink" 
           onClick={(e) => {
             e.preventDefault();
-            setNav({path: "/register", direction: 0});
+            setNav({path: "/register", direction: 1});
           }}>
           Register here
         </button>

@@ -123,32 +123,32 @@ router.post("/saved-products/:id", async (req, res, next) => {
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
-  try {
-    const userId = req.user._id;
-    const productId = req.params.id;
-    const { type } = req.query; // type should be "wishlist" or "cart"
-    validateQuery(type); // returns error if not valid
+  // try {
+  //   const userId = req.user._id;
+  //   const productId = req.params.id;
+  //   const { type } = req.query; // type should be "wishlist" or "cart"
+  //   validateQuery(type); // returns error if not valid
   
-    await User.findByIdAndUpdate(userId, {
-      $pull: {
-        ...(type === "wishlist" && {wishlist: {item: productId}}),
-        ...(type === "cart" && {cart: {item: productId}})
-      }
-    });
+  //   await User.findByIdAndUpdate(userId, {
+  //     $pull: {
+  //       ...(type === "wishlist" && {wishlist: {item: productId}}),
+  //       ...(type === "cart" && {cart: {item: productId}})
+  //     }
+  //   });
 
-    let wishlist = null;
-    let cart = null;
-    if(type === "wishlist") {
-      wishlist = req.user.wishlist.filter(item => item.item.toString() !== productId);
-    }
-    if(type === "cart") {
-      cart = req.user.cart.filter(item => item.item.toString() !== productId);
-    }
+  //   let wishlist = null;
+  //   let cart = null;
+  //   if(type === "wishlist") {
+  //     wishlist = req.user.wishlist.filter(item => item.item.toString() !== productId);
+  //   }
+  //   if(type === "cart") {
+  //     cart = req.user.cart.filter(item => item.item.toString() !== productId);
+  //   }
 
-    res.send({wishlist, cart});
-  } catch(err) {
-    next(err);
-  }
+  //   res.send({wishlist, cart});
+  // } catch(err) {
+  //   next(err);
+  // }
 });
 
 

@@ -14,7 +14,7 @@ function Form2({currentForm, setCurrentForm}) {
         className="continue-btn" 
         onClick={() => setCurrentForm(formNum + 1)}
         >
-        <span>Continue</span>
+        <span>Confirm Purchase.</span>
         <i className="fas fa-arrow-right"></i>
       </button>
     </div>
