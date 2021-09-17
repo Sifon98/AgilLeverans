@@ -149,7 +149,6 @@ function Product() {
       toast.success("Added item to cart");
       setIsCarted(true);
     }
-    
   }
 
   return (

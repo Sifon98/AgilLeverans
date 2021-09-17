@@ -6,7 +6,6 @@ import Register from "./Pages/Register"
 import Landing from "./Pages/Landing"
 import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
-import Cart from './Pages/Cart'
 import PrivateRoute from "./components/PrivateRoute";
 import DefaultRoute from "./components/DefaultRoute";
 import './CSS/style.min.css'
