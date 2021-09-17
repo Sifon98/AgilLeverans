@@ -9,7 +9,6 @@ const UserSchema = new Schema(
     email: {type: String, required: true, unique: true},
     wishlist: [
       {
-        _id: false,
         item: {type: Schema.Types.ObjectId, ref: "Product"},
         color: {name: String, hex: String},
         size: String,
@@ -17,7 +16,6 @@ const UserSchema = new Schema(
    ],
     cart: [
       {
-        _id: false,
         item: {type: Schema.Types.ObjectId, ref: "Product"},
         color: {name: String, hex: String},
         size: String,

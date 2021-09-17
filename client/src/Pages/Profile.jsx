@@ -46,7 +46,7 @@ function Profile() {
           <h1 className="accountTitle">your account.</h1>
         </div>
 
-        <div className="profilePicContainer">
+        <div className="profilePicContainer" style={{display: "none"}}>
             <i id="profilePic" class="far fa-user-circle"></i>
           <div className="profileCameraBackground">
             <i id="profileCameraIcon" class="fas fa-camera"></i>
@@ -58,18 +58,18 @@ function Profile() {
           
             <label className="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
-            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >{buttonText(isDisabledName)}</button>
+            <button style={{display: "none"}} onClick={()=> setIsDisabledName(boolean => !boolean)} >{buttonText(isDisabledName)}</button>
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
             <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
-            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >{buttonText(isDisabledEmail)}</button>
+            <button style={{display: "none"}} onClick={()=> setIsDisabledEmail(boolean => !boolean)} >{buttonText(isDisabledEmail)}</button>
             <br />
           
             {/* <label  className="password" htmlFor="password">enter new password</label>
             <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
             <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button> */}
-            <button id="saveBtn" className="saveButton">Save changes</button>
+            <button style={{display: "none"}} id="saveBtn" className="saveButton">Save changes</button>
           
         </div>
         </div>

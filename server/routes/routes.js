@@ -131,18 +131,18 @@ router.delete("/saved-products/:id", async (req, res, next) => {
   
     await User.findByIdAndUpdate(userId, {
       $pull: {
-        ...(type === "wishlist" && {wishlist: {item: productId}}),
-        ...(type === "cart" && {cart: {item: productId}})
+        ...(type === "wishlist" && {wishlist: {_id: productId}}),
+        ...(type === "cart" && {cart: {_id: productId}})
       }
     });
 
     let wishlist = null;
     let cart = null;
     if(type === "wishlist") {
-      wishlist = req.user.wishlist.filter(item => item.item.toString() !== productId);
+      wishlist = req.user.wishlist.filter(x => x._id.toString() === productId)[0];
     }
     if(type === "cart") {
-      cart = req.user.cart.filter(item => item.item.toString() !== productId);
+      cart = req.user.cart.filter(x => x._id.toString() === productId)[0];
     }
 
     res.send({wishlist, cart});
