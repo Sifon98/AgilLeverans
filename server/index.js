@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const cors = require("cors")
 const bodyParser = require("body-parser");
+const path = require("path");
 
 // Passport
 const passport = require("passport");
@@ -66,10 +67,14 @@ app.use("/api", router)
 
 
 
+// Serve dist
+app.use(express.static(path.join(__dirname, "..", "client", "dist")))
 
-// app.get("*", (req,res) => {
-//   // Error page
-// })
+
+// Handle all routes other than /
+app.get("*", (req,res) => {
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
+})
 
 // Handle errors
 app.use((err, req, res, next) => {
@@ -80,6 +85,6 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
   console.log("Running on " + PORT);
 });
