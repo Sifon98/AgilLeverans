@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
 import { NavContext } from "../context/NavContext";
+import Men from '../img/Men.png'
+import Women from '../img/Women.png'
 
 
 function Landing() {
@@ -18,7 +20,7 @@ function Landing() {
           <div className="buttonContainerMen" style={{pointerEvents: "none"}}>
             <button className="menButton">men.</button>
           </div>
-          <img className="menImage" src="./src/img/Men.png" alt="Man" onClick={ () => setNav({
+          <img className="menImage" src={Men} alt="Man" onClick={ () => setNav({
                 path: '/home',
                 direction: 1,
                 state: 0
@@ -29,7 +31,7 @@ function Landing() {
           <div className="buttonContainerWomen" style={{pointerEvents: "none"}}>
             <button className="womenButton">women.</button>
           </div>
-          <img className="womenImage" src="./src/img/Women.png" alt="Woman" onClick={ () => setNav({
+          <img className="womenImage" src={Women} alt="Woman" onClick={ () => setNav({
                 path: '/home',
                 direction: 1,
                 state: 1
