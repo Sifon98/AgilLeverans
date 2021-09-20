@@ -8,6 +8,12 @@
     position: relative;
     height: 40vh;
     width: 100%;
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: white;
+      transition: 500ms;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -25,10 +31,11 @@
       background-color: white;
       font-size: 22px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      z-index: 1;
+      z-index: 5;
       // overflow: hidden;
     }
     .wishlist-btn {
+      display: none;
       bottom: 12px;
       right: 12px;
       transition: 250ms;

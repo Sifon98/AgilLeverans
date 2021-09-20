@@ -43,13 +43,24 @@
             border-bottom: 1px solid lightgray;
             background-color: #F4F4F4;
             height: 20px;
-        }  
+        }
+
+        .inputLoginError {
+            border-bottom: 1px solid red;
+        }
 
         .inputLogin::placeholder{
             color: black;
             font-size: 120%;
             font-weight: 700;
         }
+
+        .errorText {
+            color: red;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
         .loginButton{
             display: flex;
             justify-content: center;
@@ -65,26 +76,26 @@
             font-size: 100%;
         }
         
-        .registerButton-loginPage{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
-            margin-top: 30px;
-            background-color: #E4E4E4;
-            border: none;
-            border-radius: 100px;
-            height: 53px;
-
-            .link{
-                text-decoration: none;
-                color: black;
-                font-family: 'Inter', sans-serif;
-                font-weight: 700;
-                font-size: 100%;
-            }
+        .registerText {
+            margin-top: 10px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            color: black;
+            opacity: 26%;
+            text-decoration: none;
+            font-size: 90%;
+            margin-top: 10px;
+            font-weight: 700;
         }
-       
-        
+
+        .registerLink {
+            text-decoration: underline 2px;
+            margin-top: 2px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            color: black;
+            font-size: 90%;
+            font-weight: 700;
+        }
     }
 }

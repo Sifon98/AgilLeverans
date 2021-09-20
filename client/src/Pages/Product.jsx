@@ -131,10 +131,12 @@ function Product() {
   const handleSubmitWishlistUI = () => {
     if(isWishlisted) {
       toast("Removed item from wishlist");
+      setIsWishlisted(false);
     } else {
       toast.success("Added item to wishlist");
+      setIsWishlisted(true);
     };
-    setIsWishlisted(bool => !bool);
+    
     // Unfocuses heart to remove the "clicked down" animation
     setTimeout(() => focusRef.current.focus(), 250);
   }
@@ -142,10 +144,11 @@ function Product() {
   const handleSubmitCartUI = () => {
     if(isCarted) {
       toast("Removed item from cart");
+      setIsCarted(false);
     } else {
       toast.success("Added item to cart");
+      setIsCarted(true);
     }
-    setIsCarted(bool => !bool);
   }
 
   return (

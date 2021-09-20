@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
-import { useHistory } from "react-router-dom";
 import { validateEmail, validateUsername, validatePassword } from "../utils/register";
 import { NavContext } from "../context/NavContext";
 
@@ -18,44 +17,56 @@ function Register() {
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [repPasswordError, setRepPasswordError] = useState("");
 
-
-  const history = useHistory();
 
   const { user, setUser } = useContext(UserContext);
+
+
+  // useEffect(() => {
+
+  // }, [])
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let usernameGood = false;
-    let emailGood = false;
-    let passwordGood = false;
+    let isUsernameGood = false;
+    let isEmailGood = false;
+    let isPasswordGood = false;
+    let isRepPasswordGood = false;
 
-    if(validateUsername(username)) {
-      console.log("USERNAME GOOD")
+     if(validateUsername(username)) {
+      setUsernameError(false)
+      isUsernameGood = true;
     } else {
-      console.log("Username is not valid!")
+      setUsernameError(true)
     }
     
     if(validateEmail(email)) {
-      console.log("EMAIL GOOD")
+      setEmailError(false)
+      isEmailGood = true;
     } else {
-      console.log("Email is not valid!")
+      setEmailError(true)
     }
 
     if(validatePassword(password)) {
-      console.log("PASSWORD GOOD")
+      setPasswordError(false)
+      isPasswordGood = true
     } else {
-      console.log("Password must have minimum six characters, at least one letter and one numbe")
+      setPasswordError(true)
     }
 
-    if(password !== repeatPassword) {
-      console.log("Password didnt match")
+    if(password === repeatPassword) {
+      setRepPasswordError(false)
+      isRepPasswordGood = true;
     } else {
-      console.log("PASSWORD MATCH")
+      setRepPasswordError(true)
     }
 
+    if(!isUsernameGood || !isEmailGood || !isPasswordGood || !isRepPasswordGood) {
+      return;
+    }
 
     const res = await fetch("/api/register", {
       method: "POST",
@@ -78,45 +89,51 @@ function Register() {
       <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formRegister">
         <input
-          className="inputRegister"
+          className={`inputRegister ${ usernameError && "inputRegisterError"}`}
+          autoComplete="off"
           type="text"
           name="username"
           placeholder="username"
           required
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {setUsername(e.target.value), setUsernameError(false)}}
         />
+        {usernameError && <p className="errorText">Username is not valid!</p>}
         <input
-          className="inputRegister"
+          className={`inputRegister ${ emailError && "inputRegisterError"}`}
           type="email"
           name="email"
           placeholder="e-mail adress"
           required
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {setEmail(e.target.value), setEmailError(false)}}
         />
+        {emailError && <p className="errorText">Email is not valid!</p>}
         <input
-          className="inputRegister"
+          className={`inputRegister ${ passwordError && "inputRegisterError"}`}
           type="password"
           name="password"
           placeholder="password"
           required
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {setPassword(e.target.value), setPasswordError(false)}}
         />
+        {passwordError && <p className="errorText">Password is not valid!</p>}
         <input
-          className="inputRegister"
+          className={`inputRegister ${ repPasswordError && "inputRegisterError"}`}
           type="password"
           name="repPassword"
           placeholder="repeat password"
           required
-          onChange={(e) => setRepeatPassword(e.target.value)}
+          onChange={(e) => {setRepeatPassword(e.target.value), setRepPasswordError(false)}}
         />
+        {repPasswordError && <p className="errorText">Password didn't match!</p>}
         <button className="registerButton" onClick={handleSubmit}>register.</button>
+        <p className="loginText">Already have an account?</p>
         <button className="loginLink" 
           onClick={(e) => {
             e.preventDefault();
             setNav({path: "/login", direction: 0});
           }}>
-          alredy have an account?<br></br>login here
-          </button>
+          Login here
+        </button>
         </form>
     </div>
   )

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import Form0 from '../components/Checkout/Form0';
 import Form1 from '../components/Checkout/Form1';
 import Form2 from '../components/Checkout/Form2';
 import logo from "../img/logo.png"
 import { handleStringModify } from "../utils/checkout"
+import { NavContext } from "../context/NavContext"
 
 
 function Checkout() {
+
+  const { setNav } = useContext(NavContext);
 
   // Form 0 (shipping)
   const [address, setAddress] = useState("");
@@ -69,12 +72,33 @@ function Checkout() {
     setExpDate(EXP);
   }
 
+  // useEffect(() => {
+  //   fetchShoppingCart();
+  // }, [])
+
+  // const fetchShoppingCart = async () => {
+  //     const res = await fetch("/api/saved-products?type=cart");
+  //     const data = await res.json();
+  //     let products = data.products.filter(x => x.item !== null);
+
+  //     // Set total price & find imageIndex for each product 
+  //     // (each product has an unique color, and an image corresponding to each color)
+  //     let total = 0;
+  //     products = products.map(x => {
+  //         total += x.item.price;
+  //         return {...x, imageIndex: x.item.colors.findIndex(c => c.name === x.color.name)}
+  //     })
+
+  //     setProducts(products);
+  //     setTotalPrice(total);
+  // }
+
   return (
     <div className="checkout-page page">
       <div className="header">
-        <i className="fas fa-user-circle" onClick={() => history.push("/profile")}></i>
+        <i className="fas fa-arrow-left" onClick={() => setNav({path: "/cart", direction: 0})}></i>
         <img src={logo} />
-        <i className="fas fa-shopping-bag"></i>
+        <i className="fas fa-shopping-bag" style={{visibility: "hidden"}}></i>
       </div>
       <h1>checkout.</h1>
       <div className="wrapper">
@@ -102,6 +126,8 @@ function Checkout() {
         <Form2
           currentForm={currentForm} 
           setCurrentForm={setCurrentForm} 
+          // totalPrice={totalPrice}
+          // products={products}
         />
       </div>
     </div>

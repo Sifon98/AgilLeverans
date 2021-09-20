@@ -1,5 +1,6 @@
 @import "landing";
 @import "_config";
+@import "_component";
 @import "_utilities";
 @import "_home";
 @import "_register";
@@ -10,6 +11,8 @@
 @import "_wishlist";
 @import "_checkout";
 @import "_animation";
+@import "_shoppingcart";
+
 
 * {
   box-sizing: border-box;

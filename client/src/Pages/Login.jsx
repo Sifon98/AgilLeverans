@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
-import { useHistory } from "react-router-dom";
 
 
 function Login() {
-  const history = useHistory();
-
   const { user, setUser } = useContext(UserContext);
   const { setNav } = useContext(NavContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
+  const [loginError, setLoginError] = useState("");
+  const [loginErrorUser, setLoginErrorUser] = useState("");
+  const [loginErrorPass, setLoginErrorPass] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +29,14 @@ function Login() {
         password,
       }),
     });
-    const getUser = await res.json();
+    let getUser = await res.json();
+    if(getUser.error === "Invalid username or password."){
+      setLoginError(true);
+      setLoginErrorUser(true);
+      setLoginErrorPass(true);
+      setErrorMessage(getUser.error);
+      return;
+    }
     setNav({path: "/landing", direction: 1});
     setUser(getUser);
   }
@@ -38,28 +47,30 @@ function Login() {
       <div className="head"><h1 className="h1name">bopshop.</h1></div>
       <form className="formLogin">
         <input
-          className="inputLogin"
+          className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
           type="text"
           name="username"
           placeholder="username"
           required
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
         />
         <input
-          className="inputLogin"
+          className={`inputLogin ${ loginErrorPass && "inputLoginError"}`}
           type="password"
           name="password"
           placeholder="password"
           required
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {setPassword(e.target.value), setLoginErrorPass(false)}}
         />
+        {loginError && <p className="errorText">{errorMessage}</p>}
         <button className="loginButton" onClick={handleLogin}>login.</button>
-        <button className="registerButton-loginPage" 
+        <p className="registerText">Don't have an account?</p>
+        <button className="registerLink" 
           onClick={(e) => {
             e.preventDefault();
             setNav({path: "/register", direction: 1});
           }}>
-          register.
+          Register here
         </button>
       </form>
     </div>

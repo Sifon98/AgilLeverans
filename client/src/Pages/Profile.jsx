@@ -7,10 +7,10 @@ function Profile() {
   const history = useHistory();
   
   const { user, setUser } = useContext(UserContext);
-  const { setNav } = useContext(NavContext);
-
-    
-    
+  const { setNav } = useContext( NavContext );
+  
+  
+  
     const handleLogout = async () => {
       const res = await fetch("/api/logout", {
         method: "POST",
@@ -31,20 +31,22 @@ function Profile() {
   const [ userName, setUserName ] = useState( "" );
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
+  const [ disableSaveButton, setdisableSaveButton ] = useState( true );
 
-
+  const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
+  
   return (
-    <div className= "profilePageWrapper page">
+    <div className= "profilePageWrapper">
         <header className="profileTitleContainer">
           <i  onClick={ () => setNav({path: "/home", direction: 0}) } id="backArrow" className="fas fa-arrow-left"></i>
           <h1 className="profileTitle">bopshop.</h1>
-          <i id="shoppingCart" className="fas fa-shopping-bag"></i>
+          <i id="shoppingCart" style={{visibility: "hidden"}} className="fas fa-shopping-bag"></i>
         </header>
         <div className="accountContainer">
           <h1 className="accountTitle">your account.</h1>
         </div>
 
-        <div className="profilePicContainer">
+        <div className="profilePicContainer" style={{display: "none"}}>
             <i id="profilePic" className="far fa-user-circle"></i>
           <div className="profileCameraBackground">
             <i id="profileCameraIcon" className="fas fa-camera"></i>
@@ -56,18 +58,20 @@ function Profile() {
           
             <label className="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
-            <button onClick={()=> setIsDisabledName(boolean => !boolean)} >edit.</button>
+            <button style={{display: "none"}} onClick={()=> setIsDisabledName(boolean => !boolean)} >{buttonText(isDisabledName)}</button>
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
             <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
-            <button onClick={()=> setIsDisabledEmail(boolean => !boolean)} >edit.</button>
+            <button style={{display: "none"}} onClick={()=> setIsDisabledEmail(boolean => !boolean)} >{buttonText(isDisabledEmail)}</button>
             <br />
-            
-            <label  className="password" htmlFor="password">enter new password</label>
-            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} />
-            <button onClick={()=> setIsDisabledPassword(boolean => !boolean)} >change.</button>
-          </div>
+          
+            {/* <label  className="password" htmlFor="password">enter new password</label>
+            <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
+            <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button> */}
+            <button style={{display: "none"}} id="saveBtn" className="saveButton">Save changes</button>
+          
+        </div>
         </div>
 
         <footer className="signoutContainer">

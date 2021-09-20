@@ -6,7 +6,6 @@ import Register from "./Pages/Register"
 import Landing from "./Pages/Landing"
 import Profile from "./Pages/Profile"
 import Wishlist from "./Pages/Wishlist"
-import Cart from './Pages/Cart'
 import PrivateRoute from "./components/PrivateRoute";
 import DefaultRoute from "./components/DefaultRoute";
 import './CSS/style.min.css'
@@ -21,6 +20,7 @@ import Loading from './components/Loading'
 import Product from './Pages/Product'
 import Checkout from './Pages/Checkout'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Shoppingcart from './Pages/Shoppingcart';
 
 function App() {
 
@@ -95,7 +95,7 @@ function App() {
                     <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
                     <PrivateRoute path="/products/:id" component={Product} user={user} />
                     <PrivateRoute path="/checkout" component={Checkout} user={user} />
-                    <PrivateRoute path="/cart" component={Cart} user={user} />
+                    <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
                   </Switch>
                  </CSSTransition>
                </TransitionGroup>

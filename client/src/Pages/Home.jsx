@@ -3,12 +3,14 @@ import logo from "../img/logo.png"
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
 import { NavContext } from "../context/NavContext";
+import { UserContext } from "../context/UserContext"
 
 
 function Home() {
   const history = useHistory();
 
   const { setNav } = useContext(NavContext);
+  const { user } = useContext(UserContext);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -104,7 +106,13 @@ function Home() {
       <div className="header">
         <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
         <img src={logo} />
-        <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/checkout", direction: 1})}></i>
+        <button className="shopping-cart-btn">
+        <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
+          {user.cart && user.cart.length > 0 ? (
+            <div className="cart-count">{user.cart.length}</div>
+          ):null}
+        </button>
+        
       </div>
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
