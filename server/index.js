@@ -66,10 +66,14 @@ app.use("/api", router)
 
 
 
+// Serve dist
+app.use(express.static(path.join(__dirname, "..", "client", "dist")))
 
-// app.get("*", (req,res) => {
-//   // Error page
-// })
+
+// Handle all routes other than /
+app.get("*", (req,res) => {
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
+})
 
 // Handle errors
 app.use((err, req, res, next) => {
