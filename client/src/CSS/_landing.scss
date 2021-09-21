@@ -107,6 +107,27 @@
             }
         }
         
+        @media screen and (min-width: 600px) { 
+                .leftSide {
+                    background-color: #EDECEA;
+                    display: flex;
+                    height: 100%;
+                    width: 50%;
+                    flex-direction: row;
+                    justify-content: start;
+                    background-size: cover;
+                    transition: 200ms;
+                    overflow: hidden;
+                    border-right: 1px solid white;
+                    &:active {
+                        opacity: 0.5;
+                    }
+                    &:active .menImage {
+                        transform: scale(1);
+                    } 
+                }
+            }
+        
         .rightSide {
             background-color: #E9E8E6;
             display: flex;
@@ -174,6 +195,26 @@
                     transition: 200ms;
                 } 
             } 
+        }
+
+        @media screen and (min-width: 600px) { 
+            .rightSide {
+                background-color: #E9E8E6;
+                display: flex;
+                height: 100%;
+                width: 50%;
+                flex-direction: row;
+                justify-content: end;
+                overflow: hidden;
+                border-left: 1px solid white;
+                transition: 200ms;
+                &:active {
+                    opacity: 0.5;
+                }
+                &:active .womenImage {
+                    transform: scale(1);
+                }
+            }
         }
     }
 }
