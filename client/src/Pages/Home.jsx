@@ -26,6 +26,38 @@ function Home() {
   const [colorCheck, setColorCheck] = useState(false);
   const [size, setSize] = useState([]);
   const [sizeCheck, setSizeCheck] = useState(false);
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    let mounted = true
+    var toggleVisible = document.addEventListener("scroll", e => {
+      if (mounted) {
+        const scrolled = document.documentElement.scrollTop;
+        if (scrolled > 200){
+          setVisible(true)
+        } 
+        else if (scrolled <= 200){
+          setVisible(false)
+        }
+      }
+    })
+
+    return () => {
+      document.removeEventListener("scroll", toggleVisible)
+      mounted = false
+    }
+  }, [visible])
+  
+  const scrollToTop = () => {
+    if (visible == true){
+      window.scrollTo({
+        top: 0, 
+        behavior: 'smooth'
+      });
+    }else {
+      console.log("No action until scroll");
+    }
+  };
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
@@ -139,6 +171,19 @@ function Home() {
         </div>
         <div className="desktopHeader">
           <img src={logoLarge} />
+          <div className="helper">
+            <div className="icons">
+              <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
+            </div>
+            <div className="icons">
+              <button className="shopping-cart-btn">
+              <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
+                {user.cart && user.cart.length > 0 ? (
+                  <div className="cart-count-home">{user.cart.length}</div>
+                ):null}
+              </button>
+            </div>
+          </div>
         </div>
         <div className="mobileHeader">
           <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
@@ -203,6 +248,9 @@ function Home() {
       <div className="home-container">
           <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} />
       </div>
+      <button className={`${ visible ? "visible" : "invisible"}`} onClick={scrollToTop}>
+        <i className="fas fa-chevron-up"></i>
+      </button>
     </div>
   )
 }
