@@ -65,12 +65,6 @@ app.use("/api", router)
 
 
 
-
-
-// app.get("*", (req,res) => {
-//   // Error page
-// })
-
 // Handle errors
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
