@@ -92,7 +92,7 @@ router.post("/saved-products/:id", async (req, res, next) => {
       size,
     }
 
-    await User.findOneAndUpdate(
+    const user = await User.findOneAndUpdate(
       { _id: userId }, 
       {
         $addToSet: {
@@ -100,20 +100,10 @@ router.post("/saved-products/:id", async (req, res, next) => {
           ...(type === "cart" && {cart: productInfo})
         },
       },
+      {new: true}
     );
 
-    let wishlist = null;
-    let cart = null;
-    if(type === "wishlist") {
-      wishlist = [...req.user.wishlist];
-      wishlist.push(productInfo);
-    }
-    if(type === "cart") {
-      cart = [...req.user.cart];
-      cart.push(productInfo);
-    }
-
-    res.send({wishlist, cart});
+    res.send({wishlist: user.wishlist, cart: user.cart});
 
   } catch (err) {
     return next(err);
@@ -137,24 +127,9 @@ router.delete("/saved-products/:id", async (req, res, next) => {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
-    });
+    }, {new: true}).populate("cart.item");
 
-    console.log(user)
-
-    let wishlist = null;
-    let cart = null;
-    if(type === "wishlist") {
-
-      wishlist = req.user.wishlist.filter(x => x._id.toString() !== productId);
-
-    }
-    if(type === "cart") {
-      console.log(req.user.cart.length)
-      cart = req.user.cart.filter(x => x._id.toString() !== productId);
-      console.log(cart.length)
-    }
-
-    res.send({wishlist, cart});
+    res.send({wishlist: user.wishlist, cart: user.cart});
   } catch(err) {
     next(err);
   }
