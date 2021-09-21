@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { NavContext } from "../../context/NavContext";
@@ -12,6 +12,11 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef,
   const { setNav } = useContext(NavContext);
 
   const [hasLoaded, setHasLoaded] = useState(false);
+
+
+  useEffect(() => {
+    console.log(user)
+  })
 
 
   return (

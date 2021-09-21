@@ -112,9 +112,6 @@ function Product() {
     })
     const data = await res.json();
 
-    console.log(data.cart.length)
-    console.log(user.cart.length)
-
     setUser({
       ...user,
       ...(data.cart && {cart: data.cart}),
