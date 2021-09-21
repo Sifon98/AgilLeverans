@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import Form0 from '../components/Checkout/Form0';
 import Form1 from '../components/Checkout/Form1';
 import Form2 from '../components/Checkout/Form2';
-import logo from "../img/logo.png"
+import logo from "../img/logo.svg"
 import { handleStringModify } from "../utils/checkout"
 import { NavContext } from "../context/NavContext"
 
