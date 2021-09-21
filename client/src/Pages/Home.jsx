@@ -132,7 +132,12 @@ function Home() {
             <li id={2} onClick={chooseCategory}>Shoes</li>
           </ul>
         </div>}
-        {dropdown && <div className={`${category == 99 ? "selected-allitems" : category == 0 ? "selected-shirts" : category == 1 ? "selected-pants" : category == 2 ? "selected-shoes" : "unselected"}`}></div>}
+        {dropdown && 
+          <div className="selected-container">
+            <div className="selected-width">
+              <div className={`${category == 99 ? "selected-allitems" : category == 0 ? "selected-shirts" : category == 1 ? "selected-pants" : category == 2 ? "selected-shoes" : "unselected"}`}></div>
+            </div>
+          </div>}
         {dropdownFilter && <div className="dropdown-filter">
           <ul>
             <li id={0} onClick={chooseFilter} className="bold">men.</li>

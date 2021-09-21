@@ -85,58 +85,67 @@
     }
 }
 
-.unselected {
-    background-color: grey;
-    width: 0px;
-    height: 0px;
-}
+.selected-container {
+    display: flex;
+    justify-content: space-around;
 
-.selected-allitems {
-    margin-top: 4px;
-    background-color: black;
-    width: 35px;
-    height: 4px;
-    position: relative;
-    left: 17.5%;
-    transition: 0.3s;
-    animation-name: selected-anim;
-    animation-duration: 0.4s;
-}
-
-.selected-shirts {
-    margin-top: 4px;
-    background-color: rgb(182, 182, 182);
-    width: 40px;
-    height: 4px;
-    position: relative;
-    left: 39%;
-    transition: 0.3s;
-    animation-name: selected-anim;
-    animation-duration: 0.4s;
-}
-
-.selected-pants {
-    margin-top: 4px;
-    background-color: rgb(182, 182, 182);
-    width: 35px;
-    height: 4px;
-    position: relative;
-    left: 57.2%;
-    transition: 0.3s;
-    animation-name: selected-anim;
-    animation-duration: 0.4s;
-}
-
-.selected-shoes {
-    margin-top: 4px;
-    background-color: rgb(182, 182, 182);
-    width: 35px;
-    height: 4px;
-    position: relative;
-    left: 75.8%;
-    transition: 0.3s;
-    animation-name: selected-anim;
-    animation-duration: 0.4s;
+    .selected-width {
+        width: 299.55px;
+        
+        .unselected {
+            background-color: grey;
+            width: 0px;
+            height: 0px;
+        }
+        
+        .selected-allitems {
+            margin-top: 4px;
+            background-color: black;
+            width: 35px;
+            height: 4px;
+            position: relative;
+            left: 9.5%;
+            transition: 0.3s;
+            animation-name: selected-anim;
+            animation-duration: 0.4s;
+        }
+        
+        .selected-shirts {
+            margin-top: 4px;
+            background-color: rgb(182, 182, 182);
+            width: 40px;
+            height: 4px;
+            position: relative;
+            left: 35.9%;
+            transition: 0.3s;
+            animation-name: selected-anim;
+            animation-duration: 0.4s;
+        }
+        
+        .selected-pants {
+            margin-top: 4px;
+            background-color: rgb(182, 182, 182);
+            width: 35px;
+            height: 4px;
+            position: relative;
+            left: 59%;
+            transition: 0.3s;
+            animation-name: selected-anim;
+            animation-duration: 0.4s;
+        }
+        
+        .selected-shoes {
+            margin-top: 4px;
+            background-color: rgb(182, 182, 182);
+            width: 35px;
+            height: 4px;
+            position: relative;
+            left: 82.3%;
+            transition: 0.3s;
+            animation-name: selected-anim;
+            animation-duration: 0.4s;
+        }
+    }
 }
 
 @keyframes category-anim {
