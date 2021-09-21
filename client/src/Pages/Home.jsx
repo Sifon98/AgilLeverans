@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import logo from "../img/logo.png"
+import logoLarge from "../img/logo-large.png"
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
 import { NavContext } from "../context/NavContext";
@@ -104,15 +105,47 @@ function Home() {
   return (
     <div className="page">
       <div className="header">
-        <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
-        <img src={logo} />
-        <button className="shopping-cart-btn">
-        <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
-          {user.cart && user.cart.length > 0 ? (
-            <div className="cart-count">{user.cart.length}</div>
-          ):null}
-        </button>
-        
+        <div className="menuToggle">
+          <input type="checkbox" />
+          {/* Hamburger menu */}
+          <span></span>
+          <span></span>
+          <span></span>
+          {/* List when menu is opened */}
+          <ul className="menu">
+            <li id={0} onClick={chooseFilter} className="topText gender">men.</li>
+            <li id={1} onClick={chooseFilter} className="gender">women.</li>
+            <li id={99} onClick={chooseCategory} className="gender">all items.</li>
+            <li id={0} onClick={chooseCategory}>Shirts</li>
+            <li id={1} onClick={chooseCategory}>Pants</li>
+            <li id={2} onClick={chooseCategory}>Shoes</li>
+            {products[0] && products[0].colors.map(Color => (
+              <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
+                <div className="selected-color" style={color === Color.name ? null : {display: "none"}}>
+                  <i className="fas fa-check"></i>
+                </div>
+              </li>
+            ))}
+            {products[0] && products[0].sizes.map(Sizes => (
+              <li id={Sizes} key={Sizes} onClick={chooseSize} className={`choose-size ${Sizes === size ? "selected-size" : ""}`}>{Sizes}</li>
+              // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
+            ))}
+            <li onClick={removeFilter} className="bold">clear filters.</li>
+          </ul>
+        </div>
+        <div className="desktopHeader">
+          <img src={logoLarge} />
+        </div>
+        <div className="mobileHeader">
+          <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
+          <img src={logo} />
+          <button className="shopping-cart-btn">
+          <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
+            {user.cart && user.cart.length > 0 ? (
+              <div className="cart-count">{user.cart.length}</div>
+            ):null}
+          </button>
+        </div>
       </div>
       {/* Buttons that sort via categories or gender */}
       <div className="sorting-buttons">
