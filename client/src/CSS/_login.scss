@@ -13,6 +13,16 @@
         position: fixed;
         left: 0;
     }
+
+    @media screen and (min-width: 600px){
+        .yellowSide{
+            width: 73px;
+            height: 812px;
+            background-color: #FFF06B;
+            position: fixed;
+            left: 0;
+        }
+    }
     
     .head{
         background-color: #FFF06B;
@@ -96,6 +106,7 @@
             color: black;
             font-size: 90%;
             font-weight: 700;
+            background-color: #F4F4F4;
         }
     }
 }
