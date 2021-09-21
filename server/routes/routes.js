@@ -123,26 +123,35 @@ router.post("/saved-products/:id", async (req, res, next) => {
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
+  console.log("DELETE")
   try {
     const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
+
+    console.log(productId)
   
-    await User.findByIdAndUpdate(userId, {
+    const user = await User.findByIdAndUpdate(userId, {
       $pull: {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
     });
 
+    console.log(user)
+
     let wishlist = null;
     let cart = null;
     if(type === "wishlist") {
-      wishlist = req.user.wishlist.filter(x => x._id.toString() === productId)[0];
+
+      wishlist = req.user.wishlist.filter(x => x._id.toString() !== productId);
+
     }
     if(type === "cart") {
-      cart = req.user.cart.filter(x => x._id.toString() === productId)[0];
+      console.log(req.user.cart.length)
+      cart = req.user.cart.filter(x => x._id.toString() !== productId);
+      console.log(cart.length)
     }
 
     res.send({wishlist, cart});
