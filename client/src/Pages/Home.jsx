@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
-import logo from "../img/logo.png"
 import logoLarge from "../img/logo-large.png"
+import logo from "../img/logo.svg"
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
 import { NavContext } from "../context/NavContext";
@@ -187,7 +187,7 @@ function Home() {
         </div>
         <div className="mobileHeader">
           <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
-          <img src={logo} />
+          <h1 className ="profileTitle">bopshop.</h1>
           <button className="shopping-cart-btn">
           <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
             {user.cart && user.cart.length > 0 ? (

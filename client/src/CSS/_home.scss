@@ -231,6 +231,18 @@
             display: none;
         }
     }
+    
+    .profileTitle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:#FFF06B;
+        width: 155px;
+        height: 42px;
+        padding: 2px;
+        font-size: 1.6rem;
+        font-family: 'Inter', sans-serif;
+    }
 }
     
 
