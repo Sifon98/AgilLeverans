@@ -165,17 +165,17 @@ router.delete("/saved-products/:id", async (req, res, next) => {
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
   try {
-    const {wishlist} = req.user;
+    // const {wishlist} = req.user;
     
     let products = await Product.find();
     products = JSON.parse(JSON.stringify(products));
 
-    const updateProducts = products.map(prod => {
-      if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
-      return {...prod, isWishlisted: false}
-    })
+    // const updateProducts = products.map(prod => {
+    //   if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
+    //   return {...prod, isWishlisted: false}
+    // })
 
-    res.json({products: updateProducts});
+    res.json({products});
   } catch(err) {
     return next(err);
   }

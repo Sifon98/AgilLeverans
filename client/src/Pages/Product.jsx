@@ -59,6 +59,7 @@ function Product() {
 
   // Set is wishlisted and carted
   useEffect(() => {
+    if(!user) return;
     if(!user.wishlist) return;
     if(!user.cart) return;
 

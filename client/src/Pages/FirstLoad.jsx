@@ -9,13 +9,6 @@ function FirstLoad() {
   const { user, setUser } = useContext(UserContext);
   const { setNav } = useContext(NavContext);
 
-  useEffect(() => {
-    if(user) history.push("/landing");
-  }, [user])
-
-  useEffect(() => {
-    console.log(history.location)
-  }, [])
 
   return (
 
