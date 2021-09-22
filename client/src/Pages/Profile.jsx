@@ -95,7 +95,11 @@ function Profile() {
         <form className="accountForm" action="" >
             <label className="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
-            <button  onClick={editUser}>{buttonText(isDisabledName)}</button>
+            {isDisabledName 
+            ? <button onClick={editUser}>{buttonText(isDisabledName)}</button> 
+            : <button onClick={(e)  =>  {setIsDisabledName( boolean => !boolean ),e.preventDefault();
+            }}>{buttonText(isDisabledName)}</button>
+            }
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
