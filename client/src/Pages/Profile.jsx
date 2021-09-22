@@ -5,12 +5,9 @@ import { NavContext } from "../context/NavContext";
 
 function Profile() {
   const history = useHistory();
-  
   const { user, setUser } = useContext(UserContext);
   const { setNav } = useContext(NavContext);
-  
-  
-  
+
   const handleLogout = async () => {
     const res = await fetch("/api/logout", {
       method: "POST",
@@ -24,10 +21,6 @@ function Profile() {
     setUser(null);
   }
 
-
-    
-    
-    
   const [isDisabledName, setIsDisabledName] = useState(false);
   const [isDisabledEmail, setIsDisabledEmail] = useState(false);
   const [isDisabledPassword, setIsDisabledPassword] = useState(false);
@@ -37,8 +30,6 @@ function Profile() {
   const [disableSaveButton, setdisableSaveButton] = useState(true);
   const buttonText = (isDisabled) => isDisabled ? 'Save.' : 'Edit.';
   
- 
-
   const handleEdit = async () => {
     const res = await fetch("/api/register", {
       method: "PATCH",
@@ -48,7 +39,6 @@ function Profile() {
       },
       body: JSON.stringify({ userName, email, password })
     })
-    
     const getUser = await res.json();
     setUser(getUser);
   }
@@ -106,7 +96,6 @@ function Profile() {
       </div>
 
       <div className="accountInfoContainer">
-
         <form className="accountForm" action="" >
           <label className="username" id="label" htmlFor="username" >username</label>
           <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
