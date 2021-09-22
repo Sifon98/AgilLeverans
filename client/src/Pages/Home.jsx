@@ -178,7 +178,7 @@ function Home() {
             <div className="icons">
               <button className="shopping-cart-btn">
               <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
-                {user.cart && user.cart.length > 0 ? (
+                {user && user.cart && user.cart.length > 0 ? (
                   <div className="cart-count-home">{user.cart.length}</div>
                 ):null}
               </button>
@@ -190,7 +190,7 @@ function Home() {
           <h1 className ="profileTitle">bopshop.</h1>
           <button className="shopping-cart-btn">
           <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
-            {user.cart && user.cart.length > 0 ? (
+            {user && user.cart && user.cart.length > 0 ? (
               <div className="cart-count">{user.cart.length}</div>
             ):null}
           </button>
