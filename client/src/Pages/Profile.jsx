@@ -66,7 +66,7 @@ function Profile() {
 
   const newPass =
   <>
-    <label className="newPassword" htmlFor="password">Enter New Password</label>
+    <label className="newPassword" htmlFor="password">enter new password</label>
     <input onChange={(e) => setPassword(e.target.value)} className="inputText" type="password" placeholder="********" disabled={!isDisabledPassword} />
     {isDisabledPassword
       ? <button onClick={editPass}>{buttonText(isDisabledPassword)}</button>
@@ -118,7 +118,7 @@ function Profile() {
            
           <br />
           
-          <label className="password" htmlFor="password">Current Password</label>
+          <label className="password" htmlFor="password">current password</label>
           <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" placeholder="********" disabled={!isDisabledPassword} />
           {isDisabledPassword
             ? <><button onClick={(e) => {
