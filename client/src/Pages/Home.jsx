@@ -166,7 +166,7 @@ function Home() {
   useEffect(() => fetchProducts(), []);
   
   return (
-    <div className="page">
+    <div className="page" style={{overflowY: "scroll"}}>
       <div className="header">
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
