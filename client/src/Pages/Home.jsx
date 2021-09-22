@@ -149,7 +149,7 @@ function Home() {
   useEffect(() => fetchProducts(), []);
   
   return (
-    <div className="page">
+    <div className="page" style={{overflowY: "scroll"}}>
       <div className="header">
         <div className="menuToggle">
           <input type="checkbox" />
