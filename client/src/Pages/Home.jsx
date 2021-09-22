@@ -10,6 +10,7 @@ import SideMenu from "../components/HomePage/SideMenu"
 import DesktopHeader from '../components/HomePage/DesktopHeader';
 import MobileHeader from '../components/HomePage/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
+import RegisterHome from '../components/HomePage/RegisterHome';
 
 
 function Home() {
@@ -20,6 +21,7 @@ function Home() {
 
   const [loggedIn, setLoggedIn] = useState([]);
   const [popupLogin, setPopupLogin] = useState(false);
+  const [popupRegister, setPopupRegister] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -151,6 +153,16 @@ function Home() {
     setPopupLogin(true)
   }
 
+  const changePopup = () => {
+    if(popupLogin == true){
+      setPopupLogin(false)
+      setPopupRegister(true)
+    }else if(popupRegister == true) {
+      setPopupLogin(true)
+      setPopupRegister(false)
+    }
+  }
+
   useEffect(() => fetchProducts(), []);
   
   return (
@@ -159,7 +171,7 @@ function Home() {
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
           chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color}/>
-        <DesktopHeader popupLoginFunct={popupLoginFunc} loggedIn={loggedIn} />
+        <DesktopHeader popupLoginFunc={popupLoginFunc} loggedIn={loggedIn} />
         <MobileHeader />
       </div>
       {/* Buttons that sort via categories or gender */}
@@ -175,7 +187,8 @@ function Home() {
       <button className={`${ visible ? "visible" : "invisible"}`} onClick={scrollToTop}>
         <i className="fas fa-chevron-up"></i>
       </button>
-      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} />
+      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup}/>
+      <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
     </div>
   )
 }

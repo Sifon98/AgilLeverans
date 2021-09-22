@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { UserContext } from "../../context/UserContext";
 
-function LoginHome({popupLogin, setPopupLogin}) {
+function LoginHome({popupLogin, setPopupLogin, changePopup}) {
     const { user, setUser } = useContext(UserContext);
     const Ref = useRef(null);
     useOutsideAlerter(Ref);
@@ -73,7 +73,6 @@ function LoginHome({popupLogin, setPopupLogin}) {
                         type="text"
                         name="username"
                         placeholder="username"
-                        required
                         onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
                     />
                     <input
@@ -81,15 +80,14 @@ function LoginHome({popupLogin, setPopupLogin}) {
                         type="password"
                         name="password"
                         placeholder="password"
-                        required
                         onChange={(e) => {setPassword(e.target.value), setLoginErrorPass(false)}}
                     />
                     {loginError && <p className="errorText">{errorMessage}</p>}
                     <button className="loginButton" onClick={handleLogin}>login.</button>
                     <p className="registerText">Don't have an account?</p>
-                    <button className="registerLink">
+                    <p className="registerLink" onClick={() => changePopup()}>
                         Register here
-                    </button>
+                    </p>
                     </form>
                 </div>
             </div>}
