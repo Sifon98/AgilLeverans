@@ -35,7 +35,6 @@ function Profile() {
   const [ email, setEmail ] = useState( "" );
   const [ password, setPassword ] = useState( "" );
   const [ disableSaveButton, setdisableSaveButton ] = useState( true );
-
   const buttonText = (isDisabled) => isDisabled ? 'Save.' : 'Edit.';
 
   const handleEdit = async () => {
@@ -52,7 +51,22 @@ function Profile() {
     setUser(getUser);
   }
   
-  const editEvent = () => {
+  const editUser = async (e) => {
+    e.preventDefault();
+    setIsDisabledName( boolean => !boolean );
+    handleEdit();
+    console.log({userName})
+  }
+
+  const editEmail = async (e) => {
+    e.preventDefault();
+    setIsDisabledEmail( boolean => !boolean );
+    handleEdit();
+    console.log({email})
+  }
+
+  const editPass = async (e) => {
+    e.preventDefault();
     setIsDisabledPassword( boolean => !boolean );
     handleEdit();
     console.log({password})
@@ -77,33 +91,37 @@ function Profile() {
         </div>
 
         <div className="accountInfoContainer">
-        <div className="accountForm" action="" method="post" >
-          
+
+        <form className="accountForm" action="" >
             <label className="username" id="label" htmlFor="username" >username</label>
             <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
-            <button  onClick={()=> setIsDisabledName(boolean => !boolean)} >{buttonText(isDisabledName)}</button>
+            <button  onClick={editUser}>{buttonText(isDisabledName)}</button>
             <br />
 
             <label  className="emailadress" htmlFor="emailadress" >email</label>
             <input  onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail}/>
-            <button  onClick={()=> setIsDisabledEmail(boolean => !boolean)} >{buttonText(isDisabledEmail)}</button>
+            {isDisabledEmail
+            ? <button onClick={editEmail}>{buttonText(isDisabledEmail)}</button>
+            : <button onClick={(e)  =>  {setIsDisabledEmail( boolean => !boolean ),e.preventDefault();
+            }}>{buttonText(isDisabledEmail)}</button>
+          }
+           
             <br />
           
             <label  className="password" htmlFor="password">enter new password</label>
-            <input  onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" disabled={!isDisabledPassword} placeholder="******" />
-            <button onClick={editEvent}>{buttonText(isDisabledPassword)}</button>
-            {/* <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button> */}
-            
-           
-          
-        </div>
+            <input  onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" disabled={!isDisabledPassword}/>
+            <button onClick={editPass}>{buttonText(isDisabledPassword)}</button>
+        </form>
+      
         </div>
 
         <footer className="signoutContainer">
-          <button className="signoutButton" onClick={handleLogout}>sign out.</button>
+        <button className="signoutButton" onClick={handleLogout}>sign out.</button>
         </footer>
     </div>
   )
 }
 
 export default Profile
+
+           
