@@ -45,16 +45,19 @@ function Shoppingcart() {
         const data = await res.json();
 
         // Update Products
-        let UpdateProducts = [...products];
-        UpdateProducts = UpdateProducts.filter(x => x._id !== data.cart._id);
-
-        // Update Price
+        let UpdateProducts = data.cart;
+        console.log(UpdateProducts)
         let total = 0;
-        UpdateProducts.forEach(x => total += x.item.price)
+        UpdateProducts = UpdateProducts.map(x => {
+            total += x.item.price;
+            return {...x, imageIndex: x.item.colors.findIndex(c => c.name === x.color.name)}
+        })
 
         // Set State
         setProducts(UpdateProducts);
         setTotalPrice(total.toFixed(2));
+        console.log(data.cart)
+        console.log(UpdateProducts.length)
         setUser({
             ...user,
             cart: UpdateProducts
