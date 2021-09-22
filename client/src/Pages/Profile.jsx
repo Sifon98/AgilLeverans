@@ -70,6 +70,7 @@ function Profile() {
             <input  onChange={(e) => setPassword(e.target.value)} defaultValue="" className="inputText" type="password" disabled={!isDisabledPassword} placeholder="********"/>
             <button onClick={() => setIsDisabledPassword( boolean => !boolean )}>{buttonText(isDisabledPassword)}</button> */}
             <button style={{display: "none"}} id="saveBtn" className="saveButton">Save changes</button>
+            <button className="editBtn">Edit profile</button>
           
         </div>
         </div>
