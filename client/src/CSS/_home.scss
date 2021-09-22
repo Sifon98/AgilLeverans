@@ -68,6 +68,9 @@
     }
 
     .menu {
+        animation-name: menu-anim;
+        animation-duration: 0.5s;
+
         position: fixed;
         width: 300px;
         height: 100%;
@@ -83,6 +86,15 @@
         transform: translate(-74%, 0);
 
         transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+        .text {
+            width: 55%;
+            transition: 0.2s;
+
+            &:active {
+                transform: scale3d(0.9, 1, 0.9);
+            }
+        }
 
         .topText {
             margin-top: 80px;
@@ -125,8 +137,8 @@
                     margin: -2px 0px 0px 20px;
                     display: grid;
                     place-items: center;
-                    width: 13px;
-                    height: 13px;
+                    width: 12px;
+                    height: 12px;
                     border-radius: 100%;
                     background-color: black;
                     box-shadow: 0px 0px 0px 3px var(--background);
@@ -175,9 +187,22 @@
             font-size: 22px;
         }
     }
+
+    @keyframes menu-anim {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
 }
 
-@media(max-width: 1025px) {
+@media(max-width: 1023px) {
     .menuToggle {
         display: none;
     }
@@ -212,7 +237,7 @@
         }
     }
 
-    @media(max-width: 1025px) {
+    @media(max-width: 1023px) {
         .desktopHeader {
             display: none;
         }
@@ -228,7 +253,7 @@
         }
     }
 
-    @media(min-width: 1025px) {
+    @media(min-width: 1024px) {
         .mobileHeader {
             display: none;
         }
@@ -264,7 +289,7 @@
             width: 90%;
             border: 0;
             background-color: rgba(255, 255, 255, 0);
-            border-bottom: 1px solid grey;
+            border-bottom: 2px solid rgba(0,0,0,0.16);
             cursor: pointer;
             outline: 0;
             font-size: 17px;
@@ -273,7 +298,7 @@
     }
 
     .line {
-        border-right: 1px solid grey;
+        border-right: 2px solid rgba(0,0,0,0.16);
         height: 30px;
     }
     
@@ -288,7 +313,7 @@
             width: 90%;
             border: 0;
             background-color: rgba(255, 255, 255, 0);
-            border-bottom: 1px solid grey;
+            border-bottom: 2px solid rgba(0,0,0,0.16);
             cursor: pointer;
             outline: 0;
             font-size: 17px;
@@ -297,7 +322,7 @@
     }
 }
 
-@media(min-width: 1025px) {
+@media(min-width: 1024px) {
     .sorting-buttons {
         display: none;
     }
@@ -419,9 +444,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 10px;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
     animation-name: filter-anim;
     animation-duration: 0.6s;
+
+    .divider {
+        width: 70%;
+        border-top: 2px solid rgba(0,0,0,0.16);
+    }
 
     ul {
         list-style: none;
@@ -431,7 +463,7 @@
         .bold {
             font-weight: bold;
         }
-        
+
         li {
             padding: 0px 12px 10px 12px;
             transition: 200ms;
@@ -445,8 +477,7 @@
         padding: 12px 10px;
         display: flex;
         flex-wrap: wrap;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
+        width: 213px;
         
         .choose-color {
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
@@ -521,7 +552,7 @@
     }
     100% {
         opacity: 1;
-        height: 224px;
+        height: 242px;
     }
 }
 
@@ -599,7 +630,7 @@
                 }
             }
 
-            @media screen and (max-width: 1025px) {
+            @media screen and (max-width: 1023px) {
                 .wishlist-btn {
                     visibility: hidden;
                     position: relative;
@@ -825,4 +856,114 @@
     width: 80px;
     height: 80px;
     transition: 0.3s ease-in-out;
+}
+
+.popupContainer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000067;
+
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .box {
+        width: 700px;
+        height: 600px;
+        border-radius: 50px;
+        background-color: var(--background);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        animation-name: popup-anim;
+        animation-duration: 0.5s;
+
+        .formLogin{
+            display: flex;
+            flex-direction: column;
+            margin-top: 63px;
+            width: 225px;
+    
+            .inputLogin{
+                display: flex;
+                margin-bottom: 30px;
+                border: none;
+                border-bottom: 1px solid lightgray;
+                background-color: #F4F4F4;
+                height: 20px;
+            }
+    
+            .inputLoginError {
+                border-bottom: 1px solid red;
+            }
+    
+            .inputLogin::placeholder{
+                color: black;
+                font-size: 120%;
+                font-weight: 700;
+            }
+    
+            .errorText {
+                color: red;
+                font-size: 15px;
+                font-weight: 700;
+            }
+    
+            .loginButton{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                margin-top: 30px;
+                background-color: #FFF06B;
+                border: none;
+                border-radius: 100px;
+                height: 53px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                font-size: 100%;
+            }
+            
+            .registerText {
+                margin-top: 10px;
+                text-align: center;
+                font-family: 'Inter', sans-serif;
+                color: black;
+                opacity: 26%;
+                text-decoration: none;
+                font-size: 90%;
+                margin-top: 10px;
+                font-weight: 700;
+            }
+    
+            .registerLink {
+                text-decoration: underline 2px;
+                margin-top: 2px;
+                text-align: center;
+                font-family: 'Inter', sans-serif;
+                color: black;
+                font-size: 90%;
+                font-weight: 700;
+                background-color: #F4F4F4;
+            }
+        }
+    }
+
+    @keyframes popup-anim {
+        0% {
+            opacity: 0;
+            margin-top: 200px
+        }
+        100% {
+            opacity: 1;
+            margin-top: 0px;
+        }
+    }
 }

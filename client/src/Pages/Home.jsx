@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import logoLarge from "../img/logo-large.png"
+import logoLarge from "../img/logo-large.svg"
 import logo from "../img/logo.svg"
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
@@ -12,6 +12,9 @@ function Home() {
 
   const { setNav } = useContext(NavContext);
   const { user } = useContext(UserContext);
+
+  const [loggedIn, setLoggedIn] = useState([]);
+  const [popupLogin, setPopupLogin] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +31,7 @@ function Home() {
   const [sizeCheck, setSizeCheck] = useState(false);
   const [visible, setVisible] = useState(false)
 
+  // Scroll to top function
   useEffect(() => {
     let mounted = true
     var toggleVisible = document.addEventListener("scroll", e => {
@@ -78,6 +82,12 @@ function Home() {
 
     setProducts(data.products);
     setLoading(false)
+    
+    if(user == null) {
+      setLoggedIn(false)
+    }else {
+      setLoggedIn(false)
+    }
   }
 
   const chooseColor = (e) => {
@@ -132,6 +142,10 @@ function Home() {
     setSize("");
   }
 
+  const popupLoginFunc = () => {
+    setPopupLogin(true)
+  }
+
   useEffect(() => fetchProducts(), []);
   
   return (
@@ -145,13 +159,13 @@ function Home() {
           <span></span>
           {/* List when menu is opened */}
           <ul className="menu">
-            <li id={0} onClick={chooseFilter} className="topText bold">men.</li>
-            <li id={1} onClick={chooseFilter} className="bold">women.</li>
+            <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
+            <li id={1} onClick={chooseFilter} className="bold text">women.</li>
             <div className="divider" />
-            <li id={99} onClick={chooseCategory} className="bold">all items.</li>
-            <li id={0} onClick={chooseCategory}>Shirts</li>
-            <li id={1} onClick={chooseCategory}>Pants</li>
-            <li id={2} onClick={chooseCategory}>Shoes</li>
+            <li id={99} onClick={chooseCategory} className="bold text">all items.</li>
+            <li id={0} onClick={chooseCategory} className="text">Shirts</li>
+            <li id={1} onClick={chooseCategory} className="text">Pants</li>
+            <li id={2} onClick={chooseCategory} className="text">Shoes</li>
             <div className="divider" />
             <div className="helper">
             {products[0] && products[0].colors.map(Color => (
@@ -166,14 +180,14 @@ function Home() {
               // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
             ))}
             </div>
-            <li onClick={removeFilter} className="bold">clear filters.</li>
+            <li onClick={removeFilter} className="bold text">clear filters.</li>
           </ul>
         </div>
         <div className="desktopHeader">
           <img src={logoLarge} />
           <div className="helper">
             <div className="icons">
-              <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
+              <i className="fas fa-user-circle" onClick={loggedIn ? () => setNav({path: "/profile", direction: 1}) : () => popupLoginFunc()} ></i>
             </div>
             <div className="icons">
               <button className="shopping-cart-btn">
@@ -221,10 +235,11 @@ function Home() {
             </div>
           </div>}
         {dropdownFilter && <div className="dropdown-filter">
-          <ul>
+          <ul className="gender-ul">
             <li id={0} onClick={chooseFilter} className="bold">men.</li>
             <li id={1} onClick={chooseFilter} className="bold">women.</li>
           </ul>
+          <div className="divider" />
           <ul className="filter-ul">
             {products[0] && products[0].colors.map(Color => (
               <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
@@ -238,6 +253,7 @@ function Home() {
               // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
             ))}
           </ul>
+          <div className="divider" />
           <ul className="remove-ul">
             <li onClick={removeFilter} className="bold">clear filters.</li>
           </ul>
@@ -251,6 +267,37 @@ function Home() {
       <button className={`${ visible ? "visible" : "invisible"}`} onClick={scrollToTop}>
         <i className="fas fa-chevron-up"></i>
       </button>
+      {popupLogin && 
+        <div className="popupContainer">
+          <div className="box">
+            <h1>login.</h1>
+            <form className="formLogin">
+              <input
+                className="inputLogin"
+                type="text"
+                name="username"
+                placeholder="username"
+                required
+              />
+              <input
+                className="inputLogin"
+                type="password"
+                name="password"
+                placeholder="password"
+                required
+              />
+              <button className="loginButton">login.</button>
+              <p className="registerText">Don't have an account?</p>
+              <button className="registerLink" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setNav({path: "/register", direction: 1});
+                }}>
+                Register here
+              </button>
+            </form>
+          </div>
+        </div>}
     </div>
   )
 }
