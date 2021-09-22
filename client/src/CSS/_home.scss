@@ -857,3 +857,113 @@
     height: 80px;
     transition: 0.3s ease-in-out;
 }
+
+.popupContainer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000067;
+
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .box {
+        width: 700px;
+        height: 600px;
+        border-radius: 50px;
+        background-color: var(--background);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        animation-name: popup-anim;
+        animation-duration: 0.5s;
+
+        .formLogin{
+            display: flex;
+            flex-direction: column;
+            margin-top: 63px;
+            width: 225px;
+    
+            .inputLogin{
+                display: flex;
+                margin-bottom: 30px;
+                border: none;
+                border-bottom: 1px solid lightgray;
+                background-color: #F4F4F4;
+                height: 20px;
+            }
+    
+            .inputLoginError {
+                border-bottom: 1px solid red;
+            }
+    
+            .inputLogin::placeholder{
+                color: black;
+                font-size: 120%;
+                font-weight: 700;
+            }
+    
+            .errorText {
+                color: red;
+                font-size: 15px;
+                font-weight: 700;
+            }
+    
+            .loginButton{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                margin-top: 30px;
+                background-color: #FFF06B;
+                border: none;
+                border-radius: 100px;
+                height: 53px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                font-size: 100%;
+            }
+            
+            .registerText {
+                margin-top: 10px;
+                text-align: center;
+                font-family: 'Inter', sans-serif;
+                color: black;
+                opacity: 26%;
+                text-decoration: none;
+                font-size: 90%;
+                margin-top: 10px;
+                font-weight: 700;
+            }
+    
+            .registerLink {
+                text-decoration: underline 2px;
+                margin-top: 2px;
+                text-align: center;
+                font-family: 'Inter', sans-serif;
+                color: black;
+                font-size: 90%;
+                font-weight: 700;
+                background-color: #F4F4F4;
+            }
+        }
+    }
+
+    @keyframes popup-anim {
+        0% {
+            opacity: 0;
+            margin-top: 200px
+        }
+        100% {
+            opacity: 1;
+            margin-top: 0px;
+        }
+    }
+}
