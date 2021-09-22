@@ -145,13 +145,13 @@ function Home() {
           <span></span>
           {/* List when menu is opened */}
           <ul className="menu">
-            <li id={0} onClick={chooseFilter} className="topText bold">men.</li>
-            <li id={1} onClick={chooseFilter} className="bold">women.</li>
+            <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
+            <li id={1} onClick={chooseFilter} className="bold text">women.</li>
             <div className="divider" />
-            <li id={99} onClick={chooseCategory} className="bold">all items.</li>
-            <li id={0} onClick={chooseCategory}>Shirts</li>
-            <li id={1} onClick={chooseCategory}>Pants</li>
-            <li id={2} onClick={chooseCategory}>Shoes</li>
+            <li id={99} onClick={chooseCategory} className="bold text">all items.</li>
+            <li id={0} onClick={chooseCategory} className="text">Shirts</li>
+            <li id={1} onClick={chooseCategory} className="text">Pants</li>
+            <li id={2} onClick={chooseCategory} className="text">Shoes</li>
             <div className="divider" />
             <div className="helper">
             {products[0] && products[0].colors.map(Color => (
@@ -166,7 +166,7 @@ function Home() {
               // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
             ))}
             </div>
-            <li onClick={removeFilter} className="bold">clear filters.</li>
+            <li onClick={removeFilter} className="bold text">clear filters.</li>
           </ul>
         </div>
         <div className="desktopHeader">
@@ -221,10 +221,11 @@ function Home() {
             </div>
           </div>}
         {dropdownFilter && <div className="dropdown-filter">
-          <ul>
+          <ul className="gender-ul">
             <li id={0} onClick={chooseFilter} className="bold">men.</li>
             <li id={1} onClick={chooseFilter} className="bold">women.</li>
           </ul>
+          <div className="divider" />
           <ul className="filter-ul">
             {products[0] && products[0].colors.map(Color => (
               <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
@@ -238,6 +239,7 @@ function Home() {
               // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
             ))}
           </ul>
+          <div className="divider" />
           <ul className="remove-ul">
             <li onClick={removeFilter} className="bold">clear filters.</li>
           </ul>

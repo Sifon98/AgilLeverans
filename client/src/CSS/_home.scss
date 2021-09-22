@@ -84,6 +84,14 @@
 
         transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 
+        .text {
+            transition: 0.2s;
+
+            &:active {
+                transform: scale3d(0.9, 1, 0.9);
+            }
+        }
+
         .topText {
             margin-top: 80px;
         }
@@ -125,8 +133,8 @@
                     margin: -2px 0px 0px 20px;
                     display: grid;
                     place-items: center;
-                    width: 13px;
-                    height: 13px;
+                    width: 12px;
+                    height: 12px;
                     border-radius: 100%;
                     background-color: black;
                     box-shadow: 0px 0px 0px 3px var(--background);
@@ -264,7 +272,7 @@
             width: 90%;
             border: 0;
             background-color: rgba(255, 255, 255, 0);
-            border-bottom: 1px solid grey;
+            border-bottom: 2px solid rgba(0,0,0,0.16);
             cursor: pointer;
             outline: 0;
             font-size: 17px;
@@ -273,7 +281,7 @@
     }
 
     .line {
-        border-right: 1px solid grey;
+        border-right: 2px solid rgba(0,0,0,0.16);
         height: 30px;
     }
     
@@ -288,7 +296,7 @@
             width: 90%;
             border: 0;
             background-color: rgba(255, 255, 255, 0);
-            border-bottom: 1px solid grey;
+            border-bottom: 2px solid rgba(0,0,0,0.16);
             cursor: pointer;
             outline: 0;
             font-size: 17px;
@@ -419,9 +427,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 10px;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
     animation-name: filter-anim;
     animation-duration: 0.6s;
+
+    .divider {
+        width: 70%;
+        border-top: 2px solid rgba(0,0,0,0.16);
+    }
 
     ul {
         list-style: none;
@@ -431,7 +446,7 @@
         .bold {
             font-weight: bold;
         }
-        
+
         li {
             padding: 0px 12px 10px 12px;
             transition: 200ms;
@@ -445,8 +460,7 @@
         padding: 12px 10px;
         display: flex;
         flex-wrap: wrap;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
+        width: 213px;
         
         .choose-color {
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
@@ -521,7 +535,7 @@
     }
     100% {
         opacity: 1;
-        height: 224px;
+        height: 242px;
     }
 }
 
