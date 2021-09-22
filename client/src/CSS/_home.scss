@@ -952,6 +952,86 @@
                 background-color: #F4F4F4;
             }
         }
+
+        .yellowSide{
+            width: 13px;
+            height: 812px;
+            background-color: #FFF06B;
+            position: fixed;
+            left: 0;
+        }
+    
+        .formRegister{
+            display: flex;
+            flex-direction: column;
+            margin-top: 63px;
+            width: 225px;
+    
+            .inputRegister{
+                display: flex;
+                margin-bottom: 30px;
+                border: none;
+                border-bottom: 1px solid lightgray;
+                background-color: #F4F4F4;
+                height: 20px;
+            }  
+    
+            .inputRegister::placeholder{
+                color: black;
+                font-size: 120%;
+                font-weight: 700;
+            }
+    
+            .inputRegisterError{
+                border-color: red;
+            }
+            
+            .errorText{
+                color:red;
+                margin-bottom: 10px;
+                margin-top: -15px;
+                font-size: 15px;
+                font-weight: 700;
+            }
+    
+            .registerButton{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                margin-top: 30px;
+                background-color: #FFF06B;
+                border: none;
+                border-radius: 100px;
+                height: 53px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                font-size: 100%;
+            }
+                
+            .loginText {
+                margin-top: 10px;
+                text-align: center;
+                font-family: 'Inter', sans-serif;
+                color: black;
+                opacity: 26%;
+                text-decoration: none;
+                font-size: 90%;
+                margin-top: 10px;
+                font-weight: 700;
+            }
+    
+            .loginLink {
+                text-decoration: underline 2px;
+                margin-top: 2px;
+                text-align: center;
+                font-family: 'Inter', sans-serif;
+                color: black;
+                font-size: 90%;
+                font-weight: 700;
+                background-color: #F4F4F4;
+            }
+        }
     }
 
     @keyframes popup-anim {
@@ -959,8 +1039,10 @@
             opacity: 0;
             margin-top: 200px
         }
-        100% {
+        80% {
             opacity: 1;
+        }
+        100% {
             margin-top: 0px;
         }
     }
