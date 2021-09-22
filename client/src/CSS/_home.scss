@@ -202,7 +202,7 @@
     
 }
 
-@media(max-width: 1025px) {
+@media(max-width: 1023px) {
     .menuToggle {
         display: none;
     }
@@ -237,7 +237,7 @@
         }
     }
 
-    @media(max-width: 1025px) {
+    @media(max-width: 1023px) {
         .desktopHeader {
             display: none;
         }
@@ -253,7 +253,7 @@
         }
     }
 
-    @media(min-width: 1025px) {
+    @media(min-width: 1024px) {
         .mobileHeader {
             display: none;
         }
@@ -322,7 +322,7 @@
     }
 }
 
-@media(min-width: 1025px) {
+@media(min-width: 1024px) {
     .sorting-buttons {
         display: none;
     }
@@ -630,7 +630,7 @@
                 }
             }
 
-            @media screen and (max-width: 1025px) {
+            @media screen and (max-width: 1023px) {
                 .wishlist-btn {
                     visibility: hidden;
                     position: relative;
