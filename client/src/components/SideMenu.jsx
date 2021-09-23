@@ -1,16 +1,39 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color }) {
+    const checkboxRef = useRef(null);
+    useOutsideAlerter(checkboxRef);
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    if(document.getElementById("test").checked == true){
+                        document.getElementById("test").checked = false
+                    }
+                }
+            }
+    
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    }
+
+
     return (
         <>
             <div className="menuToggle">
-                <input type="checkbox" />
+                <input id="test" type="checkbox"/>
                 {/* Hamburger menu */}
                 <span></span>
                 <span></span>
                 <span></span>
                 {/* List when menu is opened */}
-                <ul className="menu">
+                <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
                     <div className="divider" />

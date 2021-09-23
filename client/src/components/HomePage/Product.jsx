@@ -9,7 +9,9 @@ function Products({Product, loggedIn, popupLoginFunc}) {
   return (
     <div className="product" onClick={() => setNav({path: `/products/${Product._id}`, direction: 1})}>
         <div className="overlay" style={hasLoaded ? {opacity: "0"} : null}></div>
-        <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
+        <div className="imageHelper">
+          <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
+        </div>
         <div className="info-box">
         <button className="wishlist-btn" onClick={loggedIn ? () => setNav({path: "/home", direction: 1}) : (e) => popupLoginFunc(e)}>
             <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>

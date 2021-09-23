@@ -348,8 +348,8 @@
         flex-wrap: wrap;
         justify-content: center;
         align-content: flex-start;
+        align-items: flex-start;
         min-width: 168px;
-        align-items: flex-end;
 
         .overlay {
             position: absolute;
@@ -358,17 +358,26 @@
             transition: 500ms;
         }
 
-        .image {
-            width: auto;
-            height: 270px;
-        }
+        .imageHelper {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
 
+            .image {
+                filter: brightness(0.9);
+                width: auto;
+                height: 450px;
+                transition: 0.4s ease-in-out;
+            }
+        }
+        
         .info-box {
             margin-top: -4px;
             height: auto;
             width: 100%; 
 
             .wishlist-btn {
+                cursor: pointer;
                 position: relative;
                 display: grid;
                 place-items: center;
@@ -438,6 +447,15 @@
             }
         }
     }
+
+    .product:hover{
+        .imageHelper{
+            .image {
+                transform: scale(1.1);
+                transition: 0.3s ease-in-out;
+            }
+        }
+    }
 }
 
 @media(min-width: 680px) {
@@ -490,7 +508,7 @@
             flex-wrap: wrap;
             justify-content: center;
             align-content: flex-start;
-            align-items: flex-end;
+            align-items: flex-start;
     
             .overlay {
                 position: absolute;
@@ -675,6 +693,7 @@
             }
     
             .loginButton{
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -702,6 +721,7 @@
             }
     
             .registerLink {
+                cursor: pointer;
                 text-decoration: underline 2px;
                 margin-top: 2px;
                 text-align: center;
@@ -755,6 +775,7 @@
             }
     
             .registerButton{
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -782,6 +803,7 @@
             }
     
             .loginLink {
+                cursor: pointer;
                 text-decoration: underline 2px;
                 margin-top: 2px;
                 text-align: center;
