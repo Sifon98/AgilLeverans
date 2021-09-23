@@ -1,14 +1,38 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { NavContext } from '../context/NavContext'
 
 function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow }) {
 
     const { setNav } = useContext(NavContext);
 
+
+    const checkboxRef = useRef(null);
+    useOutsideAlerter(checkboxRef);
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    if(document.getElementById("test").checked == true){
+                        document.getElementById("test").checked = false
+                    }
+                }
+            }
+    
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    }
+
+
     return (
         <>
-            <div className="menuToggle"  >
-                {
+            <div className="menuToggle">
+            {
                     backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>
                             <input type="checkbox" />
@@ -19,9 +43,8 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                         </>
                     )
                 }
-
                 {/* List when menu is opened */}
-                <ul className="menu">
+                <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
                     <div className="divider" />
