@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-import logoLarge from '../../img/logo-large.svg'
-import { UserContext } from "../../context/UserContext";
-import { NavContext } from "../../context/NavContext";
+// import logoLarge from '../../img/logo-large.svg'
+import logoLarge from "../img/logo-large.svg";
+import { UserContext } from "../context/UserContext";
+import { NavContext } from "../context/NavContext";
 
 function DesktopHeader({popupLoginFunc, loggedIn}) {
     const { user } = useContext(UserContext);

@@ -9,6 +9,8 @@ import InfoContainer from '../components/ProductPage/InfoContainer';
 import OptionsContainer from '../components/ProductPage/OptionsContainer/OptionsContainer';
 import CheckoutButton from '../components/ProductPage/CheckoutButton';
 import { NavContext } from "../context/NavContext";
+import SideMenu from '../components/SideMenu';
+import DesktopHeader from '../components/DesktopHeader';
 
 function Product() {
   const history = useHistory();
@@ -164,27 +166,32 @@ function Product() {
 
   return (
     <div className="product-page page">
+      <ToastContainer 
+        position="top-center" 
+        autoClose={2500} 
+        hideProgressBar 
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+      />      
+      <SideMenu />
+      <DesktopHeader />
       <div className="content-wrapper">
-        <ToastContainer 
-          position="top-center" 
-          autoClose={2500} 
-          hideProgressBar 
-          pauseOnHover={false}
-          pauseOnFocusLoss={false}
-           />
-        <ImageContainer 
-          product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} selectedColor={selectedColor}
-          />
-        <div className="wrapper">
-          <InfoContainer 
-            product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 
-            descriptionRef={descriptionRef}
+        <div className="desktop-wrapper">
+          <ImageContainer 
+            product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} selectedColor={selectedColor}
             />
-          <OptionsContainer 
-            product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
-            setSelectedSize={setSelectedSize} 
-            />
+          <div className="wrapper">
+            <InfoContainer 
+              product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 
+              descriptionRef={descriptionRef}
+              />
+            <OptionsContainer 
+              product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
+              setSelectedSize={setSelectedSize} 
+              />
+          </div>
         </div>
+
         <div className="bottom-whitespace"></div>
         <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
       </div>
