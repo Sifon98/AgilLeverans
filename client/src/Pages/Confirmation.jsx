@@ -1,28 +1,24 @@
-// import React from 'react';
-import React, { useContext } from 'react'
-import { NavContext } from "../context/NavContext";
-import { UserContext } from "../context/UserContext"
+import React from 'react';
+import DesktopHeader from '../components/DesktopHeader';
+import MobileHeader from '../components/HomePage/MobileHeader';
 
 
 function Confirmation() {
 
-  const { setNav } = useContext(NavContext);
-  const { user } = useContext(UserContext);
-
   return (
     <div className="conteiner">
-        <div className="header">
-          <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
-          <h1 className ="profileTitle">bopshop.</h1>
-          <button className="shopping-cart-btn">
-            <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
-              {user.cart && user.cart.length > 0 ? (
-                <div className="cart-count">{user.cart.length}</div>
-              ):null}
-          </button>
+
+      <div className="header">
+        <DesktopHeader />
+        <MobileHeader />
+      </div>
+      <div className="bodyConteiner">
+        <div className="textConteiner">
+          <h1 className="thanku-text">Thank you for your purchase!</h1>
+          <p className="order-text">your order was completed successfully.</p>
+          <p className="order-text">you will soon get a confirmation e-mail.</p>
         </div>
-        <h1 className="thanku-text">Thank you for your purchase!</h1>
-        <p className="order-text">Your order was completed successfully.</p>
+      </div>
     </div>
   )
 }

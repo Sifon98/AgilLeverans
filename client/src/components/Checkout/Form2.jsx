@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { NavContext } from "../../context/NavContext";
 
 const formNum = 2;
 
 function Form2({currentForm, setCurrentForm}) {
+
+  const { setNav } = useContext(NavContext);
+
   return (
     <div className="form-box box-3" style={currentForm > formNum ? {maxHeight: "60px"} : null}>
       <div className="hidden-overlay" style={currentForm >= formNum ? {opacity: "0", pointerEvents: "none"} : null}></div>
@@ -12,7 +16,7 @@ function Form2({currentForm, setCurrentForm}) {
       </div>
       <button 
         className="continue-btn" 
-        onClick={() => setCurrentForm(formNum + 1)}
+        onClick={() => setNav({path: "/confirmation", direction: 1})}
         >
         <span>Confirm Purchase.</span>
         <i className="fas fa-arrow-right"></i>
