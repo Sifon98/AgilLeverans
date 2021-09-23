@@ -21,6 +21,7 @@ import Product from './Pages/Product'
 import Checkout from './Pages/Checkout'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Shoppingcart from './Pages/Shoppingcart';
+import Confirmation from './Pages/Confirmation';
 
 function App() {
 
@@ -96,6 +97,7 @@ function App() {
                     <PrivateRoute path="/products/:id" component={Product} user={user} />
                     <PrivateRoute path="/checkout" component={Checkout} user={user} />
                     <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
+                    <PrivateRoute path="/confirmation" component={Confirmation} user={user} />
                   </Switch>
                  </CSSTransition>
                </TransitionGroup>
