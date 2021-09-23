@@ -20,14 +20,14 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     <li id={2} onClick={chooseCategory} className="text">Shoes</li>
                     <div className="divider" />
                     <div className="helper">
-                    {products[0] && products[0].colors.map(Color => (
+                    {products && products[0] && products[0].colors.map(Color => (
                     <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
                         <div className="selected-color" style={color === Color.name ? null : {display: "none"}}>
                         <i className="fas fa-check"></i>
                         </div>
                     </li>
                     ))}
-                    {products[0] && products[0].sizes.map(Sizes => (
+                    {products && products[0] && products[0].sizes.map(Sizes => (
                     <li id={Sizes} key={Sizes} onClick={chooseSize} className={`choose-size ${Sizes === size ? "selected-size" : ""}`}>{Sizes}</li>
                     // <li key={size} className={`size-btn ${selectedSize === size ? "selected" : ""}`} onClick={() => setSelectedSize(size)}>{size}</li>
                     ))}

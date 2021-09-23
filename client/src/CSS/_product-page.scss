@@ -210,14 +210,44 @@
 
 
 @media all and (min-width: 1024px) {
-  .product-page .content-wrapper .image-container img {
-    width: 50%;
-    object-fit: cover;
+
+  .product-page .content-wrapper {
+    max-width: 950px;
+    background-color: white;
   }
+  .product-page .content-wrapper .wrapper {
+    border-top: none;
+  }
+
+  .desktop-wrapper {
+    display: flex;
+    margin-top: 60px;
+    border-top: 3px solid var(--yellow);
+  }
+  .image-container button {
+    display: none !important;
+  }
+
 }
+
+
+
+// @media all and (min-width: 1024px) {
+//   .product-page .content-wrapper .image-container img {
+//     width: 50%;
+//     object-fit: cover;
+//   }
+// }
 
 @media all and (min-width: 360px) {
   .product-page .content-wrapper .image-container img {
     object-fit: contain;
+  }
+}
+
+@media all and (max-width: 1200px) and (min-width: 1024px) {
+  .product-page .content-wrapper {
+    max-width: 900px;
+    left: 40px
   }
 }

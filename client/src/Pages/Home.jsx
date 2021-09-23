@@ -6,8 +6,8 @@ import ListProducts from '../components/HomePage/ListProducts'
 import { NavContext } from "../context/NavContext";
 import { UserContext } from "../context/UserContext";
 import LoginHome from "../components/HomePage/LoginHome"
-import SideMenu from "../components/HomePage/SideMenu"
-import DesktopHeader from '../components/HomePage/DesktopHeader';
+import SideMenu from "../components/SideMenu"
+import DesktopHeader from '../components/DesktopHeader';
 import MobileHeader from '../components/HomePage/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
 import RegisterHome from '../components/HomePage/RegisterHome';
@@ -168,13 +168,13 @@ function Home() {
   
   return (
     <div className="page" style={{overflowY: "scroll"}}>
-      <div className="header">
+      {/* <div className="header"> */}
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
           chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color}/>
         <DesktopHeader popupLoginFunc={popupLoginFunc} loggedIn={loggedIn} />
         <MobileHeader />
-      </div>
+      {/* </div> */}
       {/* Buttons that sort via categories or gender */}
       <SortingButtons toggleDropdown={toggleDropdown} toggleDropdownFilter={toggleDropdownFilter} dropdown={dropdown} 
         chooseCategory={chooseCategory} category={category} dropdownFilter={dropdownFilter} chooseFilter={chooseFilter} products={products}
