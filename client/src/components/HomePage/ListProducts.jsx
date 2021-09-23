@@ -3,6 +3,7 @@ import ProductHTML from './Product'
 
 function ListProducts({categoryCheck, products, gender, category, color, colorCheck, size, sizeCheck}) {
     const [double, setDouble] = useState([]);
+    const [hasLoaded, setHasLoaded] = useState([])
 
     const checkDouble = () => {
         if (colorCheck == true && sizeCheck == true) {
@@ -15,10 +16,15 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
     useEffect(() => checkDouble(), [sizeCheck, colorCheck]);
 
     var i = 0
+    var test = false
 
     const plus = () => {
         i++
     } 
+
+    const zero = () => {
+        test = true
+    }
 
     return (
     <>
@@ -30,7 +36,7 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
                     Product.colors.some(Color => Color.name == color) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null :
                 sizeCheck ? 
                     Product.sizes.some(Size => Size === size) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null :
-                [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null : null
+                [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null : [null, zero()]
             ))
             : products.map(Product => (
                 Product.gender == gender ? 
@@ -38,10 +44,10 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
                     Product.colors.some(Color => Color.name == color) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null :
                 sizeCheck ? 
                     Product.sizes.includes(size) ? [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null : 
-                    [<ProductHTML key={Product._id} Product={Product}/>, plus()] : null
+                    [<ProductHTML key={Product._id} Product={Product}/>, plus()] : [null, zero()]
             ))
         }
-        {i == 0 && <p className="no-results">No results matching your search</p>}
+        {test && i == 0 && <p className="no-results">No results matching your search</p>}
     </>
     )
 }

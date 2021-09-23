@@ -19,6 +19,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  // border: 1px solid red;
 }
 
 
@@ -27,8 +28,6 @@ html {
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   background-color: var(--background);
   overflow: var(--overflow) !important;
   // overflow: hidden !important;

@@ -59,20 +59,19 @@ function Product() {
 
   // Set is wishlisted and carted
   useEffect(() => {
+    if(!user) return;
     if(!user.wishlist) return;
     if(!user.cart) return;
 
-    // console.log(user.cart)
-
-    // Get params from url
     const { color, size } = getParams(location);
+
     const isInWishlist = user.wishlist.some(e => e.item === product._id && e.color.name === color && e.size === size);
     const isInCart = user.cart.some(e => e.item === product._id && e.color.name === color && e.size === size);
 
     isInWishlist ? setIsWishlisted(true) : setIsWishlisted(false);
     isInCart ? setIsCarted(true) : setIsCarted(false);
 
-  }, [product, user, location.search]);
+  }, [product, location.search]);
 
   const handleToggleWishlist = () => {
     // Submit to server
@@ -93,7 +92,17 @@ function Product() {
 
     // Inline && and Ternary operator to see what we should send to server,
     // We have 4 Possibilities: POST - Wishlist | DELETE - Wishlist | POST - Cart | DELETE - Cart
-    const res = await fetch(`/api/saved-products/${product._id}?type=${type}`, {
+    const { color, size } = getParams(location);
+    let productId = null;
+    if (type === "wishlist" && isWishlisted) {
+      productId = user.wishlist.find(x => x.item === product._id && x.color.name === color && x.size === size)._id;
+    }
+    if (type === "cart" && isCarted) {
+      productId = user.cart.find(x => x.item === product._id && x.color.name === color && x.size === size)._id;
+    }
+    
+
+    const res = await fetch(`/api/saved-products/${productId || product._id}?type=${type}`, {
       ...(type === "wishlist" && {method: isWishlisted ? "DELETE" : "POST"}),
       ...(type === "cart" && {method: isCarted ? "DELETE": "POST"}),
       headers: {
@@ -103,8 +112,6 @@ function Product() {
       body: JSON.stringify({color: selectedColor, size: selectedSize})
     })
     const data = await res.json();
-
-    console.log(data.cart)
 
     setUser({
       ...user,
@@ -136,7 +143,7 @@ function Product() {
       toast.success("Added item to wishlist");
       setIsWishlisted(true);
     };
-    
+    setIsWishlisted(bool => !bool);
     // Unfocuses heart to remove the "clicked down" animation
     setTimeout(() => focusRef.current.focus(), 250);
   }
@@ -144,15 +151,20 @@ function Product() {
   const handleSubmitCartUI = () => {
     if(isCarted) {
       toast("Removed item from cart");
-      setIsCarted(false);
     } else {
       toast.success("Added item to cart");
-      setIsCarted(true);
     }
+
+    setIsCarted(bool => !bool);
   }
+
+  useEffect(() => {
+    console.log(isCarted);
+  }, [isCarted])
 
   return (
     <div className="product-page page">
+      <div className="content-wrapper">
         <ToastContainer 
           position="top-center" 
           autoClose={2500} 
@@ -175,6 +187,7 @@ function Product() {
         </div>
         <div className="bottom-whitespace"></div>
         <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
+      </div>
     </div>
   )
 }

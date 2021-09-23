@@ -77,6 +77,31 @@ router.get("/saved-products", async (req, res, next) => {
 });
 
 
+// Increment or Decrement item from wishlist || shopping-cart
+router.post("/saved-products/count/:id", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const productId = req.params.id;
+    const { type, count } = req.query; // type should be "wishlist" or "cart"
+
+    await User.findOneAndUpdate(
+      { _id: userId},
+      {
+        $set: {
+          "cart.$[elem].count": count
+        }
+      },
+      { arrayFilters: [{ "elem._id": productId }]}
+    ).populate("cart.item")
+
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err)
+    return next(err);
+  }
+})
+
+
 // Add item to wishlist || shopping-cart
 router.post("/saved-products/:id", async (req, res, next) => {
   try {
@@ -90,9 +115,10 @@ router.post("/saved-products/:id", async (req, res, next) => {
       item: productId,
       color: { name: color.name, hex: color.hex },
       size,
+      count: 1
     }
 
-    await User.findOneAndUpdate(
+    const user = await User.findOneAndUpdate(
       { _id: userId }, 
       {
         $addToSet: {
@@ -100,20 +126,10 @@ router.post("/saved-products/:id", async (req, res, next) => {
           ...(type === "cart" && {cart: productInfo})
         },
       },
+      {new: true}
     );
 
-    let wishlist = null;
-    let cart = null;
-    if(type === "wishlist") {
-      wishlist = [...req.user.wishlist];
-      wishlist.push(productInfo);
-    }
-    if(type === "cart") {
-      cart = [...req.user.cart];
-      cart.push(productInfo);
-    }
-
-    res.send({wishlist, cart});
+    res.send({wishlist: user.wishlist, cart: user.cart});
 
   } catch (err) {
     return next(err);
@@ -123,29 +139,23 @@ router.post("/saved-products/:id", async (req, res, next) => {
 });
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
+  console.log("DELETE")
   try {
     const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
+
+    console.log(productId)
   
-    await User.findByIdAndUpdate(userId, {
+    const user = await User.findByIdAndUpdate(userId, {
       $pull: {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
-    });
+    }, {new: true}).populate("cart.item");
 
-    let wishlist = null;
-    let cart = null;
-    if(type === "wishlist") {
-      wishlist = req.user.wishlist.filter(x => x._id.toString() === productId)[0];
-    }
-    if(type === "cart") {
-      cart = req.user.cart.filter(x => x._id.toString() === productId)[0];
-    }
-
-    res.send({wishlist, cart});
+    res.send({wishlist: user.wishlist, cart: user.cart});
   } catch(err) {
     next(err);
   }
@@ -156,17 +166,17 @@ router.delete("/saved-products/:id", async (req, res, next) => {
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
   try {
-    const {wishlist} = req.user;
+    // const {wishlist} = req.user;
     
     let products = await Product.find();
     products = JSON.parse(JSON.stringify(products));
 
-    const updateProducts = products.map(prod => {
-      if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
-      return {...prod, isWishlisted: false}
-    })
+    // const updateProducts = products.map(prod => {
+    //   if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
+    //   return {...prod, isWishlisted: false}
+    // })
 
-    res.json({products: updateProducts});
+    res.json({products});
   } catch(err) {
     return next(err);
   }

@@ -5,7 +5,7 @@
     height: 100%;
     width: 100%;
     object-fit:cover;
-    margin:0px;
+    margin: 0px;
     background-color: black !important;
 
     a { 
@@ -42,12 +42,13 @@
         justify-content: space-between;
 
         .leftSide {
+            cursor: pointer;
             background-color: #EDECEA;
             display: flex;
             height: 100%;
             width: 50%;
             flex-direction: row;
-            justify-content: start;
+            justify-content: center;
             background-size: cover;
             transition: 200ms;
             overflow: hidden;
@@ -88,19 +89,17 @@
             }
 
             .menImage {
+                margin-top: 90px;
                 transition: 200ms;
-                margin-top: 100px;
-                width: 100%;
+                width: auto;
                 height: 100%;
-                transform: scale(3.6);
-                object-fit: contain;
+                transform: scale(1);
             } 
             
             @media screen and (min-width: 600px) { 
                 .menImage {
                     transition: 200ms;
-                    margin-top: 100px;
-                    width: 100%;
+                    width: auto;
                     height: 100%;
                     transform: scale(1.2);
                     object-fit: contain;
@@ -115,7 +114,7 @@
                     height: 100%;
                     width: 50%;
                     flex-direction: row;
-                    justify-content: start;
+                    justify-content: center;
                     background-size: cover;
                     transition: 200ms;
                     overflow: hidden;
@@ -130,12 +129,13 @@
             }
         
         .rightSide {
+            cursor: pointer;
             background-color: #E9E8E6;
             display: flex;
             height: 100%;
             width: 50%;
             flex-direction: row;
-            justify-content: end;
+            justify-content: center;
             overflow: hidden;
             border-left: 1px solid white;
             transition: 200ms;
@@ -174,28 +174,26 @@
             }
             
             .womenImage {
-                margin-top: 100px;
-                width: 100%;
+                margin-top: 90px;
+                width: auto;
                 height: 100%;
-                transform: scale(3.4);
-                margin-right: -24px;
-                margin-top: 70px;
-                object-fit: contain;
+                transform: scale(1);
+                margin-right: -74px;
                 transition: 200ms;
             }
 
             @media screen and (min-width: 600px) { 
                 .womenImage {
-                    margin-top: 100px;
-                    width: 100%;
+                    width: auto;
                     height: 100%;
                     transform: scale(1.2);
-                    margin-right: -24px;
-                    margin-top: 70px;
+                    margin-right: -4px;
                     object-fit: contain;
                     transition: 200ms;
                 } 
             } 
+
+          
         }
 
         @media screen and (min-width: 600px) { 
@@ -205,7 +203,7 @@
                 height: 100%;
                 width: 50%;
                 flex-direction: row;
-                justify-content: end;
+                justify-content: center;
                 overflow: hidden;
                 border-left: 1px solid white;
                 transition: 200ms;

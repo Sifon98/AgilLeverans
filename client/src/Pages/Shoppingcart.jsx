@@ -25,8 +25,9 @@ function Shoppingcart() {
         // (each product has an unique color, and an image corresponding to each color)
         let total = 0;
         products = products.map(x => {
-            total += x.item.price;
-            return {...x, imageIndex: x.item.colors.findIndex(c => c.name === x.color.name)}
+            const countPrice = x.item.price * x.count;
+            total += countPrice;
+            return {...x, countPrice: parseFloat(countPrice.toFixed(2)), imageIndex: x.item.colors.findIndex(c => c.name === x.color.name)}
         })
 
         setProducts(products);
@@ -34,7 +35,7 @@ function Shoppingcart() {
     }
 
     const removeItem = async (id) => {
-        console.log("DELETE")
+
         const res = await fetch(`/api/saved-products/${id}?type=cart`, {
             method: "DELETE",
             headers: {
@@ -42,15 +43,16 @@ function Shoppingcart() {
                 "Content-Type": "application/json"
             }
         })
-        const data = await res.json();
+        await res;
 
-        // Update Products
-        let UpdateProducts = [...products];
-        UpdateProducts = UpdateProducts.filter(x => x._id !== data.cart._id);
+        // Update products
+        const UpdateProducts = [...products].filter(x => x._id !== id);
 
-        // Update Price
+        // Update total price
         let total = 0;
-        UpdateProducts.forEach(x => total += x.item.price)
+        UpdateProducts.forEach((x) => {
+            total += x.item.price * x.count
+        })
 
         // Set State
         setProducts(UpdateProducts);
@@ -59,6 +61,32 @@ function Shoppingcart() {
             ...user,
             cart: UpdateProducts
         })
+    }
+
+
+
+    const handleIncrementDecrement = async (id, count, currentPrice, increment) => {
+        if(!increment && count === 1) return removeItem(id);
+
+        increment ? count++ : count--;
+        const UpdateProducts = [...products].map(x => {
+            if(x._id === id) {
+                return {...x, countPrice: parseFloat((x.item.price * count).toFixed(2)), count}
+            } 
+            return {...x}
+        })
+        setProducts(UpdateProducts);
+        const total = increment ? parseFloat(totalPrice) + currentPrice : parseFloat(totalPrice) - currentPrice;
+        console.log(total)
+        setTotalPrice(total.toFixed(2));
+
+        await fetch(`/api/saved-products/count/${id}?type=cart&count=${count}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          })
     }
 
     return (
@@ -80,13 +108,18 @@ function Shoppingcart() {
                             <img className="itemPic" src={x.item.images[x.imageIndex]}></img>
                             <div className="product-info-wrapper">
                                 <p className="cartText">{x.item.name}</p>
-                                <p className="cartRef">ref: {uuidv4().substring(0, 8)}</p>
+                                <p className="cartRef">ref: {x._id.substring(0, 8)}</p>
                                 <div className="circle-box-wrapper">
                                     <div className="color-box" style={{background: x.color.hex}}></div>
                                     <div className="size-box">{x.size}</div>
                                 </div>
                             </div>
-                            <p className="priceTag">${x.item.price}</p>
+                            <div className="add-remove-box">
+                                <div className="increment-btn" onClick={() => handleIncrementDecrement(x._id, x.count, x.item.price, 1)}><i className="fas fa-plus"></i></div>     
+                                <div className="item-count">{x.count}</div>
+                                <div className="decrement-btn" onClick={() => handleIncrementDecrement(x._id, x.count, x.item.price, 0)}><i className="fas fa-minus"></i></div>                
+                            </div>
+                            <p className="priceTag">${x.countPrice}</p>
                             <div className="remove-item-btn" onClick={() => removeItem(x._id)}>
                                 <svg width="12" height="12" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
