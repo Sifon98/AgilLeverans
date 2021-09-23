@@ -48,6 +48,7 @@ function Login() {
       <form className="formLogin">
         <input
           className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
+          autoComplete="off"
           type="text"
           name="username"
           placeholder="username"
