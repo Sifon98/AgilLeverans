@@ -36,7 +36,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
     }
 
     const removePopup = () => {
-        setPopupLogin(false)
+        setPopupRegister(false)
     }
 
     const handleSubmit = async (e) => {
@@ -97,8 +97,8 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
         <>
             {popupRegister &&
             <div className="popupContainer">
-                <div className="box">
-                    <h1>login.</h1>
+                <div className="box" ref={Ref}>
+                    <h1>register.</h1>
                     <form className="formRegister">
                         <input
                             className={`inputRegister ${ usernameError && "inputRegisterError"}`}
@@ -145,6 +145,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
                     </form>
                 </div>
             </div>}
+            {popupRegister ? user != null ? removePopup() : null : null}
         </>
     )
 }

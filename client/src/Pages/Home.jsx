@@ -182,7 +182,8 @@ function Home() {
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
       <div className="home-container">
-          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} />
+          <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} 
+          colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} loggedIn={loggedIn} popupLoginFunc={popupLoginFunc} />
       </div>
       <button className={`${ visible ? "visible" : "invisible"}`} onClick={scrollToTop}>
         <i className="fas fa-chevron-up"></i>

@@ -12,16 +12,16 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
             <div className="desktopHeader">
                 <img src={logoLarge} />
                 <div className="helper">
-                    <div className="icons">
-                    <i className="fas fa-user-circle" onClick={loggedIn ? () => setNav({path: "/profile", direction: 1}) : () => popupLoginFunc()} ></i>
+                    <div className="icons" onClick={loggedIn ? () => setNav({path: "/profile", direction: 1}) : () => popupLoginFunc()}>
+                        <i className="fas fa-user-circle"></i>
                     </div>
-                    <div className="icons">
-                    <button className="shopping-cart-btn">
-                    <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
-                        {user && user.cart && user.cart.length > 0 ? (
-                        <div className="cart-count-home">{user.cart.length}</div>
-                        ):null}
-                    </button>
+                    <div className="icons"  onClick={loggedIn ? () => setNav({path: "/cart", direction: 1}) : () => popupLoginFunc()}>
+                        <button className="shopping-cart-btn">
+                            <i className="fas fa-shopping-bag"></i>
+                                {user && user.cart && user.cart.length > 0 ? (
+                                    <div className="cart-count-home">{user.cart.length}</div>
+                                ):null}
+                        </button>
                     </div>
                 </div>
             </div>

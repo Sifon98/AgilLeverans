@@ -66,9 +66,6 @@
     }
 
     .menu {
-        animation-name: menu-anim;
-        animation-duration: 0.5s;
-
         position: fixed;
         width: 300px;
         height: 100%;
@@ -185,19 +182,6 @@
             font-size: 22px;
         }
     }
-
-    @keyframes menu-anim {
-        0% {
-            opacity: 0;
-        }
-        50% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-    
 }
 
 @media(max-width: 1023px) {
@@ -220,6 +204,7 @@
             right: 35px;
 
             .icons {
+                cursor: pointer;
                 margin-right: 10px;
                 display: flex;
                 align-items: center;
@@ -229,6 +214,7 @@
                 background-color: #FFF06B;
                 
                 i {
+                    cursor: pointer;
                     font-size: 38px;
                 }
             }
@@ -976,7 +962,7 @@
                 height: 20px;
             }  
     
-            .inputRegister::placeholder{
+            .inputRegister::placeholder{ 
                 color: black;
                 font-size: 120%;
                 font-weight: 700;
