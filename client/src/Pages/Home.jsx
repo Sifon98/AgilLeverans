@@ -149,7 +149,8 @@ function Home() {
     setSize("");
   }
 
-  const popupLoginFunc = () => {
+  const popupLoginFunc = (e) => {
+    e.stopPropagation();
     setPopupLogin(true)
   }
 
