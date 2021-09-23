@@ -369,6 +369,7 @@
             width: 100%; 
 
             .wishlist-btn {
+                cursor: pointer;
                 position: relative;
                 display: grid;
                 place-items: center;
@@ -675,6 +676,7 @@
             }
     
             .loginButton{
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -702,6 +704,7 @@
             }
     
             .registerLink {
+                cursor: pointer;
                 text-decoration: underline 2px;
                 margin-top: 2px;
                 text-align: center;
@@ -755,6 +758,7 @@
             }
     
             .registerButton{
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -782,6 +786,7 @@
             }
     
             .loginLink {
+                cursor: pointer;
                 text-decoration: underline 2px;
                 margin-top: 2px;
                 text-align: center;

@@ -1,12 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 // import logoLarge from '../../img/logo-large.svg'
 import logoLarge from "../img/logo-large.svg";
 import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
+import CartDropdown from './CartDropdown';
 
 function DesktopHeader({popupLoginFunc, loggedIn}) {
     const { user } = useContext(UserContext);
     const { setNav } = useContext(NavContext);
+
+    const [cartToggle, setCartToggle] = useState(false);
+
+    const cartDropdown = () => {
+        if(cartToggle == true){
+            setCartToggle(false)
+        }else{
+            setCartToggle(true)
+        }
+    }
 
     return (
         <>
@@ -16,7 +27,7 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
                     <div className="icons" onClick={loggedIn ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>
                     </div>
-                    <div className="icons"  onClick={loggedIn ? () => setNav({path: "/cart", direction: 1}) : (e) => popupLoginFunc(e)}>
+                    <div className="icons"  onClick={loggedIn ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
                         <button className="shopping-cart-btn">
                             <i className="fas fa-shopping-bag"></i>
                                 {user && user.cart && user.cart.length > 0 ? (
@@ -24,6 +35,7 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
                                 ):null}
                         </button>
                     </div>
+                    {cartToggle && <CartDropdown /> }
                 </div>
             </div>
         </>
