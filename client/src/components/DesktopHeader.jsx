@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, useContext } from 'react'
 // import logoLarge from '../../img/logo-large.svg'
 import logoLarge from "../img/logo-large.svg";
 import { UserContext } from "../context/UserContext";
@@ -35,7 +35,7 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
                                 ):null}
                         </button>
                     </div>
-                    {cartToggle && <CartDropdown /> }
+                    <CartDropdown cartToggle={cartToggle} setCartToggle={setCartToggle}/>
                 </div>
             </div>
         </>
