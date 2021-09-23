@@ -8,8 +8,8 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
         useEffect(() => {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    if(checkboxRef.current.checked == true){
-                        checkboxRef.current.checked = false
+                    if(document.getElementById("test").checked == true){
+                        document.getElementById("test").checked = false
                     }
                 }
             }
@@ -27,13 +27,13 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
     return (
         <>
             <div className="menuToggle">
-                <input type="checkbox" ref={checkboxRef}/>
+                <input id="test" type="checkbox"/>
                 {/* Hamburger menu */}
                 <span></span>
                 <span></span>
                 <span></span>
                 {/* List when menu is opened */}
-                <ul className="menu">
+                <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
                     <div className="divider" />
