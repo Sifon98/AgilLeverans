@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { NavContext } from "../context/NavContext";
 
+
 function Profile() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
@@ -29,6 +30,7 @@ function Profile() {
   const [password, setPassword] = useState("");
   const [disableSaveButton, setdisableSaveButton] = useState(true);
   const buttonText = (isDisabled) => isDisabled ? 'Save.' : 'Edit.';
+
   
   const handleEdit = async () => {
     const res = await fetch("/api/register", {
@@ -73,6 +75,7 @@ function Profile() {
       : <button onClick={(e) => {
         setIsDisabledPassword(boolean => !boolean), e.preventDefault();
       }}>{buttonText(isDisabledPassword)}</button>
+      
     }
   </>;
 
@@ -130,9 +133,8 @@ function Profile() {
               setIsDisabledPassword(boolean => !boolean), e.preventDefault();
             }}>{buttonText(isDisabledPassword)}</button>
           }
-    
+          
         </form>
-      
       </div>
 
       <footer className="signoutContainer">
@@ -141,6 +143,7 @@ function Profile() {
     </div>
   )
 }
+
 
 
 export default Profile
