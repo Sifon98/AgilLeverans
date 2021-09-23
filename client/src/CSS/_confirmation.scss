@@ -5,9 +5,8 @@
 
     .header {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-
+        flex-direction: row;
+        width: 100%;
         
         .profileTitle {
             display: flex;
@@ -27,7 +26,6 @@
         font-size: 200%;
         margin-top: 50px;
         align-self: center;
-
     }
 
     .order-text {
