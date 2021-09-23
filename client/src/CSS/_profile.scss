@@ -100,7 +100,7 @@
         width: 90%;
         height: auto;
         position: absolute;
-        margin-top: 10%;
+        margin-top: 25%;
         left:5%;
         display: flex;
         justify-content: center;
@@ -183,6 +183,11 @@
               height: 50px;
               width: 100px;
               margin: 10px auto 0 auto;
+            }
+            .newPassword {
+                color:#8F8F8F;
+                font-size: 0.8rem;
+                padding-left: 10px;
             }
 
         }
