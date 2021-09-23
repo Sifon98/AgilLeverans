@@ -56,6 +56,8 @@ function CartDropdown({cartToggle, setCartToggle}) {
         <>
             {cartToggle && <div className="cartDropdownContainer" ref={Ref}> 
                 <div className="triangle"/>
+                {/* Only here so that the closing function works properly */}
+                <div className="randomBox" onClick={() => removeCart()}/>
                 <div className="itemContainerCart">
                         {
                             products && products.map(x => (

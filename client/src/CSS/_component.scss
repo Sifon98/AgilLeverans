@@ -310,6 +310,15 @@
         
         border-bottom: 30px solid rgb(255, 255, 255);
     }
+    
+    .randomBox {
+        cursor: pointer;
+        position: relative;
+        margin: -80px 0px 0px 310px;
+        width: 60px; 
+        height: 60px; 
+        background-color: rgba(0, 0, 0, 0);
+    }
 
     .itemContainerCart {
         background-color: #FFFFFF;
