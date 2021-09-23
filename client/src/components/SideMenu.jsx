@@ -1,6 +1,11 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
+import { NavContext } from '../context/NavContext'
 
-function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color }) {
+function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow }) {
+
+    const { setNav } = useContext(NavContext);
+
+
     const checkboxRef = useRef(null);
     useOutsideAlerter(checkboxRef);
 
@@ -27,11 +32,17 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
     return (
         <>
             <div className="menuToggle">
-                <input id="test" type="checkbox"/>
-                {/* Hamburger menu */}
-                <span></span>
-                <span></span>
-                <span></span>
+            {
+                    backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
+                        <>
+                            <input type="checkbox" />
+                            {/* Hamburger menu */}
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </>
+                    )
+                }
                 {/* List when menu is opened */}
                 <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>

@@ -15,12 +15,16 @@ import DesktopHeader from '../components/DesktopHeader';
 function Product() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
-  const { setNav } = useContext(NavContext);
+  const { nav, setNav } = useContext(NavContext);
 
   const descriptionRef = useRef(null);
   const focusRef = useRef(null);
 
+  const [reloadFetch, setReloadFetch] = useState(false);
+  const [showProdInfo, setShowProdInfo] = useState(false);
+
   const [product, setProduct] = useState({});
+  const [moreProducts, setMoreProducts] = useState([]);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [descHeight, setDescHeight] = useState(1000);
 
@@ -38,11 +42,24 @@ function Product() {
     const getProduct = async () => {
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
-      console.log(data.product)
       setProduct(data.product);
+      setMoreProducts(data.randomProducts);
       setCurrentProductOptions(color, size, data.product);
     }
     getProduct();
+  }, [reloadFetch])
+
+  useEffect(() => {
+    if(nav.path.includes("products")) {
+      setReloadFetch(bool => !bool);
+      window.scrollTo({top:0,left:0,behavior: 'smooth'});
+    }
+  }, [nav])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowProdInfo(true);
+    }, 100)
   }, [])
 
   // Set Description's max-height
@@ -103,7 +120,6 @@ function Product() {
       productId = user.cart.find(x => x.item === product._id && x.color.name === color && x.size === size)._id;
     }
     
-
     const res = await fetch(`/api/saved-products/${productId || product._id}?type=${type}`, {
       ...(type === "wishlist" && {method: isWishlisted ? "DELETE" : "POST"}),
       ...(type === "cart" && {method: isCarted ? "DELETE": "POST"}),
@@ -164,6 +180,11 @@ function Product() {
     console.log(isCarted);
   }, [isCarted])
 
+  const popupLoginFunc = (e) => {
+    e.stopPropagation();
+    setPopupLogin(true)
+  }
+
   return (
     <div className="product-page page">
       <ToastContainer 
@@ -173,22 +194,39 @@ function Product() {
         pauseOnHover={false}
         pauseOnFocusLoss={false}
       />      
-      <SideMenu />
+      <SideMenu backArrow="/home" />
       <DesktopHeader />
       <div className="content-wrapper">
         <div className="desktop-wrapper">
-          <ImageContainer 
-            product={product} isWishlisted={isWishlisted} handleToggleWishlist={handleToggleWishlist} focusRef={focusRef} selectedColor={selectedColor}
-            />
-          <div className="wrapper">
-            <InfoContainer 
-              product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 
-              descriptionRef={descriptionRef}
+          <div className="section">
+            <ImageContainer 
+              product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
               />
-            <OptionsContainer 
-              product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
-              setSelectedSize={setSelectedSize} 
-              />
+            <div className="wrapper" style={showProdInfo ? {opacity: "1"} : null}>
+              <InfoContainer 
+                product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 
+                descriptionRef={descriptionRef}
+                />
+              <OptionsContainer 
+                product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
+                setSelectedSize={setSelectedSize} 
+                />
+              <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
+              <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
+                <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
+              </button>
+            </div>
+          </div>
+
+          <div className="others-also-bought">
+            <label>others also bought.</label>
+            <ul>
+              {moreProducts && moreProducts.map(x => (
+                <li key={x._id} onClick={() => setNav({path: `/products/${x._id}`, direction: 1})}>
+                  <img src={x.images[0]} alt="" />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

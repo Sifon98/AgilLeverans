@@ -5,18 +5,13 @@ import { NavContext } from "../../context/NavContext";
 
 
 
-function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef, selectedColor }) {
+function ImageContainer({ product, focusRef, selectedColor}) {
 
   const history = useHistory();
   const { user } = useContext(UserContext);
   const { setNav } = useContext(NavContext);
 
   const [hasLoaded, setHasLoaded] = useState(false);
-
-
-  useEffect(() => {
-    console.log(user)
-  })
 
 
   return (
@@ -36,9 +31,9 @@ function ImageContainer({ product, isWishlisted, handleToggleWishlist, focusRef,
         ):null}
         <i className="fas fa-shopping-bag"></i>
       </button>
-      <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
+      {/* <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
         <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
-      </button>
+      </button> */}
       <button style={{height: "0", width: "0", opacity: "0", position: "absolute"}} ref={focusRef}></button>
     </div>
   )

@@ -4,6 +4,7 @@ const passport = require("passport");
 const User = require("../models/user");
 const Product = require("../models/product");
 const router = express.Router();
+const {products} = require("../utils/products")
 
 const {validateQuery} = require("../utils/validation")
 
@@ -186,12 +187,19 @@ router.get("/products/:id", async (req, res, next) => {
   try {
     const productId = req.params.id;
     const product = await Product.findById(productId);
-    res.json({product});
+    const randomProducts = await findRandomProducts(3);
+    res.json({product, randomProducts});
   } catch(err) {
+    console.log(err)
     return next(err);
   }
-
 });
+
+const findRandomProducts = async (count) => {
+  const skip = Math.floor(Math.random() * (products.length - count));
+  const randomProducts = await Product.find().skip(skip).limit(count);
+  return randomProducts;
+}
 
 // router.route("/").get((req, res) => {
 //   // Get build folder
