@@ -1,0 +1,38 @@
+.conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        
+        .profileTitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:#FFF06B;
+            width: 155px;
+            height: 42px;
+            padding: 2px;
+            font-size: 1.6rem;
+            font-family: 'Inter', sans-serif;
+        }
+    }
+
+    .thanku-text{
+        text-align: center;
+        font-size: 200%;
+        margin-top: 50px;
+        align-self: center;
+    }
+
+    .order-text {
+        font-size: 130%;
+        font-weight: 700;
+        margin-top: 50px;
+    }
+
+}
+    

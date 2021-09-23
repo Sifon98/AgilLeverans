@@ -59,6 +59,7 @@ function Product() {
 
   // Set is wishlisted and carted
   useEffect(() => {
+    if(!user) return;
     if(!user.wishlist) return;
     if(!user.cart) return;
 
@@ -163,6 +164,7 @@ function Product() {
 
   return (
     <div className="product-page page">
+      <div className="content-wrapper">
         <ToastContainer 
           position="top-center" 
           autoClose={2500} 
@@ -185,6 +187,7 @@ function Product() {
         </div>
         <div className="bottom-whitespace"></div>
         <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
+      </div>
     </div>
   )
 }

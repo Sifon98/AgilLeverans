@@ -2,13 +2,13 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { isMobile } from "../../../server/utils/isMobile";
 
-function DefaultRoute({ component: Component, user, ...rest }) {
+function AuthRoute({ component: Component, user, ...rest }) {
   return (
     <Route
       {...rest}
       render={(props) =>
-        isMobile() && !user ? (
-          <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+        !isMobile() || user ? (
+          <Redirect to={{ pathname: "/landing", state: { from: props.location } }} />
         ) : (
           <Component {...props} />
         )
@@ -17,4 +17,4 @@ function DefaultRoute({ component: Component, user, ...rest }) {
   );
 }
 
-export default DefaultRoute;
+export default AuthRoute;

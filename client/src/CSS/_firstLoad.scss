@@ -1,33 +1,29 @@
-.conteinerFirstLoad{
+.containerFirstLoad{
     display: flex;
     flex-direction: column;
-    background-color: #F4F4F4;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    text-align: center;
 
     .yellowSide{
         width: 13px;
-        height: 812px;
+        height: 100%;
         background-color: #FFF06B;
         position: fixed;
         left: 0;
     }
-    
-    .head{
-        background-color: #FFF06B;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 230px;
-        height: 60px;
 
-        .h1name{
-            font-family: 'Inter', sans-serif;
-            font-size: 230%;
-            font-weight: 900;
-            margin: 5px;
+    @media(min-width: 600px){
+        .yellowSide {
+            width: 73px;
+            height: 100%;
         }
+    }
+    
+    img {
+        height: auto;
+        width: auto;
     }
 
     .welcomeText{
@@ -82,4 +78,10 @@
         font-size: 100%;
     }
 
+    @media(max-width: 800px){
+        img {
+            height: 80px;
+            width: auto;
+        }
+    }
 }

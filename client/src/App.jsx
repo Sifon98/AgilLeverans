@@ -1,32 +1,25 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import Home from "./Pages/Home"
-import FirstLoad from "./Pages/FirstLoad"
-import Login from "./Pages/Login"
-import Register from "./Pages/Register"
-import Landing from "./Pages/Landing"
-import Profile from "./Pages/Profile"
-import Wishlist from "./Pages/Wishlist"
-import PrivateRoute from "./components/PrivateRoute";
-import DefaultRoute from "./components/DefaultRoute";
 import './CSS/style.min.css'
-import {
-  Switch,
-  Route
-} from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { NavContext } from "./context/NavContext";
 import { useHistory, useLocation } from "react-router-dom";
 import Loading from './components/Loading'
-import Product from './Pages/Product'
-import Checkout from './Pages/Checkout'
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Shoppingcart from './Pages/Shoppingcart';
+import { isMobile } from '../../server/utils/isMobile';
+import Routes from './components/Routes'
+import RoutesAnimation from './components/RoutesAnimation'
+
+const setRoutes = (user) => {
+  return isMobile() ? (
+    <RoutesAnimation user={user}></RoutesAnimation>
+  ) : (
+    <Routes user={user}></Routes>
+  )
+}
 
 function App() {
 
   const [nav, setNav] = useState({path: "/", direction: 0, state: null});
   const history = useHistory();
-  const location = useLocation();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [initialLoad, setInitialLoad] = useState(false);
@@ -46,12 +39,6 @@ function App() {
     setIsLoading(false);
   }
 
-  // useEffect(() => {
-  //   if(user) {
-  //     history.location.key = "LOL" // Change key to invoke animation
-  //   } 
-  // },[user])
-
   useEffect(() => {
     if(!initialLoad) return;
     history.push({
@@ -64,43 +51,7 @@ function App() {
     <NavContext.Provider value={navValue}>
       <UserContext.Provider value={useValue}>
         {!isLoading ? (
-          <Route
-            render={({ location }) => (
-              <TransitionGroup>
-                <CSSTransition
-                  key={location.pathname}
-                  timeout={400}
-                  classNames={nav.direction ? "forward" : "backward"}
-                  onEnter={() => {
-                    document.documentElement.style.setProperty(
-                      "--overflow",
-                      "hidden"
-                    );
-                  }}
-                  onExited={() => {
-                    window.scrollTo(0,0);
-                    document.documentElement.style.setProperty(
-                      "--overflow",
-                      "unset"
-                    );
-                  }}
-                >
-                  <Switch location={location} key={location.pathname}>
-                    <DefaultRoute exact path="/" component={FirstLoad} user={user} />
-                    <DefaultRoute path="/login" component={Login} user={user} />
-                    <DefaultRoute path="/register" component={Register} user={user} />
-                    <PrivateRoute path="/home" component={Home} user={user} />
-                    <PrivateRoute path="/landing" component={Landing} user={user} />
-                    <PrivateRoute path="/profile" component={Profile} user={user} />
-                    <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
-                    <PrivateRoute path="/products/:id" component={Product} user={user} />
-                    <PrivateRoute path="/checkout" component={Checkout} user={user} />
-                    <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
-                  </Switch>
-                 </CSSTransition>
-               </TransitionGroup>
-              )}
-            />
+          setRoutes(user)
         ) : (
           <Loading />
         )}

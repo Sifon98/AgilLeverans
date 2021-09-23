@@ -77,6 +77,31 @@ router.get("/saved-products", async (req, res, next) => {
 });
 
 
+// Increment or Decrement item from wishlist || shopping-cart
+router.post("/saved-products/count/:id", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const productId = req.params.id;
+    const { type, count } = req.query; // type should be "wishlist" or "cart"
+
+    await User.findOneAndUpdate(
+      { _id: userId},
+      {
+        $set: {
+          "cart.$[elem].count": count
+        }
+      },
+      { arrayFilters: [{ "elem._id": productId }]}
+    ).populate("cart.item")
+
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err)
+    return next(err);
+  }
+})
+
+
 // Add item to wishlist || shopping-cart
 router.post("/saved-products/:id", async (req, res, next) => {
   try {
@@ -90,6 +115,7 @@ router.post("/saved-products/:id", async (req, res, next) => {
       item: productId,
       color: { name: color.name, hex: color.hex },
       size,
+      count: 1
     }
 
     const user = await User.findOneAndUpdate(
@@ -140,17 +166,17 @@ router.delete("/saved-products/:id", async (req, res, next) => {
 router.get("/products", async (req, res, next) => {
   // Get All (or sorted) products logic
   try {
-    const {wishlist} = req.user;
+    // const {wishlist} = req.user;
     
     let products = await Product.find();
     products = JSON.parse(JSON.stringify(products));
 
-    const updateProducts = products.map(prod => {
-      if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
-      return {...prod, isWishlisted: false}
-    })
+    // const updateProducts = products.map(prod => {
+    //   if(wishlist.includes(prod._id)) return {...prod, isWishlisted: true}
+    //   return {...prod, isWishlisted: false}
+    // })
 
-    res.json({products: updateProducts});
+    res.json({products});
   } catch(err) {
     return next(err);
   }
