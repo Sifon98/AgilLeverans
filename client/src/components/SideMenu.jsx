@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { NavContext } from '../context/NavContext'
 
-function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color }) {
+function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow }) {
+
+    const { setNav } = useContext(NavContext);
+
     return (
         <>
-            <div className="menuToggle">
-                <input type="checkbox" />
-                {/* Hamburger menu */}
-                <span></span>
-                <span></span>
-                <span></span>
+            <div className="menuToggle"  >
+                {
+                    backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
+                        <>
+                            <input type="checkbox" />
+                            {/* Hamburger menu */}
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </>
+                    )
+                }
+
                 {/* List when menu is opened */}
                 <ul className="menu">
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
