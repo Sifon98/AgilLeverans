@@ -15,6 +15,7 @@ import Wishlist from '../Pages/Wishlist'
 import Product from '../Pages/Product'
 import Checkout from '../Pages/Checkout'
 import Shoppingcart from '../Pages/Shoppingcart'
+import Confirmation from '../Pages/Confirmation'
 
 
 function Routes({location, user}) {
@@ -30,6 +31,7 @@ function Routes({location, user}) {
       <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
       <PrivateRoute path="/checkout" component={Checkout} user={user} />
       <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
+      <PrivateRoute path="/confirmation" component={Confirmation} user={user} />
     </Switch>
   );
 }
