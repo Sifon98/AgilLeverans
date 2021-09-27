@@ -113,6 +113,22 @@ const tops = [
     ]
     },
     {
+      name: "Coat in Wool Mix",
+      category: 0,
+      gender: 0,
+      price: 69.99,
+      images: [
+        "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F3b%2F2a%2F3b2a09d17c0c8043b371f42d16f547a2d133a0ed.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+        "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fcb%2F48%2Fcb48b1dd24cb06297b5afc82bdf728033496f4b3.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+    ],
+      description: `A single-breasted coat in felted, wool blended quality. The coat has a collar and a blunt stroke. Slanted post pocket on each side. Lined sleeves.`,
+      sizes: ["M", "L", "XL"],
+      colors: [
+        {name: "Black", hex: "#000000"},
+        {name: "White", hex: "#ffffff"},
+      ]
+      },
+    {
     name: "Crew-Neck T-Shirt",
     category: 0,
     gender: 0,
@@ -235,6 +251,28 @@ const tops = [
       ]
       },
       {
+        name: "T-shirt in Wool",
+        category: 0,
+        gender: 1,
+        price: 9.99,
+        images: [
+          "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fe6%2F79%2Fe67920182cd46dbd8c0ac2fca6b20e4944cc3dfe.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+          "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F67%2Fe2%2F67e2028ff0301eafe7e1bc7e95407da80c853813.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+          "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fec%2Ff0%2Fecf05a3f761b580f6e3adb75af32c2e329fb0448.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+          "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb9%2F72%2Fb972801d7a1b7fa940f7c73bf8849f3d59611a35.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+          "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ff5%2F09%2Ff509e661957c5e8f92c3d1f2f824bf8d73b916b7.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      ],
+        description: `A straight cut t-shirt in soft cotton knitwear. The t-shirt has a round neckline with a ribbed cuff and a slightly sloping shoulder.`,
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: [
+          {name: "Black", hex: "#000000"},
+          {name: "White", hex: "#ffffff"},
+          {name: "Gray", hex: "#958a7f"},
+          {name: "Beige", hex: "#f5f5dc"},
+          {name: "Purple", hex: "#5e3a8c"},
+        ]
+        },
+      {
       name: "Turtleneck Sweater",
       category: 0,
       gender: 1,
@@ -341,6 +379,22 @@ const bottoms = [
     ]
     },
     {
+      name: "Cropped Slacks Slim Fit",
+      category: 1,
+      gender: 0,
+      price: 29.99,
+      images: ["https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F64%2F1b%2F641b717334e92a4fa0474777b8e40613bfef35f4.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
+              "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F4f%2F6e%2F4f6e33481e4eea31421276d7f76fa656e60cec99.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+              "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F73%2Fc2%2F73c20f5af6bd24b083f9ef51a6e86b837224c94e.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]"],
+      description: "A pair of cropped slacks in woven quality with press creases. The slack has a hidden husk, hook and button in the waistband. Side pockets and post pockets with button at the back. Fly with zipper. Slim Fit - a fit that is narrow over the thighs and knees. This creates a tailored silhouette.",
+      sizes: ["S", "M", "L", "XL"],
+      colors: [
+        {name: "Gray", hex: "#958a7f"},
+        {name: "Black", hex: "#000000"},
+        {name: "Beige", hex: "#f5f5dc"},
+      ]
+      },
+    {
     name: "Chinos Shorts",
     category: 1,
     gender: 0,
@@ -431,6 +485,26 @@ const bottoms = [
         {name: "Gray", hex: "#958a7f"},
       ]
       },
+      {
+        name: "Wide Twill Pants",
+        category: 1,
+        gender: 1,
+        price: 24.99,
+        images: ["https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F12%2F42%2F1242cccdc6abd22d6489add9f6da04b798416e05.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
+                "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F39%2Fd4%2F39d49e14dbe0ebff6f9af15a97803464b257da05.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
+                "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ff2%2F2a%2Ff22af37d808c299525f50e700edd6eeae638b772.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]", 
+                "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fd5%2F1c%2Fd51cb30cdc6b5a7527bb9116155865d72a70f0bf.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
+                "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F38%2Fe1%2F38e1ca601aecea1c31e3c4303177d2147014fc91.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]"], 
+        description: "A pair of long 5-pocket trousers in stretchy cotton twill. The trousers have a high waist and wide, straight legs. Fly with zipper and button.",
+        sizes: ["S", "M", "L", "XL"],
+        colors: [
+          {name: "Royal Blue", hex: "#20419a"},
+          {name: "Red", hex: "#821d2b"},
+          {name: "Black", hex: "#000000"},
+          {name: "Beige", hex: "#f5f5dc"},
+          {name: "White", hex: "#ffffff"},
+        ]
+        },
       {
       name: "Ribbed Leggings",
       category: 1,
@@ -529,6 +603,35 @@ const shoes = [
     ]
     },
     {
+      name: "Ankle boots",
+      category: 2,
+      gender: 0,
+      price: 399.99,
+      images: [
+        "https://img01.ztat.net/article/spp-media-p1/ce15537ba89738cdaa2af72c0d149dff/9cac2ab3d5474a94837164e99a8ee6ce.jpg?imwidth=1800&filter=packshot",
+        "https://img01.ztat.net/article/spp-media-p1/e51951d2185739e883d0cfe8fb5c1e67/61ec87969e134350ac5b45c2179bd27b.jpg?imwidth=1800&filter=packshot",
+        "https://img01.ztat.net/article/spp-media-p1/5ec24f65d8333afe9f1b8ebce10ae8d6/7dd53f14900d4793a02f5d533d07d540.jpg?imwidth=1800&filter=packshot",
+        "https://img01.ztat.net/article/spp-media-p1/6c19e22bccc73f76a72daf752a8ac738/37af61e31142452d9a188224e0cdaaba.jpg?imwidth=1800&filter=packshot"
+      ],
+      description: `Toe: Round
+      Closing: Open
+      Pattern: Solid color
+      Details: Elastic insert
+      Outer material: Textile
+      Lining: Imitation leather / textile
+      Insole: Imitation leather
+      Sole: Art material
+      Feed thickness: Thin feed
+      Fabric: Imitation leather`,
+      sizes: ["S", "M", "L", "XL"],
+      colors: [
+        {name: "Black", hex: "#000000"},
+        {name: "Beige", hex: "#f5f5dc"},
+        {name: "Navy", hex: "#171c32"},
+        {name: "Gray", hex: "#958a7f"},
+      ]
+      },
+    {
     name: "Classic Crocs",
     category: 2,
     gender: 0,
@@ -618,13 +721,34 @@ const shoes = [
       price: 89.99,
       images: [
         "https://lp2.hm.com/hmgoepprod?set=source[/55/cf/55cf9d92a8b4989e6adeb3c614b6a8557c490128.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[w],hmver[2]&call=url[file:/product/main]"
-    ],
+      ],
       description: "A pair of imitation leather boots with a rough outsole. The boots have an ankle-high shaft with lacing at the front and pouring at the back. Lining in satin and insole in imitation leather. Heel height 3 cm.",
       sizes: ["S", "M", "L"],
       colors: [
         {name: "Black", hex: "#000000"},
       ]
       },
+      {
+        name: "Nike Sportswear",
+        category: 2,
+        gender: 1,
+        price: 1199.99,
+        images: [
+          "https://img01.ztat.net/article/spp-media-p1/ad0a8ed9cd264baea11cb56b8b3e7b52/4d9e903bc5b24fc39c8251b4d85b156c.jpg?imwidth=1800&filter=packshot",
+          "https://img01.ztat.net/article/spp-media-p1/a6c4037c874c4acbb3a71d75c825c9aa/1a4e2553c5484929b68c8949de774d75.jpg?imwidth=1800&filter=packshot"
+        ],
+        description: `Toe: Round
+        Heel / sole: Flat
+        Closure: Lacing
+        Closing: Lacing
+        Pattern: Solid color
+        Details: Cut-outs`,
+        sizes: ["S", "M", "L"],
+        colors: [
+          {name: "White", hex: "#ffffff"},
+          {name: "Black", hex: "#000000"},
+        ]
+        },
       {
       name: "Classic Crocs",
       category: 2,
