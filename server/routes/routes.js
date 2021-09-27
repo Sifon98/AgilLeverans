@@ -66,7 +66,7 @@ router.get("/saved-products", async (req, res, next) => {
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
-    const user = await User.findById(userId, "-_id -username -email").populate("cart.item");
+    const user = await User.findById(userId, "-_id -username -email").populate("cart.item").populate("wishlist.item");
     res.json({
       ...(type === "wishlist" && {products: user.wishlist}),
       ...(type === "cart" && {products: user.cart})
@@ -93,7 +93,7 @@ router.post("/saved-products/count/:id", async (req, res, next) => {
         }
       },
       { arrayFilters: [{ "elem._id": productId }]}
-    ).populate("cart.item")
+    ).populate("cart.item").populate("wishlist.item")
 
     res.sendStatus(200);
   } catch (err) {
@@ -154,7 +154,7 @@ router.delete("/saved-products/:id", async (req, res, next) => {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
-    }, {new: true}).populate("cart.item");
+    }, {new: true}).populate("cart.item").populate("wishlist.item");
 
     res.send({wishlist: user.wishlist, cart: user.cart});
   } catch(err) {
