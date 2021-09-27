@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { NavContext } from "../context/NavContext";
 import { UserContext } from "../context/UserContext";
+import DesktopHeader from "../components/DesktopHeader";
+import SideMenu from "../components/SideMenu";
 
 
 function Wishlist() {
@@ -8,7 +10,6 @@ function Wishlist() {
   const { user, setUser } = useContext(UserContext);
 
   const [products, setProducts] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     fetchWishlist();
@@ -29,11 +30,12 @@ function Wishlist() {
     })
 
     setProducts(product);
-    setTotalPrice(total.toFixed(2));
 }
 
   return (
     <div className="page">
+      <DesktopHeader />
+      <SideMenu />
       <div className="wishlistContainer">
         {
         products && products.map(x => (
