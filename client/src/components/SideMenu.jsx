@@ -13,6 +13,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
         useEffect(() => {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
+                    if(!document.getElementById("checkbox")) return;
                     if(document.getElementById("checkbox").checked == true){
                         document.getElementById("checkbox").checked = false
                     }else {
