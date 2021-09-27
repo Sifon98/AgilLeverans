@@ -22,6 +22,7 @@ function Product() {
 
   const [reloadFetch, setReloadFetch] = useState(false);
   const [showProdInfo, setShowProdInfo] = useState(false);
+  const [popupLogin, setPopupLogin] = useState(false);
 
   const [product, setProduct] = useState({});
   const [moreProducts, setMoreProducts] = useState([]);
@@ -93,6 +94,7 @@ function Product() {
   }, [product, location.search]);
 
   const handleToggleWishlist = () => {
+    if (!user) return;
     // Submit to server
     handleSubmitSavedItem("wishlist");
     // Change client's state
@@ -100,6 +102,7 @@ function Product() {
   }
 
   const handleToggleCart = () => {
+    if (!user) return;
     // Submit to server
     handleSubmitSavedItem("cart");
     // Change client's state
@@ -193,7 +196,7 @@ function Product() {
         pauseOnFocusLoss={false}
       />      
       <SideMenu backArrow="/home" />
-      <DesktopHeader />
+      <DesktopHeader popupLoginFunc={popupLoginFunc} />
       <div className="content-wrapper">
         <div className="desktop-wrapper">
           <div className="section">
