@@ -44,31 +44,34 @@ const tops = [
     ]
     },
     {
-    name: "Classic Fit Polo Shirt",
+    name: "Polo Shirt",
     category: 0,
     gender: 0,
-    price: 89.99,
+    price: 19.99,
     images: [
-      "https://www.ralphlauren.asia/sites/default/files/inline-images/ShortSleevePOLOCLASSICFit_SC_1266704_0000_0.png",
-      "https://www.ralphlauren.asia/sites/default/files/inline-images/ShortSleevePOLOCLASSICFit_SC_1266703_0000.png",
-      "https://www.ralphlauren.asia/sites/default/files/inline-images/ShortSleevePOLOCLASSICFit_SC_1356432_0000_0.png",
-      "https://www.ralphlauren.asia/sites/default/files/inline-images/ShortSleevePOLOCLASSICFit_SC_1266705_0000_0.png",
-
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F50%2F13%2F50135cc4dce925d17976e116d11b8769bb828eea.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_cardigansjumpers_turtleneck%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F42%2F3b%2F423b7dcb520e725a907e8ffad3587d8af1df83d7.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_cardigansjumpers_turtleneck%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F6e%2Fcd%2F6ecd546298799b5676fea82834a82b34f4b51e39.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_cardigansjumpers_turtleneck%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F82%2F95%2F8295bd51fa65cbc871d079337c1dee2b0818207d.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_cardigansjumpers_turtleneck%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F97%2F7e%2F977ed29896ec9ad04a3d39a3afb48fe96fc76d71.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_cardigansjumpers_turtleneck%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F5c%2F53%2F5c531c4d61d437c28077c7a463499f01f82f4cfa.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_cardigansjumpers_turtleneck%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
     ],
     description: `An American style standard since 1972, the Polo shirt has been imitated but never matched. Over the decades, Ralph Lauren has reimagined his signature style in a wide array of colors and fits, yet all retain the quality and attention to detail of the iconic original. This relaxed version is made from luxe cotton interlock with an ultrasoft finish.`,
     sizes: ["XS", "S", "M", "L"],
     colors: [
       {name: "Black", hex: "#000000"},
       {name: "White", hex: "#ffffff"},
-      {name: "Royal Blue", hex: "#20419a"}, 
+      {name: "Beige", hex: "#f5f5dc"},
+      {name: "Gray", hex: "#958a7f"},
       {name: "Navy", hex: "#171c32"},
+      {name: "Royal Blue", hex: "#20419a"}, 
     ]
     },
     {
     name: "Long Sleeve Full Zip",
     category: 0,
     gender: 0,
-    price: 189.50,
+    price: 189.99,
     images: 
     [
       "https://img01.ztat.net/article/spp-media-p1/12da219723f24bc2a446d3d4ccad0517/12e41587ef6e44e787e82e7d93bb8fbb.jpg?imwidth=1800",
@@ -94,30 +97,19 @@ const tops = [
     ]
     },
     {
-    name: "Crewneck Sweatshirt",
+    name: "Dressshirt Slim Fit",
     category: 0,
     gender: 0,
-    price: 14.99,
+    price: 29.99,
     images: [
-      "https://cdn11.bigcommerce.com/s-9qbt9lc8x8/images/stencil/1280x1280/attribute_rule_images/4117_source_1630438612.jpg",
-      "https://cdn11.bigcommerce.com/s-9qbt9lc8x8/images/stencil/1280x1280/attribute_rule_images/4131_source_1630438620.jpg",
-      "https://cdn11.bigcommerce.com/s-9qbt9lc8x8/images/stencil/1280x1280/attribute_rule_images/4051_source_1630438577.jpg",
-      "https://cdn11.bigcommerce.com/s-9qbt9lc8x8/images/stencil/1280x1280/attribute_rule_images/4031_source_1630438566.jpg",
-      "https://cdn11.bigcommerce.com/s-9qbt9lc8x8/images/stencil/1280x1280/attribute_rule_images/4025_source_1630438562.jpg",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ffb%2Fcc%2Ffbcc724ddf8a622372dc499e0194b4491d96a352.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_shirts_longsleeved%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+      "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fa9%2F37%2Fa9371824e750b3048361f64e0dab24f4f3a7e38b.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_shirts_longsleeved%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
   ],
-    description: `Back patch
-    Double-needle 1x1 rib collar
-    Double-needle neck, shoulder, armhole, cuffs and waistband
-    Rolled forward shoulder
-    Twill label
-    Twill taped back neck`,
+    description: `A shirt in woven, cotton blended quality with stretch. The shirt has a collar and a classic button placket. Long sleeves with adjustable buttoning at the cuffs and slightly rounded hem. Slim Fit - a slim fit with a narrow shoulder and marked waist. This creates a tailored silhouette.`,
     sizes: ["S", "M", "L", "XL"],
     colors: [
-      {name: "Navy", hex: "#171c32"},
+      {name: "Black", hex: "#000000"},
       {name: "White", hex: "#ffffff"},
-      {name: "Gray", hex: "#958a7f"},
-      {name: "Red", hex: "#821d2b"},
-      {name: "Green", hex: "#02642e"},
     ]
     },
     {
