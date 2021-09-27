@@ -52,6 +52,19 @@ function CartDropdown({cartToggle, setCartToggle}) {
         }, [ref]);
     }
 
+    var i = 0;
+    var noResults = false
+
+    const plus = () => {
+        i++;
+    }
+
+    const zero = () => {
+        if (i == 0) {
+            noResults = true
+        }
+    }
+
     return (
         <>
             {cartToggle && <div className="cartDropdownContainer" ref={Ref}> 
@@ -78,6 +91,7 @@ function CartDropdown({cartToggle, setCartToggle}) {
                             </div>
                             ))
                         }
+                        {products && products.length > 0 ? null : <div className="noCartItems">You have no products in you cart, go shopping!</div>}
                     </div>
                     <div className="infoCart">
                         <p className="totalText">cart subtotal.</p>
