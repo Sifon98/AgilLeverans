@@ -220,13 +220,33 @@
     }
 }
 
-@media all and (min-width: 1025px) {
+@media all and (max-width: 1540px) {
     .accountTitle{
         left: 600px;
         position: absolute;
-
     }
     .accountInfoContainer{
-        bottom: 250px;
+        bottom: 299px;
     }
+}
+@media all and (max-width: 1253px) {
+    .accountTitle{
+        left: 350px;
+        position: absolute;
+    }
+    .accountInfoContainer{
+        bottom: 200px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .accountInfoContainer{
+        position: absolute;
+        bottom: 100px;
+    }
+    .accountTitle{
+        left: 210px;
+        position: absolute;
+    }
+    
 }
