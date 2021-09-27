@@ -24,10 +24,10 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
             <div className="desktopHeader">
                 <img src={logoLarge} />
                 <div className="helper">
-                    <div className="icons" onClick={loggedIn ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
+                    <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>
                     </div>
-                    <div className="icons"  onClick={loggedIn ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
+                    <div className="icons"  onClick={user ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
                         <button className="shopping-cart-btn">
                             <i className="fas fa-shopping-bag"></i>
                                 {user && user.cart && user.cart.length > 0 ? (

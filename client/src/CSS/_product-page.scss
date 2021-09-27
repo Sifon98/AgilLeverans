@@ -8,6 +8,9 @@
     position: relative;
     max-width: 900px;
     margin: 0 auto;
+    .wrapper {
+      padding-bottom: 120px !important;
+    }
     .image-container {
       position: relative;
       height: 40vh;
@@ -125,6 +128,7 @@
           transition: 500ms ease-in-out;
         }
         .show-more {
+          cursor: pointer;
           color: black;
         }
       }
