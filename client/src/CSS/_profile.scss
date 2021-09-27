@@ -220,3 +220,13 @@
     }
 }
 
+@media all and (min-width: 1025px) {
+    .accountTitle{
+        left: 600px;
+        position: absolute;
+
+    }
+    .accountInfoContainer{
+        bottom: 250px;
+    }
+}
