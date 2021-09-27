@@ -264,7 +264,7 @@
           width: 150px;
           overflow: hidden;
           &:hover img {
-            filter: brightness(0.95);
+            filter: brightness(0.9);
             transform: scale3d(1.1,1.1,1.1);
           }
           img {
