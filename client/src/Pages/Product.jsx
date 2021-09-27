@@ -131,6 +131,8 @@ function Product() {
     })
     const data = await res.json();
 
+    console.log(data.wishlist)
+
     setUser({
       ...user,
       ...(data.cart && {cart: data.cart}),
@@ -156,10 +158,8 @@ function Product() {
   const handleSubmitWishlistUI = () => {
     if(isWishlisted) {
       toast("Removed item from wishlist");
-      setIsWishlisted(false);
     } else {
       toast.success("Added item to wishlist");
-      setIsWishlisted(true);
     };
     setIsWishlisted(bool => !bool);
     // Unfocuses heart to remove the "clicked down" animation
@@ -177,8 +177,8 @@ function Product() {
   }
 
   useEffect(() => {
-    console.log(isCarted);
-  }, [isCarted])
+    console.log(isWishlisted);
+  }, [isWishlisted])
 
   const popupLoginFunc = (e) => {
     e.stopPropagation();
