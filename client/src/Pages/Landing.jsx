@@ -11,33 +11,30 @@ function Landing() {
 
   return (
     <div className="landingWrapper page">
-        <div className="titleContainer">
-          <h1 className="title">bopshop.</h1>
-        </div>
-
+      <div className="titleContainer">
+        <h1 className="title">bopshop.</h1>
+      </div>
       <div className="imageContainer">
-        <div className="leftSide">
-          <div className="buttonContainerMen" style={{pointerEvents: "none"}}>
-            <button className="menButton">men.</button>
-          </div>
-          <img className="menImage" src={Men} alt="Man" onClick={ () => setNav({
+        <div className="leftSide" onClick={ () => setNav({
                 path: '/home',
                 direction: 1,
                 state: 0
-            }) }/>
-        </div>
-
-        <div className="rightSide">
-          <div className="buttonContainerWomen" style={{pointerEvents: "none"}}>
-            <button className="womenButton">women.</button>
+            }) }>
+          <div className="buttonContainerMen" style={{pointerEvents: "none"}}>
+            <button className="menButton">men.</button>
           </div>
-          <img className="womenImage" src={Women} alt="Woman" onClick={ () => setNav({
+          <img className="menImage" src="./src/img/Men.png" alt="Man" />
+        </div>
+        <div className="rightSide"  onClick={ () => setNav({
                 path: '/home',
                 direction: 1,
                 state: 1
-            }) }/>
+            }) }>
+          <div className="buttonContainerWomen" style={{pointerEvents: "none"}}>
+            <button className="womenButton">women.</button>
+          </div>
+          <img className="womenImage" src="./src/img/Women.png" alt="Woman"/>
         </div>
-
       </div>
     </div>
   )

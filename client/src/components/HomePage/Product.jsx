@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { useHistory } from "react-router-dom";
 import { NavContext } from "../../context/NavContext";
 
-function Products({Product}) {
-  const history = useHistory();
+function Products({Product, loggedIn, popupLoginFunc}) {
   const { setNav } = useContext(NavContext);
 
   const [ hasLoaded, setHasLoaded ] = useState(false);
@@ -11,9 +9,11 @@ function Products({Product}) {
   return (
     <div className="product" onClick={() => setNav({path: `/products/${Product._id}`, direction: 1})}>
         <div className="overlay" style={hasLoaded ? {opacity: "0"} : null}></div>
-        <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
+        <div className="imageHelper">
+          <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
+        </div>
         <div className="info-box">
-        <button className="wishlist-btn">
+        <button className="wishlist-btn" onClick={loggedIn ? () => setNav({path: "/home", direction: 1}) : (e) => popupLoginFunc(e)}>
             <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
         </button>
         <div className="text">

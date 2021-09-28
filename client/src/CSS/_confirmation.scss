@@ -1,0 +1,44 @@
+.mobileHeader {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+@media(min-width: 1024px) {
+    .mobileHeader {
+        display: none;
+    }
+}
+
+.bodyConteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .thanku-text {
+        text-align: center;
+        font-size: 200%;
+        margin-top: 50px;
+        align-self: center;
+    }
+
+    .order-text {
+        text-align: center;
+        font-size: 130%;
+        font-weight: 700;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+     .textConteiner {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        background-color: white;
+        width: 950px;
+        height: 500px;
+        border-top: 3px solid var(--yellow);
+        margin-top: 60px;
+     }
+}
