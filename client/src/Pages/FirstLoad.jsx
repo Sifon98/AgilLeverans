@@ -13,13 +13,13 @@ function FirstLoad() {
 
   return (
 
-    <div className="containerFirstLoad page">
-        <div className="yellowSide"></div>
+    <div className="container-first-load page">
+        <div className="yellow-side"></div>
         <img src={logoLogin} />
-        <div className="welcomeText">welcome to bopshop.</div>
-        <div className="randomLine"></div>
-        <button className="loginButton" onClick={() => setNav({path: "/login", direction: 1})}>login.</button>
-        <button className="registerButton-loginPage" onClick={() => setNav({path: "/register", direction: 1})}>register.</button>
+        <div className="welcome-text">welcome to bopshop.</div>
+        <div className="random-line"></div>
+        <button className="login-button" onClick={() => setNav({path: "/login", direction: 1})}>login.</button>
+        <button className="register-button-loginPage" onClick={() => setNav({path: "/register", direction: 1})}>register.</button>
     </div>
   )
 }

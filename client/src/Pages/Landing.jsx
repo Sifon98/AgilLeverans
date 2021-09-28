@@ -8,30 +8,30 @@ function Landing() {
   const { setNav } = useContext(NavContext);
 
   return (
-    <div className="landingWrapper page">
-      <div className="titleContainer">
+    <div className="landing-wrapper page">
+      <div className="title-container">
         <h1 className="title">bopshop.</h1>
       </div>
-      <div className="imageContainer">
-        <div className="leftSide" onClick={ () => setNav({
+      <div className="image-container">
+        <div className="left-side" onClick={ () => setNav({
                 path: '/home',
                 direction: 1,
                 state: 0
             }) }>
-          <div className="buttonContainerMen" style={{pointerEvents: "none"}}>
-            <button className="menButton">men.</button>
+          <div className="button-container-men" style={{pointerEvents: "none"}}>
+            <button className="men-button">men.</button>
           </div>
-          <img className="menImage" src="./src/img/Men.png" alt="Man" />
+          <img className="men-image" src="./src/img/Men.png" alt="Man" />
         </div>
-        <div className="rightSide"  onClick={ () => setNav({
+        <div className="right-side"  onClick={ () => setNav({
                 path: '/home',
                 direction: 1,
                 state: 1
             }) }>
-          <div className="buttonContainerWomen" style={{pointerEvents: "none"}}>
-            <button className="womenButton">women.</button>
+          <div className="button-container-women" style={{pointerEvents: "none"}}>
+            <button className="women-button">women.</button>
           </div>
-          <img className="womenImage" src="./src/img/Women.png" alt="Woman"/>
+          <img className="women-image" src="./src/img/Women.png" alt="Woman"/>
         </div>
       </div>
     </div>

@@ -4,9 +4,9 @@ import LoginForm from '../components/LoginForm';
 
 function Login() {
   return (
-    <div className="conteinerLogin page">
-      <div className="yellowSide"></div>
-      <div className="head"><h1 className="h1name">bopshop.</h1></div>
+    <div className="container-login page">
+      <div className="yellow-side"></div>
+      <div className="head"><h1 className="h1-name">bopshop.</h1></div>
       <LoginForm loginPage={true} />
     </div>
   )

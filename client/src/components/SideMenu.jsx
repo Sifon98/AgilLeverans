@@ -39,7 +39,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
 
     return (
         <>
-            <div className="menuToggle">
+            <div className="menu-toggle">
                 {
                     backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>

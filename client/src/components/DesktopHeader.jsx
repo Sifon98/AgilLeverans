@@ -23,14 +23,14 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist}) {
 
     return (
         <>
-            <div className="desktopHeader">
+            <div className="desktop-header">
                 <img src={logoLarge} />
                 <div className="helper">
                     <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>
                     </div>
                     {wishlist ? null : <div className="icons" onClick={user ? () => setNav({path: "/wishlist", direction: 1}) : (e) => popupLoginFunc(e)}>
-                        <i class="fas fa-heart"></i>
+                        <i className="fas fa-heart"></i>
                     </div>}
                     <div className="icons"  onClick={user ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
                         <button className="shopping-cart-btn">
