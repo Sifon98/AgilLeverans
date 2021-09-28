@@ -67,6 +67,7 @@ function Wishlist() {
       <div className="wishlistText">
         <h1 className="wishlistTitle">your wishlist.</h1>
       </div>
+      <button>CLEAR WISHLIST</button>
       <div className="wishlistContainer">
         {
         products && products.map(x => (
@@ -91,6 +92,9 @@ function Wishlist() {
         ))
         }
       </div>
+      <button>SAVE WISHLIST</button>
+      <button>IMPORT WISHLIST</button>
+      <button>ADD WISHLIST TO CART</button>
     </div>
   )
 }
