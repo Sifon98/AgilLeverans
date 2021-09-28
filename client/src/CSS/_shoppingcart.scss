@@ -69,7 +69,7 @@
     margin-left: 19px;
     margin-right: 10px;
     position: relative;
-    border-radius: 20px;
+    border-top: solid 4px #FFF06B;
     padding-top: 10px;
     
    
@@ -259,11 +259,110 @@ margin: 0 auto;
     bottom: 0;
 }
 
+.paymentMethods {
+    display: none;
+}
+
+@media all and (min-width: 1024px) {
+    .shoppingWrapper {
+
+
+        .navContainer {
+            display: none;
+        }
+
+        .cartContainer {
+            margin: auto;
+            width: 800px;
+            margin-bottom: 10px;
+            letter-spacing: -1.5pt;
+        }
+
+        .boxContainer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 950px;
+            height: 0px; //* varför funkar det här ens!?!?!? *//
+            margin: auto;
+            
+        }
+
+        .itemContainer {
+            display: block;
+            margin: auto;
+            width: 500px;
+            height: auto;
+
+        }
+
+        .subtotalContainer {
+            display: block;
+            margin: auto;
+            width: 400px;
+            height: 255px;
+            background: white;
+            border-top: solid #FFF06B 4px;
+            text-align: left;
+            #totalText {
+                text-align: left;
+                margin: 0;
+                margin-left: 20px;
+                margin-top: 20px;
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        width: 47px;
+                        height: 1px;
+                        background-color: rgba(0, 0, 0, 0);
+                        left: 50%;
+                        top: -45px;
+                        transform: translate(-50%,0);
+                    }
+            }
+        
+            #totalSum {
+                text-align: left;
+                margin: 0;
+                margin-left: 20px;
+            }
+
+            #blackBar {
+                position: static;
+                display: block;
+                margin: 20px auto;
+            }
+
+            .paymentMethods {
+                display: block;
+                margin-left: 20px;
+                
+                .paymentText {
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1023px) {
+    #blackBar {
+        position: static;
+        display: block;
+        margin: 20px auto;
+    } 
+}
+
 
 @media all and (max-width: 450px) {
     .itemContainer .item .add-remove-box .increment-btn, .itemContainer .item .add-remove-box .decrement-btn {
         height: 14px;
         width: 14px;
         font-size: 8px;
+    }
+
+    #blackBar {
+        position: static;
     }
 }
