@@ -62,11 +62,12 @@ router.post("/logout", (req, res) => {
 // Get wishlist || shopping-cart items
 router.get("/saved-products", async (req, res, next) => {
   try {
+    if (!req.user) return;
     const userId = req.user._id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
-    const user = await User.findById(userId, "-_id -username -email").populate("cart.item");
+    const user = await User.findById(userId, "-_id -username -email").populate("cart.item")
     res.json({
       ...(type === "wishlist" && {products: user.wishlist}),
       ...(type === "cart" && {products: user.cart})
