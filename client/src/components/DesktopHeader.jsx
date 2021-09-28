@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
 import CartDropdown from './CartDropdown';
 
-function DesktopHeader({popupLoginFunc, loggedIn}) {
+function DesktopHeader({popupLoginFunc, loggedIn, wishlist}) {
     const { user } = useContext(UserContext);
     const { setNav } = useContext(NavContext);
 
@@ -14,8 +14,10 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
     const cartDropdown = () => {
         if(cartToggle == true){
             setCartToggle(false)
+            console.log(false)
         }else{
             setCartToggle(true)
+            console.log(true)
         }
     }
 
@@ -24,10 +26,13 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
             <div className="desktopHeader">
                 <img src={logoLarge} />
                 <div className="helper">
-                    <div className="icons" onClick={loggedIn ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
+                    <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>
                     </div>
-                    <div className="icons"  onClick={loggedIn ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
+                    {wishlist ? null : <div className="icons" onClick={user ? () => setNav({path: "/wishlist", direction: 1}) : (e) => popupLoginFunc(e)}>
+                        <i class="fas fa-heart"></i>
+                    </div>}
+                    <div className="icons"  onClick={user ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
                         <button className="shopping-cart-btn">
                             <i className="fas fa-shopping-bag"></i>
                                 {user && user.cart && user.cart.length > 0 ? (
@@ -35,7 +40,7 @@ function DesktopHeader({popupLoginFunc, loggedIn}) {
                                 ):null}
                         </button>
                     </div>
-                    <CartDropdown cartToggle={cartToggle} setCartToggle={setCartToggle}/>
+                    <CartDropdown cartToggle={cartToggle} setCartToggle={setCartToggle} wishlist={wishlist} />
                 </div>
             </div>
         </>

@@ -1,10 +1,10 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useContext, useRef, useEffect, useState } from 'react'
 import { NavContext } from '../context/NavContext'
 
 function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow }) {
-
     const { setNav } = useContext(NavContext);
 
+    const [sidemenuUp, setSidemenuUp] = useState(false);
 
     const checkboxRef = useRef(null);
     useOutsideAlerter(checkboxRef);
@@ -13,8 +13,11 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
         useEffect(() => {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    if(document.getElementById("test").checked == true){
-                        document.getElementById("test").checked = false
+                    if(!document.getElementById("checkbox")) return;
+                    if(document.getElementById("checkbox").checked == true){
+                        document.getElementById("checkbox").checked = false
+                    }else {
+                        setSidemenuUp(document.getElementById("checkbox").checked)
                     }
                 }
             }
@@ -28,14 +31,19 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
         }, [ref]);
     }
 
+    const closeSide = (e) => {
+        setSidemenuUp(e.target.checked)
+        e.target.checked == sidemenuUp ? e.target.checked = false : console.log(e.target.checked)
+        setSidemenuUp(e.target.checked)
+    }
 
     return (
         <>
             <div className="menuToggle">
-            {
+                {
                     backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>
-                            <input type="checkbox" />
+                            <input id="checkbox" type="checkbox" onClick={(e) => closeSide(e)} />
                             {/* Hamburger menu */}
                             <span></span>
                             <span></span>
@@ -44,6 +52,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     )
                 }
                 {/* List when menu is opened */}
+                {backArrow ? <ul className="menu"></ul> :
                 <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
@@ -67,7 +76,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     ))}
                     </div>
                     <li onClick={removeFilter} className="bold text">clear filters.</li>
-                </ul>
+                </ul>}
             </div>
         </>
     )

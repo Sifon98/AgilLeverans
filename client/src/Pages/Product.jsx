@@ -22,6 +22,7 @@ function Product() {
 
   const [reloadFetch, setReloadFetch] = useState(false);
   const [showProdInfo, setShowProdInfo] = useState(false);
+  const [popupLogin, setPopupLogin] = useState(false);
 
   const [product, setProduct] = useState({});
   const [moreProducts, setMoreProducts] = useState([]);
@@ -93,6 +94,7 @@ function Product() {
   }, [product, location.search]);
 
   const handleToggleWishlist = () => {
+    if (!user) return;
     // Submit to server
     handleSubmitSavedItem("wishlist");
     // Change client's state
@@ -100,6 +102,7 @@ function Product() {
   }
 
   const handleToggleCart = () => {
+    if (!user) return;
     // Submit to server
     handleSubmitSavedItem("cart");
     // Change client's state
@@ -156,10 +159,8 @@ function Product() {
   const handleSubmitWishlistUI = () => {
     if(isWishlisted) {
       toast("Removed item from wishlist");
-      setIsWishlisted(false);
     } else {
       toast.success("Added item to wishlist");
-      setIsWishlisted(true);
     };
     setIsWishlisted(bool => !bool);
     // Unfocuses heart to remove the "clicked down" animation
@@ -177,8 +178,8 @@ function Product() {
   }
 
   useEffect(() => {
-    console.log(isCarted);
-  }, [isCarted])
+    console.log(isWishlisted);
+  }, [isWishlisted])
 
   const popupLoginFunc = (e) => {
     e.stopPropagation();
@@ -195,7 +196,7 @@ function Product() {
         pauseOnFocusLoss={false}
       />      
       <SideMenu backArrow="/home" />
-      <DesktopHeader />
+      <DesktopHeader popupLoginFunc={popupLoginFunc} />
       <div className="content-wrapper">
         <div className="desktop-wrapper">
           <div className="section">

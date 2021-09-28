@@ -16,14 +16,14 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
     useEffect(() => checkDouble(), [sizeCheck, colorCheck]);
 
     var i = 0
-    var test = false
+    var noResults = false
 
     const plus = () => {
         i++
     } 
 
     const zero = () => {
-        test = true
+        noResults = true
     }
 
     return (
@@ -47,7 +47,7 @@ function ListProducts({categoryCheck, products, gender, category, color, colorCh
                     [<ProductHTML key={Product._id} Product={Product} loggedIn={loggedIn} popupLoginFunc={popupLoginFunc} />, plus()] : [null, zero()]
             ))
         }
-        {test && i == 0 && <p className="no-results">No results matching your search</p>}
+        {noResults && i == 0 && <p className="no-results">No results matching your search</p>}
     </>
     )
 }

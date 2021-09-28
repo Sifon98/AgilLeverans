@@ -342,14 +342,13 @@
         border-top: 4px solid #FFF06B;
         margin-top: 0px;
         margin-bottom: 20px;
-        max-width: 170.39px;
         overflow: hidden;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-content: flex-start;
         align-items: flex-start;
-        min-width: 168px;
+        max-width: 170.39px;
 
         .overlay {
             position: absolute;
@@ -366,13 +365,12 @@
             .image {
                 filter: brightness(0.9);
                 width: auto;
-                height: 450px;
+                height: 255.56px;
                 transition: 0.4s ease-in-out;
             }
         }
         
         .info-box {
-            margin-top: -4px;
             height: auto;
             width: 100%; 
 
@@ -422,7 +420,6 @@
             
             .text {
                 margin: 5px;
-                margin-top: -25px;
                
                 p {
                     font-size: 13px;
@@ -517,9 +514,17 @@
                 transition: 500ms;
             }
     
-            .image {
-                width: auto;
-                height: 450px;
+            .imageHelper {
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+    
+                .image {
+                    filter: brightness(0.9);
+                    width: auto;
+                    height: 450px;
+                    transition: 0.4s ease-in-out;
+                }
             }
     
             .info-box {
@@ -600,6 +605,7 @@
     }
 
     .invisible {
+        display: none;
         opacity: 0;
         width: 60px;
         height: 60px;
@@ -619,6 +625,7 @@
     }
 
     .invisible {
+        display: none;
         opacity: 0;
         width: 50px;
         height: 50px;
@@ -628,6 +635,7 @@
 }
 
 .invisible {
+    display: none;
     opacity: 0;
     width: 80px;
     height: 80px;
