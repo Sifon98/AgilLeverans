@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
 import { UserContext } from "../context/UserContext";
-import LoginHome from "../components/HomePage/LoginHome"
+import LoginHome from "../components/LoginForm"
 import SideMenu from "../components/SideMenu"
 import DesktopHeader from '../components/DesktopHeader';
 import MobileHeader from '../components/HomePage/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
-import RegisterHome from '../components/HomePage/RegisterHome';
+import RegisterHome from '../components/RegisterForm';
 
 
 function Home() {
@@ -147,7 +147,7 @@ function Home() {
           <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} 
           colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} loggedIn={loggedIn} popupLoginFunc={popupLoginFunc} />
       </div>
-      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup}/>
+      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
       <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
     </div>
   )
