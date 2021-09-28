@@ -12,6 +12,7 @@ const UserSchema = new Schema(
         item: {type: Schema.Types.ObjectId, ref: "Product"},
         color: {name: String, hex: String},
         size: String,
+        count: Number
       }
    ],
     cart: [
