@@ -30,7 +30,35 @@ function Wishlist() {
     })
 
     setProducts(product);
-}
+  }
+
+  const removeItem = async (id) => {
+
+    const res = await fetch(`/api/saved-products/${id}?type=wishlist`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    })
+    await res;
+
+    // Update products
+    const UpdateProducts = [...products].filter(x => x._id !== id);
+
+    // Update total price
+    let total = 0;
+    UpdateProducts.forEach((x) => {
+        total += x.item.price * x.count
+    })
+
+    // Set State
+    setProducts(UpdateProducts);
+    setUser({
+        ...user,
+        cart: UpdateProducts
+    })
+  }
 
   return (
     <div className="page">
@@ -50,11 +78,12 @@ function Wishlist() {
             </div>
           </div>
           <p className="priceTag">${x.countPrice}</p>
-            <div className="remove-item-btn" onClick={() => removeItem(x._id)}>
-              <svg width="12" height="12" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
-              </svg>
-            </div>
+          <div className="remove-item-btn" onClick={() => removeItem(x._id)}>
+            <svg width="12" height="12" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>
+            </svg>
+          </div>
+          {/* <div className="addToCart" onClick={() => handleToggleCart()}>ADD TO CART</div> */}
         </div>
         ))
         }
