@@ -38,11 +38,38 @@ function Home() {
     setDropdownFilter(false);
     
     // Check gender and apply male (0) if for some reason gender is empty
-    let initialGender = history.location.state;
-    if (initialGender == null) {
-      initialGender = 0;
+    // Otherwise apply saved gender
+    let initGender = localStorage.getItem("gender");
+    if (initGender == null) {
+      initGender = 0;
     }
-    setGender(initialGender);
+    setGender(initGender);
+
+    localStorage.setItem("gender", initGender)
+
+    // Check category and apply all items (0) if for some reason category is empty
+    // Otherwise apply saved category
+    let initCategory = localStorage.getItem("category");
+    if (initCategory == null) {
+      initCategory = 99;
+    }
+    setCategory(initCategory);
+
+    localStorage.setItem("category", initCategory)
+
+    // Check categoryCheck and apply false if for some reason categoryCheck is empty
+    // Otherwise apply saved categoryCheck
+    let initCategoryCheck = localStorage.getItem("categoryCheck");
+    // Parsed since Local Storage doesn't return a boolean
+    let parsedInitCategoryCheck = JSON.parse(initCategoryCheck)
+    if (parsedInitCategoryCheck == null) {
+      parsedInitCategoryCheck = false;
+    }
+    setCategoryCheck(parsedInitCategoryCheck);
+
+    localStorage.setItem("categoryCheck", parsedInitCategoryCheck)
+    console.log(localStorage.getItem("categoryCheck"))
+    console.log(categoryCheck)
 
     // const res = await fetch('/api/products');
     const res = await fetch('/api/products');
@@ -79,9 +106,15 @@ function Home() {
   const chooseCategory = (e) => {
     const id = e.target.id;
     id == 99 ? 
-      setCategoryCheck(false)
-      : setCategoryCheck(true);
-      setCategory(id);
+      [setCategoryCheck(false),
+      setCategory(id),
+      localStorage.setItem("category", id),
+      localStorage.setItem("categoryCheck", [false])]
+      : 
+      [setCategoryCheck(true),
+      setCategory(id),
+      localStorage.setItem("category", id),
+      localStorage.setItem("categoryCheck", [true])]
   }
 
   // Toggle category dropdown and then choose the category
@@ -99,7 +132,7 @@ function Home() {
   const chooseFilter = (e) => {
     const id = e.target.id;
 
-    history.push({ state: id });
+    localStorage.setItem("gender", id)
     setGender(id);
   }
 

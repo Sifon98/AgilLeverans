@@ -43,7 +43,7 @@ function App() {
     if(!initialLoad) return;
     history.push({
       pathname: nav.path,
-      ...(nav.state && {state: nav.state})
+      ...(nav.state && {state: {...history.location.state, ...nav.state}})
     });
   }, [nav])
 
