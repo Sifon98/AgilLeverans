@@ -1,8 +1,10 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { NavContext } from "../context/NavContext";
+import { UserContext } from "../context/UserContext";
 
 function CartDropdown({cartToggle, setCartToggle, wishlist}) {
     const { setNav } = useContext(NavContext);
+    const { user } = useContext(UserContext);
     const Ref = useRef(null);
     useOutsideAlerter(Ref);
 
@@ -11,11 +13,13 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
 
     useEffect(() => {
         fetchShoppingCart();
-    }, [])
+    }, [cartToggle])
+
 
     const fetchShoppingCart = async () => {
         const res = await fetch("/api/saved-products?type=cart");
         const data = await res.json();
+        console.log(data.products);
         let products = data.products.filter(x => x.item !== null);
 
         // Set total price & find imageIndex for each product 
