@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
 import { NavContext } from "../context/NavContext";
+import Men from '../img/Men.png'
+import Women from '../img/Women.png'
 
 
 function Landing() {

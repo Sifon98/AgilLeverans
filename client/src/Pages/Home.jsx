@@ -36,6 +36,8 @@ function Home() {
   const fetchProducts = async () => {
     setDropdown(false);
     setDropdownFilter(false);
+
+    console.log(user)
     
     // Check gender and apply male (0) if for some reason gender is empty
     // Otherwise apply saved gender
