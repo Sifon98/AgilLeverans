@@ -1,8 +1,10 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../context/UserContext";
+import { NavContext } from "../context/NavContext";
 
-function LoginHome({popupLogin, setPopupLogin, changePopup}) {
+function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
     const { user, setUser } = useContext(UserContext);
+    const { setNav } = useContext(NavContext);
     const Ref = useRef(null);
     useOutsideAlerter(Ref);
 
@@ -63,7 +65,7 @@ function LoginHome({popupLogin, setPopupLogin, changePopup}) {
 
     return (
         <>
-            {popupLogin && 
+            {popupLogin &&
             <div className="popupContainer">
                 <div className="box" ref={Ref}>
                     <h1>login.</h1>
@@ -92,6 +94,33 @@ function LoginHome({popupLogin, setPopupLogin, changePopup}) {
                 </div>
             </div>}
             {popupLogin ? user != null ? removePopup() : null : null}
+            {loginPage &&
+            <form className="formLogin">
+                <input
+                    className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
+                />
+                <input
+                    className={`inputLogin ${ loginErrorPass && "inputLoginError"}`}
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    onChange={(e) => {setPassword(e.target.value), setLoginErrorPass(false)}}
+                />
+                {loginError && <p className="errorText">{errorMessage}</p>}
+                <button className="loginButton" onClick={handleLogin}>login.</button>
+                <p className="registerText">Don't have an account?</p>
+                <button className="registerLink" 
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setNav({path: "/register", direction: 1});
+                    }}>
+                    Register here
+                </button>
+            </form>}
         </>
     )
 }

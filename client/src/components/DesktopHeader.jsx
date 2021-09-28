@@ -23,7 +23,7 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist}) {
 
     return (
         <>
-            <div className="desktopHeader">
+            <div className="desktop-header">
                 <img src={logoLarge} />
                 <div className="helper">
                     <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>

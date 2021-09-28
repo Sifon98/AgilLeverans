@@ -44,8 +44,7 @@ function App() {
     console.log(history)
     history.push({
       pathname: nav.path,
-      // ...(nav.state && {state: { ...history.location.state, data: "MY DATA HERE"}})
-      // state: { ...history.location.state, data: "MY DATA HERE"}
+      ...(nav.state && {state: {...history.location.state, ...nav.state}})
     });
   }, [nav])
 
