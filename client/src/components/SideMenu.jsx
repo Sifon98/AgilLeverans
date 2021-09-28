@@ -40,7 +40,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
     return (
         <>
             <div className="menuToggle">
-            {
+                {
                     backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>
                             <input id="checkbox" type="checkbox" onClick={(e) => closeSide(e)} />
@@ -52,6 +52,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     )
                 }
                 {/* List when menu is opened */}
+                {backArrow ? <ul className="menu"></ul> :
                 <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
@@ -75,7 +76,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     ))}
                     </div>
                     <li onClick={removeFilter} className="bold text">clear filters.</li>
-                </ul>
+                </ul>}
             </div>
         </>
     )

@@ -62,8 +62,8 @@ function Wishlist() {
 
   return (
     <div className="page">
-      <DesktopHeader />
-      <SideMenu />
+      <DesktopHeader wishlist={true}/>
+      <SideMenu backArrow="/home" />
       <div className="wishlistContainer">
         {
         products && products.map(x => (
@@ -74,7 +74,7 @@ function Wishlist() {
             <p className="cartRef">ref: {x._id.substring(0, 8)}</p>
             <div className="circle-box-wrapper">
               <div className="color-box" style={{background: x.color.hex}}></div>
-              <div className="size-box">{x.size}</div>
+              <div className="size-box">{x.size}</div> 
             </div>
           </div>
           <p className="priceTag">${x.countPrice}</p>
