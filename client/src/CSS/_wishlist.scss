@@ -1,10 +1,25 @@
+.wishlistText {
+    width:100%;
+    height:160px;
+    width: 600px;
+    display: flex;
+    align-items: flex-end;
+    margin: auto;
+    
+    .wishlistTitle {
+        display: flex;
+        font-size: 60px;
+        font-weight: bold;
+    }
+}
+
 .wishlistContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #FFFFFF;
     height: auto;
-    width: 600px;
+    width: 700px;
     margin: auto;
     margin-top: 40px;
     border-radius: 20px;
@@ -56,8 +71,9 @@
 
         .remove-item-btn {
             position: absolute;
-            right: 164px;
-            top: calc(50% + 2px);
+            // right: 164px;
+            right: 8px;
+            top: calc(50% + 1px);
             transform: translate(0, -50%);
             background-color: #F0F0F0;
             border-radius: 100%;
@@ -73,7 +89,8 @@
             font-weight: bold;
             font-family: 'Inter', sans-serif;
 
-            right: 190px;
+            // right: 190px;
+            right: 32px;
             top: 50%;
             transform: translate(0, -50%);
         }

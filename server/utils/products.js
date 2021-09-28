@@ -179,7 +179,7 @@ const tops = [
       name: "Hood Jacket",
       category: 0,
       gender: 1,
-      price: 37.50,
+      price: 37.99,
       images: [
         "https://img01.ztat.net/article/spp-media-p1/7d58c56fba7c39238a550ed7e4563681/7884fbf9f1514ab8a45bd23e42abeca6.jpg?imwidth=1800",
         "https://img01.ztat.net/article/spp-media-p1/bbf975624c01315eaa75edd39c30f640/626b79ad8b8d42719ae33739a7dda887.jpg?imwidth=1800",
@@ -188,10 +188,10 @@ const tops = [
         "https://img01.ztat.net/article/spp-media-p1/893636c3a23b307c95dfab4ef916172d/1944fa0e39e44af08529927f6f223076.jpg?imwidth=1800&filter=packshot",
       ],
       description: `Material: 100% nylon
-      Foder: 100% polyester
-      Foder: 100% polyester
-      Fodertjocklek: Varmt foder
-      Skötselråd: Torktumlas ej, 30°C maskintvätt`,
+      Lining: 100% polyester
+      Lining: 100% polyester
+      Feed thickness: Warm feed
+      Care instructions: Do not tumble dry, machine wash at 30 ° C`,
       sizes: ["XS", "S", "M", "L"],
       colors: [
         {name: "Yellow", hex: "#fdeb71"},
@@ -235,9 +235,8 @@ const tops = [
       Fabric: Pike
       Care instructions: 30 ° C machine wash
       
-      Krage: Piké
-      Mönster: Enfärgat
-      Artikelnummer: PO221D008-A11
+      Collar: Pike
+      Pattern: Solid color
       `,
       sizes: ["XS", "S", "M", "L", "XL"],
       colors: [

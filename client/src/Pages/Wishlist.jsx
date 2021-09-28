@@ -64,6 +64,9 @@ function Wishlist() {
     <div className="page">
       <DesktopHeader wishlist={true}/>
       <SideMenu backArrow="/home" />
+      <div className="wishlistText">
+        <h1 className="wishlistTitle">your wishlist.</h1>
+      </div>
       <div className="wishlistContainer">
         {
         products && products.map(x => (
