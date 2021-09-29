@@ -7,6 +7,7 @@ import Loading from './components/Loading'
 import { isMobile } from '../../server/utils/isMobile';
 import Routes from './components/Routes'
 import RoutesAnimation from './components/RoutesAnimation'
+import ElectronConfig from './ElectronConfig';
 
 const setRoutes = (user) => {
   return isMobile() ? (
@@ -52,9 +53,12 @@ function App() {
     
   // },[history])
 
+  const isElectron = navigator.userAganet.includes("Electron");
+
   return (
     <NavContext.Provider value={navValue}>
       <UserContext.Provider value={useValue}>
+        { isElectron && <ElectronConfig /> }
         {!isLoading ? (
           setRoutes(user)
         ) : (
