@@ -8,9 +8,9 @@ function MobileHeader() {
 
     return (
         <>
-            <div className="mobileHeader">
+            <div className="mobile-header">
                 <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
-                <h1 className ="profileTitle">bopshop.</h1>
+                <h1 className ="profile-title">bopshop.</h1>
                 <button className="shopping-cart-btn">
                 <i className="fas fa-shopping-bag" onClick={() => setNav({path: "/cart", direction: 1})}></i>
                     {user && user.cart && user.cart.length > 0 ? (

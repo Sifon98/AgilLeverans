@@ -16,7 +16,7 @@
 .wishlistContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
     background-color: #FFFFFF;
     height: auto;
     width: 700px;
@@ -24,6 +24,52 @@
     margin-top: 40px;
     border-radius: 20px;
     position: relative;
+
+    .top-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .clear-wishlist {
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 120px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        .import-wishlist {
+            margin-top: 20px;
+            margin-right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+    }
+
+
+    .buttons-container {
+        display: flex;
+        height: 40px;
+        justify-content: flex-end;
+        align-items: center;
+        button {
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 8px;
+            margin: 0 8px;
+            margin-bottom: 20px;
+            padding: 8px;
+        }
+        button:last-of-type {
+            margin-right: 20px;
+        }
+    }
 
     .item {
         width: 95%;

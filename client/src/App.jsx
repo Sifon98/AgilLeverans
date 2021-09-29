@@ -41,11 +41,16 @@ function App() {
 
   useEffect(() => {
     if(!initialLoad) return;
+    console.log(history)
     history.push({
       pathname: nav.path,
-      ...(nav.state && {state: nav.state})
+      ...(nav.state && {state: {...history.location.state, ...nav.state}})
     });
   }, [nav])
+
+  // useEffect(() =>{
+    
+  // },[history])
 
   return (
     <NavContext.Provider value={navValue}>

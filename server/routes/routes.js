@@ -137,8 +137,34 @@ router.post("/saved-products/:id", async (req, res, next) => {
     return next(err);
   };
 
-  
 });
+
+
+router.post("/add-multiple-to-cart", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    // Products will be an array of products, from wishlist.
+    const { products } = req.body;
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        $push: {
+          cart: {$each: products}
+        },
+      },
+      {new: true}
+    );
+
+    res.send({cart: user.cart});
+
+  } catch (err) {
+    return next(err);
+  };
+});
+
+
+
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
   console.log("DELETE")

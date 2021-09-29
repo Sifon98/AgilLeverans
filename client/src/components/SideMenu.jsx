@@ -39,7 +39,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
 
     return (
         <>
-            <div className="menuToggle">
+            <div className="menu-toggle">
                 {
                     backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>
@@ -56,12 +56,12 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                 <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
-                    <div className="divider" />
+                        <div className="divider" />
                     <li id={99} onClick={chooseCategory} className="bold text">all items.</li>
                     <li id={0} onClick={chooseCategory} className="text">Shirts</li>
                     <li id={1} onClick={chooseCategory} className="text">Pants</li>
                     <li id={2} onClick={chooseCategory} className="text">Shoes</li>
-                    <div className="divider" />
+                        <div className="divider" />
                     <div className="helper">
                     {products && products[0] && products[0].colors.map(Color => (
                     <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">

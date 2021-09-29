@@ -9,7 +9,7 @@ function Products({Product, loggedIn, popupLoginFunc}) {
   return (
     <div className="product" onClick={() => setNav({path: `/products/${Product._id}`, direction: 1})}>
         <div className="overlay" style={hasLoaded ? {opacity: "0"} : null}></div>
-        <div className="imageHelper">
+        <div className="image-helper">
           <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
         </div>
         <div className="info-box">
