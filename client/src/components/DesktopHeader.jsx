@@ -29,11 +29,11 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist}) {
                     <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>
                     </div>
-                    { navigator.userAgent.includes("Electron") ? (
+                    {/* { navigator.userAgent.includes("Electron") ? ( */}
                         <div className="icons" onClick={user ? () => setNav({path: "/wishlist", direction: 1}) : (e) => popupLoginFunc(e)}>
-                            <i class="fas fa-heart"></i>
+                            <i className="fas fa-heart"></i>
                         </div>
-                    ) : null}
+                    {/* ) : null} */}
                     <div className="icons"  onClick={user ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
                         <button className="shopping-cart-btn">
                             <i className="fas fa-shopping-bag"></i>

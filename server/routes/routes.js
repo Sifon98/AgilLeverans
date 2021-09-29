@@ -164,6 +164,7 @@ router.post("/add-multiple-to-cart", async (req, res, next) => {
 });
 
 
+
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
   console.log("DELETE")
