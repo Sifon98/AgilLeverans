@@ -13,7 +13,12 @@ function Wishlist() {
 
   useEffect(() => {
     fetchWishlist();
-  }, [])
+  }, [user])
+
+  // useEffect(() => {
+  //   user && setProducts(user.wishlist);
+  //   console.log(user.wishlist)
+  // }, [user])
 
   const fetchWishlist = async () => {
     const res = await fetch("/api/saved-products?type=wishlist");
@@ -56,7 +61,39 @@ function Wishlist() {
     setProducts(UpdateProducts);
     setUser({
         ...user,
-        cart: UpdateProducts
+        wishlist: UpdateProducts
+    })
+  }
+
+  const addWishlistToCart = async () => {
+    const res = await fetch("/api/add-wishlist-to-cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ products })
+    })
+    const data = await res.json();
+    setUser({
+      ...user,
+      cart: data.cart
+    })
+    setNav({path: "/cart", direction: 1})
+  }
+
+  const clearWishlist = async () => {
+    const res = await fetch("/api/clear-wishlist", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+    })
+    const data = await res.json();
+    setUser({
+      ...user,
+      wishlist: data.wishlist
     })
   }
 
@@ -69,8 +106,8 @@ function Wishlist() {
       </div>
       <div className="wishlistContainer">
         <div className="top-buttons">
-          <button className="clear-wishlist">CLEAR WISHLIST</button>
-          <button className="import-wishlist"><i class="fas fa-file-import"></i></button>
+          <button onClick={() => clearWishlist()} className="clear-wishlist">CLEAR WISHLIST</button>
+          {/* <button className="import-wishlist"><i className="fas fa-file-import"></i></button> */}
         </div>
 
         {
@@ -96,8 +133,8 @@ function Wishlist() {
         ))
         }
         <div className="buttons-container">
-          <button>SAVE WISHLIST</button>
-          <button>ADD LIST TO CART <i class="fas fa-arrow-right"></i></button>
+          {/* <button>SAVE WISHLIST</button> */}
+          <button onClick={() => addWishlistToCart()}>ADD LIST TO CART <i className="fas fa-arrow-right"></i></button>
         </div>
 
       </div>

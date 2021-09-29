@@ -53,7 +53,7 @@ function App() {
     
   // },[history])
 
-  const isElectron = navigator.userAganet.includes("Electron");
+  const isElectron = navigator.userAgent.includes("Electron");
 
   return (
     <NavContext.Provider value={navValue}>
