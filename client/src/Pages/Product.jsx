@@ -214,7 +214,7 @@ function Product() {
                 setSelectedSize={setSelectedSize} 
                 />
               <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
-              <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
+              <button className="wishlist-btn" onMouseDown={() => handleToggleWishlist()}>
                 <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
               </button>
             </div>

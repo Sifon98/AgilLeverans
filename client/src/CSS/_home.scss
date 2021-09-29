@@ -351,6 +351,7 @@
             inset: 0;
             background-color: white;
             transition: 500ms;
+            z-index: 1;
         }
 
         .image-helper {
@@ -369,6 +370,7 @@
         .info-box {
             height: auto;
             width: 100%; 
+            min-height: 70px;
 
             .wishlist-btn {
                 cursor: pointer;
