@@ -139,17 +139,57 @@ router.post("/saved-products/:id", async (req, res, next) => {
 
 });
 
-
-router.post("/add-multiple-to-cart", async (req, res, next) => {
+router.post("/import-wishlist", async (req, res, next) => {
   try {
-    const userId = req.user._id;
-    // Products will be an array of products, from wishlist.
-    const { products } = req.body;
+    let { wishlist } = req.body;
+    const { userId } = req.query;
+
+    // Validate wishlist
+    const wishlistIds = wishlist.map(x => x.item);
+    let findProducts = await Product.find(
+      {
+        _id: { $in: wishlistIds }
+      },
+    )
+
+    findProducts = JSON.parse(JSON.stringify(findProducts));
+    let filterWishlist = [];
+    wishlist.forEach(x => {
+      const idx = findProducts.findIndex(item => item._id === x.item)
+
+      if (idx >= 0 && findProducts[idx].colors.some(e => e.name === x.color.name && e.hex === x.color.hex) && findProducts[idx].sizes.includes(x.size)) {
+        filterWishlist.push(x);
+      }
+    })
 
     const user = await User.findOneAndUpdate(
       { _id: userId }, 
       {
-        $push: {
+        $addToSet: {
+          wishlist: {$each: filterWishlist}
+        },
+      },
+      {new: true}
+    ).populate("wishlist.item");
+
+    res.send({wishlist: user.wishlist});
+
+  } catch(err) {
+    console.log(err)
+    next(err);
+  }
+})
+
+
+router.post("/add-wishlist-to-cart", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const { products } = req.body
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        $addToSet: {
           cart: {$each: products}
         },
       },
@@ -162,6 +202,24 @@ router.post("/add-multiple-to-cart", async (req, res, next) => {
     return next(err);
   };
 });
+
+router.delete("/clear-wishlist", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        wishlist: []
+      },
+      {new: true}
+    );
+
+    res.send({wishlist: user.wishlist});
+  } catch (err) {
+    next(err);
+  }
+})
 
 
 
