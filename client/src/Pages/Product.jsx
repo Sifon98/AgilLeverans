@@ -36,6 +36,7 @@ function Product() {
   const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
+    console.log(history.location)
     // Get params from url
     const { color, size } = getParams(location);
 
