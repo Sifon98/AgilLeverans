@@ -67,8 +67,12 @@ function Wishlist() {
       <div className="wishlistText">
         <h1 className="wishlistTitle">your wishlist.</h1>
       </div>
-      <button>CLEAR WISHLIST</button>
       <div className="wishlistContainer">
+        <div className="top-buttons">
+          <button className="clear-wishlist">CLEAR WISHLIST</button>
+          <button className="import-wishlist"><i class="fas fa-file-import"></i></button>
+        </div>
+
         {
         products && products.map(x => (
         <div className="item" key={x._id}>
@@ -91,10 +95,13 @@ function Wishlist() {
         </div>
         ))
         }
+        <div className="buttons-container">
+          <button>SAVE WISHLIST</button>
+          <button>ADD LIST TO CART <i class="fas fa-arrow-right"></i></button>
+        </div>
+
       </div>
-      <button>SAVE WISHLIST</button>
-      <button>IMPORT WISHLIST</button>
-      <button>ADD WISHLIST TO CART</button>
+
     </div>
   )
 }
