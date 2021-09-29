@@ -57,7 +57,7 @@ export default function ElectronConfig() {
     ipcRenderer.on('menuChoice', (ipcEvent, choice) => {
       const fileExt = "txt"
 
-      if (choice === 'Save current wish list') {
+      if (choice === 'Save wishlist') {
         let filePath = dialog.showSaveDialogSync({
           properties: ['createDirectory']
         });
@@ -79,7 +79,7 @@ export default function ElectronConfig() {
         }
 
       }
-      if (choice === 'Load a wish list') {
+      if (choice === 'Import wishlist') {
         let filePaths = dialog.showOpenDialogSync({
           properties: ['openFile'],
           options: { filters: { extensions: ['.wishlist'] } }
