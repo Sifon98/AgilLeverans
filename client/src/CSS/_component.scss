@@ -801,3 +801,43 @@
         margin-top: 80px;
     }
 }
+
+
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%, -50%);
+    z-index: 100;
+    width: 60px;
+  }
+  
+  .loader-wheel {
+    animation: spin 1s infinite linear;
+    border: 4px solid rgba(30, 30, 30, 0.8);
+    border-left: 4px solid #fff;
+    border-radius: 50%;
+    height: 50px;
+    margin-bottom: 10px;
+    width: 50px;
+  }
+  
+  .loader-text {
+    color: #fff;
+    font-family: arial, sans-serif;
+  }
+  
+  .loader-text:after {
+    content: 'Loading';
+    animation: load 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
