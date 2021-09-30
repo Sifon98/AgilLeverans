@@ -10,12 +10,12 @@ function Products({Product, loggedIn, popupLoginFunc}) {
     <div className="product" onClick={() => setNav({path: `/products/${Product._id}`, direction: 1})}>
         <div className="overlay" style={hasLoaded ? {opacity: "0"} : null}></div>
         <div className="image-helper">
-          <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
+          <img alt="image" className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
         </div>
         <div className="info-box">
-        <button className="info-btn">
-            <i className={`fas fa-info`}></i>
-        </button>
+        <div className="info-btn">
+            <i className="fas fa-info"></i>
+        </div>
         <div className="text">
             <p>{Product.name}</p>
             <p>${Product.price}</p>

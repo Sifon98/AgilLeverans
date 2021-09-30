@@ -239,7 +239,7 @@ function Product() {
             <ul>
               {moreProducts && moreProducts.map(x => (
                 <li key={x._id} onClick={() => setNav({path: `/products/${x._id}`, direction: 1})}>
-                  <img src={x.images[0]} alt="" />
+                  <img src={x.images[0]} alt="image" />
                 </li>
               ))}
             </ul>

@@ -24,7 +24,7 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist, noCart, noProfile}) 
     return (
         <>
             <div className="desktop-header">
-                <img src={logoLarge} />
+                <img alt="image"  src={logoLarge} />
                 <div className="helper">
                     { noProfile ? null : <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>

@@ -80,7 +80,7 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
                         {
                             products && products.map(x => (
                             <div className="item" key={x._id}>
-                                <img className="item-pic" src={x.item.images[x.imageIndex]}></img>
+                                <img alt="image" className="item-pic" src={x.item.images[x.imageIndex]}></img>
                                 <div className="product-info-wrapper">
                                     <p className="cart-text">{x.item.name}</p>
                                     <p className="cart-ref">ref: {x._id.substring(0, 8)}</p>
@@ -117,7 +117,7 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
                         {
                             products && products.map(x => (
                             <div className="item" key={x._id}>
-                                <img className="item-pic" src={x.item.images[x.imageIndex]}></img>
+                                <img alt="image"  className="item-pic" src={x.item.images[x.imageIndex]}></img>
                                 <div className="product-info-wrapper">
                                     <p className="cart-text">{x.item.name}</p>
                                     <p className="cart-ref">ref: {x._id.substring(0, 8)}</p>
