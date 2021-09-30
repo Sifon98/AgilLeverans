@@ -16,14 +16,33 @@ router.get("/user", (req, res) => {
 } );
 
 
-router.patch( "/user", async ( req, res ) => {
+router.patch( "/updatename", async ( req, res ) => {
+  try {
+    const userId = req.user._id;
+    const { userName } = req.body;
+    const updatedUserName = await User.findByIdAndUpdate( { _id: userId }, { username: userName }, { new: true } )
+    
+    console.log( updatedUserName );
+    res.send( { user: updatedUserName } );
+
+  } catch(err) {
+    console.log(err);
+  }
+} );
+
+router.patch( "/updateemail", async ( req, res ) => {
+  try {
   const userId = req.user._id;
-  const { userName } = req.body;
-  const updatedUserName = await User.findByIdAndUpdate( { _id: userId}, {username: userName}, {new : true})
-  console.log( req );
-  console.log( updatedUserName );
-  res.send( { user: updatedUserName} );
-});
+  const { email } = req.body;
+  const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email}, {new : true})
+    console.log( email );
+  console.log( updatedUserEmail );
+  res.send( { user: updatedUserEmail } );
+    
+} catch(err) {
+  console.log(err);
+}
+} );
 
 router.post("/register", async (req, res, next) => {
   try {
