@@ -61,7 +61,7 @@ function App() {
         { isElectron && <ElectronConfig /> }
         {!isLoading ? (
           setRoutes(user)
-        ) : (
+        ) : ( 
           <Loading />
         )}
       </UserContext.Provider>

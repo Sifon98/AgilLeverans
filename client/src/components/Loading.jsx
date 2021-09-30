@@ -2,9 +2,9 @@ import React from 'react'
 
 function Loading() {
   return (
-    <h1>
-      LOADING!...
-    </h1>
+    <div className="loader">
+      <div className="loader-wheel"></div>
+    </div>
   )
 }
 
