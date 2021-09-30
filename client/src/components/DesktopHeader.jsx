@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
 import CartDropdown from './CartDropdown';
 
-function DesktopHeader({popupLoginFunc, loggedIn, wishlist, noCart}) {
+function DesktopHeader({popupLoginFunc, loggedIn, wishlist, noCart, noProfile}) {
     const { user } = useContext(UserContext);
     const { setNav } = useContext(NavContext);
 
@@ -26,9 +26,9 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist, noCart}) {
             <div className="desktop-header">
                 <img src={logoLarge} />
                 <div className="helper">
-                    <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
+                    { noProfile ? null : <div className="icons" onClick={user ? () => setNav({path: "/profile", direction: 1}) : (e) => popupLoginFunc(e)}>
                         <i className="fas fa-user-circle"></i>
-                    </div>
+                    </div>}
                     {/* { navigator.userAgent.includes("Electron") ? ( */}
                         {wishlist ? null : <div className="icons" onClick={user ? () => setNav({path: "/wishlist", direction: 1}) : (e) => popupLoginFunc(e)}>
                             <i className="fas fa-heart"></i>

@@ -1,60 +1,20 @@
 .profilePageWrapper {
     height: 100%;
     width: 100%;
-    box-sizing: border-box;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    box-sizing: border-box;
     object-fit: cover;
     margin: 0px;
-    background-color:#F4F4F4;
+    background-color: var(--background);
 
-    .profileTitleContainer {
-        position: absolute; 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        left: 0; 
-        right: 0; 
-        margin-left: auto; 
-        margin-right: auto;
-        padding: 40px 20px 15px 20px;
-        
-        #backArrow {
-            display: flex;
-            font-size: 1.5rem;
-        }
-
-        .profileTitle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color:#FFF06B;
-            width: 155px;
-            height: 42px;
-            padding: 2px;
-            // margin-top: 10%;
-            font-size: 1.6rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-       #shoppingCart {
-        font-size: 1.6rem;
-        }
-    }
     .accountContainer {
-        width:100%;
-        height:200px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-end;
-        margin-left:5%;
+        letter-spacing: -1pt;
+        margin: auto;
+        padding: 20px;
+        padding-left: 25px;
         
         .accountTitle {
             display: flex;
-            font-size: 2.7rem;
+            font-size: 32px;
             font-weight: bold;
-            font-family: 'Inter', sans-serif;
         }
     }
 
@@ -100,12 +60,10 @@
         width: 90%;
         height: auto;
         margin: auto;
-        margin-top: 80px;
         display: flex;
         justify-content: center;
         background-color: white;
-        border-top: 4px solid #FFF06B;
-        font-family: 'Inter', sans-serif;
+        border-top: 4px solid var(--yellow);
         font-weight: bold;
         padding: 10px 5px 10px 5px;
         
@@ -143,8 +101,7 @@
             
             button {
                 font-weight: bold;
-                font-family: 'Inter', sans-serif;
-                background-color: #FFF06B;
+                background-color: var(--yellow);
                 width: 60px;
                 height: 25px;
                 border-radius: 5px;
@@ -167,11 +124,7 @@
                 color: #000000;
                 font-size: 1rem;
                 font-weight: bold;
-                font-family: 'Inter', sans-serif;
                 position: relative;
-                // bottom: 1rem;
-                // right:1rem;
-                
             }
 
             .saveButton {
@@ -192,14 +145,12 @@
     }
     
     .signoutContainer {
-        width:100%;
         display: flex;
         align-items: flex-start;
         justify-content: space-around;
         height:100px;
-        position:absolute;
-        bottom:0;
         width:100%;
+        padding-top: 200px;
         
         
         .signoutButton {
@@ -207,13 +158,12 @@
             align-items: center;
             justify-content: center;
             color:#000000;
-            background-color:#FFF06B;
-            width:55%;
-            height:50px;
-            border-radius: 25px;
-            font-size: 1rem;
+            background-color: var(--yellow);
+            width:225px;
+            height:80px;
+            border-radius: 40px;
+            font-size: 1.4rem;
             font-weight: bold;
-            font-family: 'Inter', sans-serif;
         }
     }
 }
@@ -227,13 +177,15 @@
         .accountContainer {
             display: block;
             position: relative;
-            right: 15%;
-            margin-top: 100px;
-            text-align: center;
-            margin-bottom: -110px;
             letter-spacing: -1pt;
+            width: 518px;
+            margin: auto;
+            padding: 40px;
+            padding-left: 25px;
+
             .accountTitle {
                 display: inline;
+                font-size: 50px;
                 text-align: center;
                 margin: 0;
             }
@@ -251,7 +203,6 @@
                 color:black;
                 font-size: 1rem;
                 font-weight: 200;
-                font-family: 'Inter';
             }
 
             .inputText:disabled {
@@ -268,7 +219,7 @@
 
         .signoutContainer {
             .signoutButton{
-                width: 225px;
+                width: 275px;
                 letter-spacing: -0.5pt;
             }
         }
