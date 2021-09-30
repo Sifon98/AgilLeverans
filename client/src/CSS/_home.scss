@@ -379,6 +379,7 @@
                 left: 130px;
                 font-size: 17px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
 
             .image-helper {
                 display: flex;
@@ -398,10 +399,12 @@
                 height: auto;
                 width: 100%; 
                 min-height: 70px;
+            }
 
             @media screen and (max-width: 1023px) {
                 .info-btn {
                     visibility: hidden;
+                }
                 .wishlist-btn {
                     cursor: pointer;
                     position: relative;
@@ -505,7 +508,6 @@
             justify-content: space-around;
         }
     }
-
 }
 
 @media(min-width: 680px) {
@@ -767,7 +769,7 @@
                 }
             }
         }
-    }
+    }}
 }
 
 .visible {
