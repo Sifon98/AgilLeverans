@@ -372,7 +372,7 @@
             width: 100%; 
             min-height: 70px;
 
-            .wishlist-btn {
+            .info-btn {
                 cursor: pointer;
                 position: relative;
                 display: grid;
@@ -394,7 +394,7 @@
             }
 
             @media screen and (max-width: 1023px) {
-                .wishlist-btn {
+                .info-btn {
                     visibility: hidden;
                     position: relative;
                     display: grid;
@@ -530,7 +530,7 @@
                 height: auto;
                 width: 100%; 
     
-                .wishlist-btn {
+                .info-btn {
                     position: relative;
                     display: grid;
                     place-items: center;
