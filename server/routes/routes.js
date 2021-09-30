@@ -221,7 +221,23 @@ router.delete("/clear-wishlist", async (req, res, next) => {
   }
 })
 
+router.delete("/clear-cart", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
 
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        cart: []
+      },
+      {new: true}
+    );
+
+    res.send({cart: user.cart});
+  } catch (err) {
+    next(err);
+  }
+})
 
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {

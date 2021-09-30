@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DesktopHeader from '../components/DesktopHeader';
 import MobileHeader from '../components/MobileHeader';
 import SideMenu from '../components/SideMenu';
 
 
 function Confirmation() {
+
+  useEffect(() => {
+    clearCart();
+  }, [])
+
+  const clearCart = async () => {
+    const res = await fetch("/api/clear-cart", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+    })
+    const data = await res.json();
+    setUser({
+      ...user,
+      cart: data.cart
+    })
+  }
 
   return (
     <div className="page">
