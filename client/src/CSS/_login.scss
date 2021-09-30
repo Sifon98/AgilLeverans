@@ -47,6 +47,10 @@
             border-bottom: 1px solid red;
         }
 
+        .inputLogin:focus {
+            outline: none;
+        }
+
         .inputLogin::placeholder{
             color: black;
             font-size: 120%;
@@ -72,6 +76,7 @@
             height: 53px;
             font-weight: 700;
             font-size: 100%;
+            font-family: 'Inter';
         }
         
         .registerText {
@@ -94,6 +99,16 @@
             font-size: 90%;
             font-weight: 700;
             background-color: #F4F4F4;
+            font-family: 'Inter';
         }
     }
+}
+
+@media all and (min-width: 1024px) {
+    .container-login{
+    .yellow-side {
+        height: 100%;
+        width: 73px;
+    }
+}
 }

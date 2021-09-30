@@ -381,7 +381,7 @@
                 width: 100%; 
                 min-height: 70px;
 
-                .wishlist-btn {
+                .info-btn {
                     cursor: pointer;
                     position: relative;
                     display: grid;
@@ -403,21 +403,8 @@
                 }
 
                 @media screen and (max-width: 1023px) {
-                    .wishlist-btn {
-                        visibility: hidden;
-                        position: relative;
-                        display: grid;
-                        place-items: center;
-                        outline: none;
-                        border: none;
-                        border-radius: 100%;
-                        width: 32px;
-                        height: 32px;
-                        background-color: white;
-                        bottom: 41px;
-                        left: 130px;
-                        font-size: 17px;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    .info-btn {
+                        display: none;
         
                         i {
                         margin-top: 2px;
@@ -554,7 +541,7 @@
                     margin-top: -4px;
                     width: 100%; 
         
-                    .wishlist-btn {
+                    .info-btn {
                         position: relative;
                         display: grid;
                         place-items: center;
@@ -673,7 +660,7 @@
                     margin-top: -4px;
                     width: 100%; 
         
-                    .wishlist-btn {
+                    .info-btn {
                         position: relative;
                         display: grid;
                         place-items: center;

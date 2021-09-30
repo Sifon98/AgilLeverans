@@ -13,8 +13,8 @@ function Products({Product, loggedIn, popupLoginFunc}) {
           <img className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />
         </div>
         <div className="info-box">
-        <button className="wishlist-btn" onClick={loggedIn ? () => setNav({path: "/home", direction: 1}) : (e) => popupLoginFunc(e)}>
-            <i className={`${Product.isWishlisted ? "fas" : "far"} fa-heart`}></i>
+        <button className="info-btn">
+            <i className={`fas fa-info`}></i>
         </button>
         <div className="text">
             <p>{Product.name}</p>

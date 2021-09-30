@@ -1,7 +1,12 @@
+
+
+
+
 .checkout-page {
   font-weight: 700;
   position: relative;
   width: 100%;
+  overflow-y: scroll;
 
   h1 {
     text-align: center;
@@ -165,8 +170,70 @@
       max-height: 335px;
     }
     .box-3 {
-      max-height: 335px;
+      .order-summary {
+        position: relative;
+        width: 100%;
+        padding: 0 40px;
+        .top-section {
+          padding: 10px 0;
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+        }
+        .bottom-section {
+          max-height: 220px;
+          overflow: auto;
+          padding: 10px 20px;
+          width: 100%;
+          position: relative;
+          li {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+          }
+        }
+        .underline {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80%;
+          height: 1px;
+          background-color: rgba(0, 0, 0, 0.1)
+        }
+        .price-container {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          // padding: 10px 0;
+          padding-top: 20px;
+          padding-bottom: 10px;
+          font-weight: 500;
+          color: gray;
+          // justify-content: space-between;
+          .subtotal {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+          .shipping {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+          .bold {
+            font-weight: 700;
+            color: black;
+          }
+        }
+      }
+    }
+    .hide-form {
+      position:relative;
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }
+
+
 

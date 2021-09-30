@@ -263,7 +263,8 @@ router.delete("/saved-products/:id", async (req, res, next) => {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
-    }, {new: true}).populate("cart.item").populate("wishlist.item");
+    }, {new: true});
+    // }, {new: true}).populate("cart.item").populate("wishlist.item");
 
     res.send({wishlist: user.wishlist, cart: user.cart});
   } catch(err) {
