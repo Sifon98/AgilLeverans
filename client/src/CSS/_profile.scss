@@ -99,18 +99,15 @@
     .accountInfoContainer {
         width: 90%;
         height: auto;
-        position: absolute;
-        margin-top: 25%;
-        left:5%;
+        margin: auto;
+        margin-top: 80px;
         display: flex;
         justify-content: center;
         background-color: white;
-        border-top: 3px solid #FFF06B;
+        border-top: 4px solid #FFF06B;
         font-family: 'Inter', sans-serif;
         font-weight: bold;
-        padding:10px 5px 10px 5px;
-        position: relative;
-        
+        padding: 10px 5px 10px 5px;
         
         .accountForm {
             width: auto;
@@ -125,7 +122,6 @@
                 margin: 10px 5px 5px 0;
                 padding: 10px;
                 border: none;
-                border-bottom: 1px solid grey;
                 color:black;
                 font-size: 1rem;
                 font-weight:bolder;
@@ -135,8 +131,9 @@
             .inputText:disabled {
                 background-color: white;
                 // border-radius: 5px;
-                color:rgb(139, 137, 137);
+                color:rgb(0, 0, 0);
                 margin-top:15px;
+                font-weight: 700;
             }
             
             
@@ -166,8 +163,9 @@
             }
             
             ::placeholder {
-                color: #8F8F8F;
-                font-size: 0.8rem;
+                opacity: 1;
+                color: #000000;
+                font-size: 1rem;
                 font-weight: bold;
                 font-family: 'Inter', sans-serif;
                 position: relative;
@@ -185,7 +183,7 @@
               margin: 10px auto 0 auto;
             }
             .newPassword {
-                color:#8F8F8F;
+                color:#000000;
                 font-size: 0.8rem;
                 padding-left: 10px;
             }
@@ -220,43 +218,59 @@
     }
 }
 
-@media all and (max-width: 2560px) {
-  
-    .accountTitle{
-        left: 1100px;
-        position: absolute;
-    }
-    .accountInfoContainer{
-        bottom: 299px;
-    }
-}
-@media all and (max-width: 1540px) {
-    .accountTitle{
-        left: 600px;
-        position: absolute;
-    }
-    .accountInfoContainer{
-        bottom: 299px;
-    }
-}
-@media all and (max-width: 1253px) {
-    .accountTitle{
-        left: 350px;
-        position: absolute;
-    }
-    .accountInfoContainer{
-        bottom: 200px;
-    }
-}
+@media all and (min-width: 1024px) {
+    .profilePageWrapper {
+        .profileTitleContainer {
+            display: none;
+        }
 
-@media (max-width: 1023px) {
-    .accountInfoContainer{
-        position: absolute;
-        bottom: 100px;
+        .accountContainer {
+            display: block;
+            position: relative;
+            right: 15%;
+            margin-top: 100px;
+            text-align: center;
+            margin-bottom: -110px;
+            letter-spacing: -1pt;
+            .accountTitle {
+                display: inline;
+                text-align: center;
+                margin: 0;
+            }
+        }
+
+        .accountInfoContainer {
+            width: 518px;
+            margin: auto;
+            display: block;
+
+            .inputText[type=text],[type=password] {
+                margin: 10px 5px 5px 0;
+                padding: 10px;
+                border: none;
+                color:black;
+                font-size: 1rem;
+                font-weight: 200;
+                font-family: 'Inter';
+            }
+
+            .inputText:disabled {
+                background-color: white;
+                // border-radius: 5px;
+                color:rgb(0, 0, 0);
+            }
+
+            button {
+                float: right;
+                margin: 20px 20px 10px 5px;
+            }
+        }
+
+        .signoutContainer {
+            .signoutButton{
+                width: 225px;
+                letter-spacing: -0.5pt;
+            }
+        }
     }
-    .accountTitle{
-        left: 210px;
-        position: absolute;
-    }
-    
 }
