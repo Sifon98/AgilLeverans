@@ -15,10 +15,10 @@ function Form2({currentForm, setCurrentForm}) {
         <label>confirmation.</label>
       </div>
       <button 
-        className="continue-btn" 
+        className="continue-btn-last" 
         onClick={() => setNav({path: "/confirmation", direction: 1})}
         >
-        <span>Confirm Purchase.</span>
+        <span>Confirm Purchase </span>
         <i className="fas fa-arrow-right"></i>
       </button>
     </div>

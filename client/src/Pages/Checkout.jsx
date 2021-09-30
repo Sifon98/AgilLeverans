@@ -8,6 +8,7 @@ import { handleStringModify } from "../utils/checkout"
 import { NavContext } from "../context/NavContext"
 import DesktopHeader from '../components/DesktopHeader';
 import SideMenu from '../components/SideMenu';
+import MobileHeader from '../components/MobileHeader';
 
 
 function Checkout() {
@@ -97,13 +98,9 @@ function Checkout() {
 
   return (
     <div className="checkout-page page">
-      <DesktopHeader />
+      <DesktopHeader noCart={true} />
       <SideMenu backArrow="/home" />
-      <header className="navContainer">
-        <i id="backArrow" className="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
-        <h1 className ="profileTitle">bopshop.</h1>
-        <i className="fas fa-user-circle" id ="userCircle" style={{visibility: "hidden"}} onClick={ () => setNav({path: "/profile", direction: 0}) }></i>
-      </header>
+      <MobileHeader backArrow={true} />
       <h1>checkout.</h1>
       <div className="wrapper">
         <Form0 

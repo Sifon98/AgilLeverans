@@ -1,4 +1,4 @@
-.shoppingWrapper {
+.shopping-wrapper {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -8,7 +8,7 @@
     margin: 0px;
     background-color: #F4F4F4;
 
-    .navContainer{
+    .nav-container{
         position: fixed; 
         display: flex;
         justify-content: space-between;
@@ -22,7 +22,7 @@
         z-index: 100;
     }
     
-    .profileTitle {
+    .profile-title {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -34,38 +34,35 @@
         font-family: 'Inter', sans-serif;
     }
     
-   #backArrow{
+   #back-arrow{
        font-size: 1.5rem;
    }
-    #userCircle{
+    #user-circle{
         font-size: 1.5rem;
     }
 }
 
-.cartContainer {
+.cart-container {
     width:100%;
-    height:160px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    margin-left:5%;
+    padding: 20px;
+    padding-left: 25px;
     
-    
-    .cartTitle {
+    .cart-title {
         display: flex;
-        font-size: 2.7rem;
+        font-size: 32px;
         font-weight: bold;
-        font-family: 'Inter', sans-serif;
     }
 }
-.itemContainer {
+.item-container {
     background-color: #FFFFFF;
     width: 90%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 30px;
     margin-left: 19px;
     margin-right: 10px;
     position: relative;
@@ -89,7 +86,7 @@
             content: "";
         }
 
-        .itemPic {
+        .item-pic {
             height: 60px;
             width: 60px;
             border-radius: 50%;
@@ -133,7 +130,7 @@
             height: 16px;
         }
 
-        .priceTag {
+        .price-tag {
             position: absolute;
             font-size: 14px;
             font-weight: bold;
@@ -177,7 +174,7 @@
             padding-left: 10px;
             // height: 100%;
             // justify-content: space-between;
-            .cartText{
+            .cart-text{
                 font-size: 12px;
                 font-weight: bold;
                 font-family: 'Inter', sans-serif;
@@ -185,7 +182,7 @@
                 // height: 10px;
                 // width: auto;
             }
-            .cartRef {
+            .cart-ref {
                 font-size: 0.7rem;
                 // left: 105px;
                 // top: 27px;
@@ -218,7 +215,6 @@
     #itemDivider{
         margin-left: 160px;
     }
-    
 }
 
 #totalText {
@@ -230,7 +226,7 @@ text-align: center;
 margin: 0 auto;
 color: #818181;
 margin-top: 100px;
-&::after {
+&::after { 
     position: absolute;
     content: "";
     width: 47px;
@@ -259,44 +255,60 @@ margin: 0 auto;
     bottom: 0;
 }
 
-.paymentMethods {
+.payment-methods {
     display: none;
 }
 
 @media all and (min-width: 1024px) {
-    .shoppingWrapper {
+    .shopping-wrapper {
 
 
-        .navContainer {
+        .nav-container {
             display: none;
         }
 
-        .cartContainer {
+        .cart-container {
+            width:880px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
             margin: auto;
-            width: 800px;
-            margin-bottom: 10px;
-            letter-spacing: -1.5pt;
+            padding: 0px;
+            margin-top: 40px;
+            
+            .cart-title {
+                display: flex;
+                font-size: 50px;
+                font-weight: bold;
+            }
         }
 
-        .boxContainer {
+        .box-container {
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            padding-top: 40px;
             width: 950px;
             height: 0px; //* varför funkar det här ens!?!?!? *//
             margin: auto;
-            
         }
 
-        .itemContainer {
+        .item-helper {
             display: block;
             margin: auto;
-            width: 500px;
             height: auto;
+            width: auto;
+            padding-bottom: 50px;
 
+            .item-container {
+                display: block;
+                margin: auto;
+                width: 500px;
+                height: auto;
+            }
         }
 
-        .subtotalContainer {
+        .subtotal-container {
             display: block;
             margin: auto;
             width: 400px;
@@ -333,11 +345,11 @@ margin: 0 auto;
                 margin: 20px auto;
             }
 
-            .paymentMethods {
+            .payment-methods {
                 display: block;
                 margin-left: 20px;
                 
-                .paymentText {
+                .payment-text {
                     font-weight: 700;
                     margin-bottom: 5px;
                 }
@@ -354,9 +366,8 @@ margin: 0 auto;
     } 
 }
 
-
 @media all and (max-width: 450px) {
-    .itemContainer .item .add-remove-box .increment-btn, .itemContainer .item .add-remove-box .decrement-btn {
+    .item-container .item .add-remove-box .increment-btn, .item-container .item .add-remove-box .decrement-btn {
         height: 14px;
         width: 14px;
         font-size: 8px;
