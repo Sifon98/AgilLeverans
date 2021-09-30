@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
 
-function MobileHeader({ backArrow }) {
+function MobileHeader({ backArrow, home }) {
     const { user } = useContext(UserContext);
     const { setNav } = useContext(NavContext);
 
@@ -10,7 +10,11 @@ function MobileHeader({ backArrow }) {
         <>
             <div className="mobile-header">
                 {
-                    backArrow ? <>
+                    backArrow ? home ? <>
+                            <i id="back-arrow" class="fas fa-home" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
+                            <h1 className ="profile-title">bopshop.</h1> 
+                            <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>
+                        </> : <>
                             <i id="back-arrow" className="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
                             <h1 className ="profile-title">bopshop.</h1> 
                             <i className="fas fa-user-circle" onClick={() => setNav({path: "/profile", direction: 1})}></i>

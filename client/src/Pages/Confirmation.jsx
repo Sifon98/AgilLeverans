@@ -10,7 +10,7 @@ function Confirmation() {
     <div className="page">
       <div className="header">
         <DesktopHeader noCart={true} wishlist={true} />
-        <MobileHeader />
+        <MobileHeader backArrow={true} home={true} />
         <SideMenu backArrow="/home" home={true} />
       </div>
       <div className="body-container">
