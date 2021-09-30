@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { NavContext } from '../context/NavContext'
 import DesktopHeader from '../components/DesktopHeader';
 import MobileHeader from '../components/MobileHeader';
 import SideMenu from '../components/SideMenu';
 
 
 function Confirmation() {
+  const { setNav } = useContext(NavContext);
 
   const clearCart = async () => {
     const res = await fetch("/api/clear-cart", {
@@ -38,6 +40,7 @@ function Confirmation() {
           <h1 className="thanku-text">Thank you for your purchase!</h1>
           <p className="order-text">Your order was completed successfully,
           you will soon get a confirmation and reciept via e-mail.</p>
+          <button className="continue" onClick={() => setNav({path: "/home", direction: 0})}>continue shopping.</button>
         </div>
       </div>
     </div>
