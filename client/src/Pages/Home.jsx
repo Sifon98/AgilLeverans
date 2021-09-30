@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import LoginHome from "../components/LoginForm"
 import SideMenu from "../components/SideMenu"
 import DesktopHeader from '../components/DesktopHeader';
-import MobileHeader from '../components/HomePage/MobileHeader';
+import MobileHeader from '../components/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
 import RegisterHome from '../components/RegisterForm';
 

@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
 import CartDropdown from './CartDropdown';
 
-function DesktopHeader({popupLoginFunc, loggedIn, wishlist}) {
+function DesktopHeader({popupLoginFunc, loggedIn, wishlist, noCart}) {
     const { user } = useContext(UserContext);
     const { setNav } = useContext(NavContext);
 
@@ -30,18 +30,18 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist}) {
                         <i className="fas fa-user-circle"></i>
                     </div>
                     {/* { navigator.userAgent.includes("Electron") ? ( */}
-                        <div className="icons" onClick={user ? () => setNav({path: "/wishlist", direction: 1}) : (e) => popupLoginFunc(e)}>
+                        {wishlist ? null : <div className="icons" onClick={user ? () => setNav({path: "/wishlist", direction: 1}) : (e) => popupLoginFunc(e)}>
                             <i className="fas fa-heart"></i>
-                        </div>
+                        </div>}
                     {/* ) : null} */}
-                    <div className="icons"  onClick={user ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
+                    {noCart ? null : <div className="icons"  onClick={user ? () => cartDropdown() : (e) => popupLoginFunc(e)}>
                         <button className="shopping-cart-btn">
                             <i className="fas fa-shopping-bag"></i>
                                 {user && user.cart && user.cart.length > 0 ? (
                                     <div className="cart-count-home">{user.cart.length}</div>
                                 ):null}
                         </button>
-                    </div>
+                    </div>}
                     <CartDropdown cartToggle={cartToggle} setCartToggle={setCartToggle} wishlist={wishlist} />
                 </div>
             </div>
