@@ -8,8 +8,6 @@ const {products} = require("../utils/products")
 const {validateQuery} = require("../utils/validation");
 
 
-
-
 // USER
 router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
@@ -19,8 +17,8 @@ router.get("/user", (req, res) => {
 
 
 router.patch( "/user", async ( req, res ) => {
-  const { userName } = req.body;
   const userId = req.user._id;
+  const { userName } = req.body;
   const updatedUserName = await User.findByIdAndUpdate( { _id: userId}, {username: userName}, {new : true})
   console.log( req );
   console.log( updatedUserName );
