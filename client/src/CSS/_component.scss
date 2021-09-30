@@ -260,6 +260,7 @@
     flex-direction: column;
     width: 200px;
     a {
+        cursor: pointer;
         text-align: center;
     }
 
@@ -268,6 +269,7 @@
         color: black;
     }
     .download-btn {
+        cursor: pointer;
         background-color: black;
         padding: 8px 20px;
         border-radius: 12px;
