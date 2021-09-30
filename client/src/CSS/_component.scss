@@ -583,14 +583,33 @@
             background-color: #FFFFFF;
             width: 95%;
             height: 350px;
-            margin-top: 30px;
+            margin-top: 40px;
             margin-left: 10px;
             margin-right: 10px;
             position: relative;
             border-radius: 20px;
-            padding-top: 10px;
             overflow: hidden;
-            overflow-y: scroll;
+            overflow-y: scroll;/* width */
+
+            &::-webkit-scrollbar {
+              width: 10px;
+            }
+            
+            /* Track */
+            &::-webkit-scrollbar-track {
+              background: #f1f1f100;
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+              background: rgb(194, 194, 194);
+              border-radius: 10px;
+            }
+            
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+              background: #555;
+            }
             
             .item{
                 width: 361px;
