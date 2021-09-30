@@ -34,7 +34,7 @@ router.patch( "/updateemail", async ( req, res ) => {
   try {
   const userId = req.user._id;
   const { email } = req.body;
-  const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email}, {new : true})
+  const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email: email}, {new : true})
     console.log( email );
   console.log( updatedUserEmail );
   res.send( { user: updatedUserEmail } );

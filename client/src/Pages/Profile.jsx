@@ -45,6 +45,10 @@ function Profile() {
       body: JSON.stringify({ userName, email, password })
     })
     const getUser = await res.json();
+    if (type === "updatename") {
+      setUser(null)
+      return;
+    }
     setUser(getUser.user);
   }
   
@@ -108,7 +112,8 @@ function Profile() {
       <div className="accountInfoContainer">
         <form className="accountForm" action="" >
           <label className="username" id="label" htmlFor="username" >username</label>
-          <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
+          <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText"
+            id="input" type="text" disabled={!isDisabledName} />
           {isDisabledName
             ? <button onClick={editUser}>{buttonText(isDisabledName)}</button>
             : <button onClick={(e) => {
@@ -118,7 +123,7 @@ function Profile() {
           <br />
 
           <label className="emailadress" htmlFor="emailadress" >email</label>
-          <input onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail} />
+          <input onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText" type="text" disabled={!isDisabledEmail} />
           {isDisabledEmail
             ? <button onClick={editEmail}>{buttonText(isDisabledEmail)}</button>
             : <button onClick={(e) => {
@@ -129,17 +134,7 @@ function Profile() {
           <br />
           
           <label className="password" htmlFor="password">current password</label>
-          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
-          {isDisabledPassword
-            ? <><button onClick={(e) => {
-              setIsDisabledPassword(boolean => !boolean), e.preventDefault();
-            }}>{buttonText(isDisabledPassword)}</button>
-            {newPass}</>
-              
-            : <button onClick={(e) => {
-              setIsDisabledPassword(boolean => !boolean), e.preventDefault();
-            }}>{buttonText(isDisabledPassword)}</button>
-          }
+          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
           
         </form>
       </div>
