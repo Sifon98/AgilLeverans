@@ -1,6 +1,7 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import { UserContext } from "../context/UserContext";
 import { NavContext } from "../context/NavContext";
+import DownloadsContainer from './DownloadsContainer';
 
 function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
     const { user, setUser } = useContext(UserContext);
@@ -91,6 +92,7 @@ function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
                         Register here
                     </p>
                     </form>
+                    <DownloadsContainer position="relative" size="small" />
                 </div>
             </div>}
             {popupLogin ? user != null ? removePopup() : null : null}
