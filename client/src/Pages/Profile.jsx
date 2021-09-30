@@ -33,7 +33,7 @@ function Profile() {
 
   
   const handleEdit = async () => {
-    const res = await fetch("/api/register", {
+    const res = await fetch("/api/user", {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -42,7 +42,7 @@ function Profile() {
       body: JSON.stringify({ userName, email, password })
     })
     const getUser = await res.json();
-    setUser(getUser);
+    setUser(getUser.user);
   }
   
   const editUser = async (e) => {
@@ -61,7 +61,7 @@ function Profile() {
 
   const editPass = async (e) => {
     e.preventDefault();
-    setIsDisabledPassword(boolean => !boolean);
+    setIsDisabledPassword(boolean => !boolean);          
     handleEdit();
     console.log({ password })
   }

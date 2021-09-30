@@ -5,8 +5,8 @@ const User = require("../models/user");
 const Product = require("../models/product");
 const router = express.Router();
 const {products} = require("../utils/products")
+const {validateQuery} = require("../utils/validation");
 
-const {validateQuery} = require("../utils/validation")
 
 
 
@@ -15,6 +15,16 @@ router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
   const { _id, email, username, wishlist, cart } = req.user;
   res.json({ _id, email, username, wishlist, cart });
+} );
+
+
+router.patch( "/user", async ( req, res ) => {
+  const { userName } = req.body;
+  const userId = req.user._id;
+  const updatedUserName = await User.findByIdAndUpdate( { _id: userId}, {username: userName}, {new : true})
+  console.log( req );
+  console.log( updatedUserName );
+  res.send( { user: updatedUserName} );
 });
 
 router.post("/register", async (req, res, next) => {
