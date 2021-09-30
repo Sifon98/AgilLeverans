@@ -135,6 +135,7 @@ function Product() {
     })
     const data = await res.json();
 
+    console.log(data.cart)
     setUser({
       ...user,
       ...(data.cart && {cart: data.cart}),
@@ -186,6 +187,8 @@ function Product() {
     e.stopPropagation();
     setPopupLogin(true)
   }
+
+  // Fix so when removing 1 item ALL items does not get cleared
 
   return (
     <div className="product-page page">
