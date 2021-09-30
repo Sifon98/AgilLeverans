@@ -2,6 +2,9 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { NavContext } from "../context/NavContext";
+import SideMenu from '../components/SideMenu';
+import DesktopHeader from '../components/DesktopHeader';
+import MobileHeader from '../components/MobileHeader';
 
 
 function Profile() {
@@ -29,11 +32,11 @@ function Profile() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disableSaveButton, setdisableSaveButton] = useState(true);
-  const buttonText = (isDisabled) => isDisabled ? 'Save.' : 'Edit.';
+  const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
 
   
   const handleEdit = async () => {
-    const res = await fetch("/api/register", {
+    const res = await fetch("/api/user", {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -42,7 +45,7 @@ function Profile() {
       body: JSON.stringify({ userName, email, password })
     })
     const getUser = await res.json();
-    setUser(getUser);
+    setUser(getUser.user);
   }
   
   const editUser = async (e) => {
@@ -61,7 +64,7 @@ function Profile() {
 
   const editPass = async (e) => {
     e.preventDefault();
-    setIsDisabledPassword(boolean => !boolean);
+    setIsDisabledPassword(boolean => !boolean);          
     handleEdit();
     console.log({ password })
   }
@@ -69,24 +72,22 @@ function Profile() {
   const newPass =
   <>
     <label className="newPassword" htmlFor="password">enter new password</label>
-    <input onChange={(e) => setPassword(e.target.value)} className="inputText" type="password" placeholder="********" disabled={!isDisabledPassword} />
+    <input onChange={(e) => setPassword(e.target.value)} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
     {isDisabledPassword
       ? <button onClick={editPass}>{buttonText(isDisabledPassword)}</button>
       : <button onClick={(e) => {
         setIsDisabledPassword(boolean => !boolean), e.preventDefault();
       }}>{buttonText(isDisabledPassword)}</button>
-      
     }
   </>;
 
 
   return (
-    <div className="profilePageWrapper">
-      <header className="profileTitleContainer">
-        <i onClick={() => setNav({ path: "/home", direction: 0 })} id="backArrow" className="fas fa-arrow-left"></i>
-        <h1 className="profileTitle">bopshop.</h1>
-        <i id="shoppingCart" style={{ visibility: "hidden" }} className="fas fa-shopping-bag"></i>
-      </header>
+    <div className="profilePageWrapper page">
+      <SideMenu backArrow="/home" />
+      <DesktopHeader noProfile={true} />
+      <MobileHeader backArrow={true} cart={true} />
+
       <div className="accountContainer">
         <h1 className="accountTitle">your account.</h1>
       </div>
@@ -122,7 +123,7 @@ function Profile() {
           <br />
           
           <label className="password" htmlFor="password">current password</label>
-          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" placeholder="********" disabled={!isDisabledPassword} />
+          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
           {isDisabledPassword
             ? <><button onClick={(e) => {
               setIsDisabledPassword(boolean => !boolean), e.preventDefault();

@@ -75,11 +75,12 @@
                 align-items: center;
 
                 .men-button {
+                    font-family: 'Inter';
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     background-color: var(--yellow);
-                    width: 110px;
+                    width: 120px;
                     height: 40px;
                     text-decoration: black;
                     border: none;
@@ -161,15 +162,16 @@
                 z-index: 10;
 
                 .women-button {
+                    font-family: 'Inter';
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     background-color: var(--yellow);
-                    width: 110px;
+                    width: 160px;
                     height: 40px;
                     text-decoration: black;
                     border: none;
-                    font-size: 1.7em;
+                    font-size: 1.9em;
                     font-weight: bold;
                 }
             }

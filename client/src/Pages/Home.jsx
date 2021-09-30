@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import LoginHome from "../components/LoginForm"
 import SideMenu from "../components/SideMenu"
 import DesktopHeader from '../components/DesktopHeader';
-import MobileHeader from '../components/HomePage/MobileHeader';
+import MobileHeader from '../components/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
 import RegisterHome from '../components/RegisterForm';
 
@@ -167,7 +167,7 @@ function Home() {
       {/* <div className="header"> */}
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
-          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color}/>
+          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color} />
         <DesktopHeader popupLoginFunc={popupLoginFunc} loggedIn={loggedIn} />
         <MobileHeader />
       {/* </div> */}

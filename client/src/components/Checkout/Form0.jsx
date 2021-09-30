@@ -25,7 +25,7 @@ function Form0({currentForm, setCurrentForm, formCheck0, setAddress, zip, handle
         disabled={!formCheck0}
         style={formCheck0 ? {backgroundColor: "#57c95b"} : null}
         >
-        <span>Continue</span>
+        <span>Continue </span>
         <i className="fas fa-arrow-right"></i>
       </button>
     </div>
