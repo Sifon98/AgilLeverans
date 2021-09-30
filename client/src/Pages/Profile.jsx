@@ -35,8 +35,8 @@ function Profile() {
   const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
 
   
-  const handleEdit = async () => {
-    const res = await fetch("/api/user", {
+  const handleEdit = async (type) => {
+    const res = await fetch(`/api/${type}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -50,22 +50,28 @@ function Profile() {
   
   const editUser = async (e) => {
     e.preventDefault();
-    setIsDisabledName(boolean => !boolean);
-    handleEdit();
+    setIsDisabledName( boolean => !boolean );
+    if ( userName.length == 0 ) {
+      return;
+    }
+    handleEdit('updatename');
     console.log({ userName })
   }
 
   const editEmail = async (e) => {
     e.preventDefault();
     setIsDisabledEmail(boolean => !boolean);
-    handleEdit();
+    if ( email.length == 0 ) {
+      return;
+    }
+    handleEdit( 'updateemail' );
     console.log({ email })
   }
 
   const editPass = async (e) => {
     e.preventDefault();
     setIsDisabledPassword(boolean => !boolean);          
-    handleEdit();
+    // handleEdit();
     console.log({ password })
   }
 
