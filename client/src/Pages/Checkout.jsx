@@ -97,7 +97,7 @@ function Checkout() {
 
   return (
     <div className="checkout-page page">
-      <DesktopHeader />
+      <DesktopHeader noCart={true} />
       <SideMenu backArrow="/home" />
       <header className="navContainer">
         <i id="backArrow" className="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>

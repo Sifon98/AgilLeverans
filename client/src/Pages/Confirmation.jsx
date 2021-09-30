@@ -1,23 +1,24 @@
 import React from 'react';
 import DesktopHeader from '../components/DesktopHeader';
-import MobileHeader from '../components/HomePage/MobileHeader';
+import MobileHeader from '../components/MobileHeader';
 import SideMenu from '../components/SideMenu';
 
 
 function Confirmation() {
 
   return (
-    <div className="conteiner page">
+    <div className="page">
       <div className="header">
-        <DesktopHeader />
+        <DesktopHeader noCart={true} wishlist={true} />
         <MobileHeader />
-        <SideMenu backArrow="/home" />
+        <SideMenu backArrow="/home" home={true} />
       </div>
-      <div className="bodyConteiner">
-        <div className="textConteiner">
+      <div className="body-container">
+        <div className="content-container">
+          <div className="check"><i class="fas fa-check"></i></div>
           <h1 className="thanku-text">Thank you for your purchase!</h1>
-          <p className="order-text">your order was completed successfully.</p>
-          <p className="order-text">you will soon get a confirmation e-mail.</p>
+          <p className="order-text">Your order was completed successfully,
+          you will soon get a confirmation and reciept via e-mail.</p>
         </div>
       </div>
     </div>

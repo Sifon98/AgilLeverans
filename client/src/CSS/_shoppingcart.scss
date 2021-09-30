@@ -215,7 +215,6 @@
     #itemDivider{
         margin-left: 160px;
     }
-    
 }
 
 #totalText {
@@ -227,7 +226,7 @@ text-align: center;
 margin: 0 auto;
 color: #818181;
 margin-top: 100px;
-&::after {
+&::after { 
     position: absolute;
     content: "";
     width: 47px;
@@ -270,16 +269,16 @@ margin: 0 auto;
 
         .cart-container {
             width:880px;
-            height:160px;
             display: flex;
             justify-content: flex-start;
             align-items: flex-end;
-            margin:auto;
+            margin: auto;
             padding: 0px;
+            margin-top: 40px;
             
             .cart-title {
                 display: flex;
-                font-size: 60px;
+                font-size: 50px;
                 font-weight: bold;
             }
         }
