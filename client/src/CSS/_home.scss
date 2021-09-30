@@ -363,29 +363,10 @@
                 z-index: 1;
             }
 
-
-            .info-btn {
-                cursor: pointer;
-                position: relative;
-                display: grid;
-                place-items: center;
-                outline: none;
-                border: none;
-                border-radius: 100%;
-                width: 32px;
-                height: 32px;
-                background-color: white;
-                bottom: 41px;
-                left: 130px;
-                font-size: 17px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
             .image-helper {
                 display: flex;
                 justify-content: center;
                 overflow: hidden;
-
 
                 .image {
                     filter: brightness(0.9);
@@ -399,13 +380,8 @@
                 height: auto;
                 width: 100%; 
                 min-height: 70px;
-            }
 
-            @media screen and (max-width: 1023px) {
                 .info-btn {
-                    visibility: hidden;
-                }
-                .wishlist-btn {
                     cursor: pointer;
                     position: relative;
                     display: grid;
@@ -427,21 +403,8 @@
                 }
 
                 @media screen and (max-width: 1023px) {
-                    .wishlist-btn {
-                        visibility: hidden;
-                        position: relative;
-                        display: grid;
-                        place-items: center;
-                        outline: none;
-                        border: none;
-                        border-radius: 100%;
-                        width: 32px;
-                        height: 32px;
-                        background-color: white;
-                        bottom: 41px;
-                        left: 130px;
-                        font-size: 17px;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    .info-btn {
+                        display: none;
         
                         i {
                         margin-top: 2px;
@@ -508,6 +471,7 @@
             justify-content: space-around;
         }
     }
+
 }
 
 @media(min-width: 680px) {
@@ -577,7 +541,7 @@
                     margin-top: -4px;
                     width: 100%; 
         
-                    .wishlist-btn {
+                    .info-btn {
                         position: relative;
                         display: grid;
                         place-items: center;
@@ -667,32 +631,6 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-              
-                overflow: hidden;
-    
-                .image {
-                    filter: brightness(0.9);
-                    width: auto;
-                    height: 450px;
-                    transition: 0.4s ease-in-out;
-                }
-            }
-    
-            .info-box {
-                margin-top: -4px;
-                height: auto;
-                width: 100%; 
-    
-                .info-btn {
-                    position: relative;
-                    display: grid;
-                    place-items: center;
-                    outline: none;
-                    border: none;
-                    border-radius: 100%;
-                    width: 32px;
-                    height: 32px;
-                  
                 align-content: flex-start;
                 align-items: flex-start;
                 margin-right: 17px;
@@ -722,7 +660,7 @@
                     margin-top: -4px;
                     width: 100%; 
         
-                    .wishlist-btn {
+                    .info-btn {
                         position: relative;
                         display: grid;
                         place-items: center;
@@ -769,7 +707,7 @@
                 }
             }
         }
-    }}
+    }
 }
 
 .visible {
@@ -873,7 +811,6 @@
                 border-bottom: 1px solid var(--grey);
                 background-color: #F4F4F4;
                 height: 20px;
-                font-family: 'Inter';
             }
     
             .inputLoginError {
@@ -895,7 +832,6 @@
             .loginButton{
                 cursor: pointer;
                 display: flex;
-                font-family: 'Inter';
                 justify-content: center;
                 align-items: center;
                 align-content: center;
@@ -928,7 +864,6 @@
                 font-size: 90%;
                 font-weight: 700;
                 background-color: #F4F4F4;
-                font-family: 'Inter';
             }
         }
     
@@ -945,7 +880,6 @@
                 border-bottom: 1px solid var(--grey);
                 background-color: #F4F4F4;
                 height: 20px;
-                font-family: 'Inter';
             }  
     
             .inputRegister::placeholder{ 
@@ -967,7 +901,6 @@
             }
     
             .registerButton{
-                font-family: 'Inter';
                 cursor: pointer;
                 display: flex;
                 justify-content: center;
