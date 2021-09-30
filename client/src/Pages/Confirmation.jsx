@@ -6,10 +6,6 @@ import SideMenu from '../components/SideMenu';
 
 function Confirmation() {
 
-  useEffect(() => {
-    clearCart();
-  }, [])
-
   const clearCart = async () => {
     const res = await fetch("/api/clear-cart", {
       method: "DELETE",
@@ -24,6 +20,10 @@ function Confirmation() {
       cart: data.cart
     })
   }
+
+  useEffect(() => {
+    clearCart();
+  }, [])
 
   return (
     <div className="page">

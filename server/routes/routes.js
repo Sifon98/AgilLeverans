@@ -203,24 +203,6 @@ router.post("/add-wishlist-to-cart", async (req, res, next) => {
   };
 });
 
-router.delete("/clear-wishlist", async (req, res, next) => {
-  try {
-    const userId = req.user._id;
-
-    const user = await User.findOneAndUpdate(
-      { _id: userId }, 
-      {
-        wishlist: []
-      },
-      {new: true}
-    );
-
-    res.send({wishlist: user.wishlist});
-  } catch (err) {
-    next(err);
-  }
-})
-
 router.delete("/clear-cart", async (req, res, next) => {
   try {
     const userId = req.user._id;
@@ -234,6 +216,24 @@ router.delete("/clear-cart", async (req, res, next) => {
     );
 
     res.send({cart: user.cart});
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.delete("/clear-wishlist", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        wishlist: []
+      },
+      {new: true}
+    );
+
+    res.send({wishlist: user.wishlist});
   } catch (err) {
     next(err);
   }
