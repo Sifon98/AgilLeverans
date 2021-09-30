@@ -1,11 +1,8 @@
 import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
-import DownloadsContainer from '../components/DownloadsContainer';
 import { NavContext } from "../context/NavContext";
 import Men from '../img/Men.png'
 import Women from '../img/Women.png'
-import { isMobile } from '../utils/isMobile';
-import { isElectron } from "../utils/isElectron";
 
 
 function Landing() {
@@ -17,7 +14,6 @@ function Landing() {
       <div className="title-container">
         <h1 className="title">bopshop.</h1>
       </div>
-      { !isMobile() && !isElectron() && <DownloadsContainer /> }
       <div className="image-container">
         <div className="left-side" onClick={ () => setNav({
                 path: '/home',
@@ -27,7 +23,7 @@ function Landing() {
           <div className="button-container-men" style={{pointerEvents: "none"}}>
             <button className="men-button">men.</button>
           </div>
-          <img className="men-image" src={Men} alt="Man" />
+          <img className="men-image" src={Men} alt="Man"/>
         </div>
         <div className="right-side"  onClick={ () => setNav({
                 path: '/home',

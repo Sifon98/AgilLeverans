@@ -33,6 +33,7 @@
         flex-direction: column;
         margin-top: 63px;
         width: 225px;
+        
 
         .inputRegister{
             display: flex;
@@ -41,12 +42,17 @@
             border-bottom: 1px solid var(--grey);
             background-color: #F4F4F4;
             height: 20px;
+            font-family: 'Inter';
         }  
 
         .inputRegister::placeholder{ 
             color: black;
             font-size: 120%;
             font-weight: 700;
+        }
+
+        .inputRegister:focus {
+            outline: none;
         }
 
         .inputRegisterError{
@@ -74,6 +80,7 @@
             height: 53px;
             font-weight: 700;
             font-size: 100%;
+            font-family: 'Inter';
         }
             
         .loginText {
@@ -85,6 +92,7 @@
             font-size: 90%;
             margin-top: 10px;
             font-weight: 700;
+            
         }
 
         .loginLink {
@@ -96,6 +104,16 @@
             font-size: 90%;
             font-weight: 700;
             background-color: #F4F4F4;
+            font-family: 'Inter';
+        }
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .container-register {
+        .yellow-side {
+            height: 100%;
+            width: 73px;
         }
     }
 }

@@ -178,9 +178,11 @@ function Home() {
       {/* Change titel depending on the categorie and gender */}
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
-      <div className="home-container">
+      <div className="home-helper">
+        <div className="home-container">
           <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} 
           colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} loggedIn={loggedIn} popupLoginFunc={popupLoginFunc} />
+        </div>
       </div>
       <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
       <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
