@@ -33,6 +33,7 @@
         flex-direction: column;
         margin-top: 63px;
         width: 225px;
+        
 
         .inputRegister{
             display: flex;
@@ -41,12 +42,17 @@
             border-bottom: 1px solid var(--grey);
             background-color: #F4F4F4;
             height: 20px;
+            font-family: 'Inter';
         }  
 
         .inputRegister::placeholder{ 
             color: black;
             font-size: 120%;
             font-weight: 700;
+        }
+
+        .inputRegister:focus {
+            outline: none;
         }
 
         .inputRegisterError{
