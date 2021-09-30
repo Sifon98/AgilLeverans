@@ -113,7 +113,7 @@ function Wishlist() {
         {
         products && products.map(x => (
         <div className="item" key={x._id}>
-          <img className="itemPic" src={x.item.images[x.imageIndex]}></img>
+          <img alt="image"  className="itemPic" src={x.item.images[x.imageIndex]}></img>
           <div className="product-info-wrapper">
             <p className="cartText">{x.item.name}</p>
             <p className="cartRef">ref: {x._id.substring(0, 8)}</p>

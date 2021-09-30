@@ -805,12 +805,14 @@
             width: 225px;
     
             .inputLogin{
+                outline: none;
                 display: flex;
-                margin-bottom: 30px;
+                margin-bottom: 25px;
                 border: none;
+                font-size: 120%;
                 border-bottom: 1px solid var(--grey);
                 background-color: #F4F4F4;
-                height: 20px;
+                height: 25px;
             }
     
             .inputLoginError {
@@ -818,8 +820,7 @@
             }
     
             .inputLogin::placeholder{
-                color: black;
-                font-size: 120%;
+                color: var(--grey);
                 font-weight: 700;
             }
     
@@ -827,6 +828,10 @@
                 color: red;
                 font-size: 15px;
                 font-weight: 700;
+            }
+
+            .placeholder {
+                height: 19px;
             }
     
             .loginButton{
@@ -875,16 +880,16 @@
     
             .inputRegister{
                 display: flex;
-                margin-bottom: 30px;
+                margin-bottom: 10px;
                 border: none;
+                font-size: 120%;
                 border-bottom: 1px solid var(--grey);
                 background-color: #F4F4F4;
-                height: 20px;
+                height: 25px;
             }  
     
             .inputRegister::placeholder{ 
-                color: black;
-                font-size: 120%;
+                color: var(--grey);
                 font-weight: 700;
             }
     
@@ -895,7 +900,14 @@
             .errorText{
                 color:red;
                 margin-bottom: 10px;
-                margin-top: -15px;
+                font-size: 15px;
+                font-weight: 700;
+            }
+            
+            .placeholder{
+                color: var(--background);
+                height: 19px;
+                margin-bottom: 10px;
                 font-size: 15px;
                 font-weight: 700;
             }

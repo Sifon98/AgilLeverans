@@ -15,7 +15,7 @@ function FirstLoad() {
 
     <div className="container-first-load page">
         <div className="yellow-side"></div>
-        <img src={logoLogin} />
+        <img alt="image"  src={logoLogin} />
         <div className="welcome-text">welcome to bopshop.</div>
         <div className="random-line"></div>
         <button className="login-button" onClick={() => setNav({path: "/login", direction: 1})}>login.</button>
