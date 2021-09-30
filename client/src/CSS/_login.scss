@@ -47,6 +47,10 @@
             border-bottom: 1px solid red;
         }
 
+        .inputLogin:focus {
+            outline: none;
+        }
+
         .inputLogin::placeholder{
             color: black;
             font-size: 120%;
