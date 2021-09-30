@@ -4,13 +4,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from "../context/UserContext";
 import { getParams, getIsParamsValid } from "../utils/product-page";
+import { NavContext } from "../context/NavContext";
 import ImageContainer from '../components/ProductPage/ImageContainer';
 import InfoContainer from '../components/ProductPage/InfoContainer';
 import OptionsContainer from '../components/ProductPage/OptionsContainer/OptionsContainer';
 import CheckoutButton from '../components/ProductPage/CheckoutButton';
-import { NavContext } from "../context/NavContext";
 import SideMenu from '../components/SideMenu';
 import DesktopHeader from '../components/DesktopHeader';
+import LoginHome from "../components/LoginForm"
+import RegisterHome from '../components/RegisterForm';
 
 function Product() {
   const history = useHistory();
@@ -22,7 +24,6 @@ function Product() {
 
   const [reloadFetch, setReloadFetch] = useState(false);
   const [showProdInfo, setShowProdInfo] = useState(false);
-  const [popupLogin, setPopupLogin] = useState(false);
 
   const [product, setProduct] = useState({});
   const [moreProducts, setMoreProducts] = useState([]);
@@ -34,6 +35,9 @@ function Product() {
 
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  
+  const [popupLogin, setPopupLogin] = useState(false);
+  const [popupRegister, setPopupRegister] = useState(false);
 
   useEffect(() => {
     console.log(history.location)
@@ -188,7 +192,15 @@ function Product() {
     setPopupLogin(true)
   }
 
-  // Fix so when removing 1 item ALL items does not get cleared
+  const changePopup = () => {
+    if(popupLogin == true){
+      setPopupLogin(false)
+      setPopupRegister(true)
+    }else if(popupRegister == true) {
+      setPopupLogin(true)
+      setPopupRegister(false)
+    }
+  }
 
   return (
     <div className="product-page page">
@@ -198,7 +210,7 @@ function Product() {
         hideProgressBar 
         pauseOnHover={false}
         pauseOnFocusLoss={false}
-      />      
+      />
       <SideMenu backArrow="/home" />
       <DesktopHeader popupLoginFunc={popupLoginFunc} />
       <div className="content-wrapper">
@@ -214,15 +226,14 @@ function Product() {
                 />
               <OptionsContainer 
                 product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
-                setSelectedSize={setSelectedSize} 
+                setSelectedSize={setSelectedSize}
                 />
-              <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
-              <button className="wishlist-btn" onMouseDown={() => handleToggleWishlist()}>
+              <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} popupLoginFunc={popupLoginFunc} />
+              <button className="wishlist-btn" onMouseDown={user ? () => handleToggleWishlist() : (e) => popupLoginFunc(e)}>
                 <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
               </button>
             </div>
           </div>
-
           <div className="others-also-bought">
             <label>others also bought.</label>
             <ul>
@@ -234,10 +245,11 @@ function Product() {
             </ul>
           </div>
         </div>
-
         <div className="bottom-whitespace"></div>
         <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
       </div>
+      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
+      <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
     </div>
   )
 }

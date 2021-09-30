@@ -10,7 +10,7 @@
         align-items: center;
         background-color: white;
         width: 80%;
-        height: 500px;
+        height: 585px;
         border-top: 3px solid var(--yellow);
         margin-top: 60px;
 
@@ -29,11 +29,21 @@
             font-weight: 700;
             margin-top: 50px;
         }
+
+        .continue {
+            margin-top: 35px;
+            width: 240px;
+            height: 60px;
+            background-color: var(--yellow);
+            font-size: 130%;
+            font-weight: 700;
+            border-radius: 100px;
+        }
     
         .check {
             font-size: 70px;
-            color: green;
-            border: 10px solid green;
+            color: rgb(0, 184, 0);
+            border: 10px solid rgb(0, 184, 0);
             width: 130px;
             height: 130px;
             border-radius: 100%;
@@ -60,23 +70,18 @@
             align-items: center;
             background-color: white;
             width: 780px;
-            height: 500px;
+            height: 540px;
             border-top: 3px solid var(--yellow);
             margin-top: 60px;
 
-            .check {
-                font-size: 70px;
-                color: green;
-                border: 10px solid green;
-                width: 130px;
-                height: 130px;
-                border-radius: 100%;
-                margin: auto;
-                margin-bottom: 0px;
-                margin-top: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .continue {
+                margin-top: 35px;
+                width: 300px;
+                height: 80px;
+                background-color: var(--yellow);
+                font-size: 170%;
+                font-weight: 700;
+                border-radius: 100px;
             }
         }
     }
