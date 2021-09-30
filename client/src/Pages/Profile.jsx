@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { NavContext } from "../context/NavContext";
 import SideMenu from '../components/SideMenu';
 import DesktopHeader from '../components/DesktopHeader';
+import MobileHeader from '../components/MobileHeader';
 
 
 function Profile() {
@@ -77,20 +78,15 @@ function Profile() {
       : <button onClick={(e) => {
         setIsDisabledPassword(boolean => !boolean), e.preventDefault();
       }}>{buttonText(isDisabledPassword)}</button>
-      
     }
   </>;
 
 
   return (
-    <div className="profilePageWrapper">
+    <div className="profilePageWrapper page">
       <SideMenu backArrow="/home" />
-      <DesktopHeader />
-      <header className="profileTitleContainer">
-        <i onClick={() => setNav({ path: "/home", direction: 0 })} id="backArrow" className="fas fa-arrow-left"></i>
-        <h1 className="profileTitle">bopshop.</h1>
-        <i id="shoppingCart" style={{ visibility: "hidden" }} className="fas fa-shopping-bag"></i>
-      </header>
+      <DesktopHeader noProfile={true} />
+      <MobileHeader backArrow={true} cart={true} />
 
       <div className="accountContainer">
         <h1 className="accountTitle">your account.</h1>
