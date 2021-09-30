@@ -167,7 +167,7 @@ function Home() {
       {/* <div className="header"> */}
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
-          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color}/>
+          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color} />
         <DesktopHeader popupLoginFunc={popupLoginFunc} loggedIn={loggedIn} />
         <MobileHeader />
       {/* </div> */}
