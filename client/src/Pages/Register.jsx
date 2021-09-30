@@ -1,6 +1,6 @@
 import React from 'react'
 import RegisterForm from '../components/RegisterForm';
-
+import DownloadsContainer from '../components/DownloadsContainer';
 
 function Register() {
   return (
