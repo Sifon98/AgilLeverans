@@ -1,44 +1,83 @@
-.mobileHeader {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
-
-@media(min-width: 1024px) {
-    .mobileHeader {
-        display: none;
-    }
-}
-
-.bodyConteiner {
+.body-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 40px;
 
-    .thanku-text {
-        text-align: center;
-        font-size: 200%;
-        margin-top: 50px;
-        align-self: center;
-    }
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        width: 80%;
+        height: 500px;
+        border-top: 3px solid var(--yellow);
+        margin-top: 60px;
 
-    .order-text {
-        text-align: center;
-        font-size: 130%;
-        font-weight: 700;
-        margin-top: 50px;
+        .thanku-text {
+            width: 90%;
+            text-align: center;
+            font-size: 170%;
+            margin-top: 50px;
+            align-self: center;
+        }
+    
+        .order-text {
+            width: 70%;
+            text-align: center;
+            font-size: 100%;
+            font-weight: 700;
+            margin-top: 50px;
+        }
+    
+        .check {
+            font-size: 70px;
+            color: green;
+            border: 10px solid green;
+            width: 130px;
+            height: 130px;
+            border-radius: 100%;
+            margin: auto;
+            margin-bottom: 0px;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }
 
 @media screen and (min-width: 1024px) {
-     .textConteiner {
+
+    .body-container {
         display: flex;
         flex-direction: column;
-        align-self: center;
-        background-color: white;
-        width: 950px;
-        height: 500px;
-        border-top: 3px solid var(--yellow);
-        margin-top: 60px;
-     }
+        align-items: center;
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            width: 780px;
+            height: 500px;
+            border-top: 3px solid var(--yellow);
+            margin-top: 60px;
+
+            .check {
+                font-size: 70px;
+                color: green;
+                border: 10px solid green;
+                width: 130px;
+                height: 130px;
+                border-radius: 100%;
+                margin: auto;
+                margin-bottom: 0px;
+                margin-top: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
 }

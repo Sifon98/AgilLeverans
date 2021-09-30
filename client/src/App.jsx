@@ -4,7 +4,7 @@ import { UserContext } from "./context/UserContext";
 import { NavContext } from "./context/NavContext";
 import { useHistory, useLocation } from "react-router-dom";
 import Loading from './components/Loading'
-import { isMobile } from '../../server/utils/isMobile';
+import { isMobile } from './utils/isMobile';
 import Routes from './components/Routes'
 import RoutesAnimation from './components/RoutesAnimation'
 import ElectronConfig from './ElectronConfig';

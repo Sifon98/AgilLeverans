@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from 'react'
 import { NavContext } from '../context/NavContext'
 
-function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow }) {
+function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow, home }) {
     const { setNav } = useContext(NavContext);
 
     const [sidemenuUp, setSidemenuUp] = useState(false);
@@ -41,7 +41,8 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
         <>
             <div className="menu-toggle">
                 {
-                    backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
+                    backArrow ? home ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i class="fas fa-home"></i></div> :
+                     <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>
                             <input id="checkbox" type="checkbox" onClick={(e) => closeSide(e)} />
                             {/* Hamburger menu */}

@@ -46,6 +46,7 @@
   top: 24px;
 
   .back-arrow {
+    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;
@@ -114,8 +115,8 @@
   }
 
   .menu {
-      animation-name: menu-anim;
-      animation-duration: 0.5s;
+    //   animation-name: menu-anim;
+    //   animation-duration: 0.5s;
 
       position: fixed;
       width: 300px;
@@ -248,6 +249,52 @@
   
 }
 
+.downloads-container{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    a {
+        text-align: center;
+    }
+
+    h2 {
+        background-color: rgb(113, 162, 253);
+        color: black;
+    }
+    .download-btn {
+        background-color: black;
+        padding: 8px 20px;
+        border-radius: 12px;
+        color: var(--yellow);
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        margin: 4px 0;
+
+        div {
+            margin: 2px 0;
+        }
+        .label {
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            span {
+                margin: 0 4px;
+            }
+            i {
+                font-size: 20px;
+            }
+        }
+        .text {
+            font-size: 16px;
+        }
+    }
+}
+
 @media(max-width: 1023px) {
   .menu-toggle {
       display: none;
@@ -302,6 +349,7 @@
         height: auto;
         border-radius: 40px;
         background-color: white;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 
         z-index: 1;
 
@@ -332,14 +380,34 @@
             background-color: #FFFFFF;
             width: 95%;
             height: 350px;
-            margin-top: 20px;
-            margin-left: 19px;
+            margin-top: 40px;
+            margin-left: 10px;
             margin-right: 10px;
             position: relative;
             border-radius: 20px;
-            padding-top: 10px;
             overflow: hidden;
             overflow-y: scroll;
+
+            /* width */
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+            
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: #f1f1f100;
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: rgb(194, 194, 194);
+                border-radius: 10px;
+            }
+            
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgb(163, 163, 163);
+            }
             
             .item{
                 width: 361px;
@@ -359,7 +427,7 @@
                     width: 60px;
                     border-radius: 50%;
                     margin-top: 10px;
-                    margin-left: 10px;
+                    margin-left: 10px; 
                     margin-bottom: 10px;
                     object-fit: cover;
                 }
@@ -537,14 +605,33 @@
             background-color: #FFFFFF;
             width: 95%;
             height: 350px;
-            margin-top: 30px;
+            margin-top: 40px;
             margin-left: 10px;
             margin-right: 10px;
             position: relative;
             border-radius: 20px;
-            padding-top: 10px;
             overflow: hidden;
             overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+              width: 10px;
+            }
+            
+            /* Track */
+            &::-webkit-scrollbar-track {
+              background: #f1f1f100;
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+              background: rgb(194, 194, 194);
+              border-radius: 10px;
+            }
+            
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+              background: rgb(163, 163, 163);
+            }
             
             .item{
                 width: 361px;

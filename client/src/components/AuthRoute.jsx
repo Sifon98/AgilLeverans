@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { isMobile } from "../../../server/utils/isMobile";
+import { isMobile } from "../utils/isMobile";
 
 function AuthRoute({ component: Component, user, ...rest }) {
   return (
