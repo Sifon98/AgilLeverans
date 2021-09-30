@@ -2,19 +2,74 @@
   font-weight: 700;
   position: relative;
   width: 100%;
+
+  .navContainer {
+    position: fixed; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+    padding: 40px 20px 15px 20px;
+    background-color: var(--background);
+    z-index: 100;
+
+    .profileTitle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--yellow);
+      width: 155px;
+      height: 42px;
+      padding: 2px;
+      font-size: 1.6rem;
+      letter-spacing: 0px;
+    }
+
+    #backArrow{
+      font-size: 1.5rem;
+    }
+    
+    #userCircle{
+        font-size: 1.5rem;
+    }
+  }
+
+  @media(min-width: 1023px) {
+    .navContainer {
+      display: none;
+    }
+  }
+
   h1 {
+    text-align: center;
     font-size: 38px;
     font-weight: 700;
     letter-spacing: -2px;
-    padding: 20px 20px 10px 20px;
+    padding: 20px 260px 10px 20px;
   }
+
+  @media(max-width: 1022px) {
+    h1 {
+      text-align: center;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      padding: 105px 260px 10px 20px;
+    }
+  }
+
   .wrapper {
     width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    margin: auto;
+    padding: 0px 20px;
     h1 {
       font-size: 38px;
       font-weight: 700;

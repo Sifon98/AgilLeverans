@@ -6,6 +6,8 @@ import Form2 from '../components/Checkout/Form2';
 import logo from "../img/logo.svg"
 import { handleStringModify } from "../utils/checkout"
 import { NavContext } from "../context/NavContext"
+import DesktopHeader from '../components/DesktopHeader';
+import SideMenu from '../components/SideMenu';
 
 
 function Checkout() {
@@ -95,11 +97,13 @@ function Checkout() {
 
   return (
     <div className="checkout-page page">
-      <div className="header">
-        <i className="fas fa-arrow-left" onClick={() => setNav({path: "/cart", direction: 0})}></i>
-        <img src={logo} />
-        <i className="fas fa-shopping-bag" style={{visibility: "hidden"}}></i>
-      </div>
+      <DesktopHeader />
+      <SideMenu backArrow="/home" />
+      <header className="navContainer">
+        <i id="backArrow" className="fas fa-arrow-left" aria-hidden="true" onClick={ () => setNav({path: "/home", direction: 0}) }></i>
+        <h1 className ="profileTitle">bopshop.</h1>
+        <i className="fas fa-user-circle" id ="userCircle" style={{visibility: "hidden"}} onClick={ () => setNav({path: "/profile", direction: 0}) }></i>
+      </header>
       <h1>checkout.</h1>
       <div className="wrapper">
         <Form0 
