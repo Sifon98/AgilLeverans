@@ -363,10 +363,28 @@
                 z-index: 1;
             }
 
+
+            .info-btn {
+                cursor: pointer;
+                position: relative;
+                display: grid;
+                place-items: center;
+                outline: none;
+                border: none;
+                border-radius: 100%;
+                width: 32px;
+                height: 32px;
+                background-color: white;
+                bottom: 41px;
+                left: 130px;
+                font-size: 17px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
             .image-helper {
                 display: flex;
                 justify-content: center;
                 overflow: hidden;
+
 
                 .image {
                     filter: brightness(0.9);
@@ -381,6 +399,9 @@
                 width: 100%; 
                 min-height: 70px;
 
+            @media screen and (max-width: 1023px) {
+                .info-btn {
+                    visibility: hidden;
                 .wishlist-btn {
                     cursor: pointer;
                     position: relative;
@@ -644,6 +665,32 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+              
+                overflow: hidden;
+    
+                .image {
+                    filter: brightness(0.9);
+                    width: auto;
+                    height: 450px;
+                    transition: 0.4s ease-in-out;
+                }
+            }
+    
+            .info-box {
+                margin-top: -4px;
+                height: auto;
+                width: 100%; 
+    
+                .info-btn {
+                    position: relative;
+                    display: grid;
+                    place-items: center;
+                    outline: none;
+                    border: none;
+                    border-radius: 100%;
+                    width: 32px;
+                    height: 32px;
+                  
                 align-content: flex-start;
                 align-items: flex-start;
                 margin-right: 17px;

@@ -23,7 +23,7 @@ function Landing() {
           <div className="button-container-men" style={{pointerEvents: "none"}}>
             <button className="men-button">men.</button>
           </div>
-          <img className="men-image" src={Men} alt="Man" />
+          <img className="men-image" src={Men} alt="Man"/>
         </div>
         <div className="right-side"  onClick={ () => setNav({
                 path: '/home',
