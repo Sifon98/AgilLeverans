@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from "../../context/UserContext";
 
-function CheckoutButton({ handleToggleCart, isCarted }) {
+function CheckoutButton({ handleToggleCart, isCarted, popupLoginFunc }) {
+  const { user } = useContext(UserContext);
+
   return (
-    <button className="checkout-btn" onClick={() => handleToggleCart()}>
+    <button className="checkout-btn" onClick={user ? () => handleToggleCart() : (e) => popupLoginFunc(e) }>
       {isCarted ? (
         <i className="fas fa-check"></i>
       ): (
