@@ -76,12 +76,12 @@ app.get("*", (req,res) => {
   res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
 })
 
-// // Handle errors
-// app.use((err, req, res, next) => {
-//   const { statusCode = 500 } = err;
-//   if (!err.message) err.message = "Oh No, Something Went Wrong!";
-//   res.status(statusCode).send(err.message);
-// });
+// Handle errors
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Oh No, Something Went Wrong!";
+  res.status(statusCode).send(err.message);
+});
 
 
 

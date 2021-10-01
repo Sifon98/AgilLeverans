@@ -52,7 +52,7 @@ function Product() {
       setMoreProducts(data.randomProducts);
       setCurrentProductOptions(color, size, data.product);
     }
-    getProduct();
+    // getProduct();
   }, [reloadFetch])
 
   useEffect(() => {
