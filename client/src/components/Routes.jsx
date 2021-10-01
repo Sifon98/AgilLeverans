@@ -16,6 +16,7 @@ import Product from '../Pages/Product'
 import Checkout from '../Pages/Checkout'
 import Shoppingcart from '../Pages/Shoppingcart'
 import Confirmation from '../Pages/Confirmation'
+import PageNotFound from '../Pages/404.jsx'
 
 
 function Routes({location, user}) {
@@ -32,6 +33,7 @@ function Routes({location, user}) {
       <PrivateRoute path="/checkout" component={Checkout} user={user} />
       <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
       <PrivateRoute path="/confirmation" component={Confirmation} user={user} />
+      <DefaultRoute component={PageNotFound} />
     </Switch>
   );
 }
