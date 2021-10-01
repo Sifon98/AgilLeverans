@@ -5,13 +5,13 @@ function CheckoutButton({ handleToggleCart, isCarted, popupLoginFunc }) {
   const { user } = useContext(UserContext);
 
   return (
-    <button className="checkout-btn" onClick={user ? () => handleToggleCart() : (e) => popupLoginFunc(e) }>
+    <button data-testid="button" className="checkout-btn" onClick={user ? () => handleToggleCart() : (e) => popupLoginFunc(e) }>
       {isCarted ? (
         <i className="fas fa-check"></i>
       ): (
         <i className="fas fa-shopping-bag"></i>
       )}
-      <span data-testid="inner-text" >{isCarted ? "Item added to cart" : "Add to cart"}</span> 
+      <span data-testid="span" >{isCarted ? "Item added to cart" : "Add to cart"}</span> 
     </button>
   )
 }
