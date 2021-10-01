@@ -131,6 +131,7 @@ function Wishlist() {
         </div>
         ))
         }
+        {products != null ? products.length > 0 ? null : <div className="no-wishlist-items">You have no products in you wishlist, go shopping!</div> : null}
         <div className="buttons-container">
           {/* <button>SAVE WISHLIST</button> */}
           <button onClick={() => addWishlistToCart()}>ADD LIST TO CART <i className="fas fa-arrow-right"></i></button>

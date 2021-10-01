@@ -11,8 +11,6 @@ import OptionsContainer from '../components/ProductPage/OptionsContainer/Options
 import CheckoutButton from '../components/ProductPage/CheckoutButton';
 import SideMenu from '../components/SideMenu';
 import DesktopHeader from '../components/DesktopHeader';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 import LoginHome from "../components/LoginForm"
 import RegisterHome from '../components/RegisterForm';
 
@@ -215,18 +213,9 @@ function Product() {
       <div className="content-wrapper">
         <div className="desktop-wrapper">
           <div className="section">
-            <Carousel>
-              <ImageContainer 
-                product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
-                />
-              <ImageContainer 
-                product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
-                />
-              <ImageContainer 
-                product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
-                />
-            </Carousel>
-
+            <ImageContainer 
+              product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
+              />
             <div className="wrapper" style={showProdInfo ? {opacity: "1"} : null}>
               <InfoContainer 
                 product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 

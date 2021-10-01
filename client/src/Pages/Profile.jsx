@@ -91,9 +91,9 @@ function Profile() {
 
   return (
     <div className="profilePageWrapper page">
-      <SideMenu backArrow="/home" />
+      <SideMenu backArrow="/go-back" />
       <DesktopHeader noProfile={true} />
-      <MobileHeader backArrow={true} cart={true} />
+      <MobileHeader backArrow={true} backPath="/go-back" cart={true} />
 
       <div className="accountContainer">
         <h1 className="accountTitle">your account.</h1>
@@ -120,7 +120,7 @@ function Profile() {
           <br />
 
           <label className="emailadress" htmlFor="emailadress" >email</label>
-          <input onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText" type="text" disabled={!isDisabledEmail} />
+          <input onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} style={!isDisabledEmail ? {color: "lightgrey"} : null} className="inputText" type="text" disabled={!isDisabledEmail} />
           {isDisabledEmail
             ? <button onClick={editEmail}>{buttonText(isDisabledEmail)}</button>
             : <button onClick={(e) => {
