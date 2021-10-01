@@ -40,6 +40,7 @@ function App() {
     setIsLoading(false);
   }
 
+  // Back arrow for MobileHeader
   useEffect(() => {
     if(!initialLoad) return;
 
