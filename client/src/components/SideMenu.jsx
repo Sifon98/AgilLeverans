@@ -33,7 +33,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
 
     const closeSide = (e) => {
         setSidemenuUp(e.target.checked)
-        e.target.checked == sidemenuUp ? e.target.checked = false :
+        e.target.checked == sidemenuUp ? e.target.checked = false : null
         setSidemenuUp(e.target.checked)
     }
 
