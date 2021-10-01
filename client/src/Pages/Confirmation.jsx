@@ -33,15 +33,15 @@ function Confirmation() {
     <div className="page">
       <div className="header">
         <DesktopHeader noCart={true} wishlist={true} />
-        <MobileHeader backArrow={true} home={true} />
-        <SideMenu backArrow="/home" home={true} />
+        <MobileHeader backArrow={true} home={true} backPath="/home"/>
+        <SideMenu backArrow="/home" home={true} backPath="/home"/>
       </div>
       <div className="body-container">
         <div className="content-container">
           <div className="check"><i className="fas fa-check"></i></div>
           <h1 className="thanku-text">Thank you for your purchase!</h1>
           <p className="order-text">Your order was completed successfully,
-          you will soon get a confirmation and reciept via e-mail.</p>
+          you will soon get a confirmation and receipt via e-mail.</p>
           <button className="continue" onClick={() => setNav({path: "/home", direction: 0})}>continue shopping.</button>
         </div>
       </div>
