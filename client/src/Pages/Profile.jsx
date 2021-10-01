@@ -59,7 +59,6 @@ function Profile() {
       return;
     }
     handleEdit('updatename');
-    console.log({ userName })
   }
 
   const editEmail = async (e) => {
@@ -69,14 +68,12 @@ function Profile() {
       return;
     }
     handleEdit( 'updateemail' );
-    console.log({ email })
   }
 
   const editPass = async (e) => {
     e.preventDefault();
     setIsDisabledPassword(boolean => !boolean);          
     // handleEdit();
-    console.log({ password })
   }
 
   const newPass =

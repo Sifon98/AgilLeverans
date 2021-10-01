@@ -79,7 +79,6 @@ function Shoppingcart() {
         })
         setProducts(UpdateProducts);
         const total = increment ? parseFloat(totalPrice) + currentPrice : parseFloat(totalPrice) - currentPrice;
-        console.log(total)
         setTotalPrice(total.toFixed(2));
 
         await fetch(`/api/saved-products/count/${id}?type=cart&count=${count}`, {

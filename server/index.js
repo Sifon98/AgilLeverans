@@ -39,7 +39,8 @@ mongoose.connect(dbUrl, {
 // Log db!!!
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
-db.on("open", () => console.log("Database connected!"));
+db.on("open", () => {
+});
 
 // Post route
 const productRouter = require('./routes/routes')
@@ -86,5 +87,4 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, () => {
-  console.log("Running on " + PORT);
 });

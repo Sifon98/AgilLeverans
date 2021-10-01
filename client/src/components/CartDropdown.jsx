@@ -19,7 +19,6 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
     const fetchShoppingCart = async () => {
         const res = await fetch("/api/saved-products?type=cart");
         const data = await res.json();
-        console.log(data.products);
         let products = data.products.filter(x => x.item !== null);
 
         // Set total price & find imageIndex for each product 
@@ -37,7 +36,6 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
 
     const removeCart = () => {
         setCartToggle(false)
-        console.log(false)
     }
 
     function useOutsideAlerter(ref) {

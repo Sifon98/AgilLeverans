@@ -14,10 +14,8 @@ function DesktopHeader({popupLoginFunc, loggedIn, wishlist, noCart, noProfile}) 
     const cartDropdown = () => {
         if(cartToggle == true){
             setCartToggle(false)
-            console.log(false)
         }else{
             setCartToggle(true)
-            console.log(true)
         }
     }
 
