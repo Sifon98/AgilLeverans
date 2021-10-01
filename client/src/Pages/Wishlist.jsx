@@ -104,10 +104,10 @@ function Wishlist() {
         <h1 className="wishlistTitle">your wishlist.</h1>
       </div>
       <div className="wishlistContainer">
-        <div className="top-buttons">
+        {products != null ? products.length > 0 ? <div className="top-buttons">
           <button onClick={() => clearWishlist()} className="clear-wishlist">CLEAR WISHLIST</button>
           {/* <button className="import-wishlist"><i className="fas fa-file-import"></i></button> */}
-        </div>
+        </div> : null : null}
 
         {
         products && products.map(x => (
@@ -132,10 +132,10 @@ function Wishlist() {
         ))
         }
         {products != null ? products.length > 0 ? null : <div className="no-wishlist-items">You have no products in you wishlist, go shopping!</div> : null}
-        <div className="buttons-container">
+        {products != null ? products.length > 0 ? <div className="buttons-container">
           {/* <button>SAVE WISHLIST</button> */}
           <button onClick={() => addWishlistToCart()}>ADD LIST TO CART <i className="fas fa-arrow-right"></i></button>
-        </div>
+        </div> : null : null}
 
       </div>
 
