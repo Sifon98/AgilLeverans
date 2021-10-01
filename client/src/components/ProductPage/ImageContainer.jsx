@@ -18,6 +18,7 @@ function ImageContainer({ product, focusRef, selectedColor}) {
     <div className="image-container">
       <div className="img-overlay" style={hasLoaded ? {opacity: 0} : null}></div>
       <img onLoad={() => setHasLoaded(true)} src={product.images && product.images[selectedColor.index]} alt="product image" /> 
+
       <button className="go-back-btn" onClick={() => setNav({
             path: '/home',
             direction: 0,
