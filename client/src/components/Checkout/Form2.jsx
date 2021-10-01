@@ -24,7 +24,7 @@ function Form2({currentForm, setCurrentForm, totalPrice, products}) {
             <li key={x._id}>
               <div>
                 <span className="product-count">{x.count}</span>
-                <span className="product-name"> x {x.item.name}</span>
+                <span className="product-name"> x {x.item.name} ({x.color.name})</span>
               </div>
               <div className="total-product-price">${x.countPrice}</div>
             </li>
