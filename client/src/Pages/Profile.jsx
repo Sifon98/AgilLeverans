@@ -5,6 +5,7 @@ import { NavContext } from "../context/NavContext";
 import SideMenu from '../components/SideMenu';
 import DesktopHeader from '../components/DesktopHeader';
 import MobileHeader from '../components/MobileHeader';
+import DownloadsContainer from '../components/DownloadsContainer';
 
 
 function Profile() {
@@ -129,15 +130,14 @@ function Profile() {
           }
            
           <br />
-          
-          <label className="password" htmlFor="password">current password</label>
-          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
-          
         </form>
       </div>
 
       <footer className="signoutContainer">
         <button className="signoutButton" onClick={handleLogout}>sign out.</button>
+        <div className="download-helper">
+          <DownloadsContainer position="relative" size="small" />
+        </div>
       </footer>
     </div>
   )

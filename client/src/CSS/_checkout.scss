@@ -183,13 +183,22 @@
         .bottom-section {
           max-height: 220px;
           overflow: auto;
-          padding: 10px 20px;
+          padding: 10px 0px;
           width: 100%;
           position: relative;
           li {
             display: flex;
             justify-content: space-between;
             font-weight: 500;
+          }
+        }
+        @media(min-width: 768px){
+          .bottom-section {
+            max-height: 220px;
+            overflow: auto;
+            padding: 10px 20px;
+            width: 100%;
+            position: relative;
           }
         }
         .underline {
