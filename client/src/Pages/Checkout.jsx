@@ -105,8 +105,8 @@ function Checkout() {
   return (
     <div className="checkout-page page">
       <DesktopHeader noCart={true} />
-      <SideMenu backArrow="/home" />
-      <MobileHeader backArrow={true} />
+      <SideMenu backArrow={true} backPath="/go-back"/>
+      <MobileHeader backArrow={true} backPath="/go-back"/>
       <h1>checkout.</h1>
       <div className="wrapper">
         <Form0 

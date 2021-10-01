@@ -208,7 +208,7 @@ function Product() {
         pauseOnHover={false}
         pauseOnFocusLoss={false}
       />
-      <SideMenu backArrow="/home" />
+      <SideMenu backArrow={true} backPath="/home"/>
       <DesktopHeader popupLoginFunc={popupLoginFunc} />
       <div className="content-wrapper">
         <div className="desktop-wrapper">
