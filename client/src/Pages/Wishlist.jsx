@@ -17,7 +17,6 @@ function Wishlist() {
 
   // useEffect(() => {
   //   user && setProducts(user.wishlist);
-  //   console.log(user.wishlist)
   // }, [user])
 
   const fetchWishlist = async () => {
