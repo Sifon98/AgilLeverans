@@ -44,21 +44,19 @@ function Product() {
     // Get params from url
     const { color, size } = getParams(location);
 
-    console.log("DONT FETCH 1")
     // Fetch product
     const getProduct = async () => {
-      console.log("DONT FETCH 2")
-      const productId = location.pathname.replace("/products/", "");
+      const productId = location.pathname.replace("/items/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
       setProduct(data.product);
       setMoreProducts(data.randomProducts);
       setCurrentProductOptions(color, size, data.product);
     }
-    // getProduct();
+    getProduct();
   }, [reloadFetch])
 
   useEffect(() => {
-    if(nav.path.includes("products")) {
+    if(nav.path.includes("items")) {
       setReloadFetch(bool => !bool);
       window.scrollTo({top:0,left:0,behavior: 'smooth'});
     }
@@ -240,7 +238,7 @@ function Product() {
             <label>others also bought.</label>
             <ul>
               {moreProducts && moreProducts.map(x => (
-                <li key={x._id} onClick={() => setNav({path: `/products/${x._id}`, direction: 1})}>
+                <li key={x._id} onClick={() => setNav({path: `/items/${x._id}`, direction: 1})}>
                   <img src={x.images[0]} alt="image" />
                 </li>
               ))}
