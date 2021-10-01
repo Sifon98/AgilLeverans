@@ -36,8 +36,6 @@ function Home() {
   const fetchProducts = async () => {
     setDropdown(false);
     setDropdownFilter(false);
-
-    console.log(user)
     
     // Check gender and apply male (0) if for some reason gender is empty
     // Otherwise apply saved gender
@@ -70,13 +68,10 @@ function Home() {
     setCategoryCheck(parsedInitCategoryCheck);
 
     localStorage.setItem("categoryCheck", parsedInitCategoryCheck)
-    console.log(localStorage.getItem("categoryCheck"))
-    console.log(categoryCheck)
 
     // const res = await fetch('/api/products');
     const res = await fetch('/api/products');
     const data = await res.json();
-    console.log(data.products);
 
     setProducts(data.products);
     
