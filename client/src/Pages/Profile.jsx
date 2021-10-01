@@ -91,7 +91,7 @@ function Profile() {
 
   return (
     <div className="profilePageWrapper page">
-      <SideMenu backArrow="/go-back" />
+      <SideMenu backArrow={true} backPath="/go-back" />
       <DesktopHeader noProfile={true} />
       <MobileHeader backArrow={true} backPath="/go-back" cart={true} />
 
