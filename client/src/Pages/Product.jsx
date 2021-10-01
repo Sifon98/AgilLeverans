@@ -11,6 +11,8 @@ import CheckoutButton from '../components/ProductPage/CheckoutButton';
 import { NavContext } from "../context/NavContext";
 import SideMenu from '../components/SideMenu';
 import DesktopHeader from '../components/DesktopHeader';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 function Product() {
   const history = useHistory();
@@ -200,9 +202,18 @@ function Product() {
       <div className="content-wrapper">
         <div className="desktop-wrapper">
           <div className="section">
-            <ImageContainer 
-              product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
-              />
+            <Carousel>
+              <ImageContainer 
+                product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
+                />
+              <ImageContainer 
+                product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
+                />
+              <ImageContainer 
+                product={product} isWishlisted={isWishlisted} focusRef={focusRef} selectedColor={selectedColor} reloadFetch={reloadFetch}
+                />
+            </Carousel>
+
             <div className="wrapper" style={showProdInfo ? {opacity: "1"} : null}>
               <InfoContainer 
                 product={product} showFullDesc={showFullDesc} setShowFullDesc={setShowFullDesc} descHeight={descHeight} 
