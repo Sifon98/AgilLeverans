@@ -1,9 +1,12 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
-import { UserContext } from "../../context/UserContext";
-import { validateEmail, validateUsername, validatePassword } from "../../utils/register";
+import { UserContext } from "../context/UserContext";
+import { NavContext } from "../context/NavContext";
+import { validateEmail, validateUsername, validatePassword } from "../utils/register";
 
 
-function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
+function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPage}) {
+    const { setNav } = useContext(NavContext);
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -109,7 +112,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
                             required
                             onChange={(e) => {setUsername(e.target.value), setUsernameError(false)}}
                         />
-                        {usernameError && <p className="errorText">Username is not valid!</p>}
+                        {usernameError ? <p className="errorText">Invalid username!</p> : <p className="placeholder"></p>}
                         <input
                             className={`inputRegister ${ emailError && "inputRegisterError"}`}
                             type="email"
@@ -118,7 +121,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
                             required
                             onChange={(e) => {setEmail(e.target.value), setEmailError(false)}}
                         />
-                        {emailError && <p className="errorText">Email is not valid!</p>}
+                        {emailError ? <p className="errorText">Invalid email!</p> : <p className="placeholder"></p>}
                         <input
                             className={`inputRegister ${ passwordError && "inputRegisterError"}`}
                             type="password"
@@ -127,7 +130,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
                             required
                             onChange={(e) => {setPassword(e.target.value), setPasswordError(false)}}
                         />
-                        {passwordError && <p className="errorText">Password is not valid!</p>}
+                        {passwordError ? <p className="errorText">Password needs 6 characters, one letter and one number!</p> : <p className="placeholder"></p>}
                         <input
                             className={`inputRegister ${ repPasswordError && "inputRegisterError"}`}
                             type="password"
@@ -136,7 +139,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
                             required
                             onChange={(e) => {setRepeatPassword(e.target.value), setRepPasswordError(false)}}
                         />
-                        {repPasswordError && <p className="errorText">Password didn't match!</p>}
+                        {repPasswordError ? <p className="errorText">Password didn't match!</p> : <p className="placeholder"></p>}
                         <button className="registerButton" onClick={handleSubmit}>register.</button>
                         <p className="loginText">Already have an account?</p>
                         <p className="loginLink" onClick={() => changePopup()}>
@@ -146,6 +149,54 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup}) {
                 </div>
             </div>}
             {popupRegister ? user != null ? removePopup() : null : null}
+            {registerPage && <form className="formRegister">
+                <input
+                  className={`inputRegister ${ usernameError && "inputRegisterError"}`}
+                  autoComplete="off"
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  required
+                  onChange={(e) => {setUsername(e.target.value), setUsernameError(false)}}
+                />
+                {usernameError ? <p className="errorText">Invalid username!</p> : <p className="placeholder"></p>}
+                <input
+                  className={`inputRegister ${ emailError && "inputRegisterError"}`}
+                  type="email"
+                  name="email"
+                  placeholder="e-mail adress"
+                  required
+                  onChange={(e) => {setEmail(e.target.value), setEmailError(false)}}
+                />
+                {emailError ? <p className="errorText">Invalid email!</p> : <p className="placeholder"></p>}
+                <input
+                  className={`inputRegister ${ passwordError && "inputRegisterError"}`}
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  required
+                  onChange={(e) => {setPassword(e.target.value), setPasswordError(false)}}
+                />
+                {passwordError ? <p className="errorText">Password needs 6 characters, one letter and one number!</p> : <p className="placeholder"></p>}
+                <input
+                  className={`inputRegister ${ repPasswordError && "inputRegisterError"}`}
+                  type="password"
+                  name="repPassword"
+                  placeholder="repeat password"
+                  required
+                  onChange={(e) => {setRepeatPassword(e.target.value), setRepPasswordError(false)}}
+                />
+                {repPasswordError ? <p className="errorText">Password didn't match!</p> : <p className="placeholder"></p>}
+                <button className="registerButton" onClick={handleSubmit}>register.</button>
+                <p className="loginText">Already have an account?</p>
+                <button className="loginLink" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setNav({path: "/login", direction: 0});
+                  }}>
+                  Login here
+                </button>
+              </form>}
         </>
     )
 }

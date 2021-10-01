@@ -1,28 +1,27 @@
-.conteinerLogin{
+.container-login{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 
-    .yellowSide{
+    .yellow-side{
         width: 13px;
         height: 812px;
-        background-color: #FFF06B;
+        background-color: var(--yellow);
         position: fixed;
         left: 0;
     }
     
     .head{
-        background-color: #FFF06B;
+        background-color: var(--yellow);
         display: flex;
         flex-direction: row;
         justify-content: center;
         width: 230px;
         height: 60px;
 
-        .h1name{
-            font-family: 'Inter', sans-serif;
+        .h1-name{
             font-size: 230%;
             font-weight: 700;
             margin: 5px;
@@ -39,7 +38,8 @@
             display: flex;
             margin-bottom: 30px;
             border: none;
-            border-bottom: 1px solid lightgray;
+            font-size: 120%;
+            border-bottom: 1px solid var(--grey);
             background-color: #F4F4F4;
             height: 20px;
         }
@@ -48,9 +48,12 @@
             border-bottom: 1px solid red;
         }
 
+        .inputLogin:focus {
+            outline: none;
+        }
+
         .inputLogin::placeholder{
-            color: black;
-            font-size: 120%;
+            color: var(--grey);
             font-weight: 700;
         }
 
@@ -60,25 +63,29 @@
             font-weight: 700;
         }
 
+        .placeholder {
+            height: 19px;
+        }
+
         .loginButton{
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             align-content: center;
             margin-top: 30px;
-            background-color: #FFF06B;
+            background-color: var(--yellow);
             border: none;
             border-radius: 100px;
             height: 53px;
-            font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: 100%;
+            font-family: 'Inter';
         }
         
         .registerText {
             margin-top: 10px;
             text-align: center;
-            font-family: 'Inter', sans-serif;
             color: black;
             opacity: 26%;
             text-decoration: none;
@@ -88,14 +95,24 @@
         }
 
         .registerLink {
+            cursor: pointer;
             text-decoration: underline 2px;
             margin-top: 2px;
             text-align: center;
-            font-family: 'Inter', sans-serif;
             color: black;
             font-size: 90%;
             font-weight: 700;
             background-color: #F4F4F4;
+            font-family: 'Inter';
         }
     }
+}
+
+@media all and (min-width: 1024px) {
+    .container-login{
+    .yellow-side {
+        height: 100%;
+        width: 73px;
+    }
+}
 }

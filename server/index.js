@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const cors = require("cors")
 const bodyParser = require("body-parser");
+const path = require("path");
 
 // Passport
 const passport = require("passport");
@@ -38,7 +39,8 @@ mongoose.connect(dbUrl, {
 // Log db!!!
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
-db.on("open", () => console.log("Database connected!"));
+db.on("open", () => {
+});
 
 // Post route
 const productRouter = require('./routes/routes')
@@ -65,6 +67,16 @@ app.use("/api", router)
 
 
 
+
+// Serve dist
+app.use(express.static(path.join(__dirname, "..", "client", "dist")))
+
+
+// Handle all routes other than /
+app.get("*", (req,res) => {
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
+})
+
 // Handle errors
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
@@ -74,6 +86,5 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(4000, () => {
-  console.log("Running on " + PORT);
+app.listen(PORT, () => {
 });

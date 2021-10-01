@@ -5,9 +5,7 @@ const User = require("../models/user");
 const Product = require("../models/product");
 const router = express.Router();
 const {products} = require("../utils/products")
-
-const {validateQuery} = require("../utils/validation")
-
+const {validateQuery} = require("../utils/validation");
 
 
 // USER
@@ -15,7 +13,31 @@ router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
   const { _id, email, username, wishlist, cart } = req.user;
   res.json({ _id, email, username, wishlist, cart });
-});
+} );
+
+
+router.patch( "/updatename", async ( req, res ) => {
+  try {
+    const userId = req.user._id;
+    const { userName } = req.body;
+    const updatedUserName = await User.findByIdAndUpdate( { _id: userId }, { username: userName }, { new: true } )
+
+    res.send( { user: updatedUserName } );
+
+  } catch(err) {
+  }
+} );
+
+router.patch( "/updateemail", async ( req, res ) => {
+  try {
+  const userId = req.user._id;
+  const { email } = req.body;
+  const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email: email}, {new : true})
+  res.send( { user: updatedUserEmail } );
+    
+} catch(err) {
+}
+} );
 
 router.post("/register", async (req, res, next) => {
   try {
@@ -62,17 +84,17 @@ router.post("/logout", (req, res) => {
 // Get wishlist || shopping-cart items
 router.get("/saved-products", async (req, res, next) => {
   try {
+    if (!req.user) return;
     const userId = req.user._id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
-    const user = await User.findById(userId, "-_id -username -email").populate("cart.item");
+    const user = await User.findById(userId, "-_id -username -email").populate("cart.item").populate("wishlist.item");
     res.json({
       ...(type === "wishlist" && {products: user.wishlist}),
       ...(type === "cart" && {products: user.cart})
     });
   } catch(err) {
-    console.log(err)
     return next(err);
   }
 });
@@ -93,11 +115,10 @@ router.post("/saved-products/count/:id", async (req, res, next) => {
         }
       },
       { arrayFilters: [{ "elem._id": productId }]}
-    ).populate("cart.item")
+    ).populate("cart.item").populate("wishlist.item")
 
     res.sendStatus(200);
   } catch (err) {
-    console.log(err)
     return next(err);
   }
 })
@@ -136,25 +157,122 @@ router.post("/saved-products/:id", async (req, res, next) => {
     return next(err);
   };
 
-  
 });
+
+router.post("/import-wishlist", async (req, res, next) => {
+  try {
+    let { wishlist } = req.body;
+    const { userId } = req.query;
+
+    // Validate wishlist
+    const wishlistIds = wishlist.map(x => x.item);
+    let findProducts = await Product.find(
+      {
+        _id: { $in: wishlistIds }
+      },
+    )
+
+    findProducts = JSON.parse(JSON.stringify(findProducts));
+    let filterWishlist = [];
+    wishlist.forEach(x => {
+      const idx = findProducts.findIndex(item => item._id === x.item)
+
+      if (idx >= 0 && findProducts[idx].colors.some(e => e.name === x.color.name && e.hex === x.color.hex) && findProducts[idx].sizes.includes(x.size)) {
+        filterWishlist.push(x);
+      }
+    })
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        $addToSet: {
+          wishlist: {$each: filterWishlist}
+        },
+      },
+      {new: true}
+    ).populate("wishlist.item");
+
+    res.send({wishlist: user.wishlist});
+
+  } catch(err) {
+    next(err);
+  }
+})
+
+
+router.post("/add-wishlist-to-cart", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const { products } = req.body
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        $addToSet: {
+          cart: {$each: products}
+        },
+      },
+      {new: true}
+    );
+
+    res.send({cart: user.cart});
+
+  } catch (err) {
+    return next(err);
+  };
+});
+
+router.delete("/clear-cart", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        cart: []
+      },
+      {new: true}
+    );
+
+    res.send({cart: user.cart});
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.delete("/clear-wishlist", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        wishlist: []
+      },
+      {new: true}
+    );
+
+    res.send({wishlist: user.wishlist});
+  } catch (err) {
+    next(err);
+  }
+})
+
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
-  console.log("DELETE")
   try {
     const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
-
-    console.log(productId)
   
     const user = await User.findByIdAndUpdate(userId, {
       $pull: {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
-    }, {new: true}).populate("cart.item");
+    }, {new: true});
+    // }, {new: true}).populate("cart.item").populate("wishlist.item");
 
     res.send({wishlist: user.wishlist, cart: user.cart});
   } catch(err) {
@@ -190,7 +308,6 @@ router.get("/products/:id", async (req, res, next) => {
     const randomProducts = await findRandomProducts(3);
     res.json({product, randomProducts});
   } catch(err) {
-    console.log(err)
     return next(err);
   }
 });

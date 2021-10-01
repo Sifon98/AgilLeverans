@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { NavContext } from '../context/NavContext'
+import { UserContext } from '../context/UserContext'
 import DesktopHeader from '../components/DesktopHeader';
-import MobileHeader from '../components/HomePage/MobileHeader';
+import MobileHeader from '../components/MobileHeader';
+import SideMenu from '../components/SideMenu';
 
 
 function Confirmation() {
+  const { setNav } = useContext(NavContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const clearCart = async () => {
+    const res = await fetch("/api/clear-cart", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+    })
+    const data = await res.json();
+    setUser({
+      ...user,
+      cart: data.cart
+    })
+  }
+
+  useEffect(() => {
+    clearCart();
+  }, [])
 
   return (
-    <div className="conteiner">
-
+    <div className="page">
       <div className="header">
-        <DesktopHeader />
-        <MobileHeader />
+        <DesktopHeader noCart={true} wishlist={true} />
+        <MobileHeader backArrow={true} home={true} />
+        <SideMenu backArrow="/home" home={true} />
       </div>
-      <div className="bodyConteiner">
-        <div className="textConteiner">
+      <div className="body-container">
+        <div className="content-container">
+          <div className="check"><i className="fas fa-check"></i></div>
           <h1 className="thanku-text">Thank you for your purchase!</h1>
-          <p className="order-text">your order was completed successfully.</p>
-          <p className="order-text">you will soon get a confirmation e-mail.</p>
+          <p className="order-text">Your order was completed successfully,
+          you will soon get a confirmation and reciept via e-mail.</p>
+          <button className="continue" onClick={() => setNav({path: "/home", direction: 0})}>continue shopping.</button>
         </div>
       </div>
     </div>

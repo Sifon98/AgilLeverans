@@ -4,9 +4,10 @@ import { UserContext } from "./context/UserContext";
 import { NavContext } from "./context/NavContext";
 import { useHistory, useLocation } from "react-router-dom";
 import Loading from './components/Loading'
-import { isMobile } from '../../server/utils/isMobile';
+import { isMobile } from './utils/isMobile';
 import Routes from './components/Routes'
 import RoutesAnimation from './components/RoutesAnimation'
+import ElectronConfig from './ElectronConfig';
 
 const setRoutes = (user) => {
   return isMobile() ? (
@@ -43,16 +44,23 @@ function App() {
     if(!initialLoad) return;
     history.push({
       pathname: nav.path,
-      ...(nav.state && {state: nav.state})
+      ...(nav.state && {state: {...history.location.state, ...nav.state}})
     });
   }, [nav])
+
+  // useEffect(() =>{
+    
+  // },[history])
+
+  const isElectron = navigator.userAgent.includes("Electron");
 
   return (
     <NavContext.Provider value={navValue}>
       <UserContext.Provider value={useValue}>
+        { isElectron && <ElectronConfig /> }
         {!isLoading ? (
           setRoutes(user)
-        ) : (
+        ) : ( 
           <Loading />
         )}
       </UserContext.Provider>

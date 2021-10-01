@@ -1,22 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react'
-import logoLarge from "../img/logo-large.svg"
-import logo from "../img/logo.svg"
 import { useHistory } from "react-router-dom";
 import ListProducts from '../components/HomePage/ListProducts'
-import { NavContext } from "../context/NavContext";
 import { UserContext } from "../context/UserContext";
-import LoginHome from "../components/HomePage/LoginHome"
+import LoginHome from "../components/LoginForm"
 import SideMenu from "../components/SideMenu"
 import DesktopHeader from '../components/DesktopHeader';
-import MobileHeader from '../components/HomePage/MobileHeader';
+import MobileHeader from '../components/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
-import RegisterHome from '../components/HomePage/RegisterHome';
+import RegisterHome from '../components/RegisterForm';
 
 
 function Home() {
   const history = useHistory();
 
-  const { setNav } = useContext(NavContext);
   const { user } = useContext(UserContext);
 
   const [loggedIn, setLoggedIn] = useState([]);
@@ -24,7 +20,6 @@ function Home() {
   const [popupRegister, setPopupRegister] = useState(false);
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   // Dropdown for categories
   const [dropdown, setDropdown] = useState([]);
   const [categoryCheck, setCategoryCheck] = useState(false); 
@@ -36,39 +31,6 @@ function Home() {
   const [colorCheck, setColorCheck] = useState(false);
   const [size, setSize] = useState([]);
   const [sizeCheck, setSizeCheck] = useState(false);
-  const [visible, setVisible] = useState(false)
-
-  // Scroll to top function
-  useEffect(() => {
-    let mounted = true
-    var toggleVisible = document.addEventListener("scroll", e => {
-      if (mounted) {
-        const scrolled = document.documentElement.scrollTop;
-        if (scrolled > 200){
-          setVisible(true)
-        } 
-        else if (scrolled <= 200){
-          setVisible(false)
-        }
-      }
-    })
-
-    return () => {
-      document.removeEventListener("scroll", toggleVisible)
-      mounted = false
-    }
-  }, [visible])
-  
-  const scrollToTop = () => {
-    if (visible == true){
-      window.scrollTo({
-        top: 0, 
-        behavior: 'smooth'
-      });
-    }else {
-      console.log("No action until scroll");
-    }
-  };
 
   // Fetch products and make sure that certain conditions are false
   const fetchProducts = async () => {
@@ -76,19 +38,42 @@ function Home() {
     setDropdownFilter(false);
     
     // Check gender and apply male (0) if for some reason gender is empty
-    let initialGender = history.location.state;
-    if (initialGender == null) {
-      initialGender = 0;
+    // Otherwise apply saved gender
+    let initGender = localStorage.getItem("gender");
+    if (initGender == null) {
+      initGender = 0;
     }
-    setGender(initialGender);
+    setGender(initGender);
+
+    localStorage.setItem("gender", initGender)
+
+    // Check category and apply all items (0) if for some reason category is empty
+    // Otherwise apply saved category
+    let initCategory = localStorage.getItem("category");
+    if (initCategory == null) {
+      initCategory = 99;
+    }
+    setCategory(initCategory);
+
+    localStorage.setItem("category", initCategory)
+
+    // Check categoryCheck and apply false if for some reason categoryCheck is empty
+    // Otherwise apply saved categoryCheck
+    let initCategoryCheck = localStorage.getItem("categoryCheck");
+    // Parsed since Local Storage doesn't return a boolean
+    let parsedInitCategoryCheck = JSON.parse(initCategoryCheck)
+    if (parsedInitCategoryCheck == null) {
+      parsedInitCategoryCheck = false;
+    }
+    setCategoryCheck(parsedInitCategoryCheck);
+
+    localStorage.setItem("categoryCheck", parsedInitCategoryCheck)
 
     // const res = await fetch('/api/products');
     const res = await fetch('/api/products');
     const data = await res.json();
-    console.log(data.products);
 
     setProducts(data.products);
-    setLoading(false)
     
     if(user == null) {
       setLoggedIn(false)
@@ -118,9 +103,15 @@ function Home() {
   const chooseCategory = (e) => {
     const id = e.target.id;
     id == 99 ? 
-      setCategoryCheck(false)
-      : setCategoryCheck(true);
-      setCategory(id);
+      [setCategoryCheck(false),
+      setCategory(id),
+      localStorage.setItem("category", id),
+      localStorage.setItem("categoryCheck", [false])]
+      : 
+      [setCategoryCheck(true),
+      setCategory(id),
+      localStorage.setItem("category", id),
+      localStorage.setItem("categoryCheck", [true])]
   }
 
   // Toggle category dropdown and then choose the category
@@ -138,7 +129,7 @@ function Home() {
   const chooseFilter = (e) => {
     const id = e.target.id;
 
-    history.push({ state: id });
+    localStorage.setItem("gender", id)
     setGender(id);
   }
 
@@ -171,7 +162,7 @@ function Home() {
       {/* <div className="header"> */}
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
-          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color}/>
+          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color} />
         <DesktopHeader popupLoginFunc={popupLoginFunc} loggedIn={loggedIn} />
         <MobileHeader />
       {/* </div> */}
@@ -182,14 +173,13 @@ function Home() {
       {/* Change titel depending on the categorie and gender */}
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
-      <div className="home-container">
+      <div className="home-helper">
+        <div className="home-container">
           <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} 
           colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} loggedIn={loggedIn} popupLoginFunc={popupLoginFunc} />
+        </div>
       </div>
-      <button className={`${ visible ? "visible" : "invisible"}`} onClick={scrollToTop}>
-        <i className="fas fa-chevron-up"></i>
-      </button>
-      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup}/>
+      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
       <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
     </div>
   )

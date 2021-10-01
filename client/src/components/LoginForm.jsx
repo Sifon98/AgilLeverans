@@ -1,8 +1,11 @@
 import React, { useRef, useState, useContext, useEffect } from 'react'
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../context/UserContext";
+import { NavContext } from "../context/NavContext";
+import DownloadsContainer from './DownloadsContainer';
 
-function LoginHome({popupLogin, setPopupLogin, changePopup}) {
+function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
     const { user, setUser } = useContext(UserContext);
+    const { setNav } = useContext(NavContext);
     const Ref = useRef(null);
     useOutsideAlerter(Ref);
 
@@ -11,7 +14,6 @@ function LoginHome({popupLogin, setPopupLogin, changePopup}) {
     
     const [loginError, setLoginError] = useState("");
     const [loginErrorUser, setLoginErrorUser] = useState("");
-    const [loginErrorPass, setLoginErrorPass] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async (e) => {
@@ -32,7 +34,6 @@ function LoginHome({popupLogin, setPopupLogin, changePopup}) {
         if(getUser.error === "Invalid username or password."){
         setLoginError(true);
         setLoginErrorUser(true);
-        setLoginErrorPass(true);
         setErrorMessage(getUser.error);
         return;
         }
@@ -63,7 +64,7 @@ function LoginHome({popupLogin, setPopupLogin, changePopup}) {
 
     return (
         <>
-            {popupLogin && 
+            {popupLogin &&
             <div className="popupContainer">
                 <div className="box" ref={Ref}>
                     <h1>login.</h1>
@@ -76,22 +77,50 @@ function LoginHome({popupLogin, setPopupLogin, changePopup}) {
                         onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
                     />
                     <input
-                        className={`inputLogin ${ loginErrorPass && "inputLoginError"}`}
+                        className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
                         type="password"
                         name="password"
                         placeholder="password"
-                        onChange={(e) => {setPassword(e.target.value), setLoginErrorPass(false)}}
+                        onChange={(e) => {setPassword(e.target.value), setLoginErrorUser(false)}}
                     />
-                    {loginError && <p className="errorText">{errorMessage}</p>}
+                    {loginError ? <p className="errorText">{errorMessage}</p> : <p className="placeholder"></p>}
                     <button className="loginButton" onClick={handleLogin}>login.</button>
                     <p className="registerText">Don't have an account?</p>
                     <p className="registerLink" onClick={() => changePopup()}>
                         Register here
                     </p>
                     </form>
+                    <DownloadsContainer position="relative" size="small" />
                 </div>
             </div>}
             {popupLogin ? user != null ? removePopup() : null : null}
+            {loginPage &&
+            <form className="formLogin">
+                <input
+                    className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
+                />
+                <input
+                    className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    onChange={(e) => {setPassword(e.target.value), setLoginErrorUser(false)}}
+                />
+                {loginError ? <p className="errorText">{errorMessage}</p> : <p className="placeholder"></p>}
+                <button className="loginButton" onClick={handleLogin}>login.</button>
+                <p className="registerText">Don't have an account?</p>
+                <button className="registerLink" 
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setNav({path: "/register", direction: 1});
+                    }}>
+                    Register here
+                </button>
+            </form>}
         </>
     )
 }

@@ -1,28 +1,27 @@
-.conteinerRegister{
+.container-register{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 
-    .yellowSide{
+    .yellow-side{
         width: 13px;
         height: 812px;
-        background-color: #FFF06B;
+        background-color: var(--yellow);
         position: fixed;
         left: 0;
     }
     
     .head{
-        background-color: #FFF06B;
+        background-color: var(--yellow);
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 230px;
+        width: 230px; 
         height: 60px;
 
-        .h1name{
-            font-family: 'Inter', sans-serif;
+        .h1-name{
             font-size: 230%;
             font-weight: 700;
             margin: 5px;
@@ -34,70 +33,94 @@
         flex-direction: column;
         margin-top: 63px;
         width: 225px;
+        
 
         .inputRegister{
             display: flex;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             border: none;
-            border-bottom: 1px solid lightgray;
+            border-bottom: 1px solid var(--grey);
             background-color: #F4F4F4;
-            height: 20px;
+            font-size: 120%;
+            height: 25px;
         }  
 
-        .inputRegister::placeholder{
-            color: black;
-            font-size: 120%;
+        .inputRegister::placeholder{ 
+            outline: none;
+            color: var(--grey);
             font-weight: 700;
+        }
+
+        .inputRegister:focus {
+            outline: none;
         }
 
         .inputRegisterError{
             border-color: red;
         }
-        
+
         .errorText{
             color:red;
             margin-bottom: 10px;
-            margin-top: -15px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .placeholder{
+            color: var(--background);
+            height: 19px;
+            margin-bottom: 10px;
             font-size: 15px;
             font-weight: 700;
         }
 
         .registerButton{
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             align-content: center;
             margin-top: 30px;
-            background-color: #FFF06B;
+            background-color: var(--yellow);
             border: none;
             border-radius: 100px;
             height: 53px;
-            font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: 100%;
+            font-family: 'Inter';
         }
             
         .loginText {
             margin-top: 10px;
             text-align: center;
-            font-family: 'Inter', sans-serif;
             color: black;
             opacity: 26%;
             text-decoration: none;
             font-size: 90%;
             margin-top: 10px;
             font-weight: 700;
+            
         }
 
         .loginLink {
+            cursor: pointer;
             text-decoration: underline 2px;
             margin-top: 2px;
             text-align: center;
-            font-family: 'Inter', sans-serif;
             color: black;
             font-size: 90%;
             font-weight: 700;
             background-color: #F4F4F4;
+            font-family: 'Inter';
+        }
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .container-register {
+        .yellow-side {
+            height: 100%;
+            width: 73px;
         }
     }
 }

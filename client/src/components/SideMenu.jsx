@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from 'react'
 import { NavContext } from '../context/NavContext'
 
-function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow }) {
+function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, chooseColor, chooseSize, size, color, backArrow, home }) {
     const { setNav } = useContext(NavContext);
 
     const [sidemenuUp, setSidemenuUp] = useState(false);
@@ -33,15 +33,16 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
 
     const closeSide = (e) => {
         setSidemenuUp(e.target.checked)
-        e.target.checked == sidemenuUp ? e.target.checked = false : console.log(e.target.checked)
+        e.target.checked == sidemenuUp ? e.target.checked = false : null
         setSidemenuUp(e.target.checked)
     }
 
     return (
         <>
-            <div className="menuToggle">
-            {
-                    backArrow ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
+            <div className="menu-toggle">
+                {
+                    backArrow ? home ? <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-home"></i></div> :
+                     <div onClick={() => setNav({path: backArrow, direction: 0})} className="back-arrow"><i className="fas fa-arrow-left"></i></div> : (
                         <>
                             <input id="checkbox" type="checkbox" onClick={(e) => closeSide(e)} />
                             {/* Hamburger menu */}
@@ -52,15 +53,16 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     )
                 }
                 {/* List when menu is opened */}
+                {backArrow ? <ul className="menu"></ul> :
                 <ul className="menu" ref={checkboxRef}>
                     <li id={0} onClick={chooseFilter} className="topText bold text">men.</li>
                     <li id={1} onClick={chooseFilter} className="bold text">women.</li>
-                    <div className="divider" />
+                        <div className="divider" />
                     <li id={99} onClick={chooseCategory} className="bold text">all items.</li>
                     <li id={0} onClick={chooseCategory} className="text">Shirts</li>
                     <li id={1} onClick={chooseCategory} className="text">Pants</li>
                     <li id={2} onClick={chooseCategory} className="text">Shoes</li>
-                    <div className="divider" />
+                        <div className="divider" />
                     <div className="helper">
                     {products && products[0] && products[0].colors.map(Color => (
                     <li id={Color.name} onClick={chooseColor} key={Color.name} style={{background: Color.hex}} className="choose-color">
@@ -75,7 +77,7 @@ function SideMenu({ chooseFilter, chooseCategory, products, removeFilter, choose
                     ))}
                     </div>
                     <li onClick={removeFilter} className="bold text">clear filters.</li>
-                </ul>
+                </ul>}
             </div>
         </>
     )

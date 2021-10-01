@@ -4,15 +4,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from "../context/UserContext";
 import { getParams, getIsParamsValid } from "../utils/product-page";
+import { NavContext } from "../context/NavContext";
 import ImageContainer from '../components/ProductPage/ImageContainer';
 import InfoContainer from '../components/ProductPage/InfoContainer';
 import OptionsContainer from '../components/ProductPage/OptionsContainer/OptionsContainer';
 import CheckoutButton from '../components/ProductPage/CheckoutButton';
-import { NavContext } from "../context/NavContext";
 import SideMenu from '../components/SideMenu';
 import DesktopHeader from '../components/DesktopHeader';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import LoginHome from "../components/LoginForm"
+import RegisterHome from '../components/RegisterForm';
 
 function Product() {
   const history = useHistory();
@@ -24,7 +26,6 @@ function Product() {
 
   const [reloadFetch, setReloadFetch] = useState(false);
   const [showProdInfo, setShowProdInfo] = useState(false);
-  const [popupLogin, setPopupLogin] = useState(false);
 
   const [product, setProduct] = useState({});
   const [moreProducts, setMoreProducts] = useState([]);
@@ -36,6 +37,9 @@ function Product() {
 
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  
+  const [popupLogin, setPopupLogin] = useState(false);
+  const [popupRegister, setPopupRegister] = useState(false);
 
   useEffect(() => {
     // Get params from url
@@ -43,7 +47,7 @@ function Product() {
 
     // Fetch product
     const getProduct = async () => {
-      const productId = location.pathname.replace("/products/", "");
+      const productId = location.pathname.replace("/items/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
       setProduct(data.product);
       setMoreProducts(data.randomProducts);
@@ -53,7 +57,7 @@ function Product() {
   }, [reloadFetch])
 
   useEffect(() => {
-    if(nav.path.includes("products")) {
+    if(nav.path.includes("items")) {
       setReloadFetch(bool => !bool);
       window.scrollTo({top:0,left:0,behavior: 'smooth'});
     }
@@ -180,12 +184,21 @@ function Product() {
   }
 
   useEffect(() => {
-    console.log(isWishlisted);
   }, [isWishlisted])
 
   const popupLoginFunc = (e) => {
     e.stopPropagation();
     setPopupLogin(true)
+  }
+
+  const changePopup = () => {
+    if(popupLogin == true){
+      setPopupLogin(false)
+      setPopupRegister(true)
+    }else if(popupRegister == true) {
+      setPopupLogin(true)
+      setPopupRegister(false)
+    }
   }
 
   return (
@@ -196,7 +209,7 @@ function Product() {
         hideProgressBar 
         pauseOnHover={false}
         pauseOnFocusLoss={false}
-      />      
+      />
       <SideMenu backArrow="/home" />
       <DesktopHeader popupLoginFunc={popupLoginFunc} />
       <div className="content-wrapper">
@@ -221,30 +234,30 @@ function Product() {
                 />
               <OptionsContainer 
                 product={product} selectedColor={selectedColor} selectedSize={selectedSize} setSelectedColor={setSelectedColor} 
-                setSelectedSize={setSelectedSize} 
+                setSelectedSize={setSelectedSize}
                 />
-              <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
-              <button className="wishlist-btn fill" onMouseDown={() => handleToggleWishlist()}>
+              <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} popupLoginFunc={popupLoginFunc} />
+              <button className="wishlist-btn" onMouseDown={user ? () => handleToggleWishlist() : (e) => popupLoginFunc(e)}>
                 <i className={`${isWishlisted ? "fas" : "far"} fa-heart`}></i>
               </button>
             </div>
           </div>
-
           <div className="others-also-bought">
             <label>others also bought.</label>
             <ul>
               {moreProducts && moreProducts.map(x => (
-                <li key={x._id} onClick={() => setNav({path: `/products/${x._id}`, direction: 1})}>
-                  <img src={x.images[0]} alt="" />
+                <li key={x._id} onClick={() => setNav({path: `/items/${x._id}`, direction: 1})}>
+                  <img src={x.images[0]} alt="image" />
                 </li>
               ))}
             </ul>
           </div>
         </div>
-
         <div className="bottom-whitespace"></div>
         <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
       </div>
+      <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
+      <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
     </div>
   )
 }

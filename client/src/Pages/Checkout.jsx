@@ -6,6 +6,9 @@ import Form2 from '../components/Checkout/Form2';
 import logo from "../img/logo.svg"
 import { handleStringModify } from "../utils/checkout"
 import { NavContext } from "../context/NavContext"
+import DesktopHeader from '../components/DesktopHeader';
+import SideMenu from '../components/SideMenu';
+import MobileHeader from '../components/MobileHeader';
 
 
 function Checkout() {
@@ -27,6 +30,11 @@ function Checkout() {
   const [formCheck1, setFormCheck1] = useState(false);
 
   const [currentForm, setCurrentForm] = useState(0);
+
+
+  // Shopping details
+  const [products, setProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
 
   useEffect(() => {
@@ -72,34 +80,33 @@ function Checkout() {
     setExpDate(EXP);
   }
 
-  // useEffect(() => {
-  //   fetchShoppingCart();
-  // }, [])
+  useEffect(() => {
+    fetchShoppingCart();
+  }, [])
 
-  // const fetchShoppingCart = async () => {
-  //     const res = await fetch("/api/saved-products?type=cart");
-  //     const data = await res.json();
-  //     let products = data.products.filter(x => x.item !== null);
+  const fetchShoppingCart = async () => {
+      const res = await fetch("/api/saved-products?type=cart");
+      const data = await res.json();
+      let products = data.products.filter(x => x.item !== null);
 
-  //     // Set total price & find imageIndex for each product 
-  //     // (each product has an unique color, and an image corresponding to each color)
-  //     let total = 0;
-  //     products = products.map(x => {
-  //         total += x.item.price;
-  //         return {...x, imageIndex: x.item.colors.findIndex(c => c.name === x.color.name)}
-  //     })
+      // Set total price & find imageIndex for each product 
+      // (each product has an unique color, and an image corresponding to each color)
+      let total = 0;
+      products = products.map(x => {
+          const countPrice = x.item.price * x.count;
+          total += countPrice;
+          return {...x, countPrice: parseFloat(countPrice.toFixed(2))}
+      })
 
-  //     setProducts(products);
-  //     setTotalPrice(total);
-  // }
+      setProducts(products);
+      setTotalPrice(total.toFixed(2));
+  }
 
   return (
     <div className="checkout-page page">
-      <div className="header">
-        <i className="fas fa-arrow-left" onClick={() => setNav({path: "/cart", direction: 0})}></i>
-        <img src={logo} />
-        <i className="fas fa-shopping-bag" style={{visibility: "hidden"}}></i>
-      </div>
+      <DesktopHeader noCart={true} />
+      <SideMenu backArrow="/home" />
+      <MobileHeader backArrow={true} />
       <h1>checkout.</h1>
       <div className="wrapper">
         <Form0 
@@ -126,6 +133,8 @@ function Checkout() {
         <Form2
           currentForm={currentForm} 
           setCurrentForm={setCurrentForm} 
+          totalPrice={totalPrice}
+          products={products}
           // totalPrice={totalPrice}
           // products={products}
         />

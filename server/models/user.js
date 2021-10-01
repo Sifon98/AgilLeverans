@@ -5,13 +5,14 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    username: {type: String, required: true},
+    username: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true},
     wishlist: [
       {
         item: {type: Schema.Types.ObjectId, ref: "Product"},
         color: {name: String, hex: String},
         size: String,
+        count: Number
       }
    ],
     cart: [

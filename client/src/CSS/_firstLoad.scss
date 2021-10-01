@@ -1,4 +1,4 @@
-.containerFirstLoad{
+.container-first-load{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,16 +6,16 @@
     height: 100vh;
     text-align: center;
 
-    .yellowSide{
+    .yellow-side{
         width: 13px;
         height: 100%;
-        background-color: #FFF06B;
+        background-color: var(--yellow);
         position: fixed;
         left: 0;
     }
 
     @media(min-width: 600px){
-        .yellowSide {
+        .yellow-side {
             width: 73px;
             height: 100%;
         }
@@ -26,36 +26,36 @@
         width: auto;
     }
 
-    .welcomeText{
-        font-family: 'Inter', sans-serif;
+    .welcome-text{
         font-size: 170%;
         font-weight: 900;
         margin-top: 88px;
     }
 
-    .randomLine{
+    .random-line{
         border: 1px solid black;
         width: 64px;
         opacity: 5%;
         margin-top: 5px;
     }
 
-    .loginButton{
+    .login-button{
         display: flex;
         justify-content: center;
         align-items: center;
         align-content: center;
         margin-top: 38px;
-        background-color: #FFF06B;
+        background-color: var(--yellow);
         border: none;
         border-radius: 100px;
         height: 53px;
         width: 225px;
         font-weight: 700;
         font-size: 16px;
+        font-family: 'Inter';
     }
 
-    .registerButton-loginPage{
+    .register-button-loginPage{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -68,12 +68,12 @@
         width: 225px;
         font-weight: 700;
         font-size: 16px;
+        font-family: 'Inter';
     }
 
     .link{
         text-decoration: none;
         color: black;
-        font-family: 'Inter', sans-serif;
         font-weight: 700;
         font-size: 100%;
     }
