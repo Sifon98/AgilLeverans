@@ -91,9 +91,9 @@ function Profile() {
 
   return (
     <div className="profilePageWrapper page">
-      <SideMenu backArrow="/home" />
+      <SideMenu backArrow="/go-back" />
       <DesktopHeader noProfile={true} />
-      <MobileHeader backArrow={true} cart={true} />
+      <MobileHeader backArrow={true} backPath="/go-back" cart={true} />
 
       <div className="accountContainer">
         <h1 className="accountTitle">your account.</h1>

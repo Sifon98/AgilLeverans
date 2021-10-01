@@ -42,15 +42,14 @@ function App() {
 
   useEffect(() => {
     if(!initialLoad) return;
-    history.push({
-      pathname: nav.path,
-      ...(nav.state && {state: {...history.location.state, ...nav.state}})
-    });
+
+    if(nav.path === "/go-back") {
+      history.goBack();
+    } else {
+      history.push({pathname: nav.path});
+    }
   }, [nav])
 
-  // useEffect(() =>{
-    
-  // },[history])
 
   const isElectron = navigator.userAgent.includes("Electron");
 
