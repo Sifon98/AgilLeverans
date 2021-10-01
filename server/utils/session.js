@@ -10,7 +10,6 @@ const store = MongoStore.create({
 })
 
 store.on("error", function(e) {
-  console.log("session store error", e);
 })
 
 module.exports.sessionOptions = {

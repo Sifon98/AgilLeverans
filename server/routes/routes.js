@@ -21,12 +21,10 @@ router.patch( "/updatename", async ( req, res ) => {
     const userId = req.user._id;
     const { userName } = req.body;
     const updatedUserName = await User.findByIdAndUpdate( { _id: userId }, { username: userName }, { new: true } )
-    
-    console.log( updatedUserName );
+
     res.send( { user: updatedUserName } );
 
   } catch(err) {
-    console.log(err);
   }
 } );
 
@@ -35,12 +33,9 @@ router.patch( "/updateemail", async ( req, res ) => {
   const userId = req.user._id;
   const { email } = req.body;
   const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email: email}, {new : true})
-    console.log( email );
-  console.log( updatedUserEmail );
   res.send( { user: updatedUserEmail } );
     
 } catch(err) {
-  console.log(err);
 }
 } );
 
@@ -100,7 +95,6 @@ router.get("/saved-products", async (req, res, next) => {
       ...(type === "cart" && {products: user.cart})
     });
   } catch(err) {
-    console.log(err)
     return next(err);
   }
 });
@@ -125,7 +119,6 @@ router.post("/saved-products/count/:id", async (req, res, next) => {
 
     res.sendStatus(200);
   } catch (err) {
-    console.log(err)
     return next(err);
   }
 })
@@ -202,7 +195,6 @@ router.post("/import-wishlist", async (req, res, next) => {
     res.send({wishlist: user.wishlist});
 
   } catch(err) {
-    console.log(err)
     next(err);
   }
 })
@@ -268,14 +260,11 @@ router.delete("/clear-wishlist", async (req, res, next) => {
 
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
-  console.log("DELETE")
   try {
     const userId = req.user._id;
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
-
-    console.log(productId)
   
     const user = await User.findByIdAndUpdate(userId, {
       $pull: {
@@ -319,7 +308,6 @@ router.get("/products/:id", async (req, res, next) => {
     const randomProducts = await findRandomProducts(3);
     res.json({product, randomProducts});
   } catch(err) {
-    console.log(err)
     return next(err);
   }
 });

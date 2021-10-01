@@ -79,7 +79,6 @@ function Shoppingcart() {
         })
         setProducts(UpdateProducts);
         const total = increment ? parseFloat(totalPrice) + currentPrice : parseFloat(totalPrice) - currentPrice;
-        console.log(total)
         setTotalPrice(total.toFixed(2));
 
         await fetch(`/api/saved-products/count/${id}?type=cart&count=${count}`, {
@@ -93,9 +92,9 @@ function Shoppingcart() {
 
     return (
         <div className="shopping-wrapper page">
-            <SideMenu backArrow="/home" />
+            <SideMenu backArrow="/go-back" />
             <DesktopHeader noCart={true} />
-            <MobileHeader backArrow={true} />
+            <MobileHeader backArrow={true} backPath="/go-back"/>
             <div className="cart-container">
                 <h1 className="cart-title">your cart.</h1>
             </div>

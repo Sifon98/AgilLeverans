@@ -9,27 +9,26 @@ function Landing() {
   const history = useHistory();
   const { setNav } = useContext(NavContext);
 
+  const gender = (id) => {
+    localStorage.setItem("gender", id)
+    localStorage.setItem("categoryCheck", false)
+    localStorage.setItem("category", 99)
+    setNav({path: '/home', direction: 1 })
+  }
+
   return (
     <div className="landing-wrapper page">
       <div className="title-container">
         <h1 className="title">bopshop.</h1>
       </div>
       <div className="image-container">
-        <div className="left-side" onClick={ () => setNav({
-                path: '/home',
-                direction: 1,
-                state: 0
-            }) }>
+        <div className="left-side" onClick={ () => gender(0) }>
           <div className="button-container-men" style={{pointerEvents: "none"}}>
             <button className="men-button">men.</button>
           </div>
           <img className="men-image" src={Men} alt="Man"/>
         </div>
-        <div className="right-side"  onClick={ () => setNav({
-                path: '/home',
-                direction: 1,
-                state: 1
-            }) }>
+        <div className="right-side" onClick={ () => gender(1)}>
           <div className="button-container-women" style={{pointerEvents: "none"}}>
             <button className="women-button">women.</button>
           </div>

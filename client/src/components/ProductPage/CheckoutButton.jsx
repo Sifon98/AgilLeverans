@@ -11,7 +11,7 @@ function CheckoutButton({ handleToggleCart, isCarted, popupLoginFunc }) {
       ): (
         <i className="fas fa-shopping-bag"></i>
       )}
-      <span>{isCarted ? "Item added to cart" : "Add to cart"}</span> 
+      <span data-testid="inner-text" >{isCarted ? "Item added to cart" : "Add to cart"}</span> 
     </button>
   )
 }

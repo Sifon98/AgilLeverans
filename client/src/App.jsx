@@ -40,18 +40,17 @@ function App() {
     setIsLoading(false);
   }
 
+  // Back arrow for MobileHeader
   useEffect(() => {
     if(!initialLoad) return;
-    console.log(history)
-    history.push({
-      pathname: nav.path,
-      ...(nav.state && {state: {...history.location.state, ...nav.state}})
-    });
+
+    if(nav.path === "/go-back") {
+      history.goBack();
+    } else {
+      history.push({pathname: nav.path});
+    }
   }, [nav])
 
-  // useEffect(() =>{
-    
-  // },[history])
 
   const isElectron = navigator.userAgent.includes("Electron");
 

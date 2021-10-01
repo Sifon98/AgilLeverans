@@ -40,7 +40,6 @@ function Product() {
   const [popupRegister, setPopupRegister] = useState(false);
 
   useEffect(() => {
-    console.log(history.location)
     // Get params from url
     const { color, size } = getParams(location);
 
@@ -139,7 +138,6 @@ function Product() {
     })
     const data = await res.json();
 
-    console.log(data.cart)
     setUser({
       ...user,
       ...(data.cart && {cart: data.cart}),
@@ -184,7 +182,6 @@ function Product() {
   }
 
   useEffect(() => {
-    console.log(isWishlisted);
   }, [isWishlisted])
 
   const popupLoginFunc = (e) => {
