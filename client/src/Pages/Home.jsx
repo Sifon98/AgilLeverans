@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 import LoginHome from "../components/LoginForm"
 import SideMenu from "../components/SideMenu"
 import DesktopHeader from '../components/DesktopHeader';
-import MobileHeader from '../components/HomePage/MobileHeader';
+import MobileHeader from '../components/MobileHeader';
 import SortingButtons from '../components/HomePage/SortingButtons';
 import RegisterHome from '../components/RegisterForm';
 
@@ -167,7 +167,7 @@ function Home() {
       {/* <div className="header"> */}
         {/* Different menus/headers depending on if the user is on deskyop or mobile */}
         <SideMenu chooseFilter={chooseFilter} chooseCategory={chooseCategory} products={products} removeFilter={removeFilter} 
-          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color}/>
+          chooseColor={chooseColor} chooseSize={chooseSize} size={size} color={color} />
         <DesktopHeader popupLoginFunc={popupLoginFunc} loggedIn={loggedIn} />
         <MobileHeader />
       {/* </div> */}
@@ -178,9 +178,11 @@ function Home() {
       {/* Change titel depending on the categorie and gender */}
       <h1 className="browsing">{ gender == 1 ? "women." : "men." } { category == 0 ? "shirts." : category == 1 ? "pants." : category == 2 ? "shoes." : null }</h1>
       {/* The list of all the products matching the given parameters */}
-      <div className="home-container">
+      <div className="home-helper">
+        <div className="home-container">
           <ListProducts categoryCheck={categoryCheck} products={products} gender={gender} category={category} color={color} 
           colorCheck={colorCheck} size={size} sizeCheck={sizeCheck} loggedIn={loggedIn} popupLoginFunc={popupLoginFunc} />
+        </div>
       </div>
       <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
       <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />

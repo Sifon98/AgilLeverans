@@ -2,6 +2,9 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { NavContext } from "../context/NavContext";
+import SideMenu from '../components/SideMenu';
+import DesktopHeader from '../components/DesktopHeader';
+import MobileHeader from '../components/MobileHeader';
 
 
 function Profile() {
@@ -29,11 +32,11 @@ function Profile() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disableSaveButton, setdisableSaveButton] = useState(true);
-  const buttonText = (isDisabled) => isDisabled ? 'Save.' : 'Edit.';
+  const buttonText = (isDisabled) => isDisabled ? 'save.' : 'edit.';
 
   
-  const handleEdit = async () => {
-    const res = await fetch("/api/register", {
+  const handleEdit = async (type) => {
+    const res = await fetch(`/api/${type}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -42,51 +45,59 @@ function Profile() {
       body: JSON.stringify({ userName, email, password })
     })
     const getUser = await res.json();
-    setUser(getUser);
+    if (type === "updatename") {
+      setUser(null)
+      return;
+    }
+    setUser(getUser.user);
   }
   
   const editUser = async (e) => {
     e.preventDefault();
-    setIsDisabledName(boolean => !boolean);
-    handleEdit();
+    setIsDisabledName( boolean => !boolean );
+    if ( userName.length == 0 ) {
+      return;
+    }
+    handleEdit('updatename');
     console.log({ userName })
   }
 
   const editEmail = async (e) => {
     e.preventDefault();
     setIsDisabledEmail(boolean => !boolean);
-    handleEdit();
+    if ( email.length == 0 ) {
+      return;
+    }
+    handleEdit( 'updateemail' );
     console.log({ email })
   }
 
   const editPass = async (e) => {
     e.preventDefault();
-    setIsDisabledPassword(boolean => !boolean);
-    handleEdit();
+    setIsDisabledPassword(boolean => !boolean);          
+    // handleEdit();
     console.log({ password })
   }
 
   const newPass =
   <>
     <label className="newPassword" htmlFor="password">enter new password</label>
-    <input onChange={(e) => setPassword(e.target.value)} className="inputText" type="password" placeholder="********" disabled={!isDisabledPassword} />
+    <input onChange={(e) => setPassword(e.target.value)} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
     {isDisabledPassword
       ? <button onClick={editPass}>{buttonText(isDisabledPassword)}</button>
       : <button onClick={(e) => {
         setIsDisabledPassword(boolean => !boolean), e.preventDefault();
       }}>{buttonText(isDisabledPassword)}</button>
-      
     }
   </>;
 
 
   return (
-    <div className="profilePageWrapper">
-      <header className="profileTitleContainer">
-        <i onClick={() => setNav({ path: "/home", direction: 0 })} id="backArrow" className="fas fa-arrow-left"></i>
-        <h1 className="profileTitle">bopshop.</h1>
-        <i id="shoppingCart" style={{ visibility: "hidden" }} className="fas fa-shopping-bag"></i>
-      </header>
+    <div className="profilePageWrapper page">
+      <SideMenu backArrow="/home" />
+      <DesktopHeader noProfile={true} />
+      <MobileHeader backArrow={true} cart={true} />
+
       <div className="accountContainer">
         <h1 className="accountTitle">your account.</h1>
       </div>
@@ -101,7 +112,8 @@ function Profile() {
       <div className="accountInfoContainer">
         <form className="accountForm" action="" >
           <label className="username" id="label" htmlFor="username" >username</label>
-          <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} className="inputText" id="input" type="text" disabled={!isDisabledName} />
+          <input onChange={(e) => setUserName(e.target.value)} defaultValue={user && user.username} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText"
+            id="input" type="text" disabled={!isDisabledName} />
           {isDisabledName
             ? <button onClick={editUser}>{buttonText(isDisabledName)}</button>
             : <button onClick={(e) => {
@@ -111,7 +123,7 @@ function Profile() {
           <br />
 
           <label className="emailadress" htmlFor="emailadress" >email</label>
-          <input onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} className="inputText" type="text" disabled={!isDisabledEmail} />
+          <input onChange={(e) => setEmail(e.target.value)} defaultValue={user && user.email} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText" type="text" disabled={!isDisabledEmail} />
           {isDisabledEmail
             ? <button onClick={editEmail}>{buttonText(isDisabledEmail)}</button>
             : <button onClick={(e) => {
@@ -122,17 +134,7 @@ function Profile() {
           <br />
           
           <label className="password" htmlFor="password">current password</label>
-          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} className="inputText" type="password" placeholder="********" disabled={!isDisabledPassword} />
-          {isDisabledPassword
-            ? <><button onClick={(e) => {
-              setIsDisabledPassword(boolean => !boolean), e.preventDefault();
-            }}>{buttonText(isDisabledPassword)}</button>
-            {newPass}</>
-              
-            : <button onClick={(e) => {
-              setIsDisabledPassword(boolean => !boolean), e.preventDefault();
-            }}>{buttonText(isDisabledPassword)}</button>
-          }
+          <input onChange={(e) => setPassword(e.target.value)} defaultValue={user && user.password} style={!isDisabledName ? {color: "lightgrey"} : null} className="inputText" type="password" placeholder="•••••••••" disabled={!isDisabledPassword} />
           
         </form>
       </div>

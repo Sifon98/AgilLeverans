@@ -112,7 +112,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                             required
                             onChange={(e) => {setUsername(e.target.value), setUsernameError(false)}}
                         />
-                        {usernameError && <p className="errorText">Username is not valid!</p>}
+                        {usernameError ? <p className="errorText">Invalid username!</p> : <p className="placeholder"></p>}
                         <input
                             className={`inputRegister ${ emailError && "inputRegisterError"}`}
                             type="email"
@@ -121,7 +121,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                             required
                             onChange={(e) => {setEmail(e.target.value), setEmailError(false)}}
                         />
-                        {emailError && <p className="errorText">Email is not valid!</p>}
+                        {emailError ? <p className="errorText">Invalid email!</p> : <p className="placeholder"></p>}
                         <input
                             className={`inputRegister ${ passwordError && "inputRegisterError"}`}
                             type="password"
@@ -130,7 +130,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                             required
                             onChange={(e) => {setPassword(e.target.value), setPasswordError(false)}}
                         />
-                        {passwordError && <p className="errorText">Password is not valid!</p>}
+                        {passwordError ? <p className="errorText">Password needs 6 characters, one letter and one number!</p> : <p className="placeholder"></p>}
                         <input
                             className={`inputRegister ${ repPasswordError && "inputRegisterError"}`}
                             type="password"
@@ -139,7 +139,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                             required
                             onChange={(e) => {setRepeatPassword(e.target.value), setRepPasswordError(false)}}
                         />
-                        {repPasswordError && <p className="errorText">Password didn't match!</p>}
+                        {repPasswordError ? <p className="errorText">Password didn't match!</p> : <p className="placeholder"></p>}
                         <button className="registerButton" onClick={handleSubmit}>register.</button>
                         <p className="loginText">Already have an account?</p>
                         <p className="loginLink" onClick={() => changePopup()}>
@@ -159,7 +159,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                   required
                   onChange={(e) => {setUsername(e.target.value), setUsernameError(false)}}
                 />
-                {usernameError && <p className="errorText">Username is not valid!</p>}
+                {usernameError ? <p className="errorText">Invalid username!</p> : <p className="placeholder"></p>}
                 <input
                   className={`inputRegister ${ emailError && "inputRegisterError"}`}
                   type="email"
@@ -168,7 +168,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                   required
                   onChange={(e) => {setEmail(e.target.value), setEmailError(false)}}
                 />
-                {emailError && <p className="errorText">Email is not valid!</p>}
+                {emailError ? <p className="errorText">Invalid email!</p> : <p className="placeholder"></p>}
                 <input
                   className={`inputRegister ${ passwordError && "inputRegisterError"}`}
                   type="password"
@@ -177,7 +177,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                   required
                   onChange={(e) => {setPassword(e.target.value), setPasswordError(false)}}
                 />
-                {passwordError && <p className="errorText">Password is not valid!</p>}
+                {passwordError ? <p className="errorText">Password needs 6 characters, one letter and one number!</p> : <p className="placeholder"></p>}
                 <input
                   className={`inputRegister ${ repPasswordError && "inputRegisterError"}`}
                   type="password"
@@ -186,7 +186,7 @@ function RegisterHome({popupRegister, setPopupRegister, changePopup, registerPag
                   required
                   onChange={(e) => {setRepeatPassword(e.target.value), setRepPasswordError(false)}}
                 />
-                {repPasswordError && <p className="errorText">Password didn't match!</p>}
+                {repPasswordError ? <p className="errorText">Password didn't match!</p> : <p className="placeholder"></p>}
                 <button className="registerButton" onClick={handleSubmit}>register.</button>
                 <p className="loginText">Already have an account?</p>
                 <button className="loginLink" 

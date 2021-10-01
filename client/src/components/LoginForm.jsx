@@ -14,7 +14,6 @@ function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
     
     const [loginError, setLoginError] = useState("");
     const [loginErrorUser, setLoginErrorUser] = useState("");
-    const [loginErrorPass, setLoginErrorPass] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async (e) => {
@@ -35,7 +34,6 @@ function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
         if(getUser.error === "Invalid username or password."){
         setLoginError(true);
         setLoginErrorUser(true);
-        setLoginErrorPass(true);
         setErrorMessage(getUser.error);
         return;
         }
@@ -79,13 +77,13 @@ function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
                         onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
                     />
                     <input
-                        className={`inputLogin ${ loginErrorPass && "inputLoginError"}`}
+                        className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
                         type="password"
                         name="password"
                         placeholder="password"
-                        onChange={(e) => {setPassword(e.target.value), setLoginErrorPass(false)}}
+                        onChange={(e) => {setPassword(e.target.value), setLoginErrorUser(false)}}
                     />
-                    {loginError && <p className="errorText">{errorMessage}</p>}
+                    {loginError ? <p className="errorText">{errorMessage}</p> : <p className="placeholder"></p>}
                     <button className="loginButton" onClick={handleLogin}>login.</button>
                     <p className="registerText">Don't have an account?</p>
                     <p className="registerLink" onClick={() => changePopup()}>
@@ -106,13 +104,13 @@ function LoginHome({popupLogin, setPopupLogin, changePopup, loginPage}) {
                     onChange={(e) => {setUsername(e.target.value), setLoginErrorUser(false)}}
                 />
                 <input
-                    className={`inputLogin ${ loginErrorPass && "inputLoginError"}`}
+                    className={`inputLogin ${ loginErrorUser && "inputLoginError"}`}
                     type="password"
                     name="password"
                     placeholder="password"
-                    onChange={(e) => {setPassword(e.target.value), setLoginErrorPass(false)}}
+                    onChange={(e) => {setPassword(e.target.value), setLoginErrorUser(false)}}
                 />
-                {loginError && <p className="errorText">{errorMessage}</p>}
+                {loginError ? <p className="errorText">{errorMessage}</p> : <p className="placeholder"></p>}
                 <button className="loginButton" onClick={handleLogin}>login.</button>
                 <p className="registerText">Don't have an account?</p>
                 <button className="registerLink" 

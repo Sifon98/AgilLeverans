@@ -28,7 +28,7 @@ function Routes({location, user}) {
       <DefaultRoute path="/landing" component={Landing} user={user} />
       <DefaultRoute path="/products/:id" component={Product} user={user} />
       <PrivateRoute path="/profile" component={Profile} user={user} />
-      { navigator.userAgent.includes("Electron") && <PrivateRoute path="/wishlist" component={Wishlist} user={user} />}
+      <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
       <PrivateRoute path="/checkout" component={Checkout} user={user} />
       <PrivateRoute path="/cart" component={Shoppingcart} user={user} />
       <PrivateRoute path="/confirmation" component={Confirmation} user={user} />

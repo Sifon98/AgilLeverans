@@ -5,9 +5,7 @@ const User = require("../models/user");
 const Product = require("../models/product");
 const router = express.Router();
 const {products} = require("../utils/products")
-
-const {validateQuery} = require("../utils/validation")
-
+const {validateQuery} = require("../utils/validation");
 
 
 // USER
@@ -15,7 +13,36 @@ router.get("/user", (req, res) => {
   if (!req.isAuthenticated()) return res.json(null);
   const { _id, email, username, wishlist, cart } = req.user;
   res.json({ _id, email, username, wishlist, cart });
-});
+} );
+
+
+router.patch( "/updatename", async ( req, res ) => {
+  try {
+    const userId = req.user._id;
+    const { userName } = req.body;
+    const updatedUserName = await User.findByIdAndUpdate( { _id: userId }, { username: userName }, { new: true } )
+    
+    console.log( updatedUserName );
+    res.send( { user: updatedUserName } );
+
+  } catch(err) {
+    console.log(err);
+  }
+} );
+
+router.patch( "/updateemail", async ( req, res ) => {
+  try {
+  const userId = req.user._id;
+  const { email } = req.body;
+  const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email: email}, {new : true})
+    console.log( email );
+  console.log( updatedUserEmail );
+  res.send( { user: updatedUserEmail } );
+    
+} catch(err) {
+  console.log(err);
+}
+} );
 
 router.post("/register", async (req, res, next) => {
   try {
@@ -203,6 +230,24 @@ router.post("/add-wishlist-to-cart", async (req, res, next) => {
   };
 });
 
+router.delete("/clear-cart", async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findOneAndUpdate(
+      { _id: userId }, 
+      {
+        cart: []
+      },
+      {new: true}
+    );
+
+    res.send({cart: user.cart});
+  } catch (err) {
+    next(err);
+  }
+})
+
 router.delete("/clear-wishlist", async (req, res, next) => {
   try {
     const userId = req.user._id;
@@ -221,8 +266,6 @@ router.delete("/clear-wishlist", async (req, res, next) => {
   }
 })
 
-
-
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
   console.log("DELETE")
@@ -239,7 +282,8 @@ router.delete("/saved-products/:id", async (req, res, next) => {
         ...(type === "wishlist" && {wishlist: {_id: productId}}),
         ...(type === "cart" && {cart: {_id: productId}})
       }
-    }, {new: true}).populate("cart.item").populate("wishlist.item");
+    }, {new: true});
+    // }, {new: true}).populate("cart.item").populate("wishlist.item");
 
     res.send({wishlist: user.wishlist, cart: user.cart});
   } catch(err) {

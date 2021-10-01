@@ -9,7 +9,7 @@ function Login() {
       <div className="yellow-side"></div>
       <div className="head"><h1 className="h1-name">bopshop.</h1></div>
       <LoginForm loginPage={true} />
-      <DownloadsContainer size="small" />
+      
     </div>
   )
 }

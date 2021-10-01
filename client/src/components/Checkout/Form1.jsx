@@ -28,7 +28,7 @@ function Form1({currentForm, setCurrentForm, formCheck1, cardNumber, handleSetCa
         disabled={!formCheck1}
         style={formCheck1 ? {backgroundColor: "#57c95b"} : null}
         >
-        <span>Continue</span>
+        <span>Continue </span>
         <i className="fas fa-arrow-right"></i>
       </button>
     </div>

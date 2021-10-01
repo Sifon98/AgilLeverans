@@ -34,8 +34,6 @@
         }
     }
 
-
-
     .image-container {
         display: flex;
         flex-wrap: wrap;
@@ -59,7 +57,7 @@
                 opacity: 0.5;
             }
             &:active .men-image {
-                transform: scale(3.4);
+                transform: scale(0.9);
             }
             
             .button-container-men {
@@ -75,11 +73,12 @@
                 align-items: center;
 
                 .men-button {
+                    font-family: 'Inter';
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     background-color: var(--yellow);
-                    width: 110px;
+                    width: 120px;
                     height: 40px;
                     text-decoration: black;
                     border: none;
@@ -143,8 +142,8 @@
             &:active {
                 opacity: 0.5;
             }
-            &:active .womenImage {
-                transform: scale(3.2);
+            &:active .women-image {
+                transform: scale(0.9);
             }
 
             .button-container-women {
@@ -161,15 +160,16 @@
                 z-index: 10;
 
                 .women-button {
+                    font-family: 'Inter';
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     background-color: var(--yellow);
-                    width: 110px;
+                    width: 160px;
                     height: 40px;
                     text-decoration: black;
                     border: none;
-                    font-size: 1.7em;
+                    font-size: 1.9em;
                     font-weight: bold;
                 }
             }
