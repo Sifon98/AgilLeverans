@@ -42,7 +42,6 @@ function App() {
 
   useEffect(() => {
     if(!initialLoad) return;
-    console.log(history)
     history.push({
       pathname: nav.path,
       ...(nav.state && {state: {...history.location.state, ...nav.state}})

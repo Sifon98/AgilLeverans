@@ -98,8 +98,6 @@ function Checkout() {
           return {...x, countPrice: parseFloat(countPrice.toFixed(2))}
       })
 
-      console.log(products)
-
       setProducts(products);
       setTotalPrice(total.toFixed(2));
   }
