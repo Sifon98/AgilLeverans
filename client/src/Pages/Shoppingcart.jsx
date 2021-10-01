@@ -92,9 +92,9 @@ function Shoppingcart() {
 
     return (
         <div className="shopping-wrapper page">
-            <SideMenu backArrow="/home" />
+            <SideMenu backArrow="/go-back" />
             <DesktopHeader noCart={true} />
-            <MobileHeader backArrow={true} />
+            <MobileHeader backArrow={true} backPath="/go-back"/>
             <div className="cart-container">
                 <h1 className="cart-title">your cart.</h1>
             </div>
