@@ -44,8 +44,10 @@ function Product() {
     // Get params from url
     const { color, size } = getParams(location);
 
+    console.log("DONT FETCH 1")
     // Fetch product
     const getProduct = async () => {
+      console.log("DONT FETCH 2")
       const productId = location.pathname.replace("/products/", "");
       const data = await (await fetch(`/api/products/${productId}`)).json();
       setProduct(data.product);
