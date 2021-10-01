@@ -7,7 +7,7 @@ function Products({Product, loggedIn, popupLoginFunc}) {
   const [ hasLoaded, setHasLoaded ] = useState(false);
 
   return (
-    <div className="product" onClick={() => setNav({path: `/products/${Product._id}`, direction: 1})}>
+    <div className="product" onClick={() => setNav({path: `/items/${Product._id}`, direction: 1})}>
         <div className="overlay" style={hasLoaded ? {opacity: "0"} : null}></div>
         <div className="image-helper">
           <img alt="image" className="image" src={Product.images[0]} onLoad={() => setHasLoaded(true)} />

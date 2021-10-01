@@ -27,7 +27,7 @@ function Routes({location, user}) {
       <AuthRoute path="/register" component={Register} user={user} />
       <DefaultRoute path="/home" component={Home} user={user} />
       <DefaultRoute path="/landing" component={Landing} user={user} />
-      <DefaultRoute path="/products/:id" component={Product} user={user} />
+      <DefaultRoute path="/items/:id" component={Product} user={user} />
       <PrivateRoute path="/profile" component={Profile} user={user} />
       <PrivateRoute path="/wishlist" component={Wishlist} user={user} />
       <PrivateRoute path="/checkout" component={Checkout} user={user} />
