@@ -99,7 +99,7 @@ function Wishlist() {
   return (
     <div className="page">
       <DesktopHeader wishlist={true}/>
-      <SideMenu backArrow="/home" />
+      <SideMenu backArrow={true} backPath="/go-back"/>
       <div className="wishlistText">
         <h1 className="wishlistTitle">your wishlist.</h1>
       </div>
