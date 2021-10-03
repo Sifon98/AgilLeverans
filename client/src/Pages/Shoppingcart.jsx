@@ -70,7 +70,11 @@ function Shoppingcart() {
     const handleIncrementDecrement = async (id, count, currentPrice, increment) => {
         if(!increment && count === 1) return removeItem(id);
 
+        if(increment && count === 10) return;
+
         increment ? count++ : count--;
+
+
         const UpdateProducts = [...products].map(x => {
             if(x._id === id) {
                 return {...x, countPrice: parseFloat((x.item.price * count).toFixed(2)), count}
@@ -92,7 +96,7 @@ function Shoppingcart() {
 
     return (
         <div className="shopping-wrapper page">
-            <SideMenu backArrow="/go-back" />
+            <SideMenu backArrow={true} backPath="/go-back" />
             <DesktopHeader noCart={true} />
             <MobileHeader backArrow={true} backPath="/go-back"/>
             <div className="cart-container">
