@@ -2,7 +2,6 @@
 // React in every component
 import React from 'react';
 globalThis.React = React;
-
 // Import of test-utilities
 // (there are more like screen but nut using them here)
 // see: https://reactjs.org/docs/test-utils.html
@@ -102,11 +101,6 @@ test("Simulate increment a product N number of times", async () => {
   });
 });
 
-afterEach(() => {
-  cleanup();
-});
-
-
 test("Simulate decrement a product N number of times", async () => {
   // decrement first product from list, change if you want to increment another product than the first. 
   const idx = 0
@@ -151,11 +145,6 @@ test("Simulate decrement a product N number of times", async () => {
   });
 });
 
-afterEach(() => {
-  cleanup();
-});
-
-
 function getTotalPrice() {
   let initialSubtotal = document.querySelector('#totalSum').innerHTML;
   initialSubtotal = +initialSubtotal.split('$')[1].split('<')[0];
@@ -170,6 +159,7 @@ function getProductPrice(product) {
   return +price.toFixed(2);
 }
 test("Simulate remove N index from product from list", async () => {
+  return;
 
   // Removes first product from list, change if you want to remove another product than the first. 
   const idx = 0

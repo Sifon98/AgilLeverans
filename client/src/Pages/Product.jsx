@@ -45,8 +45,8 @@ function Product() {
 
     // Fetch product
     const getProduct = async () => {
-      const productId = location.pathname.replace("/items/", "");
-      const data = await (await fetch(`/api/products/${productId}`)).json();
+      // const productId = location.pathname.replace("/items/", "");
+      const data = await (await fetch(`/api/products/61530a7bd55fa57bfaccccca`)).json();
       setProduct(data.product);
       setMoreProducts(data.randomProducts);
       setCurrentProductOptions(color, size, data.product);
@@ -54,12 +54,12 @@ function Product() {
     getProduct();
   }, [reloadFetch])
 
-  useEffect(() => {
-    if(nav.path.includes("items")) {
-      setReloadFetch(bool => !bool);
-      window.scrollTo({top:0,left:0,behavior: 'smooth'});
-    }
-  }, [nav])
+  // useEffect(() => {
+  //   if(nav.path.includes("items")) {
+  //     setReloadFetch(bool => !bool);
+  //     window.scrollTo({top:0,left:0,behavior: 'smooth'});
+  //   }
+  // }, [nav])
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,31 +74,32 @@ function Product() {
     }
   }, [product]);
 
-  // Set search params in url when product options changes
-  useEffect(() => {
-    history.push({
-      search: `?color=${selectedColor.name}&size=${selectedSize}`
-    })
-  }, [selectedColor, selectedSize])
+  // // Set search params in url when product options changes
+  // useEffect(() => {
+  //   history.push({
+  //     search: `?color=${selectedColor.name}&size=${selectedSize}`
+  //   })
+  // }, [selectedColor, selectedSize])
 
   // Set is wishlisted and carted
   useEffect(() => {
-    if(!user) return;
-    if(!user.wishlist) return;
-    if(!user.cart) return;
+    // if(!user) return;
+    // if(!user.wishlist) return;
+    // if(!user.cart) return;
 
-    const { color, size } = getParams(location);
+    // const { color, size } = getParams(location);
 
-    const isInWishlist = user.wishlist.some(e => e.item === product._id && e.color.name === color && e.size === size);
-    const isInCart = user.cart.some(e => e.item === product._id && e.color.name === color && e.size === size);
+    // const isInWishlist = user.wishlist.some(e => e.item === product._id && e.color.name === color && e.size === size);
+    // const isInCart = user.cart.some(e => e.item === product._id && e.color.name === color && e.size === size);
 
-    isInWishlist ? setIsWishlisted(true) : setIsWishlisted(false);
-    isInCart ? setIsCarted(true) : setIsCarted(false);
+    // isInWishlist ? setIsWishlisted(true) : setIsWishlisted(false);
+    // isInCart ? setIsCarted(true) : setIsCarted(false);
+    // setIsCarted(true)
 
   }, [product, location.search]);
 
   const handleToggleWishlist = () => {
-    if (!user) return;
+    // if (!user) return;
     // Submit to server
     handleSubmitSavedItem("wishlist");
     // Change client's state
@@ -106,7 +107,7 @@ function Product() {
   }
 
   const handleToggleCart = () => {
-    if (!user) return;
+    // if (!user) return;
     // Submit to server
     handleSubmitSavedItem("cart");
     // Change client's state
@@ -116,33 +117,23 @@ function Product() {
   // Handle submit Wishlist OR Cart
   const handleSubmitSavedItem = async (type) => {
 
-    // Inline && and Ternary operator to see what we should send to server,
-    // We have 4 Possibilities: POST - Wishlist | DELETE - Wishlist | POST - Cart | DELETE - Cart
-    const { color, size } = getParams(location);
-    let productId = null;
-    if (type === "wishlist" && isWishlisted) {
-      productId = user.wishlist.find(x => x.item === product._id && x.color.name === color && x.size === size)._id;
-    }
-    if (type === "cart" && isCarted) {
-      productId = user.cart.find(x => x.item === product._id && x.color.name === color && x.size === size)._id;
-    }
     
-    const res = await fetch(`/api/saved-products/${productId || product._id}?type=${type}`, {
+    const res = await fetch(`/api/saved-products/61530a7bd55fa57bfaccccca?type=cart`, {
       ...(type === "wishlist" && {method: isWishlisted ? "DELETE" : "POST"}),
       ...(type === "cart" && {method: isCarted ? "DELETE": "POST"}),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({color: selectedColor, size: selectedSize})
+      body: JSON.stringify({color: {name: "Navy", hex: "#171c32"}, size: "M"})
     })
-    const data = await res.json();
+    // const data = await res.json();
 
-    setUser({
-      ...user,
-      ...(data.cart && {cart: data.cart}),
-      ...(data.wishlist && {wishlist: data.wishlist}),
-    });
+    // setUser({
+    //   ...user,
+    //   ...(data.cart && {cart: data.cart}),
+    //   ...(data.wishlist && {wishlist: data.wishlist}),
+    // });
   }
 
   // UTILITIES
@@ -243,7 +234,7 @@ function Product() {
           </div>
         </div>
         <div className="bottom-whitespace"></div>
-        <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} />
+        {/* <CheckoutButton handleToggleCart={handleToggleCart} isCarted={isCarted} /> */}
       </div>
       <LoginHome popupLogin={popupLogin} setPopupLogin={setPopupLogin} changePopup={changePopup} LoginPage={false} />
       <RegisterHome popupRegister={popupRegister} setPopupRegister={setPopupRegister} changePopup={changePopup} />
