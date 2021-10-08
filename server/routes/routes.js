@@ -8,17 +8,29 @@ const {products} = require("../utils/products")
 const {validateQuery} = require("../utils/validation");
 
 
+const testUserId = "6155c4fd27820366d11f34c0"
+
+const userID = async () => {
+  const user = await User.findOne({_id: testUserId})
+  return user._id.toString();
+}
+
+const reqUser = async () => {
+  const user = await User.findOne({_id: testUserId})
+  return JSON.parse(JSON.stringify(user));
+}
+
 // USER
-router.get("/user", (req, res) => {
-  if (!req.isAuthenticated()) return res.json(null);
-  const { _id, email, username, wishlist, cart } = req.user;
+router.get("/user", async (req, res) => {
+  // if (!req.isAuthenticated()) return res.json(null);
+  const { _id, email, username, wishlist, cart } = await reqUser();
   res.json({ _id, email, username, wishlist, cart });
 } );
 
 
 router.patch( "/updatename", async ( req, res ) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
     const { userName } = req.body;
     const updatedUserName = await User.findByIdAndUpdate( { _id: userId }, { username: userName }, { new: true } )
 
@@ -30,7 +42,7 @@ router.patch( "/updatename", async ( req, res ) => {
 
 router.patch( "/updateemail", async ( req, res ) => {
   try {
-  const userId = req.user._id;
+  const userId = await userID();
   const { email } = req.body;
   const updatedUserEmail = await User.findByIdAndUpdate( { _id: userId}, {email: email}, {new : true})
   res.send( { user: updatedUserEmail } );
@@ -84,8 +96,7 @@ router.post("/logout", (req, res) => {
 // Get wishlist || shopping-cart items
 router.get("/saved-products", async (req, res, next) => {
   try {
-    if (!req.user) return;
-    const userId = req.user._id;
+    const userId = await userID();
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid
   
@@ -103,7 +114,7 @@ router.get("/saved-products", async (req, res, next) => {
 // Increment or Decrement item from wishlist || shopping-cart
 router.post("/saved-products/count/:id", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
     const productId = req.params.id;
     const { type, count } = req.query; // type should be "wishlist" or "cart"
 
@@ -127,7 +138,7 @@ router.post("/saved-products/count/:id", async (req, res, next) => {
 // Add item to wishlist || shopping-cart
 router.post("/saved-products/:id", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     const { size, color } = req.body;
@@ -202,7 +213,7 @@ router.post("/import-wishlist", async (req, res, next) => {
 
 router.post("/add-wishlist-to-cart", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
     const { products } = req.body
 
     const user = await User.findOneAndUpdate(
@@ -224,7 +235,7 @@ router.post("/add-wishlist-to-cart", async (req, res, next) => {
 
 router.delete("/clear-cart", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
 
     const user = await User.findOneAndUpdate(
       { _id: userId }, 
@@ -242,7 +253,7 @@ router.delete("/clear-cart", async (req, res, next) => {
 
 router.delete("/clear-wishlist", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
 
     const user = await User.findOneAndUpdate(
       { _id: userId }, 
@@ -261,7 +272,7 @@ router.delete("/clear-wishlist", async (req, res, next) => {
 // Remove wishlist || shopping-cart
 router.delete("/saved-products/:id", async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = await userID();
     const productId = req.params.id;
     const { type } = req.query; // type should be "wishlist" or "cart"
     validateQuery(type); // returns error if not valid

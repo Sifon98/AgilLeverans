@@ -59,6 +59,7 @@ function Shoppingcart() {
         // Set State
         setProducts(UpdateProducts);
         setTotalPrice(total.toFixed(2));
+        return;
         setUser({
             ...user,
             cart: UpdateProducts
@@ -122,7 +123,7 @@ function Shoppingcart() {
                                     <div className="item-count">{x.count}</div>
                                     <div className="decrement-btn" onClick={() => handleIncrementDecrement(x._id, x.count, x.item.price, 0)}><i className="fas fa-minus"></i></div>                
                                 </div>
-                                <p className="price-tag">${x.countPrice}</p>
+                                <p className="price-tag">${x.countPrice.toFixed(2)}</p>
                                 <div className="remove-item-btn" onClick={() => removeItem(x._id)}>
                                     <svg width="12" height="12" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4.86645 1.19549L4.19129 0.52034L2.50329 2.20834L0.81529 0.52034L0.140137 1.19549L1.82814 2.88349L0.140137 4.5715L0.81529 5.24665L2.50329 3.55865L4.19129 5.24665L4.86645 4.5715L3.17844 2.88349L4.86645 1.19549Z" fill="#CDCDCD"/>

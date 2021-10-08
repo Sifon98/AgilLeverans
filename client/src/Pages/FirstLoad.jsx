@@ -10,9 +10,7 @@ function FirstLoad() {
   const { user, setUser } = useContext(UserContext);
   const { setNav } = useContext(NavContext);
 
-
   return (
-
     <div className="container-first-load page">
         <div className="yellow-side"></div>
         <img alt="image"  src={logoLogin} />

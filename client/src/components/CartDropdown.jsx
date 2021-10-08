@@ -12,7 +12,7 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        fetchShoppingCart();
+        // fetchShoppingCart();
     }, [cartToggle])
 
 
