@@ -102,6 +102,59 @@ test("Simulate increment a product N number of times", async () => {
   });
 });
 
+afterEach(() => {
+  cleanup();
+});
+
+
+test("Simulate decrement a product N number of times", async () => {
+  // decrement first product from list, change if you want to increment another product than the first. 
+  const idx = 0
+  // Button click count
+  let N = 6
+
+  await act(async () => {
+
+    render(<Shoppingcart />);
+    await sleep(500); // wait for fetches
+
+    // Get current product length
+    const initialProducts = getProducts();
+    // Get current cart subtotal in float value
+    const initialSubtotal = getTotalPrice();
+
+    // Get original product price before decrementing
+    const itemCount = getProductCount(initialProducts[idx])
+    const currentProductPrice = getCurrentProductPrice(initialProducts[idx])
+    // console.log(getCurrentProductPrice(initialProducts[idx]))
+
+    // Simulate click to decrement product
+    const decrementProduct = initialProducts[idx].querySelector(".decrement-btn")
+    let newProductPrice = 0;
+    const originalProductPrice = getOriginalProductPrice(initialProducts[idx]);
+    let decrementCount = 0;
+    for(let i = 0; i < N; i++) {
+      if (getProductCount(initialProducts[idx]) === 1) continue;
+      decrementProduct.click();
+      newProductPrice += originalProductPrice
+      decrementCount++;
+    }
+    await sleep(200);
+    
+    expect(+(getCurrentProductPrice(initialProducts[idx]).toFixed(2))).toBe(+(currentProductPrice - newProductPrice).toFixed(2));
+    expect(getTotalPrice()).toBe(+(initialSubtotal - newProductPrice).toFixed(2));
+
+    if (getProductCount(initialProducts[idx]) > 0) {
+      expect(getProductCount(initialProducts[idx])).toBe(itemCount - decrementCount);
+    }
+
+  });
+});
+
+afterEach(() => {
+  cleanup();
+});
+
 
 function getTotalPrice() {
   let initialSubtotal = document.querySelector('#totalSum').innerHTML;
@@ -117,10 +170,9 @@ function getProductPrice(product) {
   return +price.toFixed(2);
 }
 test("Simulate remove N index from product from list", async () => {
-  // return;
 
   // Removes first product from list, change if you want to remove another product than the first. 
-  const idx = 1
+  const idx = 0
 
   await act(async () => {
 
@@ -140,8 +192,31 @@ test("Simulate remove N index from product from list", async () => {
     await sleep(200);
 
     expect(getProducts().length).toBe(initialProducts.length - 1);
-    expect(getTotalPrice()).toBe(initialSubtotal - productPrice);
+    expect(+getTotalPrice().toFixed(2)).toBe(+(initialSubtotal - productPrice).toFixed(2));
 
+  });
+});
+
+
+test("Test if total price is displayed correctly", async () => {
+
+  await act(async () => {
+
+    render(<Shoppingcart />);
+    await sleep(500); // wait for fetches
+
+    // Get current product length
+    const initialProducts = getProducts();
+
+    // Simulate click to increment product
+    let calculatedTotalPrice = 0;
+    for(let i = 0; i < initialProducts.length; i++) {
+      const currentProductPrice = getCurrentProductPrice(initialProducts[i])
+      calculatedTotalPrice += currentProductPrice
+    }
+    await sleep(200);
+
+    expect(getTotalPrice()).toBe(+(calculatedTotalPrice).toFixed(2));
   });
 });
 

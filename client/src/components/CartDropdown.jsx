@@ -131,7 +131,7 @@ function CartDropdown({cartToggle, setCartToggle, wishlist}) {
                             </div>
                             ))
                         }
-                        {products && products.length > 0 ? null : <div className="no-cart-items ">You have no products in you cart, go shopping!</div>}
+                        {products && products.length > 0 ? null : <div className="no-cart-items ">Cart dropdown is disabled on this branch, do /cart instead!</div>}
                     </div>
                     <div className="info-cart">
                         <p className="total-text">cart subtotal.</p>

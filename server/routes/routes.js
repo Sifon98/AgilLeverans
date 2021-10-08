@@ -7,7 +7,9 @@ const router = express.Router();
 const {products} = require("../utils/products")
 const {validateQuery} = require("../utils/validation");
 
-
+// MUST BE YOUR LOCAL USER ID
+// Oliver 6155c4fd27820366d11f34c0
+// Alexander 6151ccaf1502194475208587
 const testUserId = "6155c4fd27820366d11f34c0"
 
 const userID = async () => {
